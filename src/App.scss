@@ -1,0 +1,467 @@
+body {
+  margin-bottom: 100px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+@mixin noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.news_block {
+  position: relative;
+  border: 1px solid lightgray;
+  border-radius: 2px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.company_information_block {
+  position: relative;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#header {
+  position: relative;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#header_simple_text {
+  font-size: 22px;
+}
+
+#header_major_text {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+#header_minor_text {
+  font-size: 16px;
+  opacity: 0;
+  transition: 0.3s;
+  cursor: default;
+}
+
+#header_major_text:hover + #header_minor_text {
+  opacity: 1;
+  transition: 0.3s;
+}
+
+#full_align {
+  width: 100%;
+  transition: 0.3s;
+}
+
+#left_align {
+  width: 50%;
+  float: left;
+  transition: 0.3s;
+}
+
+#right_align {
+  width: 50%;
+  float: right;
+}
+
+.input_box {
+  padding: 5px;
+  border-radius: 5px;
+  width: 150px;
+  border: 1px solid grey;
+  font-size: 14px;
+}
+
+.form_block_view {
+  display: block;
+  margin: 5px;
+}
+
+#account_creation {
+  text-align: center;
+  width: 170px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#company_mapper {
+  position: relative;
+  width: 400px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+#map_block {
+  position: relative;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center_button {
+  position: relative;
+  display: block;
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#news_component {
+  position: relative;
+  width: 60%;
+  min-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#comment_component {
+  position: relative;
+  width: 60%;
+  min-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#stock_comment {
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+
+#stock_comment_bottom_container {
+  position: relative;
+  border-top: 1px dashed grey;
+}
+
+.inline_text {
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#portfolio {
+  position: relative;
+  width: 50%;
+  min-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#owned_stocked {
+  position: relative;
+  display: block;
+}
+
+#share_listing {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100px;
+  border-bottom: 1px dashed grey;
+}
+
+#trade_buttons {
+  opacity: 0;
+  display: inline-block;
+  float: right;
+  transition: 0.3s;
+}
+
+#share_listing:hover #trade_buttons {
+  opacity: 1;
+  transition: 0.3s;
+}
+
+#left_share_component {
+  display: inline-block;
+  float: left;
+}
+
+@mixin trading_buttons {
+  width: 40px;
+  height: 25px;
+  border-radius: 2.5px;
+  border: none;
+  color: white;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#buy_button {
+  @include trading_buttons;
+  background-color: green;
+}
+
+#sell_button {
+  @include trading_buttons;
+  background-color: red;
+}
+
+.share_listing_additional_info {
+  font-size: 14px;
+  margin: 0;
+}
+
+#learn_component {
+  position: relative;
+  width: 50%;
+  min-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#learn_individual_div {
+  border-bottom: 1px dashed grey;
+  background-color: white;
+  transition: 0.3s;
+}
+
+#learn_individual_div:hover {
+  background-color: teal;
+  transition: 0.3s;
+}
+
+.nav_el {
+  color: black;
+  margin: 5px;
+}
+
+.active_nav_el {
+  color: orange;
+  border-bottom: 1px solid teal;
+}
+
+#leaderboard {
+  position: relative;
+  width: 50%;
+  min-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#user_map {
+  border-bottom: 1px dashed grey;
+}
+
+#recent_trades_span {
+  position: relative;
+  display: inline-block;
+  width: 110px;
+  border: 1px solid blue;
+  box-sizing: border-box;
+}
+
+#recent_trades {
+  position: relative;
+  width: 160px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid red;
+}
+
+#show_recent_button {
+  width: 50px;
+  height: 30px;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+#recent_activity {
+  position: relative;
+  cursor: pointer;
+}
+
+#view_more_information {
+  @include noselect;
+  opacity: 0;
+  cursor: default;
+  transition: 0.3s;
+}
+
+#recent_activity:hover #view_more_information {
+  opacity: 1;
+  color: grey;
+  transition: 0.3s;
+}
+
+#previous_trade {
+  position: relative;
+  width: 50%;
+  min-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#previous_trade_title {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  border: 1px solid red;
+}
+
+#previous_trade_graph {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  border: 1px solid green;
+}
+
+#previous_trade_subinfo {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border: 1px solid teal;
+}
+
+#previous_trade_comments {
+  position: relative;
+  width: 100%;
+  border: 1px solid red;
+}
+
+#comment {
+  border-bottom: 1px dashed grey;
+}
+
+.ticker_header_text {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+#ticker_header_title {
+  margin-right: 10px;
+}
+
+#ticker_header_ticker {
+  opacity: 0.6;
+}
+
+#profile_activity_container {
+  position: relative;
+  border-bottom: 1px dashed grey;
+}
+
+#user {
+  position: relative;
+  width: 50%;
+  min-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#homepage {
+  position: relative;
+  width: 50%;
+  min-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#navbar {
+  position: fixed;
+  background-color: teal;
+  height: 40px;
+  width: 100%;
+  margin: 0;
+  top: 0;
+  z-index: 99;
+}
+
+#push_under_navbar {
+  position: relative;
+  top: 50px;
+}
+
+#profile {
+  width: 50%;
+  min-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid green;
+}
+
+#profile_sidebar {
+  position: fixed;
+  display: inline-block;
+  float: left;
+  box-sizing: border-box;
+  width: 25%;
+  border: 1px solid red;
+}
+
+#profile_content {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 50%;
+  float: right;
+  border: 1px solid blue;
+}
+
+#sidebar_component {
+  text-align: center;
+  font-size: 22px;
+}
+
+#profile_body {
+  position: relative;
+}
+
+#settings_input_box {
+  position: relative;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  border: 1px solid red;
+}
+
+#settings_button {
+  position: relative;
+  border: none;
+  background-color: white;
+  font-size: 16px;
+  display: block;
+  width: 60%;
+  margin-left: 20%;
+  border: 1px solid red;
+  text-align: left;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+#about_us {
+  position: relative;
+  width: 50%;
+  min-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#centering_container {
+  position: relative;
+  width: 50%;
+  min-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}

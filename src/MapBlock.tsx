@@ -1,0 +1,18 @@
+import React from "react";
+import companyProfiles from "./companyProfiles";
+import { Link } from "react-router-dom";
+import SuggestedCompany from "./SuggestedCompany";
+
+const MapBlock: React.FC = () => {
+  return (
+    <div id="map_block">
+      {companyProfiles.map((el) => (
+        <Link to={`/${el.title}`}>
+          <SuggestedCompany key={el.title} text={el.title} />
+        </Link>
+      ))}
+    </div>
+  );
+};
+
+export default MapBlock;
