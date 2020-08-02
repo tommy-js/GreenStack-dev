@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import timestampFunction from "./timestampFunction";
+import LikeComponent from "./LikeComponent";
 
 interface Props {
   user: string;
@@ -7,6 +8,8 @@ interface Props {
   timestamp: number;
   predictedPrice?: number;
   recommendation?: string;
+  likes: number;
+  dislikes: number;
 }
 
 const StockComment: React.FC<Props> = (props) => {
@@ -34,6 +37,7 @@ const StockComment: React.FC<Props> = (props) => {
       <p>posted {props.timestamp}</p>
       <p>Time: {time}</p>
       {bottomContainer()}
+      <LikeComponent likes={props.likes} dislikes={props.dislikes} />
     </div>
   );
 };

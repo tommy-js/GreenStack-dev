@@ -14,9 +14,10 @@ interface Props {
 }
 
 const ProfileActivityPurchase: React.FC<Props> = (props) => {
-  const [currentPrice, setCurrentPrice] = useState(0);
+  const [currentPrice, setCurrentPrice] = useState(1);
   const [shares, setShares] = useState(props.shares);
   const [validTrade, setValidTrade] = useState(true);
+  const [trading, setTrading] = useState(false);
 
   function saveToReference() {
     // PUSH TRADE TO MONGO FOR SAVING
@@ -25,6 +26,7 @@ const ProfileActivityPurchase: React.FC<Props> = (props) => {
   function mirrorTrade() {
     // RETRIEVE CURRENT PRICE PER SHARE OF PROPS.TICKER
     // SETCURRENTPRICE(PRICE OF PROPS.TICKER)
+    setTrading(true);
   }
 
   function executeMirror() {
@@ -50,27 +52,29 @@ const ProfileActivityPurchase: React.FC<Props> = (props) => {
   }
 
   function tradeContainer() {
-    return (
-      <div>
-        <p>
-          {props.type} of {props.title} #{props.ticker}
-        </p>
-        <p>Current value: ${currentPrice}</p>
-        <label>Shares: </label>
-        <input
-          min="0"
-          type="number"
-          value={shares}
-          onChange={(e) => setShares(parseInt(e.target.value))}
-        />
-        <p>Cost/Income: {calculateValue(currentPrice, shares)}</p>
-        <p>
-          You currently have {props.shares} shares of {props.ticker}
-        </p>
-        <p>{notifyer()}</p>
-        <button onClick={() => executeMirror()}>Execute</button>
-      </div>
-    );
+    if (trading === true) {
+      return (
+        <div>
+          <p>
+            {props.type} of {props.title} #{props.ticker}
+          </p>
+          <p>Current value: ${currentPrice}</p>
+          <label>Shares: </label>
+          <input
+            min="0"
+            type="number"
+            value={shares}
+            onChange={(e) => setShares(parseInt(e.target.value))}
+          />
+          <p>Cost/Income: {calculateValue(currentPrice, shares)}</p>
+          <p>
+            You currently have {props.shares} shares of {props.ticker}
+          </p>
+          <p>{notifyer()}</p>
+          <button onClick={() => executeMirror()}>Execute</button>
+        </div>
+      );
+    } else return null;
   }
 
   return (

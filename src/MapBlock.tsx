@@ -7,7 +7,7 @@ const MapBlock: React.FC = () => {
   return (
     <div id="map_block">
       {companyProfiles.map((el) => (
-        <Link to={`/${el.title}`}>
+        <Link to={`/${el.ticker}`}>
           <SuggestedCompany key={el.title} text={el.title} />
         </Link>
       ))}

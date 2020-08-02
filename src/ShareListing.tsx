@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 interface Props {
   title: string;
@@ -24,9 +25,11 @@ const ShareListing: React.FC<Props> = (props) => {
   return (
     <div id="share_listing">
       <div id="left_share_component">
-        <p>
-          {props.title} ${props.ticker}
-        </p>
+        <Link to={`/${props.ticker}`}>
+          <p>
+            {props.title} ${props.ticker} ({props.shares} shares)
+          </p>
+        </Link>
         <p>Earnings: {earnings}</p>
       </div>
       <div id="trade_buttons">

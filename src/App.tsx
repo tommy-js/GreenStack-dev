@@ -151,7 +151,7 @@ function App() {
                 <Profile />
               </Route>
               {companyProfiles.map((el) => (
-                <Route path={`/${el.title}`}>
+                <Route path={`/${el.ticker}`}>
                   <StockPage title={el.title} ticker={el.ticker} />
                 </Route>
               ))}

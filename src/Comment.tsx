@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import LikeComponent from "./LikeComponent";
 
 interface Props {
   user: string;
@@ -15,9 +16,7 @@ const Comment: React.FC<Props> = (props) => {
         {props.user} at {props.timestamp}
       </p>
       <p>{props.comment}</p>
-      <p>
-        {props.likes} / {props.dislikes}
-      </p>
+      <LikeComponent likes={props.likes} dislikes={props.dislikes} />
     </div>
   );
 };

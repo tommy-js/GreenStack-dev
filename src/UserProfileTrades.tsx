@@ -6,6 +6,7 @@ const UserProfileTrades: React.FC = () => {
     {
       title: "Apple",
       ticker: "AAPL",
+      tradeId: 2332,
       type: "Sell",
       date: "2/22/19",
       price: 223.54,
@@ -15,6 +16,7 @@ const UserProfileTrades: React.FC = () => {
     {
       title: "Tesla",
       ticker: "TSLA",
+      tradeId: 239334,
       type: "Sell",
       date: "4/6/19",
       price: 653.54,
@@ -29,6 +31,7 @@ const UserProfileTrades: React.FC = () => {
         <ProfileTrade
           title={el.title}
           ticker={el.ticker}
+          tradeId={el.tradeId}
           type={el.type}
           date={el.date}
           price={el.price}

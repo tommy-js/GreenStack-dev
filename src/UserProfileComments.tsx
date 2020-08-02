@@ -3,8 +3,8 @@ import ProfileComments from "./ProfileComments";
 
 const UserProfileComments: React.FC = () => {
   const [testData, setTestData] = useState([
-    { comment: "Bad trade loser LOL", tradeId: 24423 },
-    { comment: "No u", tradeId: 2245563443 },
+    { comment: "Bad trade loser LOL", likes: 32, dislikes: 4, tradeId: 24423 },
+    { comment: "No u", likes: 43, dislikes: 12, tradeId: 2245563443 },
   ]);
 
   function removeComment(tradeId: number) {
@@ -23,6 +23,8 @@ const UserProfileComments: React.FC = () => {
         <ProfileComments
           removeComment={removeComment}
           comment={el.comment}
+          likes={el.likes}
+          dislikes={el.dislikes}
           tradeId={el.tradeId}
         />
       ))}
