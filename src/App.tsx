@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import Homepage from "./Homepage";
 import companyProfiles from "./companyProfiles";
 import NavBar from "./NavBar";
@@ -12,6 +12,7 @@ import UserTrade from "./UserTrade";
 import User from "./User";
 import LearnPage from "./LearnPage";
 import Profile from "./Profile";
+import Login from "./Login";
 import generalKnowledge from "./generalKnowledge";
 import optionsKnowledge from "./optionsKnowledge";
 import "./App.scss";
@@ -39,9 +40,11 @@ interface User {
 interface UserCont {
   username: string;
   password: string;
+  userId: number;
 }
 
 export const userContext = createContext<any>({});
+export const statusContext = createContext<any>(false);
 
 function App() {
   const [tradeMap, setTradeMap] = useState();
@@ -50,7 +53,13 @@ function App() {
   const [userVal, setUserVal] = useState<UserCont>({
     username: "TommyBoy",
     password: "123",
+    userId: 0,
   });
+  const [status, setStatus] = useState(false);
+
+  useEffect(() => {
+    // GET USER INFORMATION USING THE USERID
+  }, []);
 
   function updateTradeMap(passInTradeMap: TradeData[]) {
     setTradeMap(passInTradeMap);
@@ -123,51 +132,56 @@ function App() {
   }
 
   return (
-    <userContext.Provider value={{ userVal, setUserVal }}>
-      <Router>
-        <Switch>
-          <div className="App">
-            <NavBar />
-            <div id="push_under_navbar">
-              <Route path="/signin">
-                <SubscribePage />
-              </Route>
-              <Route path="/portfolio">
-                <Portfolio />
-              </Route>
-              <Route path="/leaderboard">
-                <LeaderBoard
-                  updateUserMap={updateUserMap}
-                  updateTradeMap={updateTradeMap}
-                />
-              </Route>
-              <Route exact path="/">
-                <Homepage updateConstantActivity={updateConstantActivity} />
-              </Route>
-              <Route exact path="/about">
-                <AboutPage />
-              </Route>
-              <Route path="/profile">
-                <Profile />
-              </Route>
-              {companyProfiles.map((el) => (
-                <Route path={`/${el.ticker}`}>
-                  <StockPage title={el.title} ticker={el.ticker} />
+    <statusContext.Provider value={status}>
+      <userContext.Provider value={{ userVal, setUserVal }}>
+        <Router>
+          <Switch>
+            <div className="App">
+              <NavBar />
+              <div id="push_under_navbar">
+                <Route path="/signin">
+                  <SubscribePage />
                 </Route>
-              ))}
-              {returnTradePath()}
-              {returnConstantActivity()}
-              <Route path="/about/learn/general">
-                <LearnPage data={generalKnowledge} />
-              </Route>
-              <Route path="/about/learn/options">
-                <LearnPage data={optionsKnowledge} />
-              </Route>
+                <Route path="/portfolio">
+                  <Portfolio />
+                </Route>
+                <Route path="/leaderboard">
+                  <LeaderBoard
+                    updateUserMap={updateUserMap}
+                    updateTradeMap={updateTradeMap}
+                  />
+                </Route>
+                <Route exact path="/">
+                  <Homepage updateConstantActivity={updateConstantActivity} />
+                </Route>
+                <Route exact path="/about">
+                  <AboutPage />
+                </Route>
+                <Route path="/profile">
+                  <Profile />
+                </Route>
+                {companyProfiles.map((el) => (
+                  <Route path={`/${el.ticker}`}>
+                    <StockPage title={el.title} ticker={el.ticker} />
+                  </Route>
+                ))}
+                {returnTradePath()}
+                {returnConstantActivity()}
+                <Route path="/about/learn/general">
+                  <LearnPage data={generalKnowledge} />
+                </Route>
+                <Route path="/about/learn/options">
+                  <LearnPage data={optionsKnowledge} />
+                </Route>
+                <Route path="/login">
+                  <Login />
+                </Route>
+              </div>
             </div>
-          </div>
-        </Switch>
-      </Router>
-    </userContext.Provider>
+          </Switch>
+        </Router>
+      </userContext.Provider>
+    </statusContext.Provider>
   );
 }
 

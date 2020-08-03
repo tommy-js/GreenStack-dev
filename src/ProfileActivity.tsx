@@ -19,12 +19,7 @@ interface Props {
 
 const ProfileActivity: React.FC<Props> = (props) => {
   function showData() {
-    if (
-      props.type === "Comment" &&
-      props.comment &&
-      props.likes &&
-      props.dislikes
-    ) {
+    if (props.comment && props.likes && props.dislikes) {
       return (
         <div>
           <ProfileActivityComment

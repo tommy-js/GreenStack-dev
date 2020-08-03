@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface Props {
   title: string;
@@ -9,9 +10,11 @@ interface Props {
 const WatchListing: React.FC<Props> = (props) => {
   return (
     <div>
-      <p>
-        {props.title} ${props.ticker}
-      </p>
+      <Link to={`/${props.ticker}`}>
+        <p>
+          {props.title} ${props.ticker}
+        </p>
+      </Link>
       <p>price: {props.price}</p>
     </div>
   );

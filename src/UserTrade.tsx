@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Comment from "./Comment";
 import TickerHeader from "./TickerHeader";
 import Header from "./Header";
+import TradeDropdown from "./TradeDropdown";
 import { Link } from "react-router-dom";
 
 interface Props {
@@ -17,6 +18,7 @@ interface Props {
 }
 
 const UserTrade: React.FC<Props> = (props) => {
+  const [mirror, setMirror] = useState(false);
   const testData = [
     {
       user: "Tyler",
@@ -33,6 +35,23 @@ const UserTrade: React.FC<Props> = (props) => {
       dislikes: 1,
     },
   ];
+
+  function saveTrade() {
+    // PASS TRADEID TO MONGO
+  }
+
+  function makeTradeDropdown() {
+    if (mirror === true) {
+      return (
+        <TradeDropdown
+          type={props.type}
+          title={props.title}
+          ticker={props.ticker}
+          shares={props.shares}
+        />
+      );
+    } else return null;
+  }
 
   return (
     <div id="previous_trade">
@@ -53,8 +72,9 @@ const UserTrade: React.FC<Props> = (props) => {
         <p>Price per share: {props.price}</p>
         <p>Number of shares: {props.shares}</p>
         <p>Total gain: {props.gain}</p>
-        <button>Mirror trade</button>
-        <button>Save trade for reference</button>
+        <button onClick={() => setMirror(!mirror)}>Mirror trade</button>
+        <button onClick={() => saveTrade()}>Save trade for reference</button>
+        {makeTradeDropdown()}
       </div>
       <div id="previous_trade_comments">
         {testData.map((el) => (

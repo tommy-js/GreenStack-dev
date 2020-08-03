@@ -23,6 +23,7 @@ const LikeComponent: React.FC<Props> = (props) => {
       setLiked(false);
       setDisliked(false);
     }
+    // PUSH CURRENT LIKE/DISLIKE RATIO TO MONGO
   }
 
   function dislikeButton() {
@@ -37,6 +38,7 @@ const LikeComponent: React.FC<Props> = (props) => {
       setDisliked(false);
       setLiked(false);
     }
+    // PUSH CURRENT LIKE/DISLIKE RATIO TO MONGO
   }
 
   return (

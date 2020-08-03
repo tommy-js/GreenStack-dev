@@ -33,8 +33,9 @@ const ShareListing: React.FC<Props> = (props) => {
         <p>Earnings: {earnings}</p>
       </div>
       <div id="trade_buttons">
-        <button id="buy_button">buy</button>
-        <button id="sell_button">sell</button>
+        <Link to={`/portfolio/newtrade/${props.ticker}`}>
+          <div id="buy_button">Trade</div>
+        </Link>
         <p className="share_listing_additional_info">
           Bought: ${props.purchasePrice}
         </p>

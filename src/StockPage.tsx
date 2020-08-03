@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CompanyInformationBlock from "./CompanyInformationBlock";
+import CompanyOptions from "./CompanyOptions";
 import CompanyNewsBlock from "./CompanyNewsBlock.js";
 import CompanyComments from "./CompanyComments";
 
@@ -47,6 +48,7 @@ const StockPage: React.FC<Props> = (props) => {
   return (
     <div>
       <CompanyInformationBlock title={props.title} price={priceData} />
+      <CompanyOptions />
       <CompanyNewsBlock title={props.title} />
       <CompanyComments />
     </div>

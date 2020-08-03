@@ -1,27 +1,16 @@
 import React from "react";
 import ShareListing from "./ShareListing";
+import NewTrade from "./NewTrade";
+import { Route } from "react-router-dom";
 
-const OwnedStocks: React.FC = () => {
-  const testData = [
-    {
-      title: "Apple",
-      ticker: "AAPL",
-      purchasePrice: 230.24,
-      currentPrice: 243.43,
-      shares: 14,
-    },
-    {
-      title: "Tesla",
-      ticker: "TSLA",
-      purchasePrice: 324.51,
-      currentPrice: 537.27,
-      shares: 12,
-    },
-  ];
+interface Props {
+  testData: any;
+}
 
+const OwnedStocks: React.FC<Props> = (props) => {
   return (
     <div id="owned_stocked">
-      {testData.map((el) => (
+      {props.testData.map((el: any) => (
         <div>
           <ShareListing
             title={el.title}
