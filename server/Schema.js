@@ -26,12 +26,13 @@ const UserQuery = new GraphQLObjectType({
     userId: { type: GraphQLID },
     username: { type: GraphQLString },
     password: { type: GraphQLString },
+    profileImage: { type: GraphQLString },
     money: { type: GraphQLFloat },
     darkmode: { type: GraphQLBoolean },
     invisible: { type: GraphQLBoolean },
     allowCommentsOnTrades: { type: GraphQLBoolean },
     followed: { type: new GraphQLList(FollowerQuery) },
-    following: { type: new GraphQLList(FollowerQuery) },
+    followers: { type: new GraphQLList(FollowerQuery) },
     stocks: { type: new GraphQLList(StockQuery) },
     shares: { type: new GraphQLList(ShareQuery) },
     trades: { type: new GraphQLList(TradeQuery) },
@@ -53,7 +54,9 @@ const FollowerQuery = new GraphQLObjectType({
   name: "Follower",
   fields: () => ({
     followerId: { type: GraphQLID },
+    id: { type: GraphQLID },
     followerName: { type: GraphQLString },
+    blocked: { type: GraphQLBoolean },
   }),
 });
 
@@ -156,6 +159,7 @@ const Mutation = new GraphQLObjectType({
         darkmode: { type: GraphQLBoolean },
         invisible: { type: GraphQLBoolean },
         allowCommentsOnTrades: { type: GraphQLBoolean },
+        profileImage: { type: GraphQLID },
       },
       resolve(parent, args) {
         let user = new User({
@@ -166,6 +170,7 @@ const Mutation = new GraphQLObjectType({
           darkmode: false,
           invisible: false,
           allowCommentsOnTrades: true,
+          profileImage: 0,
         });
         return user.save();
       },
@@ -402,17 +407,50 @@ const Mutation = new GraphQLObjectType({
       args: {
         userId: { type: GraphQLID },
         followerId: { type: GraphQLID },
+        id: { type: GraphQLID },
         followerName: { type: GraphQLString },
+        blocked: { type: GraphQLBoolean },
       },
       resolve(parent, args) {
         return User.update(
           { userId: args.userId },
           {
             $push: {
-              followerId: args.followerId,
-              followerName: args.followerName,
+              followers: {
+                followerId: args.followerId,
+                id: args.id,
+                followerName: args.followerName,
+                blocked: false,
+              },
             },
           }
+        );
+      },
+    },
+    blockUser: {
+      type: FollowerQuery,
+      args: {
+        id: { type: GraphQLID },
+        blocked: { type: GraphQLBoolean },
+      },
+      resolve(parent, args) {
+        return User.findOneAndUpdate(
+          { "followers.id": args.id },
+          { $set: { "followers.$.blocked": args.blocked } },
+          { upsert: true, new: true }
+        );
+      },
+    },
+    setProfileImage: {
+      type: UserQuery,
+      args: {
+        userId: { type: GraphQLID },
+        profileImage: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return User.update(
+          { userId: args.userId },
+          { profileImage: args.profileImage }
         );
       },
     },
