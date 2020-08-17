@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import WatchListing from "./WatchListing";
+import { userContext } from "./AppMain/App";
 
 const WatchStocks: React.FC = () => {
-  const testData = [
-    { title: "Microsoft", ticker: "MSFT", currentPrice: 231.64 },
-  ];
+  const { userVal, setUserVal } = useContext(userContext);
 
   return (
     <div>
-      {testData.map((el) => (
+      {userVal.watchlist.map((el: any) => (
         <div>
           <WatchListing
             title={el.title}

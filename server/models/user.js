@@ -37,11 +37,22 @@ const userSchema = new Schema({
   shares: [{ stockId: Number, shares: Number }],
   trades: [
     {
+      tradeId: Number,
       ticker: String,
       title: String,
       timestamp: Number,
       shares: Number,
       gain: Number,
+      comments: [
+        {
+          userId: String,
+          username: String,
+          timestamp: Number,
+          text: String,
+          likes: Number,
+          dislikes: Number,
+        },
+      ],
     },
   ],
   referenceTrades: [
@@ -53,6 +64,14 @@ const userSchema = new Schema({
       timestamp: Number,
       shares: Number,
       gain: Number,
+    },
+  ],
+  watchlist: [
+    {
+      stockId: Number,
+      title: String,
+      ticker: String,
+      timestamp: Number,
     },
   ],
   comments: [

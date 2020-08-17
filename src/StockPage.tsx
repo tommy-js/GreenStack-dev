@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import CompanyInformationBlock from "./CompanyInformationBlock";
+import CompanyInformationBlock from "./Homepage/CompanyInformationBlock";
 import CompanyOptions from "./CompanyOptions";
-import CompanyNewsBlock from "./CompanyNewsBlock.js";
-import CompanyComments from "./CompanyComments";
+import CompanyNewsBlock from "./misc/CompanyNewsBlock.js";
+import CompanyComments from "./Homepage/CompanyComments";
 
 interface Props {
   title: string;
   ticker: string;
+  stockId: number;
 }
 
 const StockPage: React.FC<Props> = (props) => {
@@ -48,7 +49,11 @@ const StockPage: React.FC<Props> = (props) => {
   return (
     <div>
       <CompanyInformationBlock title={props.title} price={priceData} />
-      <CompanyOptions />
+      <CompanyOptions
+        title={props.title}
+        ticker={props.ticker}
+        stockId={props.stockId}
+      />
       <CompanyNewsBlock title={props.title} />
       <CompanyComments />
     </div>

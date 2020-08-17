@@ -19,6 +19,7 @@ const Stock = require("./models/stock");
 const Share = require("./models/share");
 const Reference = require("./models/referencetrade");
 const Settings = require("./models/settings");
+const Watchlist = require("./models/watchlist");
 
 const UserQuery = new GraphQLObjectType({
   name: "User",
@@ -38,6 +39,17 @@ const UserQuery = new GraphQLObjectType({
     trades: { type: new GraphQLList(TradeQuery) },
     referenceTrades: { type: new GraphQLList(ReferenceTradeQuery) },
     comments: { type: new GraphQLList(CommentQuery) },
+    watchlist: { type: new GraphQLList(WatchlistQuery) },
+  }),
+});
+
+const WatchlistQuery = new GraphQLObjectType({
+  name: "Watchlist",
+  fields: () => ({
+    stockId: { type: GraphQLID },
+    title: { type: GraphQLString },
+    ticker: { type: GraphQLString },
+    timestamp: { type: GraphQLInt },
   }),
 });
 
@@ -194,6 +206,60 @@ const Mutation = new GraphQLObjectType({
         );
       },
     },
+    pushSharesToUser: {
+      type: UserQuery,
+      args: {
+        stockId: { type: GraphQLID },
+        shareId: { type: GraphQLID },
+        shares: { type: GraphQLInt },
+      },
+      resolve(parent, args) {
+        return User.findOneAndUpdate(
+          { "shares.shareId": args.shareId },
+          { $set: { shares: args.shares, stockId: args.stockId } },
+          { upsert: true, new: true }
+        );
+      },
+    },
+    pushStockToWatchlist: {
+      type: WatchlistQuery,
+      args: {
+        userId: { type: GraphQLID },
+        stockId: { type: GraphQLID },
+        title: { type: GraphQLString },
+        ticker: { type: GraphQLString },
+        timestamp: { type: GraphQLInt },
+      },
+      resolve(parent, args) {
+        return User.update(
+          { userId: args.userId },
+          {
+            $push: {
+              watchlist: {
+                stockId: args.stockId,
+                title: args.title,
+                ticker: args.ticker,
+                timestamp: args.timestamp,
+              },
+            },
+          }
+        );
+      },
+    },
+    blockUser: {
+      type: FollowerQuery,
+      args: {
+        id: { type: GraphQLID },
+        blocked: { type: GraphQLBoolean },
+      },
+      resolve(parent, args) {
+        return User.findOneAndUpdate(
+          { "followers.id": args.id },
+          { $set: { "followers.$.blocked": args.blocked } },
+          { upsert: true, new: true }
+        );
+      },
+    },
     updateMoney: {
       type: UserQuery,
       args: {
@@ -220,7 +286,7 @@ const Mutation = new GraphQLObjectType({
           { shareId: args.shareId },
           {
             $set: {
-              share: {
+              shares: {
                 userId: args.userId,
                 stockId: args.stockId,
                 shares: args.shares,
@@ -376,6 +442,31 @@ const Mutation = new GraphQLObjectType({
         );
       },
     },
+    addCommentTrade: {
+      type: CommentQuery,
+      args: {
+        tradeId: { type: GraphQLID },
+        userId: { type: GraphQLID },
+        username: { type: GraphQLString },
+        text: { type: GraphQLString },
+        timestamp: { type: GraphQLInt },
+      },
+      resolve(parent, args) {
+        return Trade.update(
+          { tradeId: args.tradeId },
+          {
+            $push: {
+              comments: {
+                userId: args.userId,
+                username: args.username,
+                text: args.text,
+                timestamp: args.timestamp,
+              },
+            },
+          }
+        );
+      },
+    },
     deleteCommentUser: {
       type: CommentQuery,
       args: {
@@ -424,20 +515,6 @@ const Mutation = new GraphQLObjectType({
               },
             },
           }
-        );
-      },
-    },
-    blockUser: {
-      type: FollowerQuery,
-      args: {
-        id: { type: GraphQLID },
-        blocked: { type: GraphQLBoolean },
-      },
-      resolve(parent, args) {
-        return User.findOneAndUpdate(
-          { "followers.id": args.id },
-          { $set: { "followers.$.blocked": args.blocked } },
-          { upsert: true, new: true }
         );
       },
     },

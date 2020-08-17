@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 interface Props {
   text: string;
   isChecked: boolean;
-  passInHide?: () => void;
+  passInHide?: (checked: boolean) => void;
 }
 
 const SettingsInputBox: React.FC<Props> = (props) => {
@@ -11,7 +11,7 @@ const SettingsInputBox: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (props.passInHide) {
-      props.passInHide();
+      props.passInHide(checked);
     }
   }, [checked]);
 

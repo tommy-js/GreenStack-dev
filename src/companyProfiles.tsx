@@ -1,5 +1,5 @@
 export default [
-  { title: "Apple", ticker: "AAPL" },
-  { title: "Ford", ticker: "F" },
-  { title: "Facebook", ticker: "FB" },
+  { title: "Apple", ticker: "AAPL", stockId: 0 },
+  { title: "Ford", ticker: "F", stockId: 1 },
+  { title: "Facebook", ticker: "FB", stockId: 2 },
 ];

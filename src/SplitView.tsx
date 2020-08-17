@@ -1,6 +1,6 @@
 import React from "react";
 import NewUserInput from "./NewUserInput";
-import AboutUs from "./AboutUs";
+import AboutUs from "./about/AboutUs";
 
 interface Props {
   headerPassIn: () => void;

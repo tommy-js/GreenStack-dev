@@ -1,8 +1,12 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import TradeCheckbox from "./TradeCheckboxes";
+import PushMoneyToUser from "./resolvers/PushMoneyToUser";
+import PushSharesToUser from "./resolvers/PushSharesToUser";
+import { userContext } from "./AppMain/App";
 
 interface Props {
   title: string;
+  stockId: number;
   ticker: string;
   purchasePrice: number;
   currentPrice: number;
@@ -10,9 +14,12 @@ interface Props {
 }
 
 const NewTrade: React.FC<Props> = (props) => {
+  const { userVal, setUserVal } = useContext(userContext);
+  const [shareId, setShareId] = useState(Math.floor(Math.random() * 100000));
   const [shares, setShares] = useState(props.shares);
   const [totalGain, setTotalGain] = useState(props.currentPrice * props.shares);
   const [syntax, setSyntax] = useState("Cost: ");
+  const [exchangeVal, setExchangeVal] = useState();
   const [tradeCheckbox, setTradeCheckbox] = useState({
     buy: true,
     sell: false,
@@ -36,7 +43,12 @@ const NewTrade: React.FC<Props> = (props) => {
   }
 
   function executeTrade() {
-    // PASS DATA TO MONGO
+    let exchangeVal;
+    if (tradeCheckbox.buy === true) {
+      setExchangeVal(userVal.money - totalGain);
+    } else {
+      setExchangeVal(userVal.money + totalGain);
+    }
   }
 
   return (
@@ -44,29 +56,23 @@ const NewTrade: React.FC<Props> = (props) => {
       <h1>
         {props.title} #{props.ticker}
       </h1>
-      <label>Buy</label>
-      <input
-        type="checkbox"
-        onChange={() => setBuy()}
-        checked={tradeCheckbox.buy}
-      />
-      <label>Sell</label>
-      <input
-        type="checkbox"
-        onChange={() => setSell()}
-        checked={tradeCheckbox.sell}
-      />
-      <label>Shares: </label>
-      <input
-        min="0"
-        type="number"
-        value={shares}
-        onChange={(e) => calcVal(e.target.value)}
+      <TradeCheckbox
+        setSell={setSell}
+        setBuy={setBuy}
+        calcVal={calcVal}
+        shares={shares}
+        tradeCheckbox={tradeCheckbox}
       />
       <div>
         {syntax} ${totalGain}
       </div>
       <button onClick={() => executeTrade()}>Execute</button>
+      <PushMoneyToUser exchangeVal={exchangeVal} />
+      <PushSharesToUser
+        shareId={shareId}
+        stockId={props.stockId}
+        shares={shares}
+      />
     </div>
   );
 };

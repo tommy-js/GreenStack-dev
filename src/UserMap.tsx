@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import RecentActivity from "./RecentActivity";
+import RecentActivity from "./profile/RecentActivity";
 import { Link } from "react-router-dom";
 
 interface RecentActivity {

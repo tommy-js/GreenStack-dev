@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ProfileTrade from "./ProfileTrade";
+import ProfileTrade from "./profile/ProfileTrade";
 
 const UserProfileTrades: React.FC = () => {
   const [testData, setTestData] = useState([

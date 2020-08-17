@@ -1,35 +1,74 @@
-import React, { useState } from "react";
-import ProfileComments from "./ProfileComments";
+import React, { useContext, useState } from "react";
+import ProfileComments from "./profile/ProfileComments";
+import { flowRight as compose } from "lodash";
+import { graphql } from "react-apollo";
+import {
+  deleteCommentUserMutation,
+  deleteCommentStockMutation,
+} from "./queries/queries.js";
+import { userContext } from "./AppMain/App";
 
-const UserProfileComments: React.FC = () => {
-  const [testData, setTestData] = useState([
-    { comment: "Bad trade loser LOL", likes: 32, dislikes: 4, tradeId: 24423 },
-    { comment: "No u", likes: 43, dislikes: 12, tradeId: 2245563443 },
-  ]);
+interface Props {
+  deleteCommentUser: (variables: object) => void;
+  deleteCommentStock: (variables: object) => void;
+}
 
-  function removeComment(tradeId: number) {
-    let testArray = testData;
-    let foundElement = testArray.find((el) => el.tradeId === tradeId);
+const UserProfileComments: React.FC<Props> = (props) => {
+  const { userVal, setUserVal } = useContext(userContext);
+  const comments = userVal.comments;
+
+  function removeComment(commentId: number, userId: number, stockId: number) {
+    let testArray = comments;
+    let foundElement = testArray.find((el: any) => el.commentId === commentId);
     if (foundElement) {
       let elementIndex = testArray.indexOf(foundElement);
       testArray.splice(elementIndex, 1);
       console.log(testArray);
     }
+    props.deleteCommentUser({
+      variables: {
+        commentId: commentId,
+        userId: userId,
+      },
+    });
+    props.deleteCommentStock({
+      variables: {
+        stockId: stockId,
+        userId: userId,
+      },
+    });
   }
 
-  return (
-    <div>
-      {testData.map((el) => (
-        <ProfileComments
-          removeComment={removeComment}
-          comment={el.comment}
-          likes={el.likes}
-          dislikes={el.dislikes}
-          tradeId={el.tradeId}
-        />
-      ))}
-    </div>
-  );
+  function checkComments() {
+    if (comments.length > 0) {
+      return (
+        <div>
+          {comments.map((el: any) => (
+            <ProfileComments
+              removeComment={removeComment}
+              userId={el.userId}
+              username={el.username}
+              comment={el.comment}
+              likes={el.likes}
+              dislikes={el.dislikes}
+              commentId={el.commentId}
+              tradeId={el.tradeId}
+            />
+          ))}
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h2>No Comments So Far...</h2>
+        </div>
+      );
+    }
+  }
+
+  return <div>{checkComments()}</div>;
 };
 
-export default UserProfileComments;
+export default compose(
+  graphql(deleteCommentUser, { name: "deleteCommentUser" })
+)(UserProfileComments);

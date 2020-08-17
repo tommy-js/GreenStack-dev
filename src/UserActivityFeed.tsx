@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileActivity from "./ProfileActivity";
+import ProfileActivity from "./profile/ProfileActivity";
 
 const UserActivityFeed: React.FC = () => {
   const testData = [

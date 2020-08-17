@@ -9,13 +9,12 @@ interface Props {
 
 const WatchListing: React.FC<Props> = (props) => {
   return (
-    <div>
+    <div id="watch_listing">
       <Link to={`/${props.ticker}`}>
         <p>
           {props.title} ${props.ticker}
         </p>
       </Link>
-      <p>price: {props.price}</p>
     </div>
   );
 };

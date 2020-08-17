@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import UserAccountSnippetInfo from "./UserAccountSnippetInfo";
 import UserFollowingOptions from "./UserFollowingOptions";
-import ProfileIcon from "./ProfileIcon";
+import ProfileIcon from "./profile/ProfileIcon";
 
 interface Props {
   user: string;

@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./Header";
-import AccountCreation from "./AccountCreation";
+import AccountCreation from "./login/AccountCreation";
 
 interface Props {
   headerPassIn: () => void;
