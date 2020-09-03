@@ -192,6 +192,51 @@ const updateMoneyMutation = gql`
   }
 `;
 
+const addCommentTradeMutation = gql`
+  mutation(
+    $tradeId: ID!
+    $userId: ID!
+    $username: String!
+    $text: String!
+    $timestamp: Int!
+  ) {
+    addCommentTrade(
+      tradeId: $tradeId
+      userId: $userId
+      username: $username
+      text: $text
+      timestamp: $timestamp
+    ) {
+      text
+      username
+      timestamp
+      userId
+    }
+  }
+`;
+
+const addCommentStockMutation = gql`
+  mutation(
+    $stockId: ID!
+    $userId: ID!
+    $username: String!
+    $timestamp: Int!
+    $text: String!
+  ) {
+    addCommentStock(
+      stockId: $stockId
+      userId: $userId
+      username: $username
+      timestamp: $timestamp
+      text: $text
+    ) {
+      username
+      timestamp
+      text
+    }
+  }
+`;
+
 const userQuery = gql`
   query($userId: ID!) {
     user(userId: $userId) {
@@ -268,30 +313,32 @@ const userQuery = gql`
         ticker
         timestamp
       }
+      notifications {
+        content
+        timestamp
+        id
+      }
     }
   }
 `;
 
-const addCommentTradeMutation = gql`
-  mutation(
-    $tradeId: ID!
-    $userId: ID!
-    $username: String!
-    $text: String!
-    $timestamp: Int!
-  ) {
-    addCommentTrade(
-      tradeId: $tradeId
-      userId: $userId
-      username: $username
-      text: $text
-      timestamp: $timestamp
-    ) {
-      tradeId
-      text
-      username
-      timestamp
-      userId
+const stockQuery = gql`
+  query($stockId: ID!) {
+    stock(stockId: $stockId) {
+      stockId
+      ticker
+      name
+      about
+      creation
+      prediction
+      comments {
+        userId
+        username
+        timestamp
+        text
+        likes
+        dislikes
+      }
     }
   }
 `;
@@ -301,6 +348,7 @@ export {
   addCommentTradeMutation,
   pushTradeToUserMutation,
   updateLikesMutation,
+  addCommentStockMutation,
   updateDislikesMutation,
   deleteCommentUserMutation,
   deleteCommentStockMutation,
@@ -308,8 +356,9 @@ export {
   pushFollowerToUserMutation,
   blockUserMutation,
   updateMoneyMutation,
-  userQuery,
   setProfileImageMutation,
   pushSharesToUserMutation,
   pushStockToWatchlistMutation,
+  userQuery,
+  stockQuery,
 };

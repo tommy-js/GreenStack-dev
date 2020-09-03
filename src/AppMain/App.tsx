@@ -85,31 +85,6 @@ function App() {
     setConstantActivity(passInActivity);
   }
 
-  function returnConstantActivity() {
-    if (constantActivity) {
-      return (
-        <div>
-          {constantActivity.map((el: any) => (
-            <Route exact path={`/trade/${el.tradeId}`}>
-              <UserTrade
-                user={el.user}
-                userId={el.userId}
-                tradeId={el.tradeId}
-                title={el.title}
-                ticker={el.ticker}
-                type={el.type}
-                shares={el.shares}
-                price={el.price}
-                gain={el.gain}
-                timestamp={el.timestamp}
-              />
-            </Route>
-          ))}
-        </div>
-      );
-    }
-  }
-
   function returnTradePath() {
     if (tradeMap && userMap) {
       return (
@@ -184,7 +159,6 @@ function App() {
                     </Route>
                   ))}
                   {returnTradePath()}
-                  {returnConstantActivity()}
                   <Route path="/about/learn/general">
                     <LearnPage data={generalKnowledge} />
                   </Route>

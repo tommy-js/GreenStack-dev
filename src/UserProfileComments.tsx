@@ -9,8 +9,8 @@ import {
 import { userContext } from "./AppMain/App";
 
 interface Props {
-  deleteCommentUser: (variables: object) => void;
-  deleteCommentStock: (variables: object) => void;
+  deleteCommentUserMutation: (variables: object) => void;
+  deleteCommentStockMutation: (variables: object) => void;
 }
 
 const UserProfileComments: React.FC<Props> = (props) => {
@@ -25,13 +25,13 @@ const UserProfileComments: React.FC<Props> = (props) => {
       testArray.splice(elementIndex, 1);
       console.log(testArray);
     }
-    props.deleteCommentUser({
+    props.deleteCommentUserMutation({
       variables: {
         commentId: commentId,
         userId: userId,
       },
     });
-    props.deleteCommentStock({
+    props.deleteCommentStockMutation({
       variables: {
         stockId: stockId,
         userId: userId,
@@ -70,5 +70,5 @@ const UserProfileComments: React.FC<Props> = (props) => {
 };
 
 export default compose(
-  graphql(deleteCommentUser, { name: "deleteCommentUser" })
+  graphql(deleteCommentUserMutation, { name: "deleteCommentUserMutation" })
 )(UserProfileComments);

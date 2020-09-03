@@ -23,8 +23,8 @@ interface Props {
   price: number;
   gain: number;
   timestamp: number;
-  pushTradeToUser: (variables: object) => void;
-  pushFollowerToUser: (variables: object) => void;
+  pushTradeToUserMutation: (variables: object) => void;
+  pushFollowerToUserMutation: (variables: object) => void;
 }
 
 const UserTrade: React.FC<Props> = (props) => {

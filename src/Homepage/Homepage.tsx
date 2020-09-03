@@ -16,56 +16,9 @@ const Homepage: React.FC<Props> = (props) => {
   const [userId, setUserId] = useState();
   const { userVal, setUserVal } = useContext(userContext);
   const [getUser, { data, loading }] = useLazyQuery(userQuery);
-  const [testData, setTestData] = useState([
-    {
-      user: "John",
-      userId: 2,
-      title: "Apple",
-      ticker: "AAPL",
-      type: "Sell",
-      tradeId: 0,
-      shares: 22,
-      price: 132,
-      gain: 12.63,
-      timestamp: 3432423,
-    },
-    {
-      user: "John",
-      userId: 3,
-      comment: "Git gud kiddo.",
-      type: "Comment",
-      likes: 23,
-      dislikes: 0,
-      title: "Tesla",
-      ticker: "TSLA",
-      tradeId: 42,
-      shares: 5,
-      price: 242,
-      gain: 2452.63,
-      timestamp: 2995988,
-    },
-    {
-      user: "Tommy",
-      userId: 0,
-      title: "Tesla",
-      ticker: "TSLA",
-      type: "Buy",
-      tradeId: 2,
-      shares: 5,
-      price: 242,
-      gain: 2452.63,
-      timestamp: 256646435,
-    },
-  ]);
 
   useEffect(() => {
-    if (testData) {
-      props.updateConstantActivity(testData);
-    }
-  }, []);
-
-  useEffect(() => {
-    const userId = 2;
+    const userId = 61534946;
     getUser({
       variables: {
         userId: userId,
@@ -89,6 +42,7 @@ const Homepage: React.FC<Props> = (props) => {
         trades: data.user.trades,
         watchlist: data.user.watchlist,
         comments: data.user.comments,
+        notifications: data.user.notifications,
       });
     }
   }, [data]);
@@ -97,7 +51,6 @@ const Homepage: React.FC<Props> = (props) => {
     return (
       <div id="homepage">
         <Suggested />
-        <FollowedActivity testData={testData} />
       </div>
     );
   } else {

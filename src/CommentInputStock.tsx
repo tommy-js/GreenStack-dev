@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import AddCommentToTrade from "./resolvers/AddCommentToTrade";
+import AddCommentToStock from "./resolvers/AddCommentToStock";
 
 interface Props {
-  tradeId: number;
+  stockId: number;
 }
 
-const CommentInput: React.FC<Props> = (props) => {
+const CommentInputStock: React.FC<Props> = (props) => {
   const [passFunc, setPassFunc] = useState(false);
   const [text, setText] = useState("");
 
@@ -21,13 +21,13 @@ const CommentInput: React.FC<Props> = (props) => {
         onChange={(e) => setText(e.target.value)}
       />
       <button onClick={() => onSub()}>Submit</button>
-      <AddCommentToTrade
+      <AddCommentToStock
         passFunc={passFunc}
-        tradeId={props.tradeId}
+        stockId={props.stockId}
         text={text}
       />
     </div>
   );
 };
 
-export default CommentInput;
+export default CommentInputStock;

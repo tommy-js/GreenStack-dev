@@ -5,17 +5,17 @@ import ChooseProfileImage from "./profile/ChooseProfileImage";
 import { userContext } from "./AppMain/App";
 import { flowRight as compose } from "lodash";
 import { graphql } from "react-apollo";
-import { updateUserSettings } from "./queries/queries.js";
+import { updateUserSettingsMutation } from "./queries/queries.js";
 
 interface Props {
-  updateUserSettings: (variables: object) => void;
+  updateUserSettingsMutation: (variables: object) => void;
 }
 
 const UserProfileSettings: React.FC<Props> = (props) => {
   const { userVal, setUserVal } = useContext(userContext);
 
   function setInvis(checked: boolean) {
-    props.updateUserSettings({
+    props.updateUserSettingsMutation({
       variables: {
         userId: userVal.userId,
         darkmode: userVal.darkmode,
@@ -26,7 +26,7 @@ const UserProfileSettings: React.FC<Props> = (props) => {
   }
 
   function setComment(checked: boolean) {
-    props.updateUserSettings({
+    props.updateUserSettingsMutation({
       variables: {
         userId: userVal.userId,
         darkmode: userVal.darkmode,
@@ -37,7 +37,7 @@ const UserProfileSettings: React.FC<Props> = (props) => {
   }
 
   function setDarkmode(checked: boolean) {
-    props.updateUserSettings({
+    props.updateUserSettingsMutation({
       variables: {
         userId: userVal.userId,
         darkmode: checked,
@@ -72,5 +72,5 @@ const UserProfileSettings: React.FC<Props> = (props) => {
 };
 
 export default compose(
-  graphql(updateUserSettings, { name: "updateUserSettings" })
+  graphql(updateUserSettingsMutation, { name: "updateUserSettingsMutation" })
 )(UserProfileSettings);

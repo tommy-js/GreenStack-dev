@@ -84,6 +84,13 @@ const userSchema = new Schema({
       dislikes: Number,
     },
   ],
+  notifications: [
+    {
+      content: String,
+      timestamp: Number,
+      id: Number,
+    },
+  ],
 });
 
 module.exports = mongoose.model("User", userSchema);

@@ -1,18 +1,18 @@
 import React, { useContext } from "react";
 import { flowRight as compose } from "lodash";
 import { graphql } from "react-apollo";
-import { updateMoney } from "../queries/queries.js";
+import { updateMoneyMutation } from "../queries/queries.js";
 import { userContext } from "../AppMain/App";
 
 interface Props {
-  updateMoney: (variables: object) => void;
+  updateMoneyMutation: (variables: object) => void;
   exchangeVal: number;
 }
 
 const PushMoneyToUser: React.FC<Props> = (props) => {
   const { userVal, setUserVal } = useContext(userContext);
   function pushData() {
-    props.updateMoney({
+    props.updateMoneyMutation({
       variables: {
         userId: userVal.userId,
         money: props.exchangeVal,
@@ -22,6 +22,6 @@ const PushMoneyToUser: React.FC<Props> = (props) => {
   return null;
 };
 
-export default compose(graphql(updateMoney, { name: "updateMoney" }))(
-  PushMoneyToUser
-);
+export default compose(
+  graphql(updateMoneyMutation, { name: "updateMoneyMutation" })
+)(PushMoneyToUser);

@@ -55,7 +55,11 @@ const StockPage: React.FC<Props> = (props) => {
         stockId={props.stockId}
       />
       <CompanyNewsBlock title={props.title} />
-      <CompanyComments />
+      <CompanyComments
+        title={props.title}
+        ticker={props.ticker}
+        stockId={props.stockId}
+      />
     </div>
   );
 };

@@ -20,6 +20,7 @@ const Share = require("./models/share");
 const Reference = require("./models/referencetrade");
 const Settings = require("./models/settings");
 const Watchlist = require("./models/watchlist");
+const Notifications = require("./models/notification");
 
 const UserQuery = new GraphQLObjectType({
   name: "User",
@@ -40,6 +41,16 @@ const UserQuery = new GraphQLObjectType({
     referenceTrades: { type: new GraphQLList(ReferenceTradeQuery) },
     comments: { type: new GraphQLList(CommentQuery) },
     watchlist: { type: new GraphQLList(WatchlistQuery) },
+    notifications: { type: new GraphQLList(NotificationQuery) },
+  }),
+});
+
+const NotificationQuery = new GraphQLObjectType({
+  name: "Notifications",
+  fields: () => ({
+    content: { type: GraphQLString },
+    timestamp: { type: GraphQLID },
+    id: { type: GraphQLID },
   }),
 });
 
@@ -82,6 +93,7 @@ const TradeQuery = new GraphQLObjectType({
     ticker: { type: GraphQLString },
     shares: { type: GraphQLInt },
     gain: { type: GraphQLInt },
+    comments: { type: new GraphQLList(CommentQuery) },
   }),
 });
 
@@ -454,6 +466,31 @@ const Mutation = new GraphQLObjectType({
       resolve(parent, args) {
         return Trade.update(
           { tradeId: args.tradeId },
+          {
+            $push: {
+              comments: {
+                userId: args.userId,
+                username: args.username,
+                text: args.text,
+                timestamp: args.timestamp,
+              },
+            },
+          }
+        );
+      },
+    },
+    addCommentStock: {
+      type: CommentQuery,
+      args: {
+        stockId: { type: GraphQLID },
+        userId: { type: GraphQLID },
+        username: { type: GraphQLString },
+        text: { type: GraphQLString },
+        timestamp: { type: GraphQLInt },
+      },
+      resolve(parent, args) {
+        return Stock.update(
+          { stockId: args.stockId },
           {
             $push: {
               comments: {

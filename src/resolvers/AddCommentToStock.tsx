@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 import { flowRight as compose } from "lodash";
 import { graphql } from "react-apollo";
-import { addCommentTradeMutation } from "../queries/queries.js";
+import { addCommentStockMutation } from "../queries/queries.js";
 import { userContext } from "../AppMain/App";
 
 interface Props {
-  addCommentTradeMutation: (variables: object) => void;
+  addCommentStockMutation: (variables: object) => void;
   passFunc: boolean;
-  tradeId: number;
+  stockId: number;
   text: string;
 }
 
-const AddCommentToTrade: React.FC<Props> = (props) => {
+const AddCommentToStock: React.FC<Props> = (props) => {
   const { userVal, setUserVal } = useContext(userContext);
   const [passFunc, setPassFunc] = useState(props.passFunc);
 
@@ -19,16 +19,16 @@ const AddCommentToTrade: React.FC<Props> = (props) => {
     setPassFunc(true);
     if (passFunc === true) {
       setPassFunc(false);
-      console.log("addCommentTradeMutation");
+      console.log("addCommentStockMutation");
       pushData();
     }
   }, [props.passFunc]);
 
   function pushData() {
     let time = Math.floor(Date.now() / 1000);
-    props.addCommentTradeMutation({
+    props.addCommentStockMutation({
       variables: {
-        tradeId: props.tradeId,
+        stockId: props.stockId,
         userId: userVal.userId,
         username: userVal.username,
         text: props.text,
@@ -41,5 +41,5 @@ const AddCommentToTrade: React.FC<Props> = (props) => {
 };
 
 export default compose(
-  graphql(addCommentTradeMutation, { name: "addCommentTradeMutation" })
-)(AddCommentToTrade);
+  graphql(addCommentStockMutation, { name: "addCommentStockMutation" })
+)(AddCommentToStock);
