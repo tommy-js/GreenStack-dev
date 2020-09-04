@@ -4,15 +4,19 @@ import Suggested from "../Suggested";
 import Profile from "../profile/Profile";
 import FollowedActivity from "../profile/FollowedActivity";
 import LoadingUser from "../login/LoadingUser";
+import NavBar from "../misc/NavBar";
 import { userQuery } from "../queries/queries";
 import { flowRight as compose } from "lodash";
 import { graphql, useLazyQuery } from "react-apollo";
+import { statusContext } from "../AppMain/App";
+import { browserHist } from "../AppMain/history";
 
 interface Props {
   updateConstantActivity: (passInActivity: any) => void;
 }
 
 const Homepage: React.FC<Props> = (props) => {
+  const { status, setStatus } = useContext(statusContext);
   const [userId, setUserId] = useState();
   const { userVal, setUserVal } = useContext(userContext);
   const [getUser, { data, loading }] = useLazyQuery(userQuery);
@@ -25,6 +29,12 @@ const Homepage: React.FC<Props> = (props) => {
       },
     });
     setUserId(userId);
+  }, []);
+
+  useEffect(() => {
+    if (status === false) {
+      browserHist.push("/login");
+    }
   }, []);
 
   useEffect(() => {
@@ -49,8 +59,11 @@ const Homepage: React.FC<Props> = (props) => {
 
   if (data) {
     return (
-      <div id="homepage">
-        <Suggested />
+      <div>
+        <NavBar />
+        <div id="homepage">
+          <Suggested />
+        </div>
       </div>
     );
   } else {

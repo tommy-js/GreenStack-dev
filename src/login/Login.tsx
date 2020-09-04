@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import SigninPage from "../SigninPage";
 import CreateAccountPage from "./CreateAccountPage";
 import StandardButton from "../StandardButton";
+import RenderAccountLink from "./RenderAccountLink";
 
 const Login: React.FC = () => {
   const [newAccount, setNewAccount] = useState(false);
   const [buttonText, setButtonText] = useState("Log in");
 
-  function buttonPress() {
+  function triggerNewAccount() {
     if (newAccount === true) {
       setButtonText("Log in");
       setNewAccount(false);
@@ -19,14 +20,21 @@ const Login: React.FC = () => {
 
   function displayBlock() {
     if (newAccount === false) {
-      return <SigninPage />;
+      return (
+        <div>
+          <SigninPage />
+        </div>
+      );
     } else return <CreateAccountPage />;
   }
 
   return (
-    <div>
+    <div id="centered_login_page">
       {displayBlock()}
-      <StandardButton passFunction={buttonPress} text={buttonText} />
+      <RenderAccountLink
+        newAccount={newAccount}
+        triggerNewAccount={triggerNewAccount}
+      />
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import UserMap from "../UserMap";
 import ExplorePageMenu from "../ExplorePageMenu";
+import NavBar from "./NavBar";
 
 interface TradeData {
   user: string;
@@ -129,6 +130,7 @@ const LeaderBoard: React.FC<Props> = (props) => {
 
   return (
     <div id="leaderboard">
+      <NavBar />
       <ExplorePageMenu />
       {testData.map((el) => (
         <div key={el.userId}>

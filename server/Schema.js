@@ -167,6 +167,15 @@ const RootQuery = new GraphQLObjectType({
         return Stock.find({ stockId: args.stockId });
       },
     },
+    userLogin: {
+      type: UserQuery,
+      args: {
+        username: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return User.find({ username: args.username });
+      },
+    },
   },
 });
 
@@ -313,7 +322,7 @@ const Mutation = new GraphQLObjectType({
       args: {
         userId: { type: GraphQLID },
         tradeId: { type: GraphQLID },
-        price: { type: GraphQLInt },
+        price: { type: GraphQLFloat },
         timestamp: { type: GraphQLID },
         title: { type: GraphQLString },
         ticker: { type: GraphQLString },

@@ -15,6 +15,7 @@ const InputContainer: React.FC<Props> = (props) => {
 
   return (
     <input
+      className="input_container"
       placeholder={props.placeholder}
       onChange={(e) => passUp(e.target.value)}
     />

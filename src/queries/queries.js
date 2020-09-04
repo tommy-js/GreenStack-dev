@@ -40,14 +40,15 @@ const pushTradeToUserMutation = gql`
   mutation(
     $userId: ID!
     $tradeId: ID!
-    $price: ID!
+    $price: Float!
     $timestamp: ID!
     $title: String!
     $ticker: String!
-    $shares: ID!
-    $gain: ID!
+    $shares: Int!
+    $gain: Int!
   ) {
     pushTradeToHistory(
+      userId: $userId
       tradeId: $tradeId
       price: $price
       timestamp: $timestamp
@@ -245,6 +246,91 @@ const addCommentStockMutation = gql`
   }
 `;
 
+const userLoginQuery = gql`
+  query($username: String!) {
+    userLogin(username: $username) {
+      userId
+      username
+      password
+      money
+      darkmode
+      invisible
+      allowCommentsOnTrades
+      profileImage
+      followed {
+        followerId
+        followerName
+      }
+      followers {
+        id
+        followerId
+        followerName
+        blocked
+      }
+      stocks {
+        stockId
+        ticker
+        name
+        about
+        creation
+        prediction
+        comments {
+          userId
+          username
+          timestamp
+          text
+          likes
+          dislikes
+        }
+      }
+      shares {
+        stockId
+        shareId
+        shares
+      }
+      trades {
+        price
+        tradeId
+        timestamp
+        title
+        ticker
+        shares
+        gain
+      }
+      referenceTrades {
+        tradeAuthorID
+        tradeAuthorUsername
+        price
+        tradeId
+        timestamp
+        title
+        ticker
+        shares
+        gain
+      }
+      comments {
+        userId
+        username
+        timestamp
+        text
+        likes
+        dislikes
+      }
+      watchlist {
+        stockId
+        title
+        ticker
+        timestamp
+      }
+      notifications {
+        content
+        timestamp
+        id
+      }
+    }
+  }
+`;
+
 const userQuery = gql`
   query($userId: ID!) {
     user(userId: $userId) {
@@ -370,4 +456,5 @@ export {
   pushStockToWatchlistMutation,
   userQuery,
   stockQuery,
+  userLoginQuery,
 };
