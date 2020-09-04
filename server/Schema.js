@@ -517,6 +517,19 @@ const Mutation = new GraphQLObjectType({
         );
       },
     },
+    dropNotification: {
+      type: NotificationQuery,
+      args: {
+        userId: { type: GraphQLID },
+        id: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        return User.update(
+          { userId: args.userId },
+          { $pull: { notifications: { id: args.id } } }
+        );
+      },
+    },
     deleteCommentStock: {
       type: CommentQuery,
       args: {

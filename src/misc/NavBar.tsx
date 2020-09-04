@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import NotificationIcon from "../navigation/NotificationIcon";
 import { statusContext } from "../AppMain/App";
 
 const NavBar: React.FC = () => {
@@ -8,9 +9,19 @@ const NavBar: React.FC = () => {
   function statusChecker() {
     if (status === true) {
       return (
-        <NavLink className="nav_el" activeClassName="active_nav_el" to="/login">
-          Logout
-        </NavLink>
+        <div>
+          <NavLink
+            className="nav_el"
+            activeClassName="active_nav_el"
+            to="/login"
+          >
+            Logout
+          </NavLink>
+
+          <div className="nav_el">
+            <NotificationIcon />
+          </div>
+        </div>
       );
     } else {
       return (

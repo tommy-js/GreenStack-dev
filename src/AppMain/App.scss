@@ -505,3 +505,24 @@ a {
   margin-right: auto;
   box-sizing: border-box;
 }
+
+#trigger_icon {
+  position: relative;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: orange;
+  z-index: 10000;
+}
+
+.notification {
+  width: 100%;
+  background-color: grey;
+  border: 1px solid black;
+}
+
+#notification_icon {
+  position: relative;
+  width: 250px;
+}

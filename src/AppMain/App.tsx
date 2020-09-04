@@ -53,6 +53,7 @@ interface UserCont {
   darkmode: boolean;
   invisible: boolean;
   allowCommentsOnTrades: boolean;
+  notifications: object[];
 }
 
 export const userContext = createContext<any>({});
@@ -70,6 +71,7 @@ function App() {
     darkmode: false,
     invisible: false,
     allowCommentsOnTrades: false,
+    notifications: [{}],
   });
   const [status, setStatus] = useState(false);
 
@@ -120,7 +122,7 @@ function App() {
   }
 
   return (
-    <statusContext.Provider value={status}>
+    <statusContext.Provider value={{ status, setStatus }}>
       <userContext.Provider value={{ userVal, setUserVal }}>
         <ApolloProvider client={client}>
           <Router>

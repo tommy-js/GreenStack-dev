@@ -18,7 +18,7 @@ const Homepage: React.FC<Props> = (props) => {
   const [getUser, { data, loading }] = useLazyQuery(userQuery);
 
   useEffect(() => {
-    const userId = 61534946;
+    const userId = 3257229;
     getUser({
       variables: {
         userId: userId,
