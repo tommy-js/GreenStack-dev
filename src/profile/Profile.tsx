@@ -1,16 +1,18 @@
 import React, { useState, useContext, useEffect } from "react";
 import { userContext } from "../AppMain/App";
 import NavBar from "../misc/NavBar";
-import ProfileTabs from "./ProfileTabs";
-import UserTrade from "../UserTrade";
 import { statusContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
 import { Route } from "react-router-dom";
+import ProfileTabs from "./ProfileTabs";
 
-const Profile: React.FC = () => {
+interface Props {
+  passInTradeId: (id: number) => void;
+}
+
+const Profile: React.FC<Props> = (props) => {
   const { status, setStatus } = useContext(statusContext);
   const { userVal, setUserVal } = useContext(userContext);
-  const [tradeId, setTradeId] = useState(0);
 
   useEffect(() => {
     if (status === false) {
@@ -18,25 +20,15 @@ const Profile: React.FC = () => {
     }
   }, []);
 
-  function passInTradeId(id: number) {
-    setTradeId(id);
-    console.log(id);
-  }
-
   return (
     <div>
       <NavBar />
       <div id="profile">
-        <Route path="/profile">
-          <ProfileTabs
-            username={userVal.username}
-            profileImage={userVal.profileImage}
-            passInTradeId={passInTradeId}
-          />
-        </Route>
-        <Route path={`/trade/${tradeId}`}>
-          <UserTrade tradeId={tradeId} />
-        </Route>
+        <ProfileTabs
+          username={userVal.username}
+          profileImage={userVal.profileImage}
+          passInTradeId={props.passInTradeId}
+        />
       </div>
     </div>
   );

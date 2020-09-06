@@ -9,6 +9,7 @@ import Portfolio from "../portfolio/Portfolio";
 import AboutPage from "../about/AboutPage";
 import LeaderBoard from "../misc/LeaderBoard";
 import Homepage from "../Homepage/Homepage";
+import UserTrade from "../UserTrade";
 import companyProfiles from "../companyProfiles";
 import { Route } from "react-router-dom";
 import User from "../User";
@@ -39,6 +40,7 @@ const MainRender: React.FC = () => {
   const [userMap, setUserMap] = useState();
   const [constantActivity, setConstantActivity] = useState();
   const { userVal, setUserVal } = useContext(userContext);
+  const [tradeId, setTradeId] = useState(0);
 
   function updateTradeMap(passInTradeMap: TradeData[]) {
     setTradeMap(passInTradeMap);
@@ -50,6 +52,11 @@ const MainRender: React.FC = () => {
 
   function updateConstantActivity(passInActivity: any) {
     setConstantActivity(passInActivity);
+  }
+
+  function passInTradeId(id: number) {
+    setTradeId(id);
+    console.log(id);
   }
 
   function returnTradePath() {
@@ -93,7 +100,10 @@ const MainRender: React.FC = () => {
           <AboutPage />
         </Route>
         <Route path="/profile">
-          <Profile />
+          <Profile passInTradeId={passInTradeId} />
+        </Route>
+        <Route exact path={`/history/${tradeId}`}>
+          <UserTrade tradeId={tradeId} />
         </Route>
         {companyProfiles.map((el: any) => (
           <Route path={`/${el.ticker}`}>

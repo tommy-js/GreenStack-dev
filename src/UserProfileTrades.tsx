@@ -10,7 +10,7 @@ const UserProfileTrades: React.FC<Props> = (props) => {
     {
       title: "Apple",
       ticker: "AAPL",
-      tradeId: 2332,
+      tradeId: 3534,
       type: "Sell",
       date: "2/22/19",
       price: 223.54,

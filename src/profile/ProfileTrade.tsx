@@ -17,7 +17,7 @@ const ProfileTrade: React.FC<Props> = (props) => {
   return (
     <div>
       <Link
-        to={`/profile/trade/${props.tradeId}`}
+        to={`/history/${props.tradeId}`}
         onClick={() => props.passInTradeId(props.tradeId)}
       >
         <p>

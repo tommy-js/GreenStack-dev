@@ -23,7 +23,7 @@ const ProfileContent: React.FC<Props> = (props) => {
       <Route path="/profile/comments">
         <UserProfileComments />
       </Route>
-      <Route path="/profile/trades">
+      <Route exact path="/profile/trades">
         <UserProfileTrades passInTradeId={props.passInTradeId} />
       </Route>
       <Route path="/profile/settings">

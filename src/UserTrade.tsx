@@ -40,11 +40,13 @@ const UserTrade: React.FC<Props> = (props) => {
   useEffect(() => {
     queryTrade();
     console.log("querying trade");
+    console.log(props.tradeId);
   }, []);
 
   useEffect(() => {
     if (data) {
-      setTradeData(data.queryTrade);
+      console.log(data);
+      // setTradeData(data.queryTrade);
     }
   }, [data]);
 

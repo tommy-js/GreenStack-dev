@@ -95,7 +95,7 @@ const TradeQuery = new GraphQLObjectType({
     title: { type: GraphQLString },
     ticker: { type: GraphQLString },
     shares: { type: GraphQLInt },
-    gain: { type: GraphQLInt },
+    gain: { type: GraphQLFloat },
     comments: { type: new GraphQLList(CommentQuery) },
   }),
 });
@@ -185,7 +185,7 @@ const RootQuery = new GraphQLObjectType({
         tradeId: { type: GraphQLID },
       },
       resolve(parent, args) {
-        return Trade.find({ tradeId: args.tradeId });
+        return Trade.findOne({ tradeId: args.tradeId });
       },
     },
   },
