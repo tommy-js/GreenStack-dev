@@ -25,6 +25,10 @@ const CompanyNewsBlock = (props) => {
         setMaxLength(el.articles.length);
         let shortenedArray = el.articles.slice(0, 3);
         setShortLoggedNews(shortenedArray);
+      })
+      .catch((error) => {
+        console.log("cannot get articles");
+        setShortLoggedNews([]);
       });
   }, []);
 

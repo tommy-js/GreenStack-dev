@@ -508,18 +508,20 @@ body {
   border-radius: 50%;
   display: inline-block;
   background-color: orange;
-  z-index: 10000;
 }
 
 .notification {
-  width: 100%;
+  width: 250px;
   background-color: grey;
   border: 1px solid black;
 }
 
 #notification_icon {
-  position: relative;
+  position: absolute;
+  top: 0;
   width: 250px;
+  right: 0;
+  display: inline-block;
 }
 
 #centered_login_page {

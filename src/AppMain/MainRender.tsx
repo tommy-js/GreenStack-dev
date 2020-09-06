@@ -10,9 +10,7 @@ import AboutPage from "../about/AboutPage";
 import LeaderBoard from "../misc/LeaderBoard";
 import Homepage from "../Homepage/Homepage";
 import companyProfiles from "../companyProfiles";
-import NavBar from "../misc/NavBar";
-import LoadingUser from "../login/LoadingUser";
-import { Router, Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 import UserTrade from "../UserTrade";
 import User from "../User";
 

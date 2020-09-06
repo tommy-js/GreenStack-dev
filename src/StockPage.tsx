@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import CompanyInformationBlock from "./Homepage/CompanyInformationBlock";
 import CompanyOptions from "./CompanyOptions";
 import CompanyNewsBlock from "./misc/CompanyNewsBlock.js";
 import CompanyComments from "./Homepage/CompanyComments";
+import NavBar from "./misc/NavBar";
+import { statusContext } from "./AppMain/App";
+import { browserHist } from "./AppMain/history";
 
 interface Props {
   title: string;
@@ -11,7 +14,14 @@ interface Props {
 }
 
 const StockPage: React.FC<Props> = (props) => {
+  const { status, setStatus } = useContext(statusContext);
   const [priceData, setPriceData] = useState("Loading Price...");
+
+  useEffect(() => {
+    if (status === false) {
+      browserHist.push("/login");
+    }
+  }, []);
 
   useEffect(() => {
     const socket = new WebSocket(
@@ -48,6 +58,7 @@ const StockPage: React.FC<Props> = (props) => {
 
   return (
     <div>
+      <NavBar />
       <CompanyInformationBlock title={props.title} price={priceData} />
       <CompanyOptions
         title={props.title}
