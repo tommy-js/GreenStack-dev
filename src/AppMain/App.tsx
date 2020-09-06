@@ -23,6 +23,7 @@ interface UserCont {
   invisible: boolean;
   allowCommentsOnTrades: boolean;
   notifications: object[];
+  trades: object[];
 }
 
 export const userContext = createContext<any>({});
@@ -38,6 +39,7 @@ function App() {
     invisible: false,
     allowCommentsOnTrades: false,
     notifications: [{}],
+    trades: [{}],
   });
   const [status, setStatus] = useState(false);
 

@@ -1,9 +1,6 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { userContext } from "../AppMain/App";
 import NavBar from "../misc/NavBar";
-import { statusContext } from "../AppMain/App";
-import { browserHist } from "../AppMain/history";
-import { Route } from "react-router-dom";
 import ProfileTabs from "./ProfileTabs";
 
 interface Props {
@@ -11,14 +8,7 @@ interface Props {
 }
 
 const Profile: React.FC<Props> = (props) => {
-  const { status, setStatus } = useContext(statusContext);
   const { userVal, setUserVal } = useContext(userContext);
-
-  useEffect(() => {
-    if (status === false) {
-      browserHist.push("/login");
-    }
-  }, []);
 
   return (
     <div>

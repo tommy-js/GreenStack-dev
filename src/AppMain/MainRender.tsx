@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import generalKnowledge from "../generalKnowledge";
 import optionsKnowledge from "../about/optionsKnowledge";
 import LearnPage from "../about/LearnPage";
@@ -12,8 +12,9 @@ import Homepage from "../Homepage/Homepage";
 import UserTrade from "../UserTrade";
 import companyProfiles from "../companyProfiles";
 import { Route } from "react-router-dom";
+import { browserHist } from "./history.js";
 import User from "../User";
-import { userContext } from "./App";
+import { userContext, statusContext } from "./App";
 
 interface TradeData {
   user: string;
@@ -36,6 +37,7 @@ interface User {
 }
 
 const MainRender: React.FC = () => {
+  const { status, setStatus } = useContext(statusContext);
   const [tradeMap, setTradeMap] = useState();
   const [userMap, setUserMap] = useState();
   const [constantActivity, setConstantActivity] = useState();
@@ -58,6 +60,12 @@ const MainRender: React.FC = () => {
     setTradeId(id);
     console.log(id);
   }
+
+  useEffect(() => {
+    if (status === false) {
+      browserHist.push("/login");
+    }
+  }, []);
 
   function returnTradePath() {
     if (tradeMap && userMap) {

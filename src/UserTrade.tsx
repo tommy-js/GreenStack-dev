@@ -46,7 +46,7 @@ const UserTrade: React.FC<Props> = (props) => {
   useEffect(() => {
     if (data) {
       console.log(data);
-      // setTradeData(data.queryTrade);
+      setTradeData(data.getTrade);
     }
   }, [data]);
 
@@ -97,47 +97,55 @@ const UserTrade: React.FC<Props> = (props) => {
     });
   }
 
-  return (
-    <div id="previous_trade">
-      <div id="previous_trade_title">
-        <TickerHeader
-          title={tradeData.title}
-          ticker={tradeData.ticker}
-          gain={tradeData.gain}
-        />
-        <Link to={`/user/${tradeData.userId}`}>
-          <Header text={tradeData.user} />
-        </Link>
-        <button onClick={() => followUser()}>Follow</button>
-      </div>
-      <div id="previous_trade_graph"></div>
-      <div id="previous_trade_subinfo">
-        <TradeInformation
-          title={tradeData.title}
-          tradeId={tradeData.tradeId}
-          shares={tradeData.shares}
-          ticker={tradeData.ticker}
-          gain={tradeData.gain}
-          type={tradeData.type}
-          timestamp={tradeData.timestamp}
-          price={tradeData.price}
-          saveTrade={saveTrade}
-        />
-      </div>
-      <div id="previous_trade_comments">
-        {testData.map((el) => (
-          <Comment
-            user={el.user}
-            comment={el.comment}
-            commentId={el.commentId}
-            timestamp={el.timestamp}
-            likes={el.likes}
-            dislikes={el.dislikes}
+  if (data) {
+    return (
+      <div id="previous_trade">
+        <div id="previous_trade_title">
+          <TickerHeader
+            title={tradeData.title}
+            ticker={tradeData.ticker}
+            gain={tradeData.gain}
           />
-        ))}
+          <Link to={`/user/${tradeData.userId}`}>
+            <Header text={tradeData.user} />
+          </Link>
+          <button onClick={() => followUser()}>Follow</button>
+        </div>
+        <div id="previous_trade_graph"></div>
+        <div id="previous_trade_subinfo">
+          <TradeInformation
+            title={tradeData.title}
+            tradeId={tradeData.tradeId}
+            shares={tradeData.shares}
+            ticker={tradeData.ticker}
+            gain={tradeData.gain}
+            type={tradeData.type}
+            timestamp={tradeData.timestamp}
+            price={tradeData.price}
+            saveTrade={saveTrade}
+          />
+        </div>
+        <div id="previous_trade_comments">
+          {testData.map((el) => (
+            <Comment
+              user={el.user}
+              comment={el.comment}
+              commentId={el.commentId}
+              timestamp={el.timestamp}
+              likes={el.likes}
+              dislikes={el.dislikes}
+            />
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div>
+        <h2>Loading...</h2>
+      </div>
+    );
+  }
 };
 
 export default compose(

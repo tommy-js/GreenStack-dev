@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DropNotification from "./DropNotification";
+import NotificationsMenu from "./NotificationsMenu";
 
 interface Props {
   text: string;
@@ -28,6 +29,7 @@ const Notification: React.FC<Props> = (props) => {
         id={props.id}
         returnNotifs={returnNotifs}
       />
+      <NotificationsMenu />
     </div>
   );
 };
