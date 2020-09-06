@@ -68,17 +68,55 @@ const pushTradeToUserMutation = gql`
   }
 `;
 
+const pushTradeMutation = gql`
+  mutation(
+    $userId: ID!
+    $username: String!
+    $tradeId: ID!
+    $price: Float!
+    $timestamp: ID!
+    $title: String!
+    $ticker: String!
+    $shares: Int!
+    $gain: Float!
+  ) {
+    pushTrade(
+      userId: $userId
+      username: $username
+      tradeId: $tradeId
+      price: $price
+      timestamp: $timestamp
+      title: $title
+      ticker: $ticker
+      shares: $shares
+      gain: $gain
+    ) {
+      userId
+    }
+  }
+`;
+
 const queryTradeQuery = gql`
   query($tradeId: ID!) {
-    queryTrade(tradeId: $tradeId) {
-      price
+    getTrade(tradeId: $tradeId) {
       tradeId
-      timestamp
-      title
       ticker
+      title
+      userId
+      username
+      price
+      type
+      timestamp
       shares
       gain
-      comments
+      comments {
+        userId
+        username
+        timestamp
+        text
+        likes
+        dislikes
+      }
     }
   }
 `;
@@ -464,6 +502,7 @@ export {
   deleteCommentStockMutation,
   updateUserSettingsMutation,
   pushFollowerToUserMutation,
+  pushTradeMutation,
   blockUserMutation,
   updateMoneyMutation,
   setProfileImageMutation,

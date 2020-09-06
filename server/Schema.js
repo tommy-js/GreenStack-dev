@@ -87,6 +87,9 @@ const TradeQuery = new GraphQLObjectType({
   name: "Trade",
   fields: () => ({
     price: { type: GraphQLFloat },
+    username: { type: GraphQLString },
+    userId: { type: GraphQLID },
+    type: { type: GraphQLString },
     tradeId: { type: GraphQLID },
     timestamp: { type: GraphQLID },
     title: { type: GraphQLString },
@@ -390,6 +393,34 @@ const Mutation = new GraphQLObjectType({
             },
           }
         );
+      },
+    },
+    pushTrade: {
+      type: TradeQuery,
+      args: {
+        userId: { type: GraphQLID },
+        username: { type: GraphQLString },
+        tradeId: { type: GraphQLID },
+        price: { type: GraphQLFloat },
+        timestamp: { type: GraphQLID },
+        title: { type: GraphQLString },
+        ticker: { type: GraphQLString },
+        shares: { type: GraphQLInt },
+        gain: { type: GraphQLFloat },
+      },
+      resolve(parent, args) {
+        let trade = new Trade({
+          userId: args.userId,
+          username: args.username,
+          tradeId: args.tradeId,
+          price: args.price,
+          timestamp: args.timestamp,
+          title: args.title,
+          ticker: args.ticker,
+          shares: args.shares,
+          gain: args.gain,
+        });
+        return trade.save();
       },
     },
     addCommentUser: {

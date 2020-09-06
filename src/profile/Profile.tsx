@@ -20,17 +20,20 @@ const Profile: React.FC = () => {
 
   function passInTradeId(id: number) {
     setTradeId(id);
+    console.log(id);
   }
 
   return (
     <div>
       <NavBar />
       <div id="profile">
-        <ProfileTabs
-          username={userVal.username}
-          profileImage={userVal.profileImage}
-          passInTradeId={passInTradeId}
-        />
+        <Route path="/profile">
+          <ProfileTabs
+            username={userVal.username}
+            profileImage={userVal.profileImage}
+            passInTradeId={passInTradeId}
+          />
+        </Route>
         <Route path={`/trade/${tradeId}`}>
           <UserTrade tradeId={tradeId} />
         </Route>
