@@ -176,6 +176,15 @@ const RootQuery = new GraphQLObjectType({
         return User.find({ username: args.username });
       },
     },
+    getTrade: {
+      type: TradeQuery,
+      args: {
+        tradeId: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        return Trade.find({ tradeId: args.tradeId });
+      },
+    },
   },
 });
 

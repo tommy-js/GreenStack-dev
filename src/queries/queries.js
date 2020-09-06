@@ -68,6 +68,21 @@ const pushTradeToUserMutation = gql`
   }
 `;
 
+const queryTradeQuery = gql`
+  query($tradeId: ID!) {
+    queryTrade(tradeId: $tradeId) {
+      price
+      tradeId
+      timestamp
+      title
+      ticker
+      shares
+      gain
+      comments
+    }
+  }
+`;
+
 const updateLikesMutation = gql`
   mutation($commentId: ID!, $likes: ID!) {
     updateLikesComment(commentId: $commentId, likes: $likes) {
@@ -457,4 +472,5 @@ export {
   userQuery,
   stockQuery,
   userLoginQuery,
+  queryTradeQuery,
 };

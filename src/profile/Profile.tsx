@@ -1,31 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
 import { userContext } from "../AppMain/App";
-import Header from "../Header";
-import ProfileContent from "./ProfileContent";
-import ProfileSidebar from "./ProfileSidebar";
-import ImageBlock from "../misc/ImageBlock";
 import NavBar from "../misc/NavBar";
-import money from "../images/money.png";
-import hat from "../images/hat.png";
+import ProfileTabs from "./ProfileTabs";
+import UserTrade from "../UserTrade";
 import { statusContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
+import { Route } from "react-router-dom";
 
 const Profile: React.FC = () => {
   const { status, setStatus } = useContext(statusContext);
-  const images = [
-    { url: hat, id: 0 },
-    { url: money, id: 1 },
-  ];
-  const [profile, setProfile] = useState({ url: "", id: 0 });
   const { userVal, setUserVal } = useContext(userContext);
-
-  useEffect(() => {
-    let foundImg = images.find((el) => el.url === userVal.profileImage);
-    if (foundImg) {
-      setProfile({ url: foundImg.url, id: foundImg.id });
-      console.log(foundImg.url);
-    }
-  }, []);
+  const [tradeId, setTradeId] = useState(0);
 
   useEffect(() => {
     if (status === false) {
@@ -33,22 +18,22 @@ const Profile: React.FC = () => {
     }
   }, []);
 
-  function zoomImg() {}
+  function passInTradeId(id: number) {
+    setTradeId(id);
+  }
 
   return (
     <div>
       <NavBar />
       <div id="profile">
-        <ImageBlock
-          image={userVal.profileImage}
-          id={profile.id}
-          setImg={zoomImg}
+        <ProfileTabs
+          username={userVal.username}
+          profileImage={userVal.profileImage}
+          passInTradeId={passInTradeId}
         />
-        <Header text={userVal.username} />
-        <div id="profile_body">
-          <ProfileSidebar />
-          <ProfileContent />
-        </div>
+        <Route path={`/trade/${tradeId}`}>
+          <UserTrade tradeId={tradeId} />
+        </Route>
       </div>
     </div>
   );

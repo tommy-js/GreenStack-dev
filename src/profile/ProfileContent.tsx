@@ -7,7 +7,11 @@ import UserProfileComments from "../UserProfileComments";
 import UserProfileTrades from "../UserProfileTrades";
 import UserProfileReferences from "../UserProfileReferences";
 
-const ProfileContent: React.FC = () => {
+interface Props {
+  passInTradeId: (id: number) => void;
+}
+
+const ProfileContent: React.FC<Props> = (props) => {
   return (
     <div id="profile_content">
       <Route path="/profile/followed">
@@ -20,7 +24,7 @@ const ProfileContent: React.FC = () => {
         <UserProfileComments />
       </Route>
       <Route path="/profile/trades">
-        <UserProfileTrades />
+        <UserProfileTrades passInTradeId={props.passInTradeId} />
       </Route>
       <Route path="/profile/settings">
         <UserProfileSettings />

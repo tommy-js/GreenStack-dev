@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import ProfileTrade from "./profile/ProfileTrade";
 
-const UserProfileTrades: React.FC = () => {
+interface Props {
+  passInTradeId: (id: number) => void;
+}
+
+const UserProfileTrades: React.FC<Props> = (props) => {
   const [testData, setTestData] = useState([
     {
       title: "Apple",
@@ -37,6 +41,7 @@ const UserProfileTrades: React.FC = () => {
           price={el.price}
           profit={el.profit}
           shares={el.shares}
+          passInTradeId={props.passInTradeId}
         />
       ))}
     </div>

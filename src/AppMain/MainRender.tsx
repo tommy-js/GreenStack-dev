@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import generalKnowledge from "../generalKnowledge";
 import optionsKnowledge from "../about/optionsKnowledge";
 import LearnPage from "../about/LearnPage";
@@ -11,8 +11,8 @@ import LeaderBoard from "../misc/LeaderBoard";
 import Homepage from "../Homepage/Homepage";
 import companyProfiles from "../companyProfiles";
 import { Route } from "react-router-dom";
-import UserTrade from "../UserTrade";
 import User from "../User";
+import { userContext } from "./App";
 
 interface TradeData {
   user: string;
@@ -34,12 +34,11 @@ interface User {
   timeInMarket: number;
 }
 
-interface Props {}
-
 const MainRender: React.FC = () => {
   const [tradeMap, setTradeMap] = useState();
   const [userMap, setUserMap] = useState();
   const [constantActivity, setConstantActivity] = useState();
+  const { userVal, setUserVal } = useContext(userContext);
 
   function updateTradeMap(passInTradeMap: TradeData[]) {
     setTradeMap(passInTradeMap);
@@ -57,21 +56,6 @@ const MainRender: React.FC = () => {
     if (tradeMap && userMap) {
       return (
         <div>
-          {tradeMap.map((el: TradeData) => (
-            <Route path={`/trade/${el.tradeId}`}>
-              <UserTrade
-                user={el.user}
-                userId={el.userId}
-                title={el.title}
-                ticker={el.ticker}
-                type={el.type}
-                shares={el.shares}
-                price={el.price}
-                gain={el.gain}
-                timestamp={el.timestamp}
-              />
-            </Route>
-          ))}
           {userMap.map((el: User) => (
             <Route path={`/user/${el.userId}`}>
               <User

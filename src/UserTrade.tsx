@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { userContext } from "./AppMain/App";
 import Comment from "./misc/Comment";
 import TickerHeader from "./TickerHeader";
@@ -6,29 +6,48 @@ import Header from "./Header";
 import TradeInformation from "./TradeInformation";
 import { Link } from "react-router-dom";
 import { flowRight as compose } from "lodash";
-import { graphql } from "react-apollo";
+import { graphql, useLazyQuery } from "react-apollo";
 import {
   pushTradeToUserMutation,
   pushFollowerToUserMutation,
+  queryTradeQuery,
 } from "./queries/queries.js";
 
 interface Props {
-  user: string;
-  userId: number;
   tradeId: number;
-  title: string;
-  ticker: string;
-  type: string;
-  shares: number;
-  price: number;
-  gain: number;
-  timestamp: number;
   pushTradeToUserMutation: (variables: object) => void;
   pushFollowerToUserMutation: (variables: object) => void;
 }
 
 const UserTrade: React.FC<Props> = (props) => {
   const { userVal, setUserVal } = useContext(userContext);
+  const [queryTrade, { loading, data }] = useLazyQuery(queryTradeQuery, {
+    variables: { tradeId: props.tradeId },
+  });
+  const [tradeData, setTradeData] = useState({
+    userId: 0,
+    user: "",
+    tradeId: 0,
+    price: 0,
+    timestamp: 0,
+    title: "",
+    ticker: "",
+    shares: 0,
+    gain: 0,
+    type: "",
+  });
+
+  useEffect(() => {
+    queryTrade();
+    console.log("querying trade");
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      setTradeData(data.queryTrade);
+    }
+  }, [data]);
+
   const testData = [
     {
       user: "Tyler",
@@ -53,9 +72,9 @@ const UserTrade: React.FC<Props> = (props) => {
     props.pushFollowerToUserMutation({
       variables: {
         userId: userVal.userId,
-        followerId: props.userId,
+        followerId: tradeData.userId,
         id: randVal,
-        followerName: props.user,
+        followerName: tradeData.user,
         blocked: false,
       },
     });
@@ -64,14 +83,14 @@ const UserTrade: React.FC<Props> = (props) => {
   function saveTrade() {
     props.pushTradeToUserMutation({
       variables: {
-        userId: props.userId,
-        tradeId: props.tradeId,
-        price: props.price,
-        timestamp: props.timestamp,
-        title: props.title,
-        ticker: props.ticker,
-        shares: props.shares,
-        gain: props.gain,
+        userId: tradeData.userId,
+        tradeId: tradeData.tradeId,
+        price: tradeData.price,
+        timestamp: tradeData.timestamp,
+        title: tradeData.title,
+        ticker: tradeData.ticker,
+        shares: tradeData.shares,
+        gain: tradeData.gain,
       },
     });
   }
@@ -80,26 +99,26 @@ const UserTrade: React.FC<Props> = (props) => {
     <div id="previous_trade">
       <div id="previous_trade_title">
         <TickerHeader
-          title={props.title}
-          ticker={props.ticker}
-          gain={props.gain}
+          title={tradeData.title}
+          ticker={tradeData.ticker}
+          gain={tradeData.gain}
         />
-        <Link to={`/user/${props.userId}`}>
-          <Header text={props.user} />
+        <Link to={`/user/${tradeData.userId}`}>
+          <Header text={tradeData.user} />
         </Link>
         <button onClick={() => followUser()}>Follow</button>
       </div>
       <div id="previous_trade_graph"></div>
       <div id="previous_trade_subinfo">
         <TradeInformation
-          title={props.title}
-          tradeId={props.tradeId}
-          shares={props.shares}
-          ticker={props.ticker}
-          gain={props.gain}
-          type={props.type}
-          timestamp={props.timestamp}
-          price={props.price}
+          title={tradeData.title}
+          tradeId={tradeData.tradeId}
+          shares={tradeData.shares}
+          ticker={tradeData.ticker}
+          gain={tradeData.gain}
+          type={tradeData.type}
+          timestamp={tradeData.timestamp}
+          price={tradeData.price}
           saveTrade={saveTrade}
         />
       </div>

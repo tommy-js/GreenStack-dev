@@ -10,12 +10,16 @@ interface Props {
   price: number;
   profit: number;
   shares: number;
+  passInTradeId: (id: number) => void;
 }
 
 const ProfileTrade: React.FC<Props> = (props) => {
   return (
     <div>
-      <Link to={`/trade/${props.tradeId}`}>
+      <Link
+        to={`/profile/trade/${props.tradeId}`}
+        onClick={() => props.passInTradeId(props.tradeId)}
+      >
         <p>
           {props.type} on {props.date} of {props.title} #{props.ticker}.
         </p>
