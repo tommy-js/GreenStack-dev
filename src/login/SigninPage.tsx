@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Header from "./Header";
-import InputContainer from "./misc/InputContainer";
-import QueryUserLogin from "./resolvers/QueryUserLogin";
+import Header from "../Header";
+import InputContainer from "../misc/InputContainer";
+import QueryUserLogin from "../resolvers/QueryUserLogin";
 
 const SigninPage: React.FC = () => {
   const [username, setUsername] = useState("");
