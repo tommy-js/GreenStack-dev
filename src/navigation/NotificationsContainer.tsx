@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import NotificationsLink from "./NotificationsLink";
+import { NotificationsElement, HistoryElement } from "./NotificationsElement";
 
 interface Link {
   changeTab: (tab: number) => void;
@@ -7,7 +8,10 @@ interface Link {
 
 interface Data {
   tab: number;
-  data: object[];
+  userId: number;
+  notifications: object[];
+  history: object[];
+  settings: object[];
   changeTab: (tab: number) => void;
 }
 
@@ -26,16 +30,25 @@ export const NotificationsLinkContainer: React.FC<Link> = (props) => {
 };
 
 export const NotificationsDataContainer: React.FC<Data> = (props) => {
+  const [notifications, setNotifications] = useState(props.notifications);
+  const [history, setHistory] = useState(props.history);
+  const [settings, setSettings] = useState(props.settings);
+
+  useEffect(() => {
+    console.log(props.notifications);
+  }, [notifications]);
+
   function checkTab() {
     if (props.tab === 1) {
       return (
         <div>
           <button onClick={() => props.changeTab(0)}>back</button>
-          {props.data.map((el: any) => (
-            <div>
-              <p>text</p>
-              <button>dismiss</button>
-            </div>
+          {notifications.map((el: any) => (
+            <NotificationsElement
+              userId={props.userId}
+              id={el.id}
+              content={el.content}
+            />
           ))}
         </div>
       );
@@ -43,11 +56,12 @@ export const NotificationsDataContainer: React.FC<Data> = (props) => {
       return (
         <div>
           <button onClick={() => props.changeTab(0)}>back</button>
-          {props.data.map((el: any) => (
-            <div>
-              <p>text</p>
-              <p>timestamp</p>
-            </div>
+          {history.map((el: any) => (
+            <HistoryElement
+              title={el.title}
+              ticker={el.ticker}
+              timestamp={el.timestamp}
+            />
           ))}
         </div>
       );
@@ -55,7 +69,7 @@ export const NotificationsDataContainer: React.FC<Data> = (props) => {
       return (
         <div>
           <button onClick={() => props.changeTab(0)}>back</button>
-          {props.data.map((el: any) => (
+          {settings.map((el: any) => (
             <div>
               <p>setting 1</p>
               <p>setting 2</p>

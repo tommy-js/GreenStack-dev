@@ -7,7 +7,6 @@ interface Props {
   userId: number;
   id: number;
   dropNotificationMutation: (variables: object) => void;
-  returnNotifs: (id: number) => void;
 }
 
 const DropNotification: React.FC<Props> = (props) => {
@@ -18,7 +17,6 @@ const DropNotification: React.FC<Props> = (props) => {
         id: props.id,
       },
     });
-    props.returnNotifs(props.id);
   }
 
   return <button onClick={() => dropNotification()}>Dismiss</button>;

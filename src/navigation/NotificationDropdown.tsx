@@ -32,13 +32,7 @@ const NotificationDropdown: React.FC<Props> = (props) => {
   return (
     <div>
       {notif.map((el: Notifs) => (
-        <Notification
-          key={el.id}
-          text={el.content}
-          userId={props.userId}
-          id={el.id}
-          returnNotifs={returnNotifs}
-        />
+        <Notification />
       ))}
     </div>
   );

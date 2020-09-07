@@ -508,12 +508,7 @@ body {
   border-radius: 50%;
   display: inline-block;
   background-color: orange;
-}
-
-.notification {
-  width: 250px;
-  background-color: grey;
-  border: 1px solid black;
+  cursor: pointer;
 }
 
 #notification_icon {
@@ -543,4 +538,33 @@ body {
 
 .teal_link {
   color: teal;
+}
+
+.notifications_link {
+  position: relative;
+  @include noselect;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  display: inline-block;
+  border-bottom: 1px dashed black;
+}
+
+@mixin noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+$darkGrey: #b0b0b0;
+$grey: #c8c8c8;
+
+.notification {
+  width: 225px;
+  background-color: white;
+  border: 1px solid $darkGrey;
+  box-shadow: 1px 2px 2px $grey;
 }

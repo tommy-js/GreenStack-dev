@@ -8,11 +8,15 @@ import {
 const NotificationsMenu: React.FC = () => {
   const { userVal, setUserVal } = useContext(userContext);
   const [tab, setTab] = useState(0);
-  const [containerData, setContainerData] = useState(userVal.trades);
+  const [notifications, setNotifications] = useState(userVal.notifications);
+  const [history, setHistory] = useState(userVal.trades);
+  const [settings, setSettings] = useState([]);
 
   useEffect(() => {
-    console.log(userVal.trades);
-  }, []);
+    console.log(userVal);
+    setNotifications(userVal.notifications);
+    setHistory(userVal.trades);
+  }, [userVal]);
 
   function changeTab(id: number) {
     setTab(id);
@@ -30,14 +34,17 @@ const NotificationsMenu: React.FC = () => {
         <div>
           <NotificationsDataContainer
             tab={tab}
-            data={containerData}
+            userId={userVal.userId}
+            notifications={notifications}
+            history={history}
+            settings={settings}
             changeTab={changeTab}
           />
         </div>
       );
     }
   }
-  return <div id="notifications_menu">{tabDisplay()}</div>;
+  return <div>{tabDisplay()}</div>;
 };
 
 export default NotificationsMenu;
