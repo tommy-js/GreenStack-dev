@@ -10,6 +10,10 @@ const createUserMutation = gql`
     $darkmode: Boolean!
     $invisible: Boolean!
     $allowCommentsOnTrades: Boolean!
+    $timestamp: ID!
+    $id: ID!
+    $content: String!
+    $viewed: Boolean!
   ) {
     createUser(
       userId: $userId
@@ -19,6 +23,10 @@ const createUserMutation = gql`
       darkmode: $darkmode
       invisible: $invisible
       allowCommentsOnTrades: $allowCommentsOnTrades
+      timestamp: $timestamp
+      id: $id
+      content: $content
+      viewed: $viewed
     ) {
       userId
       username
@@ -222,6 +230,14 @@ const updateMoneyMutation = gql`
   }
 `;
 
+const updateUserNotificationsViewedMutation = gql`
+  mutation($id: ID!) {
+    updateUserNotificationsViewed(id: $id) {
+      id
+    }
+  }
+`;
+
 const addCommentTradeMutation = gql`
   mutation(
     $tradeId: ID!
@@ -347,6 +363,7 @@ const userLoginQuery = gql`
         content
         timestamp
         id
+        viewed
       }
     }
   }
@@ -432,6 +449,7 @@ const userQuery = gql`
         content
         timestamp
         id
+        viewed
       }
     }
   }
@@ -461,6 +479,7 @@ const stockQuery = gql`
 export {
   createUserMutation,
   addCommentTradeMutation,
+  updateUserNotificationsViewedMutation,
   updateLikesMutation,
   addCommentStockMutation,
   updateDislikesMutation,

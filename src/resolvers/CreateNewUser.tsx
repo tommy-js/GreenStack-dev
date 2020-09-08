@@ -16,6 +16,10 @@ const CreateNewUser: React.FC<Props> = (props) => {
 
   function submitButton() {
     let userId = Math.floor(Math.random() * 1000000);
+    let id = Math.floor(Math.random() * 1000000);
+    let date = new Date();
+    let currentTime = Math.floor(date.getTime() / 1000);
+    let notif = "Welcome to TIKR! Make your first trade...";
     props
       .createUserMutation({
         variables: {
@@ -26,6 +30,10 @@ const CreateNewUser: React.FC<Props> = (props) => {
           darkmode: false,
           invisible: false,
           allowCommentsOnTrades: true,
+          timestamp: currentTime,
+          id: id,
+          viewed: false,
+          content: notif,
         },
       })
       .then((res: string) => {

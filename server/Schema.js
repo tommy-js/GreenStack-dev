@@ -51,6 +51,7 @@ const NotificationQuery = new GraphQLObjectType({
     content: { type: GraphQLString },
     timestamp: { type: GraphQLID },
     id: { type: GraphQLID },
+    viewed: { type: GraphQLBoolean },
   }),
 });
 
@@ -205,6 +206,10 @@ const Mutation = new GraphQLObjectType({
         invisible: { type: GraphQLBoolean },
         allowCommentsOnTrades: { type: GraphQLBoolean },
         profileImage: { type: GraphQLID },
+        content: { type: GraphQLString },
+        timestamp: { type: GraphQLID },
+        id: { type: GraphQLID },
+        viewed: { type: GraphQLBoolean },
       },
       resolve(parent, args) {
         let user = new User({
@@ -216,8 +221,29 @@ const Mutation = new GraphQLObjectType({
           invisible: false,
           allowCommentsOnTrades: true,
           profileImage: 0,
+          notifications: [
+            {
+              content: args.content,
+              timestamp: args.timestamp,
+              id: args.id,
+              viewed: args.viewed,
+            },
+          ],
         });
         return user.save();
+      },
+    },
+    updateUserNotificationsViewed: {
+      type: NotificationQuery,
+      args: {
+        id: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        return User.findOneAndUpdate(
+          { "notifications.id": args.id },
+          { $set: { "notifications.$.viewed": true } },
+          { upsert: true, new: true }
+        );
       },
     },
     updateUserSettings: {

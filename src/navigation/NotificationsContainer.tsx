@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NotificationsLink from "./NotificationsLink";
-import { NotificationsElement, HistoryElement } from "./NotificationsElement";
+import NotificationsElement from "./NotificationsElement";
+import HistoryElement from "./HistoryElement";
 
 interface Link {
   changeTab: (tab: number) => void;
@@ -48,6 +49,7 @@ export const NotificationsDataContainer: React.FC<Data> = (props) => {
               userId={props.userId}
               id={el.id}
               content={el.content}
+              viewed={el.viewed}
             />
           ))}
         </div>

@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import { flowRight as compose } from "lodash";
 import { graphql, useLazyQuery } from "react-apollo";
 import {
-  pushTradeToUserMutation,
   pushFollowerToUserMutation,
   queryTradeQuery,
 } from "./queries/queries.js";

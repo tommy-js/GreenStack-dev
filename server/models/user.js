@@ -89,6 +89,7 @@ const userSchema = new Schema({
       content: String,
       timestamp: Number,
       id: Number,
+      viewed: Boolean,
     },
   ],
 });

@@ -5,6 +5,7 @@ const notificationSchema = new Schema({
   content: String,
   timestamp: Number,
   id: Number,
+  viewed: Boolean,
 });
 
 module.exports = mongoose.model("Notification", notificationSchema);
