@@ -5,7 +5,11 @@ import {
   NotificationsDataContainer,
 } from "./NotificationsContainer";
 
-const NotificationsMenu: React.FC = () => {
+interface Props {
+  modNotificationColor: (notifArr: object[]) => void;
+}
+
+const NotificationsMenu: React.FC<Props> = (props) => {
   const { userVal, setUserVal } = useContext(userContext);
   const [tab, setTab] = useState(0);
   const [notifications, setNotifications] = useState(userVal.notifications);
@@ -39,6 +43,7 @@ const NotificationsMenu: React.FC = () => {
             history={history}
             settings={settings}
             changeTab={changeTab}
+            modNotificationColor={props.modNotificationColor}
           />
         </div>
       );

@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import DropNotification from "../resolvers/DropNotification";
 import NotificationsMenu from "./NotificationsMenu";
 
-const Notification: React.FC = () => {
+interface Props {
+  modNotificationColor: (notifArr: object[]) => void;
+}
+
+const Notification: React.FC<Props> = (props) => {
   return (
     <div className="notification">
-      <NotificationsMenu />
+      <NotificationsMenu modNotificationColor={props.modNotificationColor} />
     </div>
   );
 };

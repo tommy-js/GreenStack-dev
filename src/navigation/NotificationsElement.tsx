@@ -9,6 +9,7 @@ interface Notifs {
   userId: number;
   id: number;
   viewed: boolean;
+  modNotifs: (id: number) => void;
   updateUserNotificationsViewedMutation: (variables: object) => any;
 }
 
@@ -17,18 +18,20 @@ const NotificationsElement: React.FC<Notifs> = (props) => {
 
   function checkViewed() {
     if (viewed === false) {
-      props
-        .updateUserNotificationsViewedMutation({
-          variables: {
-            id: props.id,
-          },
-        })
-        .catch((err: any) => {
-          console.log("error");
-        })
-        .then((res: any) => {
-          console.log("success");
-        });
+      // props
+      //   .updateUserNotificationsViewedMutation({
+      //     variables: {
+      //       id: props.id,
+      //     },
+      //   })
+      //   .catch((err: any) => {
+      //     console.log("error");
+      //   })
+      //   .then((res: any) => {
+      //     console.log("success");
+      //     props.modNotifs(props.id);
+      //   });
+      props.modNotifs(props.id);
       return (
         <div onClick={() => setViewed(true)}>
           <p>Not yet seen!</p>
@@ -40,7 +43,7 @@ const NotificationsElement: React.FC<Notifs> = (props) => {
   }
 
   return (
-    <div className="notifications_link">
+    <div className="notifications_link" key={props.id}>
       <p>{props.content}</p>
       <DropNotification id={props.id} userId={props.userId} />
       {checkViewed()}
