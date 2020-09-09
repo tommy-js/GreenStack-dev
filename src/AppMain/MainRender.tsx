@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import generalKnowledge from "../generalKnowledge";
-import optionsKnowledge from "../about/optionsKnowledge";
-import LearnPage from "../about/LearnPage";
+import { BasicsPage, OptionsPage } from "../about/LearnPage";
 import Profile from "../profile/Profile";
 import StockPage from "../StockPage";
 import SubscribePage from "../SubscribePage";
@@ -124,10 +122,10 @@ const MainRender: React.FC = () => {
         ))}
         {returnTradePath()}
         <Route path="/about/learn/general">
-          <LearnPage data={generalKnowledge} />
+          <BasicsPage />
         </Route>
         <Route path="/about/learn/options">
-          <LearnPage data={optionsKnowledge} />
+          <OptionsPage />
         </Route>
       </div>
     </div>
