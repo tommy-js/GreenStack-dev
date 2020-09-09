@@ -36,6 +36,15 @@ const createUserMutation = gql`
   }
 `;
 
+const updateUserProgressMutation = gql`
+  mutation($id: ID!, $progress: Float!) {
+    updateUserProgress(id: $id, progress: $progress) {
+      id
+      progress
+    }
+  }
+`;
+
 const setProfileImageMutation = gql`
   mutation($userId: ID!, $profileImage: String!) {
     setProfileImage(userId: $userId, profileImage: $profileImage) {
@@ -483,6 +492,7 @@ export {
   updateLikesMutation,
   addCommentStockMutation,
   updateDislikesMutation,
+  updateUserProgressMutation,
   deleteCommentUserMutation,
   dropNotificationMutation,
   deleteCommentStockMutation,

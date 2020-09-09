@@ -92,6 +92,13 @@ const userSchema = new Schema({
       viewed: Boolean,
     },
   ],
+  progress: [
+    {
+      title: String,
+      progress: Number,
+      id: Number,
+    },
+  ],
 });
 
 module.exports = mongoose.model("User", userSchema);

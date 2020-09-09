@@ -21,6 +21,7 @@ const Reference = require("./models/referencetrade");
 const Settings = require("./models/settings");
 const Watchlist = require("./models/watchlist");
 const Notifications = require("./models/notification");
+const Progress = require("./models/progress");
 
 const UserQuery = new GraphQLObjectType({
   name: "User",
@@ -42,6 +43,16 @@ const UserQuery = new GraphQLObjectType({
     comments: { type: new GraphQLList(CommentQuery) },
     watchlist: { type: new GraphQLList(WatchlistQuery) },
     notifications: { type: new GraphQLList(NotificationQuery) },
+    progress: { type: new GraphQLList(ProgressQuery) },
+  }),
+});
+
+const ProgressQuery = new GraphQLObjectType({
+  name: "Progress",
+  fields: () => ({
+    title: { type: GraphQLString },
+    progress: { type: GraphQLFloat },
+    id: { type: GraphQLID },
   }),
 });
 
@@ -262,6 +273,20 @@ const Mutation = new GraphQLObjectType({
             invisible: args.invisible,
             allowCommentsOnTrades: args.allowCommentsOnTrades,
           }
+        );
+      },
+    },
+    updateUserProgress: {
+      type: ProgressQuery,
+      args: {
+        id: { type: GraphQLID },
+        progress: { type: GraphQLFloat },
+      },
+      resolve(parent, args) {
+        return User.findOneAndUpdate(
+          { "progress.id": args.id },
+          { $set: { "progress.$.progress": args.progress } },
+          { upsert: true, new: true }
         );
       },
     },
