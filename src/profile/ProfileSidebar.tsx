@@ -8,6 +8,13 @@ const ProfileSidebar: React.FC = () => {
       <NavLink
         className="nav_el"
         activeClassName="active_nav_el"
+        to="/profile/account"
+      >
+        <SidebarComponent text="Account" />
+      </NavLink>
+      <NavLink
+        className="nav_el"
+        activeClassName="active_nav_el"
         to="/profile/followed"
       >
         <SidebarComponent text="Followers" />

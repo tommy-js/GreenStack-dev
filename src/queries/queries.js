@@ -298,6 +298,7 @@ const userLoginQuery = gql`
       userId
       username
       password
+      membership
       money
       darkmode
       invisible
@@ -386,6 +387,7 @@ const userQuery = gql`
       password
       money
       darkmode
+      membership
       invisible
       allowCommentsOnTrades
       profileImage

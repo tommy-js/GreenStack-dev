@@ -30,6 +30,7 @@ const UserQuery = new GraphQLObjectType({
     username: { type: GraphQLString },
     password: { type: GraphQLString },
     profileImage: { type: GraphQLString },
+    membership: { type: GraphQLBoolean },
     money: { type: GraphQLFloat },
     darkmode: { type: GraphQLBoolean },
     invisible: { type: GraphQLBoolean },
@@ -221,6 +222,7 @@ const Mutation = new GraphQLObjectType({
         timestamp: { type: GraphQLID },
         id: { type: GraphQLID },
         viewed: { type: GraphQLBoolean },
+        membership: { type: GraphQLBoolean },
       },
       resolve(parent, args) {
         let user = new User({
@@ -228,6 +230,7 @@ const Mutation = new GraphQLObjectType({
           username: args.username,
           password: args.password,
           money: args.money,
+          membership: false,
           darkmode: false,
           invisible: false,
           allowCommentsOnTrades: true,

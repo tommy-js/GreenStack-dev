@@ -8,6 +8,7 @@ const userSchema = new Schema({
   money: Number,
   darkmode: Boolean,
   invisible: Boolean,
+  membership: Boolean,
   allowCommentsOnTrades: Boolean,
   profileImage: String,
   followed: [{ userId: Number, username: String }],

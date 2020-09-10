@@ -18,6 +18,7 @@ interface UserCont {
   username: string;
   password: string;
   userId: number;
+  membership: boolean;
   money: number;
   darkmode: boolean;
   invisible: boolean;
@@ -35,6 +36,7 @@ function App() {
     password: "",
     userId: 0,
     money: 0,
+    membership: false,
     darkmode: false,
     invisible: false,
     allowCommentsOnTrades: false,

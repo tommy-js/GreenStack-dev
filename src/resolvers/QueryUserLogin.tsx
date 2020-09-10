@@ -10,7 +10,7 @@ interface Props {
 }
 
 const QueryUserLogin: React.FC<Props> = (props) => {
-  const userId = 35343;
+  const userId = 702058;
   const { status, setStatus } = useContext(statusContext);
   const { userVal, setUserVal } = useContext(userContext);
   const [getUser, { loading, data }] = useLazyQuery(userQuery);
@@ -30,6 +30,7 @@ const QueryUserLogin: React.FC<Props> = (props) => {
         username: data.user.username,
         userId: userId,
         money: data.user.money,
+        membership: data.user.membership,
         darkmode: data.user.darkmode,
         invisible: data.user.invisible,
         allowCommentsOnTrades: data.user.allowCommentsOnTrades,

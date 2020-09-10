@@ -1,5 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import UserProfileAccount from "./UserProfileAccount";
 import UserProfileSettings from "../UserProfileSettings";
 import UserProfileFollowed from "../UserProfileFollowed";
 import UserProfileFollowing from "../UserProfileFollowing";
@@ -14,6 +15,9 @@ interface Props {
 const ProfileContent: React.FC<Props> = (props) => {
   return (
     <div id="profile_content">
+      <Route path="/profile/account">
+        <UserProfileAccount />
+      </Route>
       <Route path="/profile/followed">
         <UserProfileFollowed />
       </Route>
