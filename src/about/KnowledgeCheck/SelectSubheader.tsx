@@ -5,5 +5,5 @@ interface Props {
 }
 
 export const SelectSubheader: React.FC<Props> = (props) => {
-  return <p>{props.title}</p>;
+  return <p className="select_subheader">{props.title}</p>;
 };

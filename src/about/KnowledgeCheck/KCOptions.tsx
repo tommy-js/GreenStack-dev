@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Option from "./Option";
 
 interface Props {
@@ -10,8 +10,11 @@ interface Props {
 }
 
 const KCOptions: React.FC<Props> = (props) => {
+  const [selectedOption, setSelectedOption] = useState(0);
+
   function selectOption(id: number) {
     props.modOption(id);
+    setSelectedOption(id);
   }
 
   return (
@@ -21,6 +24,7 @@ const KCOptions: React.FC<Props> = (props) => {
           title={el.title}
           id={el.id}
           key={el.id}
+          selectedOption={selectedOption}
           selectOption={selectOption}
         />
       ))}
