@@ -2,6 +2,10 @@ body {
   margin-bottom: 100px;
 }
 
+@mixin testing {
+  border: 1px solid red;
+}
+
 @mixin noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -235,6 +239,7 @@ body {
 
 .nav_el {
   color: black;
+  text-decoration: none;
   margin: 5px;
 }
 
@@ -386,7 +391,7 @@ body {
 
 #profile {
   width: 50%;
-  min-width: 500px;
+  box-sizing: border-box;
   margin-left: auto;
   margin-right: auto;
   border: 1px solid green;
@@ -397,7 +402,7 @@ body {
   display: inline-block;
   float: left;
   box-sizing: border-box;
-  width: 25%;
+  width: 10%;
   border: 1px solid red;
 }
 
@@ -405,14 +410,18 @@ body {
   position: relative;
   display: inline-block;
   box-sizing: border-box;
-  width: 50%;
+  width: 80%;
   float: right;
   border: 1px solid blue;
 }
 
 #sidebar_component {
   text-align: center;
-  font-size: 22px;
+  font-size: 18px;
+  margin: 0;
+  text-decoration: none;
+  font-style: normal;
+  @include testing;
 }
 
 #profile_body {
@@ -621,10 +630,6 @@ $grey: #c8c8c8;
   border-radius: 10px;
 }
 
-@mixin testing {
-  border: 1px solid red;
-}
-
 .select_container {
   position: relative;
   width: 25px;
@@ -684,5 +689,37 @@ $grey: #c8c8c8;
   width: 60%;
   height: 100%;
   float: right;
+  box-sizing: border-box;
+}
+
+.account_status_component {
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  @include testing;
+}
+
+#perks_container {
+  position: relative;
+  margin-top: 25px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  @include testing;
+}
+
+.reference_trade {
+  position: relative;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid grey;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 10px;
   box-sizing: border-box;
 }

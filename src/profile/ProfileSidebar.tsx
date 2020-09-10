@@ -52,7 +52,7 @@ const ProfileSidebar: React.FC = () => {
         activeClassName="active_nav_el"
         to="/profile/references"
       >
-        <SidebarComponent text="Reference Trades" />
+        <SidebarComponent text="Saved Trades" />
       </NavLink>
     </div>
   );

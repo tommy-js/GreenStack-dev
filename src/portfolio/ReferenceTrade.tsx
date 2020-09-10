@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 interface Props {
@@ -12,6 +12,15 @@ interface Props {
 
 const ReferenceTrade: React.FC<Props> = (props) => {
   const [display, setDisplay] = useState("block");
+  const [date, setDate] = useState("");
+
+  useEffect(() => {
+    let currentDate = new Date(props.timestamp * 1000);
+    let year = currentDate.getFullYear();
+    let day = currentDate.getDay();
+    let concatDate = `${day} ${year}`;
+    setDate(concatDate);
+  }, []);
 
   function removeTrade() {
     setDisplay("none");
@@ -19,13 +28,12 @@ const ReferenceTrade: React.FC<Props> = (props) => {
   }
 
   return (
-    <div style={{ display: display }}>
+    <div className="reference_trade" style={{ display: display }}>
       <Link to={`/trade/${props.tradeId}`}>
-        <p>{props.user}</p>
         <p>
-          {props.title} #{props.ticker}
+          {props.user} {props.title} #{props.ticker}
         </p>
-        <p>{props.timestamp}</p>
+        <p>{date}</p>
       </Link>
       <button onClick={() => removeTrade()}>Remove</button>
     </div>
