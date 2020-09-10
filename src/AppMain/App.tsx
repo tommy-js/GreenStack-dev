@@ -25,6 +25,7 @@ interface UserCont {
   allowCommentsOnTrades: boolean;
   notifications: object[];
   trades: object[];
+  referenceTrades: object[];
 }
 
 export const userContext = createContext<any>({});
@@ -42,6 +43,7 @@ function App() {
     allowCommentsOnTrades: false,
     notifications: [{}],
     trades: [{}],
+    referenceTrades: [{}],
   });
   const [status, setStatus] = useState(false);
 

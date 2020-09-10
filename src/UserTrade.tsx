@@ -4,18 +4,16 @@ import Comment from "./misc/Comment";
 import TickerHeader from "./TickerHeader";
 import Header from "./Header";
 import TradeInformation from "./TradeInformation";
+import FollowUser from "./resolvers/FollowUser";
+import SaveTrade from "./resolvers/SaveTrade";
+
 import { Link } from "react-router-dom";
 import { flowRight as compose } from "lodash";
 import { graphql, useLazyQuery } from "react-apollo";
-import {
-  pushFollowerToUserMutation,
-  queryTradeQuery,
-} from "./queries/queries.js";
+import { queryTradeQuery } from "./queries/queries.js";
 
 interface Props {
   tradeId: number;
-  pushTradeToUserMutation: (variables: object) => void;
-  pushFollowerToUserMutation: (variables: object) => void;
 }
 
 const UserTrade: React.FC<Props> = (props) => {
@@ -68,33 +66,7 @@ const UserTrade: React.FC<Props> = (props) => {
     },
   ];
 
-  function followUser() {
-    let randVal = Math.floor(Math.random() * 1000000);
-    props.pushFollowerToUserMutation({
-      variables: {
-        userId: userVal.userId,
-        followerId: tradeData.userId,
-        id: randVal,
-        followerName: tradeData.user,
-        blocked: false,
-      },
-    });
-  }
-
-  function saveTrade() {
-    props.pushTradeToUserMutation({
-      variables: {
-        userId: tradeData.userId,
-        tradeId: tradeData.tradeId,
-        price: tradeData.price,
-        timestamp: tradeData.timestamp,
-        title: tradeData.title,
-        ticker: tradeData.ticker,
-        shares: tradeData.shares,
-        gain: tradeData.gain,
-      },
-    });
-  }
+  function saveTrade() {}
 
   if (data) {
     return (
@@ -108,7 +80,8 @@ const UserTrade: React.FC<Props> = (props) => {
           <Link to={`/user/${tradeData.userId}`}>
             <Header text={tradeData.user} />
           </Link>
-          <button onClick={() => followUser()}>Follow</button>
+          <FollowUser tradeData={tradeData} userId={userVal.userId} />
+          <SaveTrade tradeData={tradeData} />
         </div>
         <div id="previous_trade_graph"></div>
         <div id="previous_trade_subinfo">
@@ -147,6 +120,4 @@ const UserTrade: React.FC<Props> = (props) => {
   }
 };
 
-export default compose(
-  graphql(pushFollowerToUserMutation, { name: "pushFollowerToUser" })
-)(UserTrade);
+export default UserTrade;

@@ -40,6 +40,7 @@ const QueryUserLogin: React.FC<Props> = (props) => {
         watchlist: data.user.watchlist,
         comments: data.user.comments,
         notifications: data.user.notifications,
+        referenceTrades: data.user.referenceTrades,
       });
       setStatus(true);
       browserHist.push("/");

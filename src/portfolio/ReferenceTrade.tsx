@@ -17,8 +17,9 @@ const ReferenceTrade: React.FC<Props> = (props) => {
   useEffect(() => {
     let currentDate = new Date(props.timestamp * 1000);
     let year = currentDate.getFullYear();
+    let month = currentDate.getMonth();
     let day = currentDate.getDay();
-    let concatDate = `${day} ${year}`;
+    let concatDate = `${day}/${month}/${year}`;
     setDate(concatDate);
   }, []);
 
@@ -29,7 +30,7 @@ const ReferenceTrade: React.FC<Props> = (props) => {
 
   return (
     <div className="reference_trade" style={{ display: display }}>
-      <Link to={`/trade/${props.tradeId}`}>
+      <Link className="nav_el" to={`/trade/${props.tradeId}`}>
         <p>
           {props.user} {props.title} #{props.ticker}
         </p>

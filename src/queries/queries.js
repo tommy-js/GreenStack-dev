@@ -81,6 +81,35 @@ const pushTradeMutation = gql`
   }
 `;
 
+const saveReferenceTradeToUserMutation = gql`
+  mutation(
+    $userId: ID!
+    $tradeId: ID!
+    $tradeAuthorID: ID!
+    $tradeAuthorUsername: String!
+    $price: Int!
+    $timestamp: ID!
+    $title: String!
+    $ticker: String!
+    $shares: Int!
+    $gain: Int!
+  ) {
+    pushReferenceTrade(
+      userId: $userId
+      tradeAuthorID: tradeAuthorID
+      tradeId: $tradeId
+      price: $price
+      timestamp: $timestamp
+      title: $title
+      ticker: $ticker
+      shares: $shares
+      gain: $gain
+    ) {
+      userId
+    }
+  }
+`;
+
 const pushSharesToUserMutation = gql`
   mutation($shareId: ID!, $shares: Number!, $stockId: ID!) {
     pushSharesToUser(shareId: $shareId, shares: $shares, stockId: $stockId) {
@@ -501,6 +530,7 @@ export {
   updateUserSettingsMutation,
   pushFollowerToUserMutation,
   pushTradeMutation,
+  saveReferenceTradeToUserMutation,
   blockUserMutation,
   updateMoneyMutation,
   setProfileImageMutation,

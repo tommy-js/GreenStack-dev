@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const referenceTradeSchema = new Schema({
   tradeAuthorUsername: String,
   tradeAuthorID: Number,
+  id: Number,
   ticker: String,
   title: String,
   timestamp: Number,

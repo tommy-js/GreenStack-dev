@@ -131,6 +131,11 @@ const MainRender: React.FC = () => {
         <Route path="/plan">
           <UserProfilePlan />
         </Route>
+        {userVal.referenceTrades.map((el: any) => (
+          <Route path={`/${el.id}`}>
+            <UserTrade tradeId={el.id} />
+          </Route>
+        ))}
       </div>
     </div>
   );
