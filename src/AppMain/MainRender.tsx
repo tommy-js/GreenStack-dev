@@ -8,6 +8,7 @@ import AboutPage from "../about/AboutPage";
 import LeaderBoard from "../misc/LeaderBoard";
 import Homepage from "../Homepage/Homepage";
 import UserTrade from "../UserTrade";
+import UserProfilePlan from "../profile/UserProfilePlan";
 import companyProfiles from "../companyProfiles";
 import { Route } from "react-router-dom";
 import { browserHist } from "./history.js";
@@ -126,6 +127,9 @@ const MainRender: React.FC = () => {
         </Route>
         <Route path="/about/learn/options">
           <OptionsPage />
+        </Route>
+        <Route path="/plan">
+          <UserProfilePlan />
         </Route>
       </div>
     </div>
