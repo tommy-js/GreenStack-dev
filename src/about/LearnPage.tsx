@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import NavBar from "../misc/NavBar";
+import { MultipleChoice } from "./KnowledgeCheck/KnowledgeCheck";
 import { statusContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
 
@@ -23,6 +24,17 @@ export const BasicsPage: React.FC = () => {
         In this short tutorial we will break down the basics of the stock market
         into terms that are easy to understand.
       </p>
+      <h3 className="learn_page_subheader">
+        Note: complete the knowledge check to save your progress!
+      </h3>
+      <MultipleChoice
+        options={[
+          { title: "Option 1", id: 0 },
+          { title: "Option 2", id: 1 },
+          { title: "Option 3", id: 2 },
+        ]}
+        headline="Test Knowledge Check"
+      />
     </div>
   );
 };
