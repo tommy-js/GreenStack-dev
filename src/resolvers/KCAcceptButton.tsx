@@ -6,20 +6,27 @@ import { updateUserProgressMutation } from "../queries/queries";
 interface Props {
   progressOnComplete: number;
   id: number;
+  correct: boolean;
+  currentProgress: number;
   updateUserProgressMutation: (variables: object) => any;
 }
 
 const KCAcceptButton: React.FC<Props> = (props) => {
   function submit() {
-    props
-      .updateUserProgressMutation({
-        variables: {
-          id: props.id,
-          percent: props.progressOnComplete,
-        },
-      })
-      .then((res: any) => console.log("passed"))
-      .catch((res: any) => console.log("err"));
+    if (props.correct === true) {
+      let currentPercent = props.currentProgress + props.progressOnComplete;
+      props
+        .updateUserProgressMutation({
+          variables: {
+            id: props.id,
+            percent: currentPercent,
+          },
+        })
+        .then((res: any) => console.log("passed"))
+        .catch((res: any) => console.log("err"));
+    } else {
+      console.log("wrong answer!");
+    }
   }
 
   return <button onClick={() => submit()}>Submit</button>;

@@ -11,13 +11,21 @@ interface Props {
   id: number;
   progressOnComplete: number;
   headline: string;
+  correctAnswer: number;
+  currentProgress: number;
 }
 
 export const MultipleChoice: React.FC<Props> = (props) => {
   const [selectedOption, setSelectedOption] = useState(0);
+  const [correct, setCorrect] = useState(false);
 
   function modOption(id: number) {
     setSelectedOption(id);
+    if (id === props.correctAnswer) {
+      setCorrect(true);
+    } else {
+      setCorrect(false);
+    }
   }
 
   return (
@@ -27,6 +35,8 @@ export const MultipleChoice: React.FC<Props> = (props) => {
       <KCAcceptButton
         id={props.id}
         progressOnComplete={props.progressOnComplete}
+        correct={correct}
+        currentProgress={props.currentProgress}
       />
     </div>
   );

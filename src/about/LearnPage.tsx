@@ -1,11 +1,16 @@
-import React, { useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import NavBar from "../misc/NavBar";
 import { MultipleChoice } from "./KnowledgeCheck/KnowledgeCheck";
-import { statusContext } from "../AppMain/App";
+import { statusContext, userContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
 
 export const BasicsPage: React.FC = () => {
   const { status, setStatus } = useContext(statusContext);
+  const { userVal, setUserVal } = useContext(userContext);
+  const [id, setId] = useState(userVal.progress[0].id);
+  const [currentProgress, setCurrentProgress] = useState(
+    userVal.progress[0].percent
+  );
 
   useEffect(() => {
     if (status === false) {
@@ -33,8 +38,10 @@ export const BasicsPage: React.FC = () => {
           { title: "Option 2", id: 1 },
           { title: "Option 3", id: 2 },
         ]}
-        id={0}
+        id={id}
         progressOnComplete={5}
+        correctAnswer={2}
+        currentProgress={currentProgress}
         headline="Test Knowledge Check"
       />
     </div>
