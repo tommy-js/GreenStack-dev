@@ -12,7 +12,7 @@ const NotificationsLink: React.FC<Props> = (props) => {
       className="notifications_link"
       onClick={() => props.changeTab(props.tab)}
     >
-      <p>{props.title}</p>
+      <p className="notifications_link_text">{props.title}</p>
     </div>
   );
 };

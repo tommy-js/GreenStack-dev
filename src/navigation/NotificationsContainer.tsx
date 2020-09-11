@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import NotificationsLink from "./NotificationsLink";
 import NotificationsElement from "./NotificationsElement";
 import HistoryElement from "./HistoryElement";
+import { Link } from "react-router-dom";
 
-interface Link {
+interface LocalLink {
   changeTab: (tab: number) => void;
 }
 
@@ -22,7 +23,7 @@ interface Data {
   modNotificationColor: (notifArr: object[]) => void;
 }
 
-export const NotificationsLinkContainer: React.FC<Link> = (props) => {
+export const NotificationsLinkContainer: React.FC<LocalLink> = (props) => {
   return (
     <div>
       <NotificationsLink
@@ -32,6 +33,9 @@ export const NotificationsLinkContainer: React.FC<Link> = (props) => {
       />
       <NotificationsLink title="History" tab={2} changeTab={props.changeTab} />
       <NotificationsLink title="Settings" tab={3} changeTab={props.changeTab} />
+      <Link to="/profile/account" className="notifications_link nav_el_light">
+        Account
+      </Link>
     </div>
   );
 };

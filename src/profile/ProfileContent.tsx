@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { Route } from "react-router-dom";
 import UserProfileAccount from "./UserProfileAccount";
 import UserProfileSettings from "../UserProfileSettings";
@@ -7,12 +7,22 @@ import UserProfileFollowing from "../UserProfileFollowing";
 import UserProfileComments from "../UserProfileComments";
 import UserProfileTrades from "../UserProfileTrades";
 import UserProfileReferences from "../UserProfileReferences";
+import { statusContext } from "../AppMain/App";
+import { browserHist } from "../AppMain/history.js";
 
 interface Props {
   passInTradeId: (id: number) => void;
 }
 
 const ProfileContent: React.FC<Props> = (props) => {
+  const { status, setStatus } = useContext(statusContext);
+
+  useEffect(() => {
+    if (status === false) {
+      browserHist.push("/login");
+    }
+  }, []);
+
   return (
     <div id="profile_content">
       <Route path="/profile/account">

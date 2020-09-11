@@ -18,7 +18,11 @@ const NavBar: React.FC = () => {
       >
         Portfolio
       </NavLink>
-      <NavLink className="nav_el" activeClassName="active_nav_el" to="/profile">
+      <NavLink
+        className="nav_el"
+        activeClassName="active_nav_el"
+        to="/profile/followed"
+      >
         Profile
       </NavLink>
       <NavLink className="nav_el" activeClassName="active_nav_el" to="/about">

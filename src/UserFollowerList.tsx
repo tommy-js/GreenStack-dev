@@ -1,14 +1,34 @@
 import React, { useContext, useEffect, useState } from "react";
-import { userContext } from "./AppMain/App";
+import { userContext, statusContext } from "./AppMain/App";
 import UserAccountSnippet from "./UserAccountSnippet";
 import SettingsInputBox from "./SettingsInputBox";
+import { browserHist } from "./AppMain/history.js";
 
 const UserFollowerList: React.FC = () => {
   const [stateHide, setStateHide] = useState(false);
   const [updateBlocked, setUpdateBlocked] = useState(false);
   const { userVal, setUserVal } = useContext(userContext);
 
-  const [followers, setFollowers] = useState(userVal.followers);
+  const { status, setStatus } = useContext(statusContext);
+
+  useEffect(() => {
+    if (status === false) {
+      browserHist.push("/login");
+    }
+  }, []);
+
+  const [followers, setFollowers] = useState([
+    {
+      key: 0,
+      user: "",
+      listingId: 0,
+      userId: 0,
+    },
+  ]);
+
+  useEffect(() => {
+    setFollowers(userVal.followers);
+  }, [userVal]);
 
   // const [testData, setTestData] = useState([
   //   { user: "John", userId: 0, blocked: false },
