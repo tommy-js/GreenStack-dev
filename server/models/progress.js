@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const progressSchema = new Schema({
   title: String,
-  progress: Number,
+  percent: Number,
   id: Number,
 });
 

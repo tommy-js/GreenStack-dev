@@ -8,6 +8,8 @@ interface Props {
     title: string;
     id: number;
   }[];
+  id: number;
+  progressOnComplete: number;
   headline: string;
 }
 
@@ -22,7 +24,10 @@ export const MultipleChoice: React.FC<Props> = (props) => {
     <div id="knowledge_check">
       <KCHeadline headline={props.headline} />
       <KCOptions options={props.options} modOption={modOption} />
-      <KCAcceptButton />
+      <KCAcceptButton
+        id={props.id}
+        progressOnComplete={props.progressOnComplete}
+      />
     </div>
   );
 };

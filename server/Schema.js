@@ -52,7 +52,7 @@ const ProgressQuery = new GraphQLObjectType({
   name: "Progress",
   fields: () => ({
     title: { type: GraphQLString },
-    progress: { type: GraphQLFloat },
+    percent: { type: GraphQLInt },
     id: { type: GraphQLID },
   }),
 });
@@ -223,6 +223,9 @@ const Mutation = new GraphQLObjectType({
         id: { type: GraphQLID },
         viewed: { type: GraphQLBoolean },
         membership: { type: GraphQLBoolean },
+        prog1: { type: GraphQLInt },
+        prog2: { type: GraphQLInt },
+        prog3: { type: GraphQLInt },
       },
       resolve(parent, args) {
         let user = new User({
@@ -243,6 +246,23 @@ const Mutation = new GraphQLObjectType({
               viewed: args.viewed,
             },
           ],
+          progress: [
+            {
+              title: "Basics of The Market",
+              percent: 0,
+              id: args.prog1,
+            },
+            {
+              title: "Options",
+              percent: 0,
+              id: args.prog2,
+            },
+            {
+              title: "Long Term Success",
+              percent: 0,
+              id: args.prog3,
+            },
+          ],
         });
         return user.save();
       },
@@ -256,6 +276,20 @@ const Mutation = new GraphQLObjectType({
         return User.findOneAndUpdate(
           { "notifications.id": args.id },
           { $set: { "notifications.$.viewed": true } },
+          { upsert: true, new: true }
+        );
+      },
+    },
+    updateUserProgress: {
+      type: ProgressQuery,
+      args: {
+        id: { type: GraphQLID },
+        percent: { type: GraphQLInt },
+      },
+      resolve(parent, args) {
+        return User.findOneAndUpdate(
+          { "progress.id": args.id },
+          { $set: { "progress.$.percent": args.percent } },
           { upsert: true, new: true }
         );
       },
@@ -276,20 +310,6 @@ const Mutation = new GraphQLObjectType({
             invisible: args.invisible,
             allowCommentsOnTrades: args.allowCommentsOnTrades,
           }
-        );
-      },
-    },
-    updateUserProgress: {
-      type: ProgressQuery,
-      args: {
-        id: { type: GraphQLID },
-        progress: { type: GraphQLFloat },
-      },
-      resolve(parent, args) {
-        return User.findOneAndUpdate(
-          { "progress.id": args.id },
-          { $set: { "progress.$.progress": args.progress } },
-          { upsert: true, new: true }
         );
       },
     },

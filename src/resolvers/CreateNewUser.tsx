@@ -34,6 +34,9 @@ const CreateNewUser: React.FC<Props> = (props) => {
           id: id,
           viewed: false,
           content: notif,
+          prog1: Math.floor(Math.random() * 10000),
+          prog2: Math.floor(Math.random() * 10000),
+          prog3: Math.floor(Math.random() * 10000),
         },
       })
       .then((res: string) => {

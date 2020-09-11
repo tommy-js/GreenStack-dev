@@ -33,6 +33,8 @@ export const BasicsPage: React.FC = () => {
           { title: "Option 2", id: 1 },
           { title: "Option 3", id: 2 },
         ]}
+        id={0}
+        progressOnComplete={5}
         headline="Test Knowledge Check"
       />
     </div>

@@ -96,7 +96,7 @@ const userSchema = new Schema({
   progress: [
     {
       title: String,
-      progress: Number,
+      percent: Number,
       id: Number,
     },
   ],

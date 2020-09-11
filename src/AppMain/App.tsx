@@ -26,6 +26,7 @@ interface UserCont {
   notifications: object[];
   trades: object[];
   referenceTrades: object[];
+  progress: object[];
 }
 
 export const userContext = createContext<any>({});
@@ -44,6 +45,7 @@ function App() {
     notifications: [{}],
     trades: [{}],
     referenceTrades: [{}],
+    progress: [{}],
   });
   const [status, setStatus] = useState(false);
 

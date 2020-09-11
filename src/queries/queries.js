@@ -14,6 +14,9 @@ const createUserMutation = gql`
     $id: ID!
     $content: String!
     $viewed: Boolean!
+    $prog1: Int!
+    $prog2: Int!
+    $prog3: Int!
   ) {
     createUser(
       userId: $userId
@@ -27,6 +30,9 @@ const createUserMutation = gql`
       id: $id
       content: $content
       viewed: $viewed
+      prog1: $prog1
+      prog2: $prog2
+      prog3: $prog3
     ) {
       userId
       username
@@ -37,10 +43,10 @@ const createUserMutation = gql`
 `;
 
 const updateUserProgressMutation = gql`
-  mutation($id: ID!, $progress: Float!) {
-    updateUserProgress(id: $id, progress: $progress) {
+  mutation($id: ID!, $percent: Int!) {
+    updateUserProgress(id: $id, percent: $percent) {
       id
-      progress
+      percent
     }
   }
 `;
@@ -404,6 +410,11 @@ const userLoginQuery = gql`
         id
         viewed
       }
+      progress {
+        title
+        id
+        percent
+      }
     }
   }
 `;
@@ -490,6 +501,11 @@ const userQuery = gql`
         timestamp
         id
         viewed
+      }
+      progress {
+        title
+        id
+        percent
       }
     }
   }
