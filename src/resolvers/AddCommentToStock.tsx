@@ -5,7 +5,7 @@ import { addCommentStockMutation } from "../queries/queries.js";
 import { userContext } from "../AppMain/App";
 
 interface Props {
-  addCommentStockMutation: (variables: object) => void;
+  addCommentStockMutation: (variables: object) => any;
   passFunc: boolean;
   stockId: number;
   text: string;
@@ -26,15 +26,18 @@ const AddCommentToStock: React.FC<Props> = (props) => {
 
   function pushData() {
     let time = Math.floor(Date.now() / 1000);
-    props.addCommentStockMutation({
-      variables: {
-        stockId: props.stockId,
-        userId: userVal.userId,
-        username: userVal.username,
-        text: props.text,
-        timestamp: time,
-      },
-    });
+    props
+      .addCommentStockMutation({
+        variables: {
+          stockId: props.stockId,
+          userId: userVal.userId,
+          username: userVal.username,
+          text: props.text,
+          timestamp: time,
+        },
+      })
+      .then((res: any) => console.log("passed"))
+      .catch((res: any) => console.log("error"));
   }
 
   return null;

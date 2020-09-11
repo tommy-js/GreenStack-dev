@@ -5,7 +5,7 @@ import { pushSharesToUserMutation } from "../queries/queries.js";
 import { userContext } from "../AppMain/App";
 
 interface Props {
-  pushSharesToUserMutation: (variables: object) => void;
+  pushSharesToUserMutation: (variables: object) => any;
   shareId: number;
   shares: number;
   stockId: number;
@@ -13,13 +13,16 @@ interface Props {
 
 const PushSharesToUser: React.FC<Props> = (props) => {
   function pushData() {
-    props.pushSharesToUserMutation({
-      variables: {
-        shareId: props.shareId,
-        shares: props.shares,
-        stockId: props.stockId,
-      },
-    });
+    props
+      .pushSharesToUserMutation({
+        variables: {
+          shareId: props.shareId,
+          shares: props.shares,
+          stockId: props.stockId,
+        },
+      })
+      .then((res: any) => console.log("passed"))
+      .catch((res: any) => console.log("err"));
   }
   return null;
 };

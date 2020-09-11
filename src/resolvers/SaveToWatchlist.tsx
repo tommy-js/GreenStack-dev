@@ -9,7 +9,7 @@ interface Props {
   toggle: boolean;
   title: string;
   ticker: string;
-  pushStockToWatchlistMutation: (variables: object) => void;
+  pushStockToWatchlistMutation: (variables: object) => any;
   saveToWatchlist: () => void;
 }
 
@@ -28,15 +28,18 @@ const SaveToWatchlist: React.FC<Props> = (props) => {
   function pushData() {
     const parsedId = parseInt(userVal.userId);
     let time = Math.floor(Date.now() / 1000);
-    props.pushStockToWatchlistMutation({
-      variables: {
-        userId: parsedId,
-        stockId: props.stockId,
-        title: props.title,
-        ticker: props.ticker,
-        timestamp: time,
-      },
-    });
+    props
+      .pushStockToWatchlistMutation({
+        variables: {
+          userId: parsedId,
+          stockId: props.stockId,
+          title: props.title,
+          ticker: props.ticker,
+          timestamp: time,
+        },
+      })
+      .then((res: any) => console.log("passed"))
+      .catch((res: any) => console.log("err"));
   }
 
   return null;

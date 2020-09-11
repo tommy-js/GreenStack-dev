@@ -6,17 +6,20 @@ import { dropNotificationMutation } from "../queries/queries";
 interface Props {
   userId: number;
   id: number;
-  dropNotificationMutation: (variables: object) => void;
+  dropNotificationMutation: (variables: object) => any;
 }
 
 const DropNotification: React.FC<Props> = (props) => {
   function dropNotification() {
-    props.dropNotificationMutation({
-      variables: {
-        userId: props.userId,
-        id: props.id,
-      },
-    });
+    props
+      .dropNotificationMutation({
+        variables: {
+          userId: props.userId,
+          id: props.id,
+        },
+      })
+      .then((res: any) => console.log("passed"))
+      .catch((res: any) => console.log("err"));
   }
 
   return <button onClick={() => dropNotification()}>Dismiss</button>;
