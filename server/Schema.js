@@ -34,6 +34,7 @@ const UserQuery = new GraphQLObjectType({
     money: { type: GraphQLFloat },
     darkmode: { type: GraphQLBoolean },
     invisible: { type: GraphQLBoolean },
+    newaccount: { type: GraphQLBoolean },
     allowCommentsOnTrades: { type: GraphQLBoolean },
     followed: { type: new GraphQLList(FollowerQuery) },
     followers: { type: new GraphQLList(FollowerQuery) },
@@ -234,6 +235,7 @@ const Mutation = new GraphQLObjectType({
           password: args.password,
           money: args.money,
           membership: false,
+          newaccount: true,
           darkmode: false,
           invisible: false,
           allowCommentsOnTrades: true,
@@ -265,6 +267,19 @@ const Mutation = new GraphQLObjectType({
           ],
         });
         return user.save();
+      },
+    },
+    updateNewAccount: {
+      type: UserQuery,
+      args: {
+        userId: { type: GraphQLID },
+        newaccount: { type: GraphQLBoolean },
+      },
+      resolve(parent, args) {
+        return User.update(
+          { userId: args.userId },
+          { newaccount: args.newaccount }
+        );
       },
     },
     updateUserNotificationsViewed: {

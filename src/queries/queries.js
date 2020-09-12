@@ -42,6 +42,14 @@ const createUserMutation = gql`
   }
 `;
 
+const updateNewAccountMutation = gql`
+  mutation($userId: ID!, $newaccount: Boolean!) {
+    updateNewAccount(userId: $userId, newaccount: $newaccount) {
+      userId
+    }
+  }
+`;
+
 const updateUserProgressMutation = gql`
   mutation($id: ID!, $percent: Int!) {
     updateUserProgress(id: $id, percent: $percent) {
@@ -336,6 +344,7 @@ const userLoginQuery = gql`
       membership
       money
       darkmode
+      newaccount
       invisible
       allowCommentsOnTrades
       profileImage
@@ -426,6 +435,7 @@ const userQuery = gql`
       username
       password
       money
+      newaccount
       darkmode
       membership
       invisible

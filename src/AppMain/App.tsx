@@ -20,6 +20,7 @@ interface UserCont {
   userId: number;
   membership: boolean;
   money: number;
+  newaccount: boolean;
   darkmode: boolean;
   invisible: boolean;
   allowCommentsOnTrades: boolean;
@@ -41,6 +42,7 @@ function App() {
     membership: false,
     darkmode: false,
     invisible: false,
+    newaccount: false,
     allowCommentsOnTrades: false,
     notifications: [{}],
     trades: [{}],

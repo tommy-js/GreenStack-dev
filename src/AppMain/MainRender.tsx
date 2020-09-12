@@ -9,6 +9,7 @@ import LeaderBoard from "../misc/LeaderBoard";
 import Homepage from "../Homepage/Homepage";
 import UserTrade from "../UserTrade";
 import UserProfilePlan from "../profile/UserProfilePlan";
+import NewAccountRender from "../NewAccountRender/NewAccountRender";
 import companyProfiles from "../companyProfiles";
 import { Route } from "react-router-dom";
 import { browserHist } from "./history.js";
@@ -42,6 +43,11 @@ const MainRender: React.FC = () => {
   const [constantActivity, setConstantActivity] = useState();
   const { userVal, setUserVal } = useContext(userContext);
   const [tradeId, setTradeId] = useState(0);
+  const [newacc, setNewacc] = useState(false);
+
+  useEffect(() => {
+    setNewacc(userVal.newaccount);
+  }, [userVal]);
 
   function updateTradeMap(passInTradeMap: TradeData[]) {
     setTradeMap(passInTradeMap);
@@ -84,61 +90,72 @@ const MainRender: React.FC = () => {
       );
     } else return null;
   }
+  function returnRenderPath() {
+    if (newacc === true) {
+      return (
+        <div>
+          <NewAccountRender />
+        </div>
+      );
+    } else if (newacc === false) {
+      return (
+        <div>
+          <div id="push_under_navbar">
+            <Route path="/signin">
+              <SubscribePage />
+            </Route>
+            <Route path="/portfolio">
+              <Portfolio />
+            </Route>
+            <Route path="/leaderboard">
+              <LeaderBoard
+                updateUserMap={updateUserMap}
+                updateTradeMap={updateTradeMap}
+              />
+            </Route>
+            <Route exact path="/">
+              <Homepage updateConstantActivity={updateConstantActivity} />
+            </Route>
+            <Route exact path="/about">
+              <AboutPage />
+            </Route>
+            <Route path="/profile">
+              <Profile passInTradeId={passInTradeId} />
+            </Route>
+            <Route exact path={`/history/${tradeId}`}>
+              <UserTrade tradeId={tradeId} />
+            </Route>
+            {companyProfiles.map((el: any) => (
+              <Route path={`/${el.ticker}`}>
+                <StockPage
+                  stockId={el.stockId}
+                  title={el.title}
+                  ticker={el.ticker}
+                />
+              </Route>
+            ))}
+            {returnTradePath()}
+            <Route path="/about/learn/general">
+              <BasicsPage />
+            </Route>
+            <Route path="/about/learn/options">
+              <OptionsPage />
+            </Route>
+            <Route path="/plan">
+              <UserProfilePlan />
+            </Route>
+            {userVal.referenceTrades.map((el: any) => (
+              <Route path={`/${el.id}`}>
+                <UserTrade tradeId={el.id} />
+              </Route>
+            ))}
+          </div>
+        </div>
+      );
+    }
+  }
 
-  return (
-    <div>
-      <div id="push_under_navbar">
-        <Route path="/signin">
-          <SubscribePage />
-        </Route>
-        <Route path="/portfolio">
-          <Portfolio />
-        </Route>
-        <Route path="/leaderboard">
-          <LeaderBoard
-            updateUserMap={updateUserMap}
-            updateTradeMap={updateTradeMap}
-          />
-        </Route>
-        <Route exact path="/">
-          <Homepage updateConstantActivity={updateConstantActivity} />
-        </Route>
-        <Route exact path="/about">
-          <AboutPage />
-        </Route>
-        <Route path="/profile">
-          <Profile passInTradeId={passInTradeId} />
-        </Route>
-        <Route exact path={`/history/${tradeId}`}>
-          <UserTrade tradeId={tradeId} />
-        </Route>
-        {companyProfiles.map((el: any) => (
-          <Route path={`/${el.ticker}`}>
-            <StockPage
-              stockId={el.stockId}
-              title={el.title}
-              ticker={el.ticker}
-            />
-          </Route>
-        ))}
-        {returnTradePath()}
-        <Route path="/about/learn/general">
-          <BasicsPage />
-        </Route>
-        <Route path="/about/learn/options">
-          <OptionsPage />
-        </Route>
-        <Route path="/plan">
-          <UserProfilePlan />
-        </Route>
-        {userVal.referenceTrades.map((el: any) => (
-          <Route path={`/${el.id}`}>
-            <UserTrade tradeId={el.id} />
-          </Route>
-        ))}
-      </div>
-    </div>
-  );
+  return <div>{returnRenderPath()}</div>;
 };
 
 export default MainRender;
