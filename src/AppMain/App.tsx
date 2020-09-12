@@ -7,6 +7,7 @@ import User from "../User";
 import Login from "../login/Login";
 import { browserHist } from "./history.js";
 import MainRender from "./MainRender";
+import AppInformation from "../AppInformation/AppInformation";
 
 import "./App.scss";
 
@@ -60,6 +61,9 @@ function App() {
               <div className="App">
                 <Route path="/login">
                   <Login />
+                </Route>
+                <Route path="/information">
+                  <AppInformation />
                 </Route>
                 <MainRender />
               </div>

@@ -8,6 +8,7 @@ import {
   LoginPageLearnInfo,
   LoginPageCommunityInfo,
 } from "./LoginPageInfo";
+import { Link } from "react-router-dom";
 
 const Login: React.FC = () => {
   const [newAccount, setNewAccount] = useState(false);
@@ -50,6 +51,9 @@ const Login: React.FC = () => {
         <LoginPageFeedInfo />
         <LoginPageCommunityInfo />
         <LoginPageLearnInfo />
+        <h3>
+          Still have questions? <Link to="/information">Go Here</Link>
+        </h3>
       </div>
     </div>
   );

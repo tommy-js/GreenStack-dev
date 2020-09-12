@@ -7,7 +7,7 @@ const NavBar: React.FC = () => {
   const { status, setStatus } = useContext(statusContext);
 
   return (
-    <div id="navbar">
+    <div className="navbar">
       <NavLink className="nav_el" activeClassName="active_nav_el" exact to="/">
         Home
       </NavLink>

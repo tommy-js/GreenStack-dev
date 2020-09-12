@@ -383,7 +383,7 @@ $island_green: #2bae66ff;
   margin-right: auto;
 }
 
-#navbar {
+.navbar {
   position: fixed;
   background-color: teal;
   height: 40px;
@@ -391,6 +391,14 @@ $island_green: #2bae66ff;
   margin: 0;
   top: 0;
   z-index: 99;
+}
+
+#app_information_page {
+  position: relative;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
 }
 
 #push_under_navbar {
