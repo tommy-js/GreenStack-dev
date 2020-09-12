@@ -15,6 +15,10 @@ body {
   user-select: none;
 }
 
+$space_red: #990011ff;
+$cream_white: #fcf6f5ff;
+$island_green: #2bae66ff;
+
 .news_block {
   position: relative;
   border: 1px solid lightgray;
@@ -532,12 +536,65 @@ body {
   display: inline-block;
 }
 
+#login_page {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: none;
+  margin-bottom: 0;
+}
+
+#login_header {
+  text-align: center;
+  color: $cream_white;
+  font-size: 22px;
+}
+
 #centered_login_page {
+  position: fixed;
+  display: inline-block;
+  background-color: $island_green;
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  @include testing;
+}
+
+#login_forms {
   position: relative;
-  top: 100px;
   width: 200px;
   margin-left: auto;
   margin-right: auto;
+  top: 200px;
+}
+
+#login_page_about {
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  margin-bottom: 0;
+  float: right;
+  box-sizing: border-box;
+  @include testing;
+}
+
+.login_page_information {
+  position: relative;
+  width: 80%;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  @include testing;
+}
+
+.login_page_text {
+  position: relative;
+  height: 100%;
+  width: 60%;
+  margin: 0;
+  float: right;
+  @include testing;
 }
 
 .input_container {

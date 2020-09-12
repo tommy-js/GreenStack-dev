@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Header from "../Header";
+import LoginHeader from "./LoginHeader";
 import InputContainer from "../misc/InputContainer";
 import CreateNewUser from "../resolvers/CreateNewUser";
 
@@ -17,7 +17,7 @@ const CreateAccountPage: React.FC = () => {
 
   return (
     <div>
-      <Header text="Create Account" />
+      <LoginHeader text="Create Account" />
       <InputContainer passString={passUsername} placeholder="Username" />
       <InputContainer passString={passPassword} placeholder="Password" />
       <CreateNewUser username={username} password={password} />

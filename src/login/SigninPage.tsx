@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Header from "../Header";
+import LoginHeader from "./LoginHeader";
 import InputContainer from "../misc/InputContainer";
 import QueryUserLogin from "../resolvers/QueryUserLogin";
 
@@ -17,7 +17,7 @@ const SigninPage: React.FC = () => {
 
   return (
     <div>
-      <Header text="Login" />
+      <LoginHeader text="Login" />
       <InputContainer passString={passUsername} placeholder="Username" />
       <InputContainer passString={passPassword} placeholder="Password" />
       <QueryUserLogin username={username} password={password} />
