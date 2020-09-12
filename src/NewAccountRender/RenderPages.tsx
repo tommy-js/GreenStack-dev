@@ -1,7 +1,13 @@
 import React from "react";
 import TickerList from "./TickerList";
 
-export const PageOne: React.FC = () => {
+interface Props {
+  id: number;
+  nextPage: (id: number) => void;
+  backPage: (id: number) => void;
+}
+
+export const PageOne: React.FC<Props> = (props) => {
   return (
     <div>
       <p>How new to the stock market are you?</p>
@@ -26,15 +32,17 @@ export const PageOne: React.FC = () => {
         <option>To learn without risk</option>
         <option>To learn how to trade</option>
       </select>
+      <button onClick={() => props.nextPage(props.id)}>Next</button>
     </div>
   );
 };
 
-export const PageTwo: React.FC = () => {
+export const PageTwo: React.FC<Props> = (props) => {
   return (
     <div>
       <p>Which stocks here interest you?</p>
       <TickerList />
+      <button onClick={() => props.backPage(props.id)}>Back</button>
     </div>
   );
 };

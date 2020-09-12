@@ -6,8 +6,8 @@ interface Props {
 
 const TickerContainer: React.FC<Props> = (props) => {
   return (
-    <div>
-      <p>{props.ticker}</p>
+    <div className="ticker_container">
+      <p className="ticker_id">{props.ticker}</p>
     </div>
   );
 };

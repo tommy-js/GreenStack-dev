@@ -735,3 +735,53 @@ $grey: #c8c8c8;
   padding: 10px;
   box-sizing: border-box;
 }
+
+#render_questions_page {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  top: 50px;
+  border-radius: 20px;
+}
+
+.ticker_container {
+  position: relative;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  display: inline-block;
+  box-sizing: border-box;
+  height: 90px;
+  width: 90px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ticker_container:hover .ticker_id {
+  opacity: 1;
+  transition: 0.3s;
+}
+
+#ticker_list {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0px;
+}
+
+.ticker_id {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  margin-bottom: 0;
+  text-align: center;
+  opacity: 0;
+  transition: 0.3s;
+  @include noselect;
+}

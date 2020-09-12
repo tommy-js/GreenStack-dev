@@ -54,7 +54,7 @@ const TickerList: React.FC = () => {
   ];
 
   return (
-    <div>
+    <div id="ticker_list">
       {tickers.map((el: any) => (
         <TickerContainer ticker={el.ticker} />
       ))}
