@@ -8,9 +8,17 @@ const NotificationIcon: React.FC = () => {
   const [notifyNew, setNotifyNew] = useState(false);
   const [opened, setOpened] = useState(false);
   const [triggerDisplay, setTriggerDisplay] = useState(0);
-  const [notifs, setNotifs] = useState(userVal.notifications);
+  const [notifs, setNotifs] = useState([
+    { content: "", timestamp: 0, id: 0, viewed: false },
+  ]);
 
-  function modNotificationColor(notifArr: object[]) {
+  useEffect(() => {
+    if (userVal.notifications) {
+      setNotifs(userVal.notifications);
+    }
+  }, [userVal]);
+
+  function modNotificationColor(notifArr: any) {
     setNotifs(notifArr);
     console.log("notif arr:");
     console.log(notifArr);

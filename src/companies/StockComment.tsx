@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import timestampFunction from "./timestampFunction";
-import LikeComponent from "./misc/LikeComponent";
+import timestampFunction from "../timestampFunction";
+import LikeComponent from "../misc/LikeComponent";
 
 interface Props {
   user: string;

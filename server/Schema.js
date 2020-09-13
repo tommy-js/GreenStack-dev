@@ -368,6 +368,25 @@ const Mutation = new GraphQLObjectType({
         );
       },
     },
+    removeStockFromWatchlistMutation: {
+      type: WatchlistQuery,
+      args: {
+        userId: { type: GraphQLID },
+        stockId: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        return User.update(
+          { userId: args.userId },
+          {
+            $pull: {
+              watchlist: {
+                stockId: args.stockId,
+              },
+            },
+          }
+        );
+      },
+    },
     blockUser: {
       type: FollowerQuery,
       args: {

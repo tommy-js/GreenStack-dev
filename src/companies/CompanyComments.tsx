@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CommentInputStock from "../CommentInputStock";
 import QueryStock from "../resolvers/QueryStock";
-import CompanyStockListing from "../CompanyStockListing";
+import CompanyStockListing from "./CompanyStockListing";
 
 interface Props {
   title: string;

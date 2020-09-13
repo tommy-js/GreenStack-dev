@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
-import CompanyInformationBlock from "./Homepage/CompanyInformationBlock";
+import CompanyInformationBlock from "../Homepage/CompanyInformationBlock";
 import CompanyOptions from "./CompanyOptions";
-import CompanyNewsBlock from "./misc/CompanyNewsBlock.js";
-import CompanyComments from "./Homepage/CompanyComments";
-import NavBar from "./misc/NavBar";
-import { statusContext } from "./AppMain/App";
-import { browserHist } from "./AppMain/history";
+import CompanyNewsBlock from "../misc/CompanyNewsBlock.js";
+import CompanyComments from "./CompanyComments";
+import NavBar from "../misc/NavBar";
+import { statusContext } from "../AppMain/App";
+import { browserHist } from "../AppMain/history";
 
 interface Props {
   title: string;

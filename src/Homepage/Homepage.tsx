@@ -1,9 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import { userContext } from "../AppMain/App";
-import Suggested from "../Suggested";
+import Suggested from "./Suggested";
 import Profile from "../profile/Profile";
 import FollowedActivity from "../profile/FollowedActivity";
 import LoadingUser from "../login/LoadingUser";
+import UserFeed from "./UserFeed";
 import NavBar from "../misc/NavBar";
 import { userQuery } from "../queries/queries";
 import { flowRight as compose } from "lodash";
@@ -32,6 +33,7 @@ const Homepage: React.FC<Props> = (props) => {
       <NavBar />
       <div id="homepage">
         <Suggested />
+        <UserFeed />
       </div>
     </div>
   );

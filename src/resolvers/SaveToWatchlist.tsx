@@ -6,24 +6,16 @@ import { userContext } from "../AppMain/App";
 
 interface Props {
   stockId: number;
-  toggle: boolean;
   title: string;
   ticker: string;
+  elementExists: boolean;
   pushStockToWatchlistMutation: (variables: object) => any;
   saveToWatchlist: () => void;
+  returnElementExists: () => void;
 }
 
 const SaveToWatchlist: React.FC<Props> = (props) => {
   const { userVal, setUserVal } = useContext(userContext);
-  const [toggle, setToggle] = useState(props.toggle);
-  useEffect(() => {
-    setToggle(true);
-    if (toggle === true) {
-      setToggle(false);
-      pushData();
-      console.log("passed in");
-    }
-  }, [props.toggle]);
 
   function pushData() {
     const parsedId = parseInt(userVal.userId);
@@ -38,11 +30,12 @@ const SaveToWatchlist: React.FC<Props> = (props) => {
           timestamp: time,
         },
       })
-      .then((res: any) => console.log("passed"))
-      .catch((res: any) => console.log("err"));
+      .then(() => console.log("passed"))
+      .catch(() => console.log("err"));
+    props.returnElementExists();
   }
 
-  return null;
+  return <button onClick={() => pushData()}>Save to Watchlist</button>;
 };
 
 export default compose(

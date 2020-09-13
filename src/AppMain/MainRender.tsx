@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { BasicsPage, OptionsPage } from "../about/LearnPage";
 import Profile from "../profile/Profile";
-import StockPage from "../StockPage";
+import StockPage from "../companies/StockPage";
 import SubscribePage from "../SubscribePage";
 import Portfolio from "../portfolio/Portfolio";
 import AboutPage from "../about/AboutPage";
@@ -10,7 +10,7 @@ import Homepage from "../Homepage/Homepage";
 import UserTrade from "../UserTrade";
 import UserProfilePlan from "../profile/UserProfilePlan";
 import NewAccountRender from "../NewAccountRender/NewAccountRender";
-import companyProfiles from "../companyProfiles";
+import companyProfiles from "../companies/companyProfiles";
 import { Route } from "react-router-dom";
 import { browserHist } from "./history.js";
 import User from "../User";
@@ -46,7 +46,8 @@ const MainRender: React.FC = () => {
   const [newacc, setNewacc] = useState(false);
 
   useEffect(() => {
-    setNewacc(userVal.newaccount);
+    // setNewacc(userVal.newaccount);
+    setNewacc(false);
   }, [userVal]);
 
   function submit() {
@@ -75,6 +76,26 @@ const MainRender: React.FC = () => {
       browserHist.push("/login");
     }
   }, []);
+
+  function renderReferenceTrades() {
+    if (userVal.referenceTrades) {
+      return (
+        <div>
+          {userVal.referenceTrades.map((el: any) => (
+            <Route path={`/${el.id}`}>
+              <UserTrade tradeId={el.id} />
+            </Route>
+          ))}
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h3>Loading...</h3>
+        </div>
+      );
+    }
+  }
 
   function returnTradePath() {
     if (tradeMap && userMap) {
@@ -148,11 +169,7 @@ const MainRender: React.FC = () => {
             <Route path="/plan">
               <UserProfilePlan />
             </Route>
-            {userVal.referenceTrades.map((el: any) => (
-              <Route path={`/${el.id}`}>
-                <UserTrade tradeId={el.id} />
-              </Route>
-            ))}
+            {renderReferenceTrades()}
           </div>
         </div>
       );

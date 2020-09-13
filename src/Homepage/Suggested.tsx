@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "./Header";
-import MapBlock from "./MapBlock";
+import Header from "../Header";
+import MapBlock from "../companies/MapBlock";
 
 const Suggested: React.FC = () => {
   return (

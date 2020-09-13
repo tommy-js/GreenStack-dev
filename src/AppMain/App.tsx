@@ -35,21 +35,7 @@ export const userContext = createContext<any>({});
 export const statusContext = createContext<any>(false);
 
 function App() {
-  const [userVal, setUserVal] = useState<UserCont>({
-    username: "",
-    password: "",
-    userId: 0,
-    money: 0,
-    membership: false,
-    darkmode: false,
-    invisible: false,
-    newaccount: false,
-    allowCommentsOnTrades: false,
-    notifications: [{}],
-    trades: [{}],
-    referenceTrades: [{}],
-    progress: [{}],
-  });
+  const [userVal, setUserVal] = useState({});
   const [status, setStatus] = useState(false);
 
   return (

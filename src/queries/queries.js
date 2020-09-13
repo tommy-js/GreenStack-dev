@@ -264,6 +264,15 @@ const pushStockToWatchlistMutation = gql`
   }
 `;
 
+const removeStockFromWatchlistMutation = gql`
+  mutation($stockId: ID!, $userId: ID!) {
+    removeStockFromWatchlist(stockId: $stockId, userId: $userId) {
+      stockId
+      userId
+    }
+  }
+`;
+
 const blockUserMutation = gql`
   mutation($id: ID!, $blocked: Boolean!) {
     blockUser(id: $id, blocked: $blocked) {
@@ -562,6 +571,7 @@ export {
   setProfileImageMutation,
   pushSharesToUserMutation,
   pushStockToWatchlistMutation,
+  removeStockFromWatchlistMutation,
   userQuery,
   stockQuery,
   userLoginQuery,
