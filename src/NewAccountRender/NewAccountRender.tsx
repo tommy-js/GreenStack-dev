@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import { PageOne, PageTwo } from "./RenderPages";
+import { PageOne, PageTwo, PageThree } from "./RenderPages";
 
-const NewAccountRender: React.FC = () => {
+interface Props {
+  submit: () => void;
+}
+
+const NewAccountRender: React.FC<Props> = (props) => {
   const [currentPage, setCurrentPage] = useState(0);
 
   function nextPage(id: number) {
@@ -23,6 +27,17 @@ const NewAccountRender: React.FC = () => {
       return (
         <div>
           <PageTwo id={1} nextPage={nextPage} backPage={backPage} />
+        </div>
+      );
+    } else if (currentPage === 2) {
+      return (
+        <div>
+          <PageThree
+            id={2}
+            nextPage={nextPage}
+            backPage={backPage}
+            submit={props.submit}
+          />
         </div>
       );
     }

@@ -49,6 +49,10 @@ const MainRender: React.FC = () => {
     setNewacc(userVal.newaccount);
   }, [userVal]);
 
+  function submit() {
+    setNewacc(false);
+  }
+
   function updateTradeMap(passInTradeMap: TradeData[]) {
     setTradeMap(passInTradeMap);
   }
@@ -94,7 +98,7 @@ const MainRender: React.FC = () => {
     if (newacc === true) {
       return (
         <div>
-          <NewAccountRender />
+          <NewAccountRender submit={submit} />
         </div>
       );
     } else if (newacc === false) {

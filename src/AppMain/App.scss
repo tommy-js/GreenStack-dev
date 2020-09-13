@@ -850,3 +850,40 @@ $grey: #c8c8c8;
   transition: 0.3s;
   @include noselect;
 }
+
+.user_init_check {
+  position: relative;
+  margin-top: 5px;
+}
+
+.user_init_classification {
+  margin-left: 15px;
+  font-size: 16px;
+  margin-bottom: 0;
+  margin-top: 0;
+  opacity: 0.5;
+  color: $island_green;
+}
+
+.user_init_hover {
+  position: relative;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  transition: 0.3s;
+}
+
+.user_init_hover:hover {
+  border: 1px solid black;
+  transition: 0.3s;
+}
+
+.user_init_name {
+  font-size: 16px;
+}
+
+.user_init_questions {
+  font-size: 16px;
+}
