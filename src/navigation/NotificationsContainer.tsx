@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import NotificationsLink from "./NotificationsLink";
 import NotificationsElement from "./NotificationsElement";
 import HistoryElement from "./HistoryElement";
+import SettingsElement from "./SettingsElement";
+import VoidAlert from "./VoidAlert";
 import { Link } from "react-router-dom";
 
 interface LocalLink {
@@ -56,12 +58,15 @@ export const NotificationsDataContainer: React.FC<Data> = (props) => {
     }
   }
 
-  useEffect(() => {
-    console.log(props.notifications);
-  }, [notifications]);
-
-  function checkTab() {
-    if (props.tab === 1) {
+  function returnEmptyNotifications() {
+    if (notifications.length < 1) {
+      return (
+        <div>
+          <button onClick={() => props.changeTab(0)}>back</button>
+          <VoidAlert />
+        </div>
+      );
+    } else {
       return (
         <div>
           <button onClick={() => props.changeTab(0)}>back</button>
@@ -77,7 +82,18 @@ export const NotificationsDataContainer: React.FC<Data> = (props) => {
           ))}
         </div>
       );
-    } else if (props.tab === 2) {
+    }
+  }
+
+  function returnEmptyHistory() {
+    if (history.length < 1) {
+      return (
+        <div>
+          <button onClick={() => props.changeTab(0)}>back</button>
+          <VoidAlert />
+        </div>
+      );
+    } else {
       return (
         <div>
           <button onClick={() => props.changeTab(0)}>back</button>
@@ -90,15 +106,24 @@ export const NotificationsDataContainer: React.FC<Data> = (props) => {
           ))}
         </div>
       );
+    }
+  }
+
+  useEffect(() => {
+    console.log(props.notifications);
+  }, [notifications]);
+
+  function checkTab() {
+    if (props.tab === 1) {
+      return <div>{returnEmptyNotifications()}</div>;
+    } else if (props.tab === 2) {
+      return <div>{returnEmptyHistory()}</div>;
     } else if (props.tab === 3) {
       return (
         <div>
           <button onClick={() => props.changeTab(0)}>back</button>
           {settings.map((el: any) => (
-            <div>
-              <p>setting 1</p>
-              <p>setting 2</p>
-            </div>
+            <SettingsElement title={el.title} />
           ))}
         </div>
       );

@@ -12,9 +12,13 @@ interface Props {
 const NotificationsMenu: React.FC<Props> = (props) => {
   const { userVal, setUserVal } = useContext(userContext);
   const [tab, setTab] = useState(0);
-  const [notifications, setNotifications] = useState(userVal.notifications);
-  const [history, setHistory] = useState(userVal.trades);
-  const [settings, setSettings] = useState([]);
+  const [notifications, setNotifications] = useState([]);
+  const [history, setHistory] = useState([]);
+  const [settings, setSettings] = useState([
+    { title: "setting 1" },
+    { title: "setting 2" },
+    { title: "setting 3" },
+  ]);
 
   useEffect(() => {
     console.log(userVal);
