@@ -14,6 +14,11 @@ const Learn: React.FC = () => {
       subtitle: "Learn all about calls and puts",
       path: "/about/learn/options",
     },
+    {
+      title: "Protecting Yourself",
+      subtitle: "Learn to protect yourself from the market",
+      path: "/about/learn/protection",
+    },
   ];
 
   return (

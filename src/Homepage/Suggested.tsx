@@ -1,12 +1,12 @@
 import React from "react";
-import Header from "../Header";
-import MapBlock from "../companies/MapBlock";
+import SuggestionHeader from "./SuggestionHeader";
+import Suggestion from "./Suggestion";
 
 const Suggested: React.FC = () => {
   return (
-    <div>
-      <Header text="Suggested For You" />
-      <MapBlock />
+    <div id="suggestion_div">
+      <SuggestionHeader />
+      <Suggestion typeId={0} />
     </div>
   );
 };

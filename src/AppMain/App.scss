@@ -887,3 +887,32 @@ $grey: #c8c8c8;
 .user_init_questions {
   font-size: 16px;
 }
+
+#learn_link {
+  position: relative;
+  display: inline-block;
+  @include testing;
+}
+
+#learn_individual_progress_div {
+  position: relative;
+  top: 0;
+  float: right;
+  display: inline-block;
+  height: 100%;
+  width: 200px;
+  @include testing;
+}
+
+#suggestion_div {
+  position: relative;
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+}

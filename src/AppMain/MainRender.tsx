@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { BasicsPage, OptionsPage } from "../about/LearnPage";
+import { BasicsPage, OptionsPage, ProtectionPage } from "../about/LearnPage";
 import Profile from "../profile/Profile";
 import StockPage from "../companies/StockPage";
 import SubscribePage from "../SubscribePage";
@@ -89,11 +89,7 @@ const MainRender: React.FC = () => {
         </div>
       );
     } else {
-      return (
-        <div>
-          <h3>Loading...</h3>
-        </div>
-      );
+      return null;
     }
   }
 
@@ -165,6 +161,9 @@ const MainRender: React.FC = () => {
             </Route>
             <Route path="/about/learn/options">
               <OptionsPage />
+            </Route>
+            <Route path="/about/learn/protection">
+              <ProtectionPage />
             </Route>
             <Route path="/plan">
               <UserProfilePlan />

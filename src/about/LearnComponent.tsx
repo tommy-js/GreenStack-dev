@@ -9,12 +9,19 @@ interface Props {
 
 const LearnComponent: React.FC<Props> = (props) => {
   return (
-    <Link to={props.path}>
-      <div id="learn_individual_div">
-        <h3>{props.title}</h3>
-        <p>{props.subtitle}</p>
+    <div id="learn_individual_div">
+      <div id="learn_link">
+        <Link to={props.path}>
+          <div>
+            <h3>{props.title}</h3>
+            <p>{props.subtitle}</p>
+          </div>
+        </Link>
       </div>
-    </Link>
+      <div id="learn_individual_progress_div">
+        <p>Progress</p>
+      </div>
+    </div>
   );
 };
 

@@ -68,8 +68,25 @@ export const OptionsPage: React.FC = () => {
 export const EtfPage: React.FC = () => {
   return (
     <div>
+      <NavBar />
       <h2 className="learn_page_header">ETFs and Index Funds</h2>
       <p className="learn_page_paragraph"></p>
+    </div>
+  );
+};
+
+export const ProtectionPage: React.FC = () => {
+  return (
+    <div>
+      <NavBar />
+      <h2 className="learn_page_header">
+        How To Protect Yourself In The Market
+      </h2>
+      <p className="learn_page_paragraph">
+        The stock market can be a volatile place, and many traders have lost
+        fortunes through not protecting themselves well enough. In this tutorial
+        we'll give you some pointers for how to avoid losing everything.
+      </p>
     </div>
   );
 };

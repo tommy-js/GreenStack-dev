@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import Feed from "./Feed";
 
 const UserFeed: React.FC = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   function checkLoadState() {
     if (loading === true) {
@@ -13,7 +14,7 @@ const UserFeed: React.FC = () => {
     } else if (loading === false) {
       return (
         <div>
-          <h3>Your Feed</h3>
+          <Feed />
         </div>
       );
     }
