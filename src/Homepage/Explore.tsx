@@ -5,26 +5,43 @@ const Explore: React.FC = () => {
   const testData = [
     {
       dataId: 0,
-      title: "Apple",
-      ticker: "AAPL",
-      sector: "Technology",
-      price: 114.35,
-      marketcap: 2000000000000,
+      data: {
+        title: "Apple",
+        ticker: "AAPL",
+        sector: "Technology",
+        price: 114.35,
+        marketcap: 2000000000000,
+      },
     },
-    { dataId: 1, username: "Ty", description: "Stock analyst for the NYT." },
+    {
+      dataId: 1,
+      data: {
+        username: "Ty",
+        description: "Stock analyst for the NYT.",
+      },
+    },
   ];
 
-  function returnExploreEl(id: number) {
+  function returnExploreEl(id: number, data: any) {
     if (id === 0) {
       return (
         <div>
-          <ExploreStock />
+          <ExploreStock
+            title={data.title}
+            ticker={data.ticker}
+            sector={data.sector}
+            price={data.price}
+            marketcap={data.marketcap}
+          />
         </div>
       );
     } else if (id === 1) {
       return (
         <div>
-          <ExploreUser />
+          <ExploreUser
+            username={data.username}
+            description={data.description}
+          />
         </div>
       );
     }
@@ -33,7 +50,7 @@ const Explore: React.FC = () => {
   return (
     <div className="explore_container">
       {testData.map((el: any) => (
-        <div>{returnExploreEl(el.dataId)}</div>
+        <div>{returnExploreEl(el.dataId, el.data)}</div>
       ))}
     </div>
   );

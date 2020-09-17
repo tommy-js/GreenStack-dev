@@ -111,7 +111,7 @@ const Feed: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className="feed">
       <Router>
         {testData.map((el: any) => (
           <div className="feed_component">

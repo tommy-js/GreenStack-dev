@@ -8,7 +8,12 @@ const NavBar: React.FC = () => {
 
   return (
     <div className="navbar">
-      <NavLink className="nav_el" activeClassName="active_nav_el" exact to="/">
+      <NavLink
+        className="nav_el"
+        activeClassName="active_nav_el"
+        exact
+        to="/home"
+      >
         Home
       </NavLink>
       <NavLink

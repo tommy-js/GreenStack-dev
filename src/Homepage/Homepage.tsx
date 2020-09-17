@@ -32,8 +32,10 @@ const Homepage: React.FC<Props> = (props) => {
       <div id="homepage">
         <FeedSidebar />
         <Suggested />
-        <Route exact path="/home" component={Feed} />
-        <Route exact path="/home/explore" component={Explore} />
+        <Switch>
+          <Route exact path="/home" component={Feed} />
+          <Route exact path="/home/explore" component={Explore} />
+        </Switch>
       </div>
     </div>
   );

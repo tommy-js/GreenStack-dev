@@ -922,7 +922,7 @@ $feed_width: 45%;
 
 .feed_component {
   position: relative;
-  width: $feed_width;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 5px;
@@ -991,6 +991,14 @@ $feed_width: 45%;
   // @include testing;
 }
 
+.feed {
+  position: relative;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  @include testing;
+}
+
 #sidebar_search_container {
   position: relative;
   width: 95%;
@@ -1034,6 +1042,7 @@ $feed_width: 45%;
   padding: 0;
   margin-top: 5px;
   margin-bottom: 5px;
+  color: black;
   // @include testing;
   margin-left: auto;
   margin-right: auto;
@@ -1041,15 +1050,18 @@ $feed_width: 45%;
   text-decoration: none;
 }
 
+.active_sidebar_element {
+  color: teal;
+}
+
 .sidebar_element_text {
   font-size: 20px;
   padding: 5px;
   margin: 0;
-  color: black;
   transition: 0.2s;
 }
 
-.sidebar_element_text:hover {
+.sidebar_element:hover {
   color: teal;
   transition: 0.2s;
 }
@@ -1076,10 +1088,29 @@ $feed_width: 45%;
 
 .explore_container {
   position: relative;
-  width: $feed_width;
+  @include testing;
+  width: 50%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 5px;
   padding: 10px;
   box-sizing: border-box;
+}
+
+.explore_component {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  margin-bottom: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid grey;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.explore_component:hover {
+  box-shadow: 1px 1px 1px 1px grey;
+  transition: 0.2s;
 }

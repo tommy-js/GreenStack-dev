@@ -23,10 +23,11 @@ const FeedSidebar: React.FC = () => {
         modSearch={modSearch}
         submitSearch={submitSearch}
       />
-      <SidebarElement text="Post" path="/" />
+      <SidebarElement text="User Feed" path="/home" />
+      <SidebarElement text="Explore" path="/home/explore" />
+      <SidebarElement text="Post" path="/post" />
       <SidebarElement text="Followers" path="/profile/followed" />
       <SidebarElement text="Following" path="/profile/following" />
-      <SidebarElement text="Explore" path="/home/explore" />
     </div>
   );
 };
