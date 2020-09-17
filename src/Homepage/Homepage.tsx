@@ -1,9 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { userContext } from "../AppMain/App";
 import Suggested from "./Suggested";
-import Profile from "../profile/Profile";
-import FollowedActivity from "../profile/FollowedActivity";
-import LoadingUser from "../login/LoadingUser";
+import FeedSidebar from "./FeedSidebar";
 import UserFeed from "./UserFeed";
 import NavBar from "../misc/NavBar";
 import { userQuery } from "../queries/queries";
@@ -18,9 +16,6 @@ interface Props {
 
 const Homepage: React.FC<Props> = (props) => {
   const { status, setStatus } = useContext(statusContext);
-  const [userId, setUserId] = useState();
-  const { userVal, setUserVal } = useContext(userContext);
-  const [getUser, { data, loading }] = useLazyQuery(userQuery);
 
   useEffect(() => {
     if (status === false) {
@@ -32,6 +27,7 @@ const Homepage: React.FC<Props> = (props) => {
     <div>
       <NavBar />
       <div id="homepage">
+        <FeedSidebar />
         <Suggested />
         <UserFeed />
       </div>
