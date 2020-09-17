@@ -4,6 +4,9 @@ import Suggested from "./Suggested";
 import FeedSidebar from "./FeedSidebar";
 import UserFeed from "./UserFeed";
 import NavBar from "../misc/NavBar";
+import Feed from "./Feed";
+import Explore from "./Explore";
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { userQuery } from "../queries/queries";
 import { flowRight as compose } from "lodash";
 import { graphql, useLazyQuery } from "react-apollo";
@@ -29,7 +32,8 @@ const Homepage: React.FC<Props> = (props) => {
       <div id="homepage">
         <FeedSidebar />
         <Suggested />
-        <UserFeed />
+        <Route exact path="/home" component={Feed} />
+        <Route exact path="/home/explore" component={Explore} />
       </div>
     </div>
   );

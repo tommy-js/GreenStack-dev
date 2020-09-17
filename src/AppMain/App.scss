@@ -1073,3 +1073,13 @@ $feed_width: 45%;
   color: teal;
   transition: 0.2s;
 }
+
+.explore_container {
+  position: relative;
+  width: $feed_width;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+}

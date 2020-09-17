@@ -8,8 +8,8 @@ const UserFeed: React.FC = () => {
     <div>
       <Router>
         <Switch>
-          <Route exact path="/home" component={Feed} />
-          <Route path="/home/explore" component={Explore} />
+          <Route path="/home" component={Feed} />
+          <Route exact path="/home/explore" component={Explore} />
         </Switch>
       </Router>
     </div>

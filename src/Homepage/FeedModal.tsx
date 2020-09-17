@@ -53,7 +53,7 @@ const FeedModal: React.FC<Props> = (props) => {
   return (
     <div id="modal">
       <div id="central_modal">{renderModal()}</div>
-      <Link to="/">
+      <Link to="/home">
         <div id="feed_modal"></div>
       </Link>
     </div>
