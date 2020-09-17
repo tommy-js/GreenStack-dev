@@ -32,8 +32,8 @@ interface Comment {
 
 export const PostType: React.FC<Post> = (props) => {
   return (
-    <div>
-      <Link to={`/post/${props.id}`}>
+    <Link className="feed_link" to={`/post/${props.id}`}>
+      <div>
         <h2>{props.title}</h2>
         <h4>
           Posted by {props.user} at {props.timestamp}
@@ -43,29 +43,29 @@ export const PostType: React.FC<Post> = (props) => {
           {props.replies}
         </p>
         <p>{props.text}</p>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 
 export const NewsType: React.FC<News> = (props) => {
   return (
-    <div>
-      <Link to={`/post/${props.id}`}>
+    <Link className="feed_link" to={`/post/${props.id}`}>
+      <div>
         <h2>
           {props.name} #{props.ticker}
         </h2>
         <h2>{props.headline}</h2>
         <p>{props.subtext}</p>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 
 export const CommentType: React.FC<Comment> = (props) => {
   return (
-    <div>
-      <Link to={`/post/${props.id}`}>
+    <Link className="feed_link" to={`/post/${props.id}`}>
+      <div>
         <h3>{props.user}</h3>
         <p>{props.text}</p>
         <p>{props.timestamp}</p>
@@ -73,7 +73,7 @@ export const CommentType: React.FC<Comment> = (props) => {
           likes: {props.likes} dislikes: {props.dislikes} shares:{" "}
           {props.replies}
         </p>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };

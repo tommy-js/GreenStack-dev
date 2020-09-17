@@ -18,6 +18,22 @@ const Feed: React.FC = () => {
         replies: 4,
         dataId: 42423,
       },
+      comments: [
+        {
+          username: "Jwd22",
+          text: "Poor analysis. Doesn't take into account Apple's market share",
+          timestamp: 2423231,
+          likes: 1,
+          dislikes: 2,
+        },
+        {
+          username: "35ted",
+          text: "Good analysis",
+          timestamp: 335322,
+          likes: 0,
+          dislikes: 0,
+        },
+      ],
     },
     {
       typeId: 1,
@@ -101,7 +117,7 @@ const Feed: React.FC = () => {
           <div className="feed_component">
             {conditionalRender(el.typeId, el.data)}
             <Route exact path={`/post/${el.data.dataId}`}>
-              <FeedModal />
+              <FeedModal typeId={el.typeId} data={el.data} />
             </Route>
           </div>
         ))}
