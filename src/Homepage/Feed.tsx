@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+import FeedModal from "./FeedModal";
 import { PostType, NewsType, CommentType } from "./FeedTypes";
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
 const Feed: React.FC = () => {
   const testData = [
@@ -14,6 +16,7 @@ const Feed: React.FC = () => {
         likes: 15,
         dislikes: 6,
         replies: 4,
+        dataId: 42423,
       },
     },
     {
@@ -24,6 +27,7 @@ const Feed: React.FC = () => {
         ticker: "AAPL",
         subtext:
           "On September 23, Apple announced a new chip to rival those of Intel and Nvidia.",
+        dataId: 2564634,
       },
     },
     {
@@ -36,9 +40,14 @@ const Feed: React.FC = () => {
         likes: 3,
         dislikes: 2,
         replies: 2,
+        dataId: 4003503,
       },
     },
   ];
+
+  useEffect(() => {
+    testData.map((el: any) => console.log(el.data.dataId));
+  }, []);
 
   function conditionalRender(id: number, data: any) {
     if (id === 0) {
@@ -52,6 +61,7 @@ const Feed: React.FC = () => {
             likes={data.likes}
             dislikes={data.dislikes}
             replies={data.replies}
+            id={data.dataId}
           />
         </div>
       );
@@ -63,6 +73,7 @@ const Feed: React.FC = () => {
             name={data.name}
             ticker={data.ticker}
             subtext={data.subtext}
+            id={data.dataId}
           />
         </div>
       );
@@ -76,6 +87,7 @@ const Feed: React.FC = () => {
             likes={data.likes}
             dislikes={data.dislikes}
             replies={data.replies}
+            id={data.dataId}
           />
         </div>
       );
@@ -84,11 +96,16 @@ const Feed: React.FC = () => {
 
   return (
     <div>
-      {testData.map((el: any) => (
-        <div className="feed_component">
-          {conditionalRender(el.typeId, el.data)}
-        </div>
-      ))}
+      <Router>
+        {testData.map((el: any) => (
+          <div className="feed_component">
+            {conditionalRender(el.typeId, el.data)}
+            <Route exact path={`/post/${el.data.dataId}`}>
+              <FeedModal />
+            </Route>
+          </div>
+        ))}
+      </Router>
     </div>
   );
 };

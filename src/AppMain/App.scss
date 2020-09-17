@@ -934,3 +934,39 @@ $grey: #c8c8c8;
   box-shadow: 1px 1px 1px 1px grey;
   transition: 0.2s;
 }
+
+@mixin modal_backdrop {
+  position: fixed;
+  z-index: 98;
+}
+
+#modal {
+  @include modal_backdrop;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+#feed_modal {
+  @include modal_backdrop;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  opacity: 0.5;
+}
+
+#central_modal {
+  position: relative;
+  top: 20%;
+  width: 400px;
+  height: 400px;
+  opacity: 1;
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 99;
+  box-shadow: 1px 1px 1px 1px grey;
+}

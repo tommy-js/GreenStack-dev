@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface Post {
   title: string;
@@ -8,6 +9,7 @@ interface Post {
   likes: number;
   dislikes: number;
   replies: number;
+  id: number;
 }
 
 interface News {
@@ -15,6 +17,7 @@ interface News {
   ticker: string;
   name: string;
   subtext: string;
+  id: number;
 }
 
 interface Comment {
@@ -24,20 +27,23 @@ interface Comment {
   likes: number;
   dislikes: number;
   replies: number;
+  id: number;
 }
 
 export const PostType: React.FC<Post> = (props) => {
   return (
     <div>
-      <h2>{props.title}</h2>
-      <h4>
-        Posted by {props.user} at {props.timestamp}
-      </h4>
-      <p>
-        likes: {props.likes}, dislikes: {props.dislikes}, shares:{" "}
-        {props.replies}
-      </p>
-      <p>{props.text}</p>
+      <Link to={`/post/${props.id}`}>
+        <h2>{props.title}</h2>
+        <h4>
+          Posted by {props.user} at {props.timestamp}
+        </h4>
+        <p>
+          likes: {props.likes}, dislikes: {props.dislikes}, shares:{" "}
+          {props.replies}
+        </p>
+        <p>{props.text}</p>
+      </Link>
     </div>
   );
 };
@@ -45,11 +51,13 @@ export const PostType: React.FC<Post> = (props) => {
 export const NewsType: React.FC<News> = (props) => {
   return (
     <div>
-      <h2>
-        {props.name} #{props.ticker}
-      </h2>
-      <h2>{props.headline}</h2>
-      <p>{props.subtext}</p>
+      <Link to={`/post/${props.id}`}>
+        <h2>
+          {props.name} #{props.ticker}
+        </h2>
+        <h2>{props.headline}</h2>
+        <p>{props.subtext}</p>
+      </Link>
     </div>
   );
 };
@@ -57,12 +65,15 @@ export const NewsType: React.FC<News> = (props) => {
 export const CommentType: React.FC<Comment> = (props) => {
   return (
     <div>
-      <h3>{props.user}</h3>
-      <p>{props.text}</p>
-      <p>{props.timestamp}</p>
-      <p>
-        likes: {props.likes} dislikes: {props.dislikes} shares: {props.replies}
-      </p>
+      <Link to={`/post/${props.id}`}>
+        <h3>{props.user}</h3>
+        <p>{props.text}</p>
+        <p>{props.timestamp}</p>
+        <p>
+          likes: {props.likes} dislikes: {props.dislikes} shares:{" "}
+          {props.replies}
+        </p>
+      </Link>
     </div>
   );
 };
