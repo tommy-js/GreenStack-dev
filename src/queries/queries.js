@@ -184,6 +184,14 @@ const deleteCommentUserMutation = gql`
   }
 `;
 
+const pushCommentMutation = gql`
+  mutation($id: ID!) {
+    pushComment(id: $id) {
+      id
+    }
+  }
+`;
+
 const dropNotificationMutation = gql`
   mutation($userId: ID!, $id: ID!) {
     dropNotification(userId: $userId, id: $id) {
@@ -561,6 +569,7 @@ export {
   updateUserProgressMutation,
   deleteCommentUserMutation,
   dropNotificationMutation,
+  pushCommentMutation,
   deleteCommentStockMutation,
   updateUserSettingsMutation,
   pushFollowerToUserMutation,

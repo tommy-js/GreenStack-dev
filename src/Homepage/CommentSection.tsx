@@ -13,7 +13,7 @@ interface Props {
 
 const CommentSection: React.FC<Props> = (props) => {
   return (
-    <div>
+    <div id="comment_section">
       {props.comments.map((el: any) => (
         <IndividualComment
           username={el.username}

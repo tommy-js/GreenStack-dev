@@ -1,9 +1,11 @@
 import React from "react";
+import PushComment from "../resolvers/PushComment";
 
 const CommentInput: React.FC = () => {
   return (
-    <div>
-      <input type="text" />
+    <div id="comment_input_div">
+      <textarea id="comment_input" />
+      <PushComment />
     </div>
   );
 };
