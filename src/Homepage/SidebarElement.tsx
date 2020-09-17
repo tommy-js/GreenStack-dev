@@ -8,8 +8,8 @@ interface Props {
 
 const SidebarElement: React.FC<Props> = (props) => {
   return (
-    <Link to={props.path}>
-      <h2>{props.text}</h2>
+    <Link className="sidebar_element" to={props.path}>
+      <p className="sidebar_element_text">{props.text}</p>
     </Link>
   );
 };

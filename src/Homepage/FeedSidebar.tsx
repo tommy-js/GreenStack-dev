@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import SidebarUsername from "./SidebarUsername";
 import SidebarSearch from "./SidebarSearch";
 import SidebarElement from "./SidebarElement";
 
@@ -15,6 +16,7 @@ const FeedSidebar: React.FC = () => {
 
   return (
     <div id="feed_sidebar">
+      <SidebarUsername />
       <SidebarSearch
         search={search}
         modSearch={modSearch}

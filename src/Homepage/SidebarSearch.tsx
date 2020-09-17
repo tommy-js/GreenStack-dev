@@ -14,7 +14,7 @@ const SidebarSearch: React.FC<Props> = (props) => {
   }
 
   return (
-    <div>
+    <div id="sidebar_search_container">
       <input
         id="sidebar_search"
         placeholder="search..."
@@ -22,7 +22,9 @@ const SidebarSearch: React.FC<Props> = (props) => {
         onChange={(e) => props.modSearch(e.target.value)}
         onKeyDown={(e) => checkSubmit(e)}
       />
-      <button onClick={() => props.submitSearch()}>Search</button>
+      <button id="sidebar_search_button" onClick={() => props.submitSearch()}>
+        Search
+      </button>
     </div>
   );
 };
