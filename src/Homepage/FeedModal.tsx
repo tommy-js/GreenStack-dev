@@ -20,6 +20,7 @@ const FeedModal: React.FC<Props> = (props) => {
             likes={props.data.likes}
             dislikes={props.data.dislikes}
             replies={props.data.replies}
+            comments={props.data.comments}
           />
         </div>
       );
@@ -31,6 +32,7 @@ const FeedModal: React.FC<Props> = (props) => {
             ticker={props.data.ticker}
             name={props.data.name}
             subtext={props.data.subtext}
+            comments={props.data.comments}
           />
         </div>
       );
@@ -44,6 +46,7 @@ const FeedModal: React.FC<Props> = (props) => {
             likes={props.data.likes}
             dislikes={props.data.dislikes}
             replies={props.data.replies}
+            comments={props.data.comments}
           />
         </div>
       );

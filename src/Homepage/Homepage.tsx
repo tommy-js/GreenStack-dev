@@ -1,11 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
-import { userContext } from "../AppMain/App";
-import Suggested from "./Suggested";
 import FeedSidebar from "./FeedSidebar";
-import UserFeed from "./UserFeed";
 import NavBar from "../misc/NavBar";
 import Feed from "./Feed";
 import Explore from "./Explore";
+import Post from "./Post";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { userQuery } from "../queries/queries";
 import { flowRight as compose } from "lodash";
@@ -31,10 +29,10 @@ const Homepage: React.FC<Props> = (props) => {
       <NavBar />
       <div id="homepage">
         <FeedSidebar />
-        <Suggested />
         <Switch>
           <Route exact path="/home" component={Feed} />
           <Route exact path="/home/explore" component={Explore} />
+          <Route exact path="/home/post" component={Post} />
         </Switch>
       </div>
     </div>

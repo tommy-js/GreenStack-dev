@@ -1,4 +1,6 @@
 import React from "react";
+import CommentInput from "./CommentInput";
+import CommentSection from "./CommentSection";
 
 interface Post {
   title: string;
@@ -8,6 +10,13 @@ interface Post {
   likes: number;
   dislikes: number;
   replies: number;
+  comments: {
+    username: string;
+    text: string;
+    timestamp: number;
+    likes: number;
+    dislikes: number;
+  }[];
 }
 
 interface News {
@@ -15,6 +24,13 @@ interface News {
   ticker: string;
   name: string;
   subtext: string;
+  comments: {
+    username: string;
+    text: string;
+    timestamp: number;
+    likes: number;
+    dislikes: number;
+  }[];
 }
 
 interface Comment {
@@ -24,6 +40,13 @@ interface Comment {
   likes: number;
   dislikes: number;
   replies: number;
+  comments: {
+    username: string;
+    text: string;
+    timestamp: number;
+    likes: number;
+    dislikes: number;
+  }[];
 }
 
 export const PostType: React.FC<Post> = (props) => {
@@ -38,6 +61,8 @@ export const PostType: React.FC<Post> = (props) => {
         {props.replies}
       </p>
       <p>{props.text}</p>
+      <CommentInput />
+      <CommentSection comments={props.comments} />
     </div>
   );
 };
@@ -50,6 +75,8 @@ export const NewsType: React.FC<News> = (props) => {
       </h2>
       <h2>{props.headline}</h2>
       <p>{props.subtext}</p>
+      <CommentInput />
+      <CommentSection comments={props.comments} />
     </div>
   );
 };
@@ -63,6 +90,8 @@ export const CommentType: React.FC<Comment> = (props) => {
       <p>
         likes: {props.likes} dislikes: {props.dislikes} shares: {props.replies}
       </p>
+      <CommentInput />
+      <CommentSection comments={props.comments} />
     </div>
   );
 };

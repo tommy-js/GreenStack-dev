@@ -49,6 +49,7 @@ const Explore: React.FC = () => {
 
   return (
     <div className="explore_container">
+      <h3 id="explore_header">You May Be Interested In...</h3>
       {testData.map((el: any) => (
         <div>{returnExploreEl(el.dataId, el.data)}</div>
       ))}

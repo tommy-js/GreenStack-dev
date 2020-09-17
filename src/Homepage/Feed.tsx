@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import FeedModal from "./FeedModal";
+import Suggested from "./Suggested";
 import { PostType, NewsType, CommentType } from "./FeedTypes";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
@@ -17,23 +18,24 @@ const Feed: React.FC = () => {
         dislikes: 6,
         replies: 4,
         dataId: 42423,
+        comments: [
+          {
+            username: "Jwd22",
+            text:
+              "Poor analysis. Doesn't take into account Apple's market share",
+            timestamp: 2423231,
+            likes: 1,
+            dislikes: 2,
+          },
+          {
+            username: "35ted",
+            text: "Good analysis",
+            timestamp: 335322,
+            likes: 0,
+            dislikes: 0,
+          },
+        ],
       },
-      comments: [
-        {
-          username: "Jwd22",
-          text: "Poor analysis. Doesn't take into account Apple's market share",
-          timestamp: 2423231,
-          likes: 1,
-          dislikes: 2,
-        },
-        {
-          username: "35ted",
-          text: "Good analysis",
-          timestamp: 335322,
-          likes: 0,
-          dislikes: 0,
-        },
-      ],
     },
     {
       typeId: 1,
@@ -44,6 +46,23 @@ const Feed: React.FC = () => {
         subtext:
           "On September 23, Apple announced a new chip to rival those of Intel and Nvidia.",
         dataId: 2564634,
+        comments: [
+          {
+            username: "Jwd22",
+            text:
+              "Poor analysis. Doesn't take into account Apple's market share",
+            timestamp: 2423231,
+            likes: 1,
+            dislikes: 2,
+          },
+          {
+            username: "35ted",
+            text: "Good analysis",
+            timestamp: 335322,
+            likes: 0,
+            dislikes: 0,
+          },
+        ],
       },
     },
     {
@@ -57,6 +76,38 @@ const Feed: React.FC = () => {
         dislikes: 2,
         replies: 2,
         dataId: 4003503,
+        comments: [
+          {
+            username: "Jwd22",
+            text:
+              "Poor analysis. Doesn't take into account Apple's market share",
+            timestamp: 2423231,
+            likes: 1,
+            dislikes: 2,
+          },
+          {
+            username: "35ted",
+            text: "Good analysis",
+            timestamp: 335322,
+            likes: 0,
+            dislikes: 0,
+          },
+          {
+            username: "Jwd22",
+            text:
+              "Poor analysis. Doesn't take into account Apple's market share",
+            timestamp: 2423231,
+            likes: 1,
+            dislikes: 2,
+          },
+          {
+            username: "35ted",
+            text: "Good analysis",
+            timestamp: 335322,
+            likes: 0,
+            dislikes: 0,
+          },
+        ],
       },
     },
   ];
@@ -112,6 +163,7 @@ const Feed: React.FC = () => {
 
   return (
     <div className="feed">
+      <Suggested />
       <Router>
         {testData.map((el: any) => (
           <div className="feed_component">
