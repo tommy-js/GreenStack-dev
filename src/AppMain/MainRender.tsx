@@ -10,6 +10,7 @@ import Homepage from "../Homepage/Homepage";
 import UserTrade from "../UserTrade";
 import UserProfilePlan from "../profile/UserProfilePlan";
 import NewAccountRender from "../NewAccountRender/NewAccountRender";
+import Page404 from "./Page404";
 import companyProfiles from "../companies/companyProfiles";
 import { Route } from "react-router-dom";
 import { browserHist } from "./history.js";
@@ -134,7 +135,7 @@ const MainRender: React.FC = () => {
                 updateTradeMap={updateTradeMap}
               />
             </Route>
-            <Route exact path="/">
+            <Route exact path="/home">
               <Homepage updateConstantActivity={updateConstantActivity} />
             </Route>
             <Route exact path="/about">
@@ -169,6 +170,7 @@ const MainRender: React.FC = () => {
               <UserProfilePlan />
             </Route>
             {renderReferenceTrades()}
+            <Route component={Page404} />
           </div>
         </div>
       );

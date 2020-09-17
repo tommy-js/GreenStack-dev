@@ -45,7 +45,7 @@ const QueryUserLogin: React.FC<Props> = (props) => {
         progress: data.user.progress,
       });
       setStatus(true);
-      browserHist.push("/");
+      browserHist.push("/home");
     }
   }, [data]);
 

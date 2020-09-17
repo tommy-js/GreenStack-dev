@@ -25,7 +25,7 @@ const FeedSidebar: React.FC = () => {
       <SidebarElement text="Post" path="/" />
       <SidebarElement text="Followers" path="/profile/followed" />
       <SidebarElement text="Following" path="/profile/following" />
-      <SidebarElement text="Explore" path="/" />
+      <SidebarElement text="Explore" path="/home/explore" />
     </div>
   );
 };

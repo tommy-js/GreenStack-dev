@@ -1,26 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Feed from "./Feed";
+import Explore from "./Explore";
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
 const UserFeed: React.FC = () => {
-  const [loading, setLoading] = useState(false);
-
-  function checkLoadState() {
-    if (loading === true) {
-      return (
-        <div>
-          <h3>Loading...</h3>
-        </div>
-      );
-    } else if (loading === false) {
-      return (
-        <div>
-          <Feed />
-        </div>
-      );
-    }
-  }
-
-  return <div>{checkLoadState()}</div>;
+  return (
+    <div>
+      <Router>
+        <Switch>
+          <Route exact path="/home" component={Feed} />
+          <Route path="/home/explore" component={Explore} />
+        </Switch>
+      </Router>
+    </div>
+  );
 };
 
 export default UserFeed;
