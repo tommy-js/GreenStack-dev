@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
+import UnfollowUser from "../resolvers/UnfollowUser";
+import { userContext } from "../AppMain/App";
 
 interface Props {
   userId: number;
@@ -7,10 +9,13 @@ interface Props {
 }
 
 const FollowingElement: React.FC<Props> = (props) => {
+  const { userVal } = useContext(userContext);
+
   return (
     <div className="following_element">
-      <p>{props.username}</p>
-      <p>{props.descriptor}</p>
+      <p className="following_element_username">{props.username}</p>
+      <p className="following_element_descriptor">{props.descriptor}</p>
+      <UnfollowUser userId={userVal.userId} followerId={props.userId} />
     </div>
   );
 };

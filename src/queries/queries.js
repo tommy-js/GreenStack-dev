@@ -249,6 +249,14 @@ const pushFollowerToUserMutation = gql`
   }
 `;
 
+const unfollowUserMutation = gql`
+  mutation($userId: ID!, $followerId: ID!) {
+    unfollowUser(userId: $userId, followerId: $followerId) {
+      userId
+    }
+  }
+`;
+
 const pushStockToWatchlistMutation = gql`
   mutation(
     $stockId: ID!
@@ -573,6 +581,7 @@ export {
   deleteCommentStockMutation,
   updateUserSettingsMutation,
   pushFollowerToUserMutation,
+  unfollowUserMutation,
   pushTradeMutation,
   saveReferenceTradeToUserMutation,
   blockUserMutation,

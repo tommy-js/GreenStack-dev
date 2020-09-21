@@ -8,9 +8,9 @@ interface Props {
 
 const FollowerElement: React.FC<Props> = (props) => {
   return (
-    <div>
-      <p>{props.username}</p>
-      <p>{props.descriptor}</p>
+    <div className="follower_element">
+      <p className="follower_element_username">{props.username}</p>
+      <p className="follower_element_descriptor">{props.descriptor}</p>
     </div>
   );
 };

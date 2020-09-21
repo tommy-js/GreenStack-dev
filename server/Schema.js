@@ -725,6 +725,21 @@ const Mutation = new GraphQLObjectType({
         );
       },
     },
+    unfollowUser: {
+      type: UserQuery,
+      args: {
+        userId: { type: GraphQLID },
+        followerId: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        return User.update(
+          { userId: args.userId },
+          {
+            $pull: { userId: args.followerId },
+          }
+        );
+      },
+    },
     setProfileImage: {
       type: UserQuery,
       args: {
