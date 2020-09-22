@@ -7,6 +7,7 @@ const postSchema = new Schema({
   timestamp: Number,
   likes: Number,
   dislikes: Number,
+  title: String,
   text: String,
 });
 

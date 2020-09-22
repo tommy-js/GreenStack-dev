@@ -172,6 +172,7 @@ const PostQuery = new GraphQLObjectType({
     timestamp: { type: GraphQLInt },
     likes: { type: GraphQLInt },
     dislikes: { type: GraphQLInt },
+    title: { type: GraphQLString },
     text: { type: GraphQLString },
   }),
 });
@@ -431,6 +432,7 @@ const Mutation = new GraphQLObjectType({
         timestamp: { type: GraphQLInt },
         likes: { type: GraphQLInt },
         dislikes: { type: GraphQLInt },
+        title: { type: GraphQLString },
         text: { type: GraphQLString },
       },
       resolve(parent, args) {
@@ -440,6 +442,7 @@ const Mutation = new GraphQLObjectType({
           timestamp: args.timestamp,
           likes: args.likes,
           dislikes: args.dislikes,
+          title: args.title,
           text: args.text,
         });
         return newPost.save();

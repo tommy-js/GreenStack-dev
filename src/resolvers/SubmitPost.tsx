@@ -6,6 +6,7 @@ import { postMutation } from "../queries/queries.js";
 interface Props {
   userId: number;
   username: string;
+  title: string;
   text: string;
   postMutation: (variables: object) => any;
   unsuccessfulEvent: () => void;
@@ -22,6 +23,7 @@ const SubmitPost: React.FC<Props> = (props) => {
           userId: props.userId,
           postId: randomNum,
           username: props.username,
+          title: props.title,
           text: props.text,
           likes: 0,
           dislikes: 0,

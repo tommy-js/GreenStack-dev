@@ -305,6 +305,7 @@ const postMutation = gql`
     $likes: Int!
     $dislikes: Int!
     $timestamp: Int!
+    $title: String!
     $text: String!
   ) {
     post(
@@ -313,6 +314,7 @@ const postMutation = gql`
       likes: $likes
       dislikes: $dislikes
       timestamp: $timestamp
+      title: $title
       text: $text
     ) {
       userId
@@ -320,6 +322,7 @@ const postMutation = gql`
       likes
       dislikes
       timestamp
+      title
       text
     }
   }
@@ -602,6 +605,7 @@ const queryPosts = gql`
       likes
       dislikes
       timestamp
+      title
       text
     }
   }
