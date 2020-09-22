@@ -3,7 +3,7 @@ import FeedSidebar from "./FeedSidebar";
 import NavBar from "../misc/NavBar";
 import Feed from "./Feed";
 import Explore from "./Explore";
-import Post from "./Post";
+import UserPosts from "./UserPosts";
 import Following from "./Following";
 import Followers from "./Followers";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
@@ -34,7 +34,7 @@ const Homepage: React.FC<Props> = (props) => {
         <Switch>
           <Route exact path="/home" component={Feed} />
           <Route exact path="/home/explore" component={Explore} />
-          <Route exact path="/home/post" component={Post} />
+          <Route exact path="/home/posts" component={UserPosts} />
           <Route exact path="/home/followers" component={Followers} />
           <Route exact path="/home/following" component={Following} />
         </Switch>

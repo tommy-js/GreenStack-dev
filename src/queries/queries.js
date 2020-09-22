@@ -594,6 +594,19 @@ const stockQuery = gql`
   }
 `;
 
+const queryPosts = gql`
+  query($userId: ID!) {
+    getPosts(userId: $userId) {
+      userId
+      postId
+      likes
+      dislikes
+      timestamp
+      text
+    }
+  }
+`;
+
 export {
   createUserMutation,
   addCommentTradeMutation,
@@ -622,4 +635,5 @@ export {
   stockQuery,
   userLoginQuery,
   queryTradeQuery,
+  queryPosts,
 };

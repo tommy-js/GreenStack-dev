@@ -1,8 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import SubmitPost from "../resolvers/SubmitPost";
+import { userContext } from "../AppMain/App";
 
 const Post: React.FC = () => {
   const [text, setText] = useState("");
+  const { userVal } = useContext(userContext);
+
+  function successfulEvent() {
+    console.log("success");
+  }
+
+  function unsuccessfulEvent() {
+    console.log("unsuccessful");
+  }
 
   return (
     <div id="post" className="feed">
@@ -13,7 +23,13 @@ const Post: React.FC = () => {
         placeholder="type..."
       />
       <div className="post_button">
-        <SubmitPost />
+        <SubmitPost
+          userId={userVal.userId}
+          username={userVal.username}
+          text={text}
+          successfulEvent={successfulEvent}
+          unsuccessfulEvent={unsuccessfulEvent}
+        />
       </div>
     </div>
   );

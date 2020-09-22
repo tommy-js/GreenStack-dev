@@ -215,6 +215,15 @@ const RootQuery = new GraphQLObjectType({
         return Trade.findOne({ tradeId: args.tradeId });
       },
     },
+    getPosts: {
+      type: new GraphQLList(PostQuery),
+      args: {
+        userId: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        return Post.find({ userId: args.userId });
+      },
+    },
   },
 });
 
