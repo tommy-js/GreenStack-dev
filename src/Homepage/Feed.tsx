@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import FeedModal from "./FeedModal";
 import Suggested from "./Suggested";
+import Post from "./Post";
 import { PostType, NewsType, CommentType } from "./FeedTypes";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
@@ -163,6 +164,7 @@ const Feed: React.FC = () => {
 
   return (
     <div className="feed">
+      <Post />
       <Suggested />
       <Router>
         {testData.map((el: any) => (

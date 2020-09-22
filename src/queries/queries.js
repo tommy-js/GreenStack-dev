@@ -298,6 +298,33 @@ const blockUserMutation = gql`
   }
 `;
 
+const postMutation = gql`
+  mutation(
+    $userId: ID!
+    $postId: ID!
+    $likes: Int!
+    $dislikes: Int!
+    $timestamp: Int!
+    $text: String!
+  ) {
+    post(
+      userId: $userId
+      postId: $postId
+      likes: $likes
+      dislikes: $dislikes
+      timestamp: $timestamp
+      text: $text
+    ) {
+      userId
+      postId
+      likes
+      dislikes
+      timestamp
+      text
+    }
+  }
+`;
+
 const updateMoneyMutation = gql`
   mutation($userId: ID!, $money: Float!) {
     updateMoney(userId: $userId, money: $money) {
@@ -582,6 +609,7 @@ export {
   updateUserSettingsMutation,
   pushFollowerToUserMutation,
   unfollowUserMutation,
+  postMutation,
   pushTradeMutation,
   saveReferenceTradeToUserMutation,
   blockUserMutation,

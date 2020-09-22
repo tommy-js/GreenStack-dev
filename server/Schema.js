@@ -22,6 +22,7 @@ const Settings = require("./models/settings");
 const Watchlist = require("./models/watchlist");
 const Notifications = require("./models/notification");
 const Progress = require("./models/progress");
+const Post = require("./models/post");
 
 const UserQuery = new GraphQLObjectType({
   name: "User",
@@ -160,6 +161,18 @@ const ShareQuery = new GraphQLObjectType({
     stockId: { type: GraphQLID },
     shareId: { type: GraphQLID },
     shares: { type: GraphQLInt },
+  }),
+});
+
+const PostQuery = new GraphQLObjectType({
+  name: "Post",
+  fields: () => ({
+    userId: { type: GraphQLID },
+    postId: { type: GraphQLID },
+    timestamp: { type: GraphQLInt },
+    likes: { type: GraphQLInt },
+    dislikes: { type: GraphQLInt },
+    text: { type: GraphQLString },
   }),
 });
 
@@ -399,6 +412,28 @@ const Mutation = new GraphQLObjectType({
           { $set: { "followers.$.blocked": args.blocked } },
           { upsert: true, new: true }
         );
+      },
+    },
+    post: {
+      type: PostQuery,
+      args: {
+        userId: { type: GraphQLID },
+        postId: { type: GraphQLID },
+        timestamp: { type: GraphQLInt },
+        likes: { type: GraphQLInt },
+        dislikes: { type: GraphQLInt },
+        text: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        let newPost = new Post({
+          userId: args.userId,
+          postId: args.postId,
+          timestamp: args.timestamp,
+          likes: args.likes,
+          dislikes: args.dislikes,
+          text: args.text,
+        });
+        return newPost.save();
       },
     },
     updateMoney: {
