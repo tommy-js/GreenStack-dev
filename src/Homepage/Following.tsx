@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FollowingElement from "./FollowingElement";
 
-const Following: React.FC = () => {
+interface Props {
+  modRoutes: (testData: any) => void;
+}
+
+const Following: React.FC<Props> = (props) => {
   const testData = [
     {
       userId: 1111,
@@ -11,15 +15,22 @@ const Following: React.FC = () => {
     { userId: 2423, username: "Tempty", descriptor: "Good trader(sometimes)" },
   ];
 
+  useEffect(() => {
+    props.modRoutes(testData);
+  }, []);
+
   return (
     <div className="feed">
-      {testData.map((el: any) => (
-        <FollowingElement
-          userId={el.userId}
-          username={el.username}
-          descriptor={el.descriptor}
-        />
-      ))}
+      <h2 className="list_header">Following</h2>
+      <div>
+        {testData.map((el: any) => (
+          <FollowingElement
+            userId={el.userId}
+            username={el.username}
+            descriptor={el.descriptor}
+          />
+        ))}
+      </div>
     </div>
   );
 };

@@ -14,6 +14,7 @@ const FeedModal: React.FC<Props> = (props) => {
         <div>
           <PostType
             title={props.data.title}
+            userId={props.data.userId}
             user={props.data.user}
             text={props.data.text}
             timestamp={props.data.timestamp}
@@ -40,6 +41,7 @@ const FeedModal: React.FC<Props> = (props) => {
       return (
         <div>
           <CommentType
+            userId={props.data.userId}
             user={props.data.user}
             text={props.data.text}
             timestamp={props.data.timestamp}

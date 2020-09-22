@@ -14,6 +14,7 @@ const Feed: React.FC = () => {
         text:
           "We can see by the Apple announcement that they clearly don't care about their base users, and are only really chasing clout.",
         user: "Tyler",
+        userId: 253364746,
         timestamp: 2312424535,
         likes: 15,
         dislikes: 6,
@@ -42,6 +43,7 @@ const Feed: React.FC = () => {
       typeId: 1,
       data: {
         headline: "Apple Announces New Chip",
+        userId: 0,
         name: "Apple",
         ticker: "AAPL",
         subtext:
@@ -69,6 +71,7 @@ const Feed: React.FC = () => {
     {
       typeId: 2,
       data: {
+        userId: 259696,
         user: "Tyler",
         text:
           "Apple sucks. Nvidia's chips will be better because they specialize.",
@@ -80,6 +83,7 @@ const Feed: React.FC = () => {
         comments: [
           {
             username: "Jwd22",
+            userId: 30503252,
             text:
               "Poor analysis. Doesn't take into account Apple's market share",
             timestamp: 2423231,
@@ -88,6 +92,7 @@ const Feed: React.FC = () => {
           },
           {
             username: "35ted",
+            userId: 39969663,
             text: "Good analysis",
             timestamp: 335322,
             likes: 0,
@@ -95,6 +100,7 @@ const Feed: React.FC = () => {
           },
           {
             username: "Jwd22",
+            userId: 469963636,
             text:
               "Poor analysis. Doesn't take into account Apple's market share",
             timestamp: 2423231,
@@ -103,6 +109,7 @@ const Feed: React.FC = () => {
           },
           {
             username: "35ted",
+            userId: 3603636363,
             text: "Good analysis",
             timestamp: 335322,
             likes: 0,
@@ -123,6 +130,7 @@ const Feed: React.FC = () => {
         <div>
           <PostType
             title={data.title}
+            userId={data.userId}
             user={data.user}
             text={data.text}
             timestamp={data.timestamp}
@@ -149,6 +157,7 @@ const Feed: React.FC = () => {
       return (
         <div>
           <CommentType
+            userId={data.userId}
             user={data.user}
             text={data.text}
             timestamp={data.timestamp}

@@ -1,5 +1,6 @@
 import React from "react";
 import BlockUser from "../resolvers/BlockUser";
+import { Link } from "react-router-dom";
 
 interface Props {
   userId: number;
@@ -10,8 +11,10 @@ interface Props {
 const FollowerElement: React.FC<Props> = (props) => {
   return (
     <div className="follower_element">
-      <p className="follower_element_username">{props.username}</p>
-      <p className="follower_element_descriptor">{props.descriptor}</p>
+      <Link to={`/home/user/${props.userId}`}>
+        <p className="follower_element_username">{props.username}</p>
+        <p className="follower_element_descriptor">{props.descriptor}</p>
+      </Link>
       <BlockUser followerId={props.userId} />
     </div>
   );

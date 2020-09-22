@@ -1,9 +1,11 @@
 import React from "react";
 import CommentInput from "./CommentInput";
 import CommentSection from "./CommentSection";
+import { Link } from "react-router-dom";
 
 interface Post {
   title: string;
+  userId: number;
   user: string;
   text: string;
   timestamp: number;
@@ -35,6 +37,7 @@ interface News {
 
 interface Comment {
   user: string;
+  userId: number;
   text: string;
   timestamp: number;
   likes: number;
@@ -54,7 +57,8 @@ export const PostType: React.FC<Post> = (props) => {
     <div>
       <h2>{props.title}</h2>
       <h4>
-        Posted by {props.user} at {props.timestamp}
+        Posted by <Link to={`/home/user/${props.userId}`}>{props.user}</Link> at{" "}
+        {props.timestamp}
       </h4>
       <p>
         likes: {props.likes}, dislikes: {props.dislikes}, shares:{" "}
@@ -84,7 +88,9 @@ export const NewsType: React.FC<News> = (props) => {
 export const CommentType: React.FC<Comment> = (props) => {
   return (
     <div>
-      <h3>{props.user}</h3>
+      <h3>
+        <Link to={`/home/user/${props.userId}`}>{props.user}</Link>
+      </h3>
       <p>{props.text}</p>
       <p>{props.timestamp}</p>
       <p>

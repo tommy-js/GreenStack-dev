@@ -1,21 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FollowerElement from "./FollowerElement";
 
-const Followers: React.FC = () => {
+interface Props {
+  modRoutes: (testData: any) => void;
+}
+
+const Followers: React.FC<Props> = (props) => {
   const testData = [
     { userId: 256474, username: "johnthegreat", descriptor: "just a trader" },
     { userId: 6565653, username: "fefe", descriptor: "" },
   ];
 
+  useEffect(() => {
+    props.modRoutes(testData);
+  }, []);
+
   return (
     <div className="feed">
-      {testData.map((el: any) => (
-        <FollowerElement
-          userId={el.userId}
-          username={el.username}
-          descriptor={el.descriptor}
-        />
-      ))}
+      <h2 className="list_header">Your Followers</h2>
+      <div>
+        {testData.map((el: any) => (
+          <FollowerElement
+            userId={el.userId}
+            username={el.username}
+            descriptor={el.descriptor}
+          />
+        ))}
+      </div>
     </div>
   );
 };

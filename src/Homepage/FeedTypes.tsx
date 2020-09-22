@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 interface Post {
   title: string;
+  userId: number;
   user: string;
   text: string;
   timestamp: number;
@@ -23,6 +24,7 @@ interface News {
 interface Comment {
   user: string;
   text: string;
+  userId: number;
   timestamp: number;
   likes: number;
   dislikes: number;
@@ -36,7 +38,8 @@ export const PostType: React.FC<Post> = (props) => {
       <div>
         <h2>{props.title}</h2>
         <h4>
-          Posted by {props.user} at {props.timestamp}
+          Posted by <Link to={`/home/user/${props.userId}`}>{props.user}</Link>
+          at {props.timestamp}
         </h4>
         <p>
           likes: {props.likes}, dislikes: {props.dislikes}, shares:{" "}
@@ -66,7 +69,9 @@ export const CommentType: React.FC<Comment> = (props) => {
   return (
     <Link className="feed_link" to={`/post/${props.id}`}>
       <div>
-        <h3>{props.user}</h3>
+        <h3>
+          <Link to={`/home/user/${props.userId}`}>{props.user}</Link>
+        </h3>
         <p>{props.text}</p>
         <p>{props.timestamp}</p>
         <p>

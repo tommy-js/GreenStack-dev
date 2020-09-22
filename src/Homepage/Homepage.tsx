@@ -6,6 +6,7 @@ import Explore from "./Explore";
 import UserPosts from "./UserPosts";
 import Following from "./Following";
 import Followers from "./Followers";
+import UserProfile from "../User/UserProfile";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { userQuery } from "../queries/queries";
 import { flowRight as compose } from "lodash";
@@ -18,6 +19,7 @@ interface Props {
 }
 
 const Homepage: React.FC<Props> = (props) => {
+  const [routePaths, setRoutePaths] = useState([{ userId: 0 }]);
   const { status, setStatus } = useContext(statusContext);
 
   useEffect(() => {
@@ -25,6 +27,10 @@ const Homepage: React.FC<Props> = (props) => {
       browserHist.push("/login");
     }
   }, []);
+
+  function modRoutes(route: any) {
+    setRoutePaths(route);
+  }
 
   return (
     <div>
@@ -35,8 +41,17 @@ const Homepage: React.FC<Props> = (props) => {
           <Route exact path="/home" component={Feed} />
           <Route exact path="/home/explore" component={Explore} />
           <Route exact path="/home/posts" component={UserPosts} />
-          <Route exact path="/home/followers" component={Followers} />
-          <Route exact path="/home/following" component={Following} />
+          <Route exact path="/home/followers">
+            <Followers modRoutes={modRoutes} />
+          </Route>
+          <Route exact path="/home/following">
+            <Following modRoutes={modRoutes} />
+          </Route>
+          {routePaths.map((el: any) => (
+            <Route exact path={`/home/user/${el.userId}`}>
+              <UserProfile userId={el.userId} />
+            </Route>
+          ))}
         </Switch>
       </div>
     </div>

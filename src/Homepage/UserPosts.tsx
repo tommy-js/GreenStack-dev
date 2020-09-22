@@ -26,15 +26,18 @@ const UserPosts: React.FC = () => {
     if (sortedArr) {
       return (
         <div>
-          {sortedArr.map((el: any) => (
-            <IndividualUserPost
-              title={el.title}
-              text={el.text}
-              timestamp={el.timestamp}
-              likes={el.likes}
-              dislikes={el.dislikes}
-            />
-          ))}
+          <h2 className="list_header">Your Posts</h2>
+          <div>
+            {sortedArr.map((el: any) => (
+              <IndividualUserPost
+                title={el.title}
+                text={el.text}
+                timestamp={el.timestamp}
+                likes={el.likes}
+                dislikes={el.dislikes}
+              />
+            ))}
+          </div>
         </div>
       );
     } else {
