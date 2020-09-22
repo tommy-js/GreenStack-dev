@@ -17,7 +17,21 @@ const UserPosts: React.FC = () => {
     }
   }, [data]);
 
-  return <div className="feed"></div>;
+  function renderPosts() {
+    if (data) {
+      return (
+        <div>
+          {data.getPosts.map((el: any) => (
+            <h1>{el.text}</h1>
+          ))}
+        </div>
+      );
+    } else {
+      return null;
+    }
+  }
+
+  return <div className="feed">{renderPosts()}</div>;
 };
 
 export default UserPosts;
