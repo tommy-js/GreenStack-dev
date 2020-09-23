@@ -57,17 +57,6 @@ const userSchema = new Schema({
       ],
     },
   ],
-  referenceTrades: [
-    {
-      tradeAuthorUsername: String,
-      tradeAuthorID: Number,
-      ticker: String,
-      title: String,
-      timestamp: Number,
-      shares: Number,
-      gain: Number,
-    },
-  ],
   watchlist: [
     {
       stockId: Number,

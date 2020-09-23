@@ -17,7 +17,6 @@ const Trade = require("./models/trade");
 const Comment = require("./models/comment");
 const Stock = require("./models/stock");
 const Share = require("./models/share");
-const Reference = require("./models/referencetrade");
 const Settings = require("./models/settings");
 const Watchlist = require("./models/watchlist");
 const Notifications = require("./models/notification");
@@ -42,7 +41,6 @@ const UserQuery = new GraphQLObjectType({
     stocks: { type: new GraphQLList(StockQuery) },
     shares: { type: new GraphQLList(ShareQuery) },
     trades: { type: new GraphQLList(TradeQuery) },
-    referenceTrades: { type: new GraphQLList(ReferenceTradeQuery) },
     comments: { type: new GraphQLList(CommentQuery) },
     watchlist: { type: new GraphQLList(WatchlistQuery) },
     notifications: { type: new GraphQLList(NotificationQuery) },
@@ -112,21 +110,6 @@ const TradeQuery = new GraphQLObjectType({
     shares: { type: GraphQLInt },
     gain: { type: GraphQLFloat },
     comments: { type: new GraphQLList(CommentQuery) },
-  }),
-});
-
-const ReferenceTradeQuery = new GraphQLObjectType({
-  name: "Reference",
-  fields: () => ({
-    tradeAuthorID: { type: GraphQLID },
-    tradeAuthorUsername: { type: GraphQLString },
-    price: { type: GraphQLInt },
-    tradeId: { type: GraphQLID },
-    timestamp: { type: GraphQLID },
-    title: { type: GraphQLString },
-    ticker: { type: GraphQLString },
-    shares: { type: GraphQLInt },
-    gain: { type: GraphQLInt },
   }),
 });
 
@@ -502,41 +485,6 @@ const Mutation = new GraphQLObjectType({
           {
             $push: {
               trades: {
-                price: args.price,
-                tradeId: args.tradeId,
-                timestamp: args.timestamp,
-                title: args.title,
-                ticker: args.ticker,
-                shares: args.shares,
-                gain: args.gain,
-              },
-            },
-          }
-        );
-      },
-    },
-    pushReferenceTrade: {
-      type: TradeQuery,
-      args: {
-        userId: { type: GraphQLID },
-        tradeId: { type: GraphQLID },
-        tradeAuthorID: { type: GraphQLID },
-        tradeAuthorUsername: { type: GraphQLString },
-        price: { type: GraphQLInt },
-        timestamp: { type: GraphQLID },
-        title: { type: GraphQLString },
-        ticker: { type: GraphQLString },
-        shares: { type: GraphQLInt },
-        gain: { type: GraphQLInt },
-      },
-      resolve(parent, args) {
-        return User.update(
-          { userId: args.userId },
-          {
-            $push: {
-              referenceTrades: {
-                userId: args.tradeAuthorID,
-                username: args.tradeAuthorUsername,
                 price: args.price,
                 tradeId: args.tradeId,
                 timestamp: args.timestamp,
