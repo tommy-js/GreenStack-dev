@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 interface Props {
   stockId: number;
+  keyId: number;
   title: string;
   ticker: string;
   description: string;
@@ -12,7 +13,7 @@ interface Props {
 
 const ExploreCompany: React.FC<Props> = (props) => {
   return (
-    <div className="homepage_block_component">
+    <div key={props.keyId} className="homepage_block_component">
       <Link className="block_link" to={`/home/stock/${props.stockId}`}>
         <p>
           {props.title} #{props.ticker}

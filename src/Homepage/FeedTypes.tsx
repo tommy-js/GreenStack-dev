@@ -95,10 +95,8 @@ export const PostType: React.FC<Post> = (props) => {
           at {props.timestamp}
         </h4>
       </Link>
-      <p>
-        {likes} <div onClick={() => like()}>upvote</div>, {dislikes}{" "}
-        <div onClick={() => dislike()}>downvote</div>, shares: {props.replies}
-      </p>
+      {likes} <div onClick={() => like()}>upvote</div>, {dislikes}{" "}
+      <div onClick={() => dislike()}>downvote</div>, shares: {props.replies}
       <p>{props.text}</p>
     </div>
   );
@@ -177,10 +175,8 @@ export const CommentType: React.FC<Comment> = (props) => {
         <p>{props.text}</p>
         <p>{props.timestamp}</p>
       </Link>
-      <p>
-        {likes} <div onClick={() => like()}>upvote</div>, {dislikes}{" "}
-        <div onClick={() => dislike()}>downvote</div>, shares: {props.replies}
-      </p>
+      {likes} <div onClick={() => like()}>upvote</div>, {dislikes}{" "}
+      <div onClick={() => dislike()}>downvote</div>, shares: {props.replies}
     </div>
   );
 };

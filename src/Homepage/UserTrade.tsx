@@ -4,7 +4,6 @@ import Comment from "../misc/Comment";
 import Header from "../Header";
 import TradeInformation from "../TradeInformation";
 import FollowUser from "../resolvers/FollowUser";
-import SaveTrade from "../resolvers/SaveTrade";
 
 import { Link } from "react-router-dom";
 import { flowRight as compose } from "lodash";
@@ -75,7 +74,6 @@ const UserTrade: React.FC<Props> = (props) => {
             <Header text={tradeData.user} />
           </Link>
           <FollowUser tradeData={tradeData} userId={userVal.userId} />
-          <SaveTrade tradeData={tradeData} />
         </div>
         <div id="previous_trade_graph"></div>
         <div id="previous_trade_subinfo">
