@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CommentInputStock from "../CommentInputStock";
+import CommentInputStock from "./CommentInputStock";
 import QueryStock from "../resolvers/QueryStock";
 import CompanyStockListing from "./CompanyStockListing";
 
@@ -9,20 +9,12 @@ interface Props {
   stockId: number;
 }
 const CompanyComments: React.FC<Props> = (props) => {
-  const [comments, setComments] = useState();
-
-  function checkComments() {
-    if (comments) {
-      return <CompanyStockListing comments={comments} />;
-    } else {
-      return null;
-    }
-  }
+  const [comments, setComments] = useState([]);
 
   return (
     <div id="comment_component">
       <CommentInputStock stockId={props.stockId} />
-      {checkComments()}
+      <CompanyStockListing comments={comments} />
       <QueryStock stockId={props.stockId} />
     </div>
   );

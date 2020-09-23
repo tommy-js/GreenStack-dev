@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
-import CompanyInformationBlock from "../Homepage/CompanyInformationBlock";
+import CompanyInformationBlock from "./CompanyInformationBlock";
 import CompanyOptions from "./CompanyOptions";
-import CompanyNewsBlock from "../misc/CompanyNewsBlock.js";
+import CompanyNewsBlock from "./CompanyNewsBlock.js";
 import CompanyComments from "./CompanyComments";
 import NavBar from "../misc/NavBar";
 import { statusContext } from "../AppMain/App";
@@ -58,7 +58,6 @@ const StockPage: React.FC<Props> = (props) => {
 
   return (
     <div className="feed">
-      <NavBar />
       <CompanyInformationBlock title={props.title} price={priceData} />
       <CompanyOptions
         title={props.title}

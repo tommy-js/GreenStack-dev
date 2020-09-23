@@ -55,6 +55,9 @@ const CompanyNewsBlock = (props) => {
                 description={el.description}
                 url={el.url}
               />
+              <button className="center_button" onClick={() => loadMore()}>
+                Load more
+              </button>
             </div>
           ))}
         </div>
@@ -68,9 +71,6 @@ const CompanyNewsBlock = (props) => {
     <div id="news_component">
       <Header text="News" />
       {passData()}
-      <button className="center_button" onClick={() => loadMore()}>
-        Load more
-      </button>
     </div>
   );
 };

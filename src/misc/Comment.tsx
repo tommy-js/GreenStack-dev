@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import LikeComponent from "./LikeComponent";
+import LikeComponent from "../companies/LikeComponent";
 
 interface Props {
   user: string;

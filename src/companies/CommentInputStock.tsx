@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AddCommentToStock from "./resolvers/AddCommentToStock";
+import AddCommentToStock from "../resolvers/AddCommentToStock";
 
 interface Props {
   stockId: number;

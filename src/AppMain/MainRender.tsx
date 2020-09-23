@@ -75,22 +75,6 @@ const MainRender: React.FC = () => {
     }
   }, []);
 
-  function renderReferenceTrades() {
-    if (userVal.referenceTrades) {
-      return (
-        <div>
-          {userVal.referenceTrades.map((el: any) => (
-            <Route path={`/${el.id}`}>
-              <UserTrade tradeId={el.id} />
-            </Route>
-          ))}
-        </div>
-      );
-    } else {
-      return null;
-    }
-  }
-
   function returnTradePath() {
     if (tradeMap && userMap) {
       return (
@@ -167,7 +151,6 @@ const MainRender: React.FC = () => {
                 <ProtectionPage />
               </Route>
             </Switch>
-            {renderReferenceTrades()}
           </div>
         </div>
       );

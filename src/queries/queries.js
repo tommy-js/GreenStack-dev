@@ -299,6 +299,22 @@ const postMutation = gql`
   }
 `;
 
+const dislikeStockMutation = gql`
+  mutation($commentId: ID!, $dislikes: Int!) {
+    dislikeStock(commentId: $commentId, dislikes: $dislikes) {
+      dislikes
+    }
+  }
+`;
+
+const likeStockMutation = gql`
+  mutation($commentId: ID!, $likes: Int!) {
+    likeStock(commentId: $commentId, likes: $likes) {
+      likes
+    }
+  }
+`;
+
 const updateMoneyMutation = gql`
   mutation($userId: ID!, $money: Float!) {
     updateMoney(userId: $userId, money: $money) {
@@ -586,6 +602,8 @@ export {
   updateUserSettingsMutation,
   pushFollowerToUserMutation,
   unfollowUserMutation,
+  dislikeStockMutation,
+  likeStockMutation,
   postMutation,
   pushTradeMutation,
   blockUserMutation,

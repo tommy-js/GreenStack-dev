@@ -117,6 +117,7 @@ const CommentQuery = new GraphQLObjectType({
   name: "Comment",
   fields: () => ({
     userId: { type: GraphQLID },
+    commentId: { type: GraphQLID },
     username: { type: GraphQLString },
     timestamp: { type: GraphQLID },
     text: { type: GraphQLString },
@@ -273,6 +274,32 @@ const Mutation = new GraphQLObjectType({
           ],
         });
         return user.save();
+      },
+    },
+    likeStock: {
+      type: CommentQuery,
+      args: {
+        commentId: { type: GraphQLID },
+        likes: { type: GraphQLInt },
+      },
+      resolve(parent, args) {
+        return Comment.update(
+          { commentId: args.commentId },
+          { $set: { likes: args.likes } }
+        );
+      },
+    },
+    dislikeStock: {
+      type: CommentQuery,
+      args: {
+        commentId: { type: GraphQLID },
+        dislikes: { type: GraphQLInt },
+      },
+      resolve(parent, args) {
+        return Comment.update(
+          { commentId: args.commentId },
+          { $set: { dislikes: args.dislikes } }
+        );
       },
     },
     updateNewAccount: {
