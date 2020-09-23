@@ -1,7 +1,8 @@
 import React, { createContext, useState, useEffect } from "react";
 import ApolloClient from "apollo-boost";
+import Page404 from "./Page404";
 import { ApolloProvider } from "react-apollo";
-import { Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 import UserTrade from "../UserTrade";
 import User from "../User";
 import Login from "../login/Login";
@@ -45,13 +46,11 @@ function App() {
           <ApolloProvider client={client}>
             <Router history={browserHist}>
               <Switch>
-                <Route path="/login">
-                  <Login />
-                </Route>
-                <Route path="/information">
-                  <AppInformation />
-                </Route>
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/information" component={AppInformation} />
                 <MainRender />
+                <Route path="/404" component={Page404} />
+                <Redirect to="/404" />
               </Switch>
             </Router>
           </ApolloProvider>

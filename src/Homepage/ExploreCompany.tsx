@@ -13,7 +13,7 @@ interface Props {
 const ExploreCompany: React.FC<Props> = (props) => {
   return (
     <div className="homepage_block_component">
-      <Link to={`/stock/${props.stockId}`}>
+      <Link to={`/home/stock/${props.stockId}`}>
         <p>
           {props.title} #{props.ticker}
         </p>

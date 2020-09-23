@@ -8,7 +8,6 @@ import LeaderBoard from "../misc/LeaderBoard";
 import Homepage from "../Homepage/Homepage";
 import UserTrade from "../UserTrade";
 import NewAccountRender from "../NewAccountRender/NewAccountRender";
-import Page404 from "./Page404";
 import companyProfiles from "../companies/companyProfiles";
 import { Route, Switch } from "react-router-dom";
 import { browserHist } from "./history.js";
@@ -146,7 +145,11 @@ const MainRender: React.FC = () => {
             </Switch>
             {companyProfiles.map((el: any) => (
               <Switch>
-                <Route key={el.stockId} exact path={`/stock/${el.stockId}`}>
+                <Route
+                  key={el.stockId}
+                  exact
+                  path={`/home/stock/${el.stockId}`}
+                >
                   <StockPage
                     stockId={el.stockId}
                     title={el.title}
@@ -168,9 +171,6 @@ const MainRender: React.FC = () => {
               </Route>
             </Switch>
             {renderReferenceTrades()}
-            <Switch>
-              <Route component={Page404} />
-            </Switch>
           </div>
         </div>
       );

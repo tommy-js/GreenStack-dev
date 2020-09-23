@@ -57,7 +57,7 @@ const StockPage: React.FC<Props> = (props) => {
   }, []);
 
   return (
-    <div>
+    <div className="feed">
       <NavBar />
       <CompanyInformationBlock title={props.title} price={priceData} />
       <CompanyOptions
