@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import { BasicsPage, OptionsPage, ProtectionPage } from "../about/LearnPage";
-import Profile from "../profile/Profile";
 import StockPage from "../companies/StockPage";
 import SubscribePage from "../SubscribePage";
 import Portfolio from "../portfolio/Portfolio";
@@ -8,7 +7,6 @@ import AboutPage from "../about/AboutPage";
 import LeaderBoard from "../misc/LeaderBoard";
 import Homepage from "../Homepage/Homepage";
 import UserTrade from "../UserTrade";
-import UserProfilePlan from "../profile/UserProfilePlan";
 import NewAccountRender from "../NewAccountRender/NewAccountRender";
 import Page404 from "./Page404";
 import companyProfiles from "../companies/companyProfiles";
@@ -142,9 +140,6 @@ const MainRender: React.FC = () => {
               <Route exact path="/about">
                 <AboutPage />
               </Route>
-              <Route path="/profile">
-                <Profile passInTradeId={passInTradeId} />
-              </Route>
               <Route exact path={`/history/${tradeId}`}>
                 <UserTrade tradeId={tradeId} />
               </Route>
@@ -166,9 +161,6 @@ const MainRender: React.FC = () => {
               </Route>
               <Route path="/about/learn/protection">
                 <ProtectionPage />
-              </Route>
-              <Route path="/plan">
-                <UserProfilePlan />
               </Route>
               {renderReferenceTrades()}
               <Route component={Page404} />

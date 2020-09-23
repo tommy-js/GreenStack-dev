@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import RecentActivity from "./profile/RecentActivity";
 import { Link } from "react-router-dom";
 
 interface RecentActivity {
@@ -26,26 +25,7 @@ const UserMap: React.FC<Props> = (props) => {
 
   function recentActivityFunct() {
     if (showRecent === true) {
-      return (
-        <div>
-          {props.recentTrades.map((el) => (
-            <div>
-              <RecentActivity
-                user={props.user}
-                userId={props.userId}
-                tradeId={el.tradeId}
-                title={el.title}
-                ticker={el.ticker}
-                type={el.type}
-                shares={el.shares}
-                price={el.price}
-                gain={el.gain}
-                timestamp={el.timestamp}
-              />
-            </div>
-          ))}
-        </div>
-      );
+      return <div></div>;
     } else return null;
   }
 

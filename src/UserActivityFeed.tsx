@@ -1,5 +1,4 @@
 import React from "react";
-import ProfileActivity from "./profile/ProfileActivity";
 
 const UserActivityFeed: React.FC = () => {
   const testData = [
@@ -38,26 +37,7 @@ const UserActivityFeed: React.FC = () => {
     },
   ];
 
-  return (
-    <div id="user_activity_feed">
-      {testData.map((el) => (
-        <ProfileActivity
-          user="ty"
-          type={el.type}
-          title={el.title}
-          ticker={el.ticker}
-          tradeId={el.tradeId}
-          comment={el.comment}
-          likes={el.likes}
-          dislikes={el.dislikes}
-          shares={el.shares}
-          price={el.price}
-          gain={el.gain}
-          timestamp={el.timestamp}
-        />
-      ))}
-    </div>
-  );
+  return <div id="user_activity_feed"></div>;
 };
 
 export default UserActivityFeed;

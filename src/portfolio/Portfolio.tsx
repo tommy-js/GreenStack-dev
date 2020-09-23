@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import Header from "../Header";
 import OwnedStocks from "./OwnedStocks";
 import WatchStocks from "../WatchStocks";
-import Profile from "../profile/Profile";
 import NewTrade from "../NewTrade";
 import NavBar from "../misc/NavBar";
 import LiquidCapital from "./LiquidCapital";

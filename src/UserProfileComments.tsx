@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import ProfileComments from "./profile/ProfileComments";
 import { flowRight as compose } from "lodash";
 import { graphql } from "react-apollo";
 import { browserHist } from "./AppMain/history.js";
@@ -66,22 +65,7 @@ const UserProfileComments: React.FC<Props> = (props) => {
 
   function checkComments() {
     if (comments.length > 0) {
-      return (
-        <div>
-          {comments.map((el: any) => (
-            <ProfileComments
-              removeComment={removeComment}
-              userId={el.userId}
-              username={el.username}
-              comment={el.comment}
-              likes={el.likes}
-              dislikes={el.dislikes}
-              commentId={el.commentId}
-              tradeId={el.tradeId}
-            />
-          ))}
-        </div>
-      );
+      return <div></div>;
     } else {
       return (
         <div>

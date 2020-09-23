@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ProfileIcon from "./profile/ProfileIcon";
 import UserAccountSnippetInfo from "./UserAccountSnippetInfo";
 import UserAccountSnippetOptions from "./UserAccountSnippetOptions";
 
@@ -30,7 +29,6 @@ const UserAccountSnippet: React.FC<Props> = (props) => {
 
   return (
     <div style={{ display: hideOrShow }}>
-      <ProfileIcon />
       <UserAccountSnippetInfo user={props.user} userId={props.userId} />
       <UserAccountSnippetOptions
         blocked={props.blocked}

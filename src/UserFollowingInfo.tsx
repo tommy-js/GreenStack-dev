@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import UserAccountSnippetInfo from "./UserAccountSnippetInfo";
 import UserFollowingOptions from "./UserFollowingOptions";
-import ProfileIcon from "./profile/ProfileIcon";
 
 interface Props {
   user: string;
@@ -30,7 +29,6 @@ const UserFollowingInfo: React.FC<Props> = (props) => {
 
   return (
     <div style={{ backgroundColor: muteColor, display: followedDisp }}>
-      <ProfileIcon />
       <UserAccountSnippetInfo user={props.user} userId={props.userId} />
       <UserFollowingOptions
         changeMuted={changeMuted}

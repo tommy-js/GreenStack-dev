@@ -1,11 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import NotificationIcon from "../navigation/NotificationIcon";
-import { statusContext } from "../AppMain/App";
 
 const NavBar: React.FC = () => {
-  const { status, setStatus } = useContext(statusContext);
-
   return (
     <div className="navbar">
       <NavLink
@@ -22,13 +19,6 @@ const NavBar: React.FC = () => {
         to="/portfolio"
       >
         Portfolio
-      </NavLink>
-      <NavLink
-        className="nav_el"
-        activeClassName="active_nav_el"
-        to="/profile/followed"
-      >
-        Profile
       </NavLink>
       <NavLink className="nav_el" activeClassName="active_nav_el" to="/about">
         About
