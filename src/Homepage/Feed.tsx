@@ -123,6 +123,18 @@ const Feed: React.FC<Props> = (props) => {
     },
   ];
 
+  function updateLikes(dataId: number, likes: number, dislikes: number) {
+    let arr = testData;
+    let foundArr = testData.find((el) => el.data.dataId === dataId);
+    if (foundArr) {
+      let foundIndex = arr.indexOf(foundArr);
+      console.log(foundIndex);
+      arr[foundIndex].data.likes = likes;
+      arr[foundIndex].data.dislikes = dislikes;
+    }
+    console.log(testData);
+  }
+
   useEffect(() => {
     let arr = [];
     for (let i = 0; i < testData.length; i++) {
@@ -148,6 +160,7 @@ const Feed: React.FC<Props> = (props) => {
             dislikes={data.dislikes}
             replies={data.replies}
             id={data.dataId}
+            updateLikes={updateLikes}
           />
         </div>
       );
@@ -175,6 +188,7 @@ const Feed: React.FC<Props> = (props) => {
             dislikes={data.dislikes}
             replies={data.replies}
             id={data.dataId}
+            updateLikes={updateLikes}
           />
         </div>
       );

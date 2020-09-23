@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 interface Post {
@@ -11,6 +11,7 @@ interface Post {
   dislikes: number;
   replies: number;
   id: number;
+  updateLikes: (id: number, likes: number, dislikes: number) => void;
 }
 
 interface News {
@@ -30,6 +31,7 @@ interface Comment {
   dislikes: number;
   replies: number;
   id: number;
+  updateLikes: (id: number, likes: number, dislikes: number) => void;
 }
 
 export const PostType: React.FC<Post> = (props) => {
@@ -37,6 +39,10 @@ export const PostType: React.FC<Post> = (props) => {
   const [stateDislike] = useState(props.dislikes);
   const [likes, setLikes] = useState(props.likes);
   const [dislikes, setDislikes] = useState(props.dislikes);
+
+  useEffect(() => {
+    props.updateLikes(props.id, likes, dislikes);
+  }, [likes, dislikes]);
 
   function like() {
     let updateLike;
@@ -117,6 +123,10 @@ export const CommentType: React.FC<Comment> = (props) => {
   const [stateDislike] = useState(props.dislikes);
   const [likes, setLikes] = useState(props.likes);
   const [dislikes, setDislikes] = useState(props.dislikes);
+
+  useEffect(() => {
+    props.updateLikes(props.id, likes, dislikes);
+  }, [likes, dislikes]);
 
   function like() {
     let updateLike;
