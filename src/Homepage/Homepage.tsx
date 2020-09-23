@@ -19,7 +19,7 @@ interface Props {
 }
 
 const Homepage: React.FC<Props> = (props) => {
-  const [routePaths, setRoutePaths] = useState([{ userId: 0 }]);
+  const [routePaths, setRoutePaths] = useState([]);
   const { status, setStatus } = useContext(statusContext);
 
   useEffect(() => {
@@ -30,6 +30,8 @@ const Homepage: React.FC<Props> = (props) => {
 
   function modRoutes(route: any) {
     setRoutePaths(route);
+    console.log("Routes: ");
+    console.log(route);
   }
 
   return (
@@ -38,7 +40,9 @@ const Homepage: React.FC<Props> = (props) => {
       <div id="homepage">
         <FeedSidebar />
         <Switch>
-          <Route exact path="/home" component={Feed} />
+          <Route exact path="/home">
+            <Feed modRoutes={modRoutes} />
+          </Route>
           <Route exact path="/home/explore" component={Explore} />
           <Route exact path="/home/posts" component={UserPosts} />
           <Route exact path="/home/followers">
@@ -47,9 +51,9 @@ const Homepage: React.FC<Props> = (props) => {
           <Route exact path="/home/following">
             <Following modRoutes={modRoutes} />
           </Route>
-          {routePaths.map((el: any) => (
-            <Route exact path={`/home/user/${el.userId}`}>
-              <UserProfile userId={el.userId} />
+          {routePaths.map((userId: number) => (
+            <Route path={`/home/user/${userId}`}>
+              <UserProfile userId={userId} />
             </Route>
           ))}
         </Switch>

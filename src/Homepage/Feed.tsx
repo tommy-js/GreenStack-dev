@@ -1,11 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import FeedModal from "./FeedModal";
 import Suggested from "./Suggested";
 import Post from "./Post";
 import { PostType, NewsType, CommentType } from "./FeedTypes";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
-const Feed: React.FC = () => {
+interface Props {
+  modRoutes: (arr: any) => void;
+}
+
+const Feed: React.FC<Props> = (props) => {
   const testData = [
     {
       typeId: 0,
@@ -43,7 +47,6 @@ const Feed: React.FC = () => {
       typeId: 1,
       data: {
         headline: "Apple Announces New Chip",
-        userId: 0,
         name: "Apple",
         ticker: "AAPL",
         subtext:
@@ -121,7 +124,14 @@ const Feed: React.FC = () => {
   ];
 
   useEffect(() => {
-    testData.map((el: any) => console.log(el.data.dataId));
+    let arr = [];
+    for (let i = 0; i < testData.length; i++) {
+      if (testData[i].typeId === 0 || testData[i].typeId === 2) {
+        arr.push(testData[i].data.userId);
+      }
+    }
+    console.log(arr);
+    props.modRoutes(arr);
   }, []);
 
   function conditionalRender(id: number, data: any) {

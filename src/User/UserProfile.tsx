@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 interface Props {
   userId: number;
 }
 
 const UserProfile: React.FC<Props> = (props) => {
+  useEffect(() => {
+    console.log("rendering user profile");
+  }, []);
+
   return (
     <div className="feed">
       <h1>user</h1>
