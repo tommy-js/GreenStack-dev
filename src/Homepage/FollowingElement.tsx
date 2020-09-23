@@ -13,7 +13,7 @@ const FollowingElement: React.FC<Props> = (props) => {
   const { userVal } = useContext(userContext);
 
   return (
-    <div className="following_element">
+    <div className="homepage_block_component">
       <p className="following_element_username">
         <Link to={`/home/user/${props.userId}`}>{props.username}</Link>
       </p>

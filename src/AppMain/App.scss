@@ -1116,7 +1116,7 @@ $feed_width: 45%;
   transition: 0.2s;
 }
 
-#explore_header {
+.explore_header {
   position: relative;
   width: 90%;
   margin-left: auto;
@@ -1169,26 +1169,6 @@ $feed_width: 45%;
 #comment_section {
   position: relative;
   top: 50px;
-}
-
-.follower_element {
-  position: relative;
-  display: block;
-  border: 1px solid black;
-  border-radius: 5px;
-  margin: 10px;
-  padding: 5px;
-  box-sizing: border-box;
-}
-
-.following_element {
-  position: relative;
-  display: block;
-  border: 1px solid black;
-  border-radius: 5px;
-  margin: 10px;
-  padding: 5px;
-  box-sizing: border-box;
 }
 
 .profile_trade {
@@ -1248,17 +1228,6 @@ $feed_width: 45%;
   font-size: 18px;
 }
 
-.individual_user_post {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  box-sizing: border-box;
-  padding: 5px;
-  border: 1px solid black;
-  border-radius: 5px;
-  margin: 10px;
-}
-
 .individual_user_post_title {
   font-size: 18px;
   margin-bottom: 5px;
@@ -1286,4 +1255,23 @@ $feed_width: 45%;
   margin: 15px;
   font-size: 22px;
   color: green;
+}
+
+#portfolio_graph {
+  width: 600px;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+}
+
+.homepage_block_component {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 10px;
 }

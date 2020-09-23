@@ -10,7 +10,7 @@ interface Props {
 
 const IndividualUserPost: React.FC<Props> = (props) => {
   return (
-    <div className="individual_user_post">
+    <div className="homepage_block_component">
       <h2 className="individual_user_post_title">{props.title}</h2>
       <p className="individual_user_post_textblock">{props.text}</p>
       <div className="individual_user_post_infoblock">

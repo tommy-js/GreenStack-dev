@@ -1,5 +1,5 @@
 import React from "react";
-import ShareListing from "../ShareListing";
+import ShareListing from "./ShareListing";
 import NewTrade from "../NewTrade";
 import { Route } from "react-router-dom";
 

@@ -143,16 +143,20 @@ const MainRender: React.FC = () => {
               <Route exact path={`/history/${tradeId}`}>
                 <UserTrade tradeId={tradeId} />
               </Route>
-              {companyProfiles.map((el: any) => (
-                <Route key={el.stockId} path={`/${el.ticker}`}>
+            </Switch>
+            {companyProfiles.map((el: any) => (
+              <Switch>
+                <Route key={el.stockId} exact path={`/stock/${el.stockId}`}>
                   <StockPage
                     stockId={el.stockId}
                     title={el.title}
                     ticker={el.ticker}
                   />
                 </Route>
-              ))}
-              {returnTradePath()}
+              </Switch>
+            ))}
+            {returnTradePath()}
+            <Switch>
               <Route path="/about/learn/general">
                 <BasicsPage />
               </Route>
@@ -162,7 +166,9 @@ const MainRender: React.FC = () => {
               <Route path="/about/learn/protection">
                 <ProtectionPage />
               </Route>
-              {renderReferenceTrades()}
+            </Switch>
+            {renderReferenceTrades()}
+            <Switch>
               <Route component={Page404} />
             </Switch>
           </div>

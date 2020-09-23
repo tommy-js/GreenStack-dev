@@ -10,7 +10,7 @@ interface Props {
 
 const FollowerElement: React.FC<Props> = (props) => {
   return (
-    <div className="follower_element">
+    <div className="homepage_block_component">
       <Link to={`/home/user/${props.userId}`}>
         <p className="follower_element_username">{props.username}</p>
         <p className="follower_element_descriptor">{props.descriptor}</p>
