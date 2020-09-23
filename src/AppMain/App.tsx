@@ -39,12 +39,12 @@ function App() {
   const [status, setStatus] = useState(false);
 
   return (
-    <statusContext.Provider value={{ status, setStatus }}>
-      <userContext.Provider value={{ userVal, setUserVal }}>
-        <ApolloProvider client={client}>
-          <Router history={browserHist}>
-            <Switch>
-              <div className="App">
+    <div className="App">
+      <statusContext.Provider value={{ status, setStatus }}>
+        <userContext.Provider value={{ userVal, setUserVal }}>
+          <ApolloProvider client={client}>
+            <Router history={browserHist}>
+              <Switch>
                 <Route path="/login">
                   <Login />
                 </Route>
@@ -52,12 +52,12 @@ function App() {
                   <AppInformation />
                 </Route>
                 <MainRender />
-              </div>
-            </Switch>
-          </Router>
-        </ApolloProvider>
-      </userContext.Provider>
-    </statusContext.Provider>
+              </Switch>
+            </Router>
+          </ApolloProvider>
+        </userContext.Provider>
+      </statusContext.Provider>
+    </div>
   );
 }
 

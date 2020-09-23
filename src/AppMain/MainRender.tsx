@@ -149,7 +149,7 @@ const MainRender: React.FC = () => {
                 <UserTrade tradeId={tradeId} />
               </Route>
               {companyProfiles.map((el: any) => (
-                <Route path={`/${el.ticker}`}>
+                <Route key={el.stockId} path={`/${el.ticker}`}>
                   <StockPage
                     stockId={el.stockId}
                     title={el.title}

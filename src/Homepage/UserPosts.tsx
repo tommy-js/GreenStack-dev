@@ -30,6 +30,7 @@ const UserPosts: React.FC = () => {
           <div>
             {sortedArr.map((el: any) => (
               <IndividualUserPost
+                key={el.timestamp}
                 title={el.title}
                 text={el.text}
                 timestamp={el.timestamp}

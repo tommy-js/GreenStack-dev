@@ -10,7 +10,7 @@ const UserProfile: React.FC<Props> = (props) => {
   }, []);
 
   return (
-    <div className="feed">
+    <div key={props.userId} className="feed">
       <h1>user</h1>
       <p>{props.userId}</p>
     </div>

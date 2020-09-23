@@ -16,6 +16,7 @@ const CommentSection: React.FC<Props> = (props) => {
     <div id="comment_section">
       {props.comments.map((el: any) => (
         <IndividualComment
+          key={el.timestamp}
           username={el.username}
           text={el.text}
           timestamp={el.timestamp}

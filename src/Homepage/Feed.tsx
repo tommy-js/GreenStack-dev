@@ -187,7 +187,7 @@ const Feed: React.FC<Props> = (props) => {
       <Suggested />
       <Router>
         {testData.map((el: any) => (
-          <div className="feed_component">
+          <div key={el.data.dataId} className="feed_component">
             {conditionalRender(el.typeId, el.data)}
             <Route exact path={`/post/${el.data.dataId}`}>
               <FeedModal typeId={el.typeId} data={el.data} />

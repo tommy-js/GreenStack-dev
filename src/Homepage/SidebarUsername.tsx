@@ -6,7 +6,7 @@ const SidebarUsername: React.FC = () => {
   const { userVal } = useContext(userContext);
 
   return (
-    <Link id="sidebar_username_link_spec" to="/profile">
+    <Link id="sidebar_username_link_spec" to="/home/profile">
       <div id="sidebar_username_link">{userVal.username}</div>
     </Link>
   );

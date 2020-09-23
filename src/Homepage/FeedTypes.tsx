@@ -38,7 +38,7 @@ export const PostType: React.FC<Post> = (props) => {
       <div>
         <h2>{props.title}</h2>
         <h4>
-          Posted by <Link to={`/home/user/${props.userId}`}>{props.user}</Link>
+          Posted by {props.user}
           at {props.timestamp}
         </h4>
         <p>
@@ -69,9 +69,7 @@ export const CommentType: React.FC<Comment> = (props) => {
   return (
     <Link className="feed_link" to={`/post/${props.id}`}>
       <div>
-        <h3>
-          <Link to={`/home/user/${props.userId}`}>{props.user}</Link>
-        </h3>
+        <h3>{props.user}</h3>
         <p>{props.text}</p>
         <p>{props.timestamp}</p>
         <p>

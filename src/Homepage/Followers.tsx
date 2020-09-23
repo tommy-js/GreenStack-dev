@@ -25,6 +25,7 @@ const Followers: React.FC<Props> = (props) => {
       <div>
         {testData.map((el: any) => (
           <FollowerElement
+            key={el.userId}
             userId={el.userId}
             username={el.username}
             descriptor={el.descriptor}

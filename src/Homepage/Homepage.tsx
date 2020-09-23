@@ -7,11 +7,12 @@ import UserPosts from "./UserPosts";
 import Following from "./Following";
 import Followers from "./Followers";
 import UserProfile from "../User/UserProfile";
+import Profile from "./profile/Profile";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { userQuery } from "../queries/queries";
 import { flowRight as compose } from "lodash";
 import { graphql, useLazyQuery } from "react-apollo";
-import { statusContext } from "../AppMain/App";
+import { statusContext, userContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
 
 interface Props {
@@ -20,6 +21,7 @@ interface Props {
 
 const Homepage: React.FC<Props> = (props) => {
   const [routePaths, setRoutePaths] = useState([]);
+  const { userVal } = useContext(userContext);
   const { status, setStatus } = useContext(statusContext);
 
   useEffect(() => {
@@ -43,6 +45,9 @@ const Homepage: React.FC<Props> = (props) => {
           <Route exact path="/home">
             <Feed modRoutes={modRoutes} />
           </Route>
+          <Route exact path="/home/profile">
+            <Profile username={userVal.username} />
+          </Route>
           <Route exact path="/home/explore" component={Explore} />
           <Route exact path="/home/posts" component={UserPosts} />
           <Route exact path="/home/followers">
@@ -52,7 +57,7 @@ const Homepage: React.FC<Props> = (props) => {
             <Following modRoutes={modRoutes} />
           </Route>
           {routePaths.map((userId: number) => (
-            <Route path={`/home/user/${userId}`}>
+            <Route key={userId} path={`/home/user/${userId}`}>
               <UserProfile userId={userId} />
             </Route>
           ))}
