@@ -6,7 +6,7 @@ import Portfolio from "../portfolio/Portfolio";
 import AboutPage from "../about/AboutPage";
 import LeaderBoard from "../misc/LeaderBoard";
 import Homepage from "../Homepage/Homepage";
-import UserTrade from "../UserTrade";
+import UserTrade from "../Homepage/UserTrade";
 import NewAccountRender from "../NewAccountRender/NewAccountRender";
 import companyProfiles from "../companies/companyProfiles";
 import { Route, Switch } from "react-router-dom";
@@ -138,9 +138,6 @@ const MainRender: React.FC = () => {
               </Route>
               <Route exact path="/about">
                 <AboutPage />
-              </Route>
-              <Route exact path={`/history/${tradeId}`}>
-                <UserTrade tradeId={tradeId} />
               </Route>
             </Switch>
             {companyProfiles.map((el: any) => (

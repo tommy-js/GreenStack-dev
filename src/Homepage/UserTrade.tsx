@@ -1,16 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
-import { userContext } from "./AppMain/App";
-import Comment from "./misc/Comment";
-import TickerHeader from "./TickerHeader";
-import Header from "./Header";
-import TradeInformation from "./TradeInformation";
-import FollowUser from "./resolvers/FollowUser";
-import SaveTrade from "./resolvers/SaveTrade";
+import { userContext } from "../AppMain/App";
+import Comment from "../misc/Comment";
+import Header from "../Header";
+import TradeInformation from "../TradeInformation";
+import FollowUser from "../resolvers/FollowUser";
+import SaveTrade from "../resolvers/SaveTrade";
 
 import { Link } from "react-router-dom";
 import { flowRight as compose } from "lodash";
 import { graphql, useLazyQuery } from "react-apollo";
-import { queryTradeQuery } from "./queries/queries.js";
+import { queryTradeQuery } from "../queries/queries.js";
 
 interface Props {
   tradeId: number;
@@ -72,11 +71,6 @@ const UserTrade: React.FC<Props> = (props) => {
     return (
       <div id="previous_trade">
         <div id="previous_trade_title">
-          <TickerHeader
-            title={tradeData.title}
-            ticker={tradeData.ticker}
-            gain={tradeData.gain}
-          />
           <Link to={`/user/${tradeData.userId}`}>
             <Header text={tradeData.user} />
           </Link>

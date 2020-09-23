@@ -4,7 +4,21 @@ import { useLazyQuery } from "react-apollo";
 import { queryPosts } from "../queries/queries";
 import { userContext } from "../AppMain/App";
 
-const UserPosts: React.FC = () => {
+interface Props {
+  modRoutes: (arr: Posts[]) => void;
+}
+
+interface Posts {
+  key: number;
+  postId: number;
+  title: string;
+  text: string;
+  timestamp: number;
+  likes: number;
+  dislikes: number;
+}
+
+const UserPosts: React.FC<Props> = (props) => {
   const [sortedArr, setSortedArr] = useState();
   const [callPosts, { loading, data }] = useLazyQuery(queryPosts);
   const { userVal } = useContext(userContext);
@@ -19,6 +33,7 @@ const UserPosts: React.FC = () => {
         return b.timestamp - a.timestamp;
       });
       setSortedArr(arr);
+      props.modRoutes(arr);
     }
   }, [data]);
 
@@ -28,9 +43,10 @@ const UserPosts: React.FC = () => {
         <div>
           <h2 className="list_header">Your Posts</h2>
           <div>
-            {sortedArr.map((el: any) => (
+            {sortedArr.map((el: Posts) => (
               <IndividualUserPost
                 key={el.timestamp}
+                postId={el.postId}
                 title={el.title}
                 text={el.text}
                 timestamp={el.timestamp}

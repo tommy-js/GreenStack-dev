@@ -14,9 +14,9 @@ const FollowingElement: React.FC<Props> = (props) => {
 
   return (
     <div className="homepage_block_component">
-      <p className="following_element_username">
-        <Link to={`/home/user/${props.userId}`}>{props.username}</Link>
-      </p>
+      <Link className="block_link" to={`/home/user/${props.userId}`}>
+        <p className="element_username">{props.username}</p>
+      </Link>
       <p className="following_element_descriptor">{props.descriptor}</p>
       <UnfollowUser userId={userVal.userId} followerId={props.userId} />
     </div>

@@ -8,6 +8,7 @@ import Following from "./Following";
 import Followers from "./Followers";
 import UserProfile from "../User/UserProfile";
 import Profile from "./profile/Profile";
+import UserTrade from "./UserTrade";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { userQuery } from "../queries/queries";
 import { flowRight as compose } from "lodash";
@@ -20,7 +21,9 @@ interface Props {
 }
 
 const Homepage: React.FC<Props> = (props) => {
-  const [routePaths, setRoutePaths] = useState([]);
+  const [userRoutePaths, setUserRoutePaths] = useState([]);
+  const [tradeRoutePaths, setTradeRoutePaths] = useState([]);
+
   const { userVal } = useContext(userContext);
   const { status, setStatus } = useContext(statusContext);
 
@@ -31,9 +34,13 @@ const Homepage: React.FC<Props> = (props) => {
   }, []);
 
   function modRoutes(route: any) {
-    setRoutePaths(route);
+    setUserRoutePaths(route);
     console.log("Routes: ");
     console.log(route);
+  }
+
+  function modTradeRoutes(route: any) {
+    setTradeRoutePaths(route);
   }
 
   return (
@@ -49,16 +56,23 @@ const Homepage: React.FC<Props> = (props) => {
             <Profile username={userVal.username} />
           </Route>
           <Route exact path="/home/explore" component={Explore} />
-          <Route exact path="/home/posts" component={UserPosts} />
+          <Route exact path="/home/posts">
+            <UserPosts modRoutes={modTradeRoutes} />
+          </Route>
           <Route exact path="/home/followers">
             <Followers modRoutes={modRoutes} />
           </Route>
           <Route exact path="/home/following">
             <Following modRoutes={modRoutes} />
           </Route>
-          {routePaths.map((userId: number) => (
+          {userRoutePaths.map((userId: number) => (
             <Route key={userId} path={`/home/user/${userId}`}>
               <UserProfile userId={userId} />
+            </Route>
+          ))}
+          {tradeRoutePaths.map((tradeId: number) => (
+            <Route key={tradeId} path={`/home/post/${tradeId}`}>
+              <UserTrade tradeId={tradeId} />
             </Route>
           ))}
         </Switch>

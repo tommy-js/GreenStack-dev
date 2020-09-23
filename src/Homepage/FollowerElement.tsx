@@ -11,10 +11,10 @@ interface Props {
 const FollowerElement: React.FC<Props> = (props) => {
   return (
     <div className="homepage_block_component">
-      <Link to={`/home/user/${props.userId}`}>
-        <p className="follower_element_username">{props.username}</p>
-        <p className="follower_element_descriptor">{props.descriptor}</p>
+      <Link className="block_link" to={`/home/user/${props.userId}`}>
+        <p className="element_username">{props.username}</p>
       </Link>
+      <p className="follower_element_descriptor">{props.descriptor}</p>
       <BlockUser followerId={props.userId} />
     </div>
   );

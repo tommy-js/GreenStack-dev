@@ -3,7 +3,6 @@ import ApolloClient from "apollo-boost";
 import Page404 from "./Page404";
 import { ApolloProvider } from "react-apollo";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
-import UserTrade from "../UserTrade";
 import User from "../User";
 import Login from "../login/Login";
 import { browserHist } from "./history.js";
