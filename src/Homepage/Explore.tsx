@@ -7,7 +7,7 @@ const Explore: React.FC = () => {
     {
       dataId: 0,
       data: {
-        id: 0,
+        stockId: 0,
         title: "Apple",
         ticker: "AAPL",
         sector: "Technology",
@@ -96,6 +96,7 @@ const Explore: React.FC = () => {
       return (
         <div>
           <ExploreStock
+            stockId={data.stockId}
             title={data.title}
             ticker={data.ticker}
             sector={data.sector}
@@ -108,6 +109,7 @@ const Explore: React.FC = () => {
       return (
         <div>
           <ExploreUser
+            id={data.id}
             username={data.username}
             description={data.description}
           />

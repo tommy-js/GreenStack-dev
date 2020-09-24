@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface Stock {
+  stockId: number;
   title: string;
   ticker: string;
   sector: string;
@@ -9,6 +11,7 @@ interface Stock {
 }
 
 interface User {
+  id: number;
   username: string;
   description: string;
 }
@@ -16,13 +19,15 @@ interface User {
 export const ExploreStock: React.FC<Stock> = (props) => {
   return (
     <div className="explore_component">
-      <p>
-        {props.title} #{props.ticker}
-      </p>
-      <p>{props.sector}</p>
-      <p>
-        price: {props.price}, marketcap: {props.marketcap}
-      </p>
+      <Link to={`/home/stock/${props.stockId}`}>
+        <p>
+          {props.title} #{props.ticker}
+        </p>
+        <p>{props.sector}</p>
+        <p>
+          price: {props.price}, marketcap: {props.marketcap}
+        </p>
+      </Link>
     </div>
   );
 };
@@ -30,8 +35,10 @@ export const ExploreStock: React.FC<Stock> = (props) => {
 export const ExploreUser: React.FC<User> = (props) => {
   return (
     <div className="explore_component">
-      <p>{props.username}</p>
-      <p>{props.description}</p>
+      <Link to={`/home/user/${props.id}`}>
+        <p>{props.username}</p>
+        <p>{props.description}</p>
+      </Link>
     </div>
   );
 };

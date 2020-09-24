@@ -7,6 +7,7 @@ interface Props {
 
 interface Keys {
   keyId: number;
+  stockId: number;
   title: string;
   ticker: string;
   price: number;
@@ -18,6 +19,7 @@ const WatchStocks: React.FC<Props> = (props) => {
       {props.stocks.map((el: Keys) => (
         <div key={el.keyId}>
           <WatchListing
+            stockId={el.stockId}
             key={el.keyId}
             title={el.title}
             ticker={el.ticker}

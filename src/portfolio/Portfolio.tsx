@@ -18,6 +18,7 @@ const Portfolio: React.FC = () => {
     {
       title: "Apple",
       ticker: "AAPL",
+      stockId: 0,
       purchasePrice: 342,
       currentPrice: 532,
       shares: 4,
@@ -27,6 +28,7 @@ const Portfolio: React.FC = () => {
 
   const [userWatch, setUserWatch] = useState([
     {
+      stockId: 0,
       title: "Apple",
       ticker: "AAPL",
       price: 532,

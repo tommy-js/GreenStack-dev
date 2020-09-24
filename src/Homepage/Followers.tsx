@@ -11,6 +11,7 @@ const Followers: React.FC<Props> = (props) => {
     { userId: 6565653, username: "fefe", descriptor: "" },
   ];
 
+  // Creates routes within the Homepage component for all the users in our Followers list
   useEffect(() => {
     let arr = [];
     for (let i = 0; i < testData.length; i++) {
@@ -21,7 +22,7 @@ const Followers: React.FC<Props> = (props) => {
 
   return (
     <div className="feed">
-      <h2 className="list_header">Your Followers</h2>
+      <h2 className="list_header">Your Followers({testData.length})</h2>
       <div>
         {testData.map((el: any) => (
           <FollowerElement
