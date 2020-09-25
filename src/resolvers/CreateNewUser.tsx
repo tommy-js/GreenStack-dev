@@ -4,6 +4,7 @@ import { flowRight as compose } from "lodash";
 import { createUserMutation, distinctUserQuery } from "../queries/queries.js";
 import { browserHist } from "../AppMain/history.js";
 import { statusContext } from "../AppMain/App";
+import { hashPass } from "../login/hashing.js";
 
 interface Props {
   username: string;
@@ -14,25 +15,34 @@ interface Props {
 
 const CreateNewUser: React.FC<Props> = (props) => {
   const { status, setStatus } = useContext(statusContext);
-  const [acceptable, setAcceptable] = useState(false);
   const [newUsername, setNewUsername] = useState(false);
   const [callUser, { loading, data }] = useLazyQuery(distinctUserQuery, {
     variables: { username: props.username },
   });
 
-  const passwordEffective = {
+  const [passwordEffective, setPasswordEffective] = useState({
     greaterThan8: false,
     lessThan64: false,
     includesSpecial: false,
     includesCapital: false,
     includesNum: false,
-  };
+  });
 
-  useEffect(() => {
-    if (acceptable === true && newUsername === true) {
+  function checkValidity() {
+    let checkBool = checkTruth(passwordEffective);
+    console.log(passwordEffective);
+    console.log("new username: " + newUsername + " checkBool: " + checkBool);
+    if (newUsername === true && checkBool === true) {
       submitButton();
     }
-  }, [acceptable]);
+  }
+
+  function checkTruth(obj: any) {
+    for (let i in obj) {
+      if (!obj[i]) return false;
+    }
+    return true;
+  }
 
   // Checks for username in the database
   useEffect(() => {
@@ -57,68 +67,51 @@ const CreateNewUser: React.FC<Props> = (props) => {
     return bool;
   }
 
-  function checkTruth(obj: any) {
-    for (let i in obj) {
-      if (!obj[i]) return false;
-    }
-    return true;
-  }
-
   useEffect(() => {
     console.log(newUsername);
-    let pass = props.password;
     callUser();
 
     let testedSpecial = /[\s~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?()\._]/g.test(
-      pass
+      props.password
     );
 
-    if (pass.length >= 8) {
-      passwordEffective.greaterThan8 = true;
+    function under64() {
+      if (props.password.length <= 64) {
+        return true;
+      } else {
+        return false;
+      }
     }
-    if (pass.length <= 64) {
-      passwordEffective.lessThan64 = true;
+
+    function greater8() {
+      if (props.password.length >= 8) {
+        return true;
+      } else {
+        return false;
+      }
     }
 
-    let testedNum = /[0-9]/g.test(pass);
+    let test64 = under64();
+    let test8 = greater8();
 
-    passwordEffective.includesSpecial = testedSpecial;
-    passwordEffective.includesNum = testedNum;
-    passwordEffective.includesCapital = testedCap(pass);
+    let testedNum = /[0-9]/g.test(props.password);
+    let testedCapital = testedCap(props.password);
 
-    console.log(passwordEffective);
+    setPasswordEffective({
+      greaterThan8: test8,
+      lessThan64: test64,
+      includesCapital: testedCapital,
+      includesSpecial: testedSpecial,
+      includesNum: testedNum,
+    });
+
+    // console.log(passwordEffective);
     props.passObjectUp(passwordEffective);
-
-    setAcceptable(checkTruth(passwordEffective));
   }, [props.password]);
 
-  // function checkUser(pass: string) {
-  // console.log(newUsername);
-  // callUser();
-  //
-  // let testedSpecial = /[\s~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?()\._]/g.test(
-  //   pass
-  // );
-  //
-  // if (pass.length >= 8) {
-  //   passwordEffective.greaterThan8 = true;
-  // }
-  // if (pass.length <= 64) {
-  //   passwordEffective.lessThan64 = true;
-  // }
-  //
-  // let testedNum = /[0-9]/g.test(pass);
-  //
-  // passwordEffective.includesSpecial = testedSpecial;
-  // passwordEffective.includesNum = testedNum;
-  // passwordEffective.includesCapital = testedCap(pass);
-  //
-  // setAcceptable(checkTruth(passwordEffective));
-
-  //   return null;
-  // }
-
   function submitButton() {
+    let test = hashPass(props.password);
+    console.log(test);
     // let userId = Math.floor(Math.random() * 1000000);
     // let id = Math.floor(Math.random() * 1000000);
     // let date = new Date();
@@ -153,7 +146,7 @@ const CreateNewUser: React.FC<Props> = (props) => {
     //   });
   }
 
-  return <button onClick={() => submitButton()}>Create Account</button>;
+  return <button onClick={() => checkValidity()}>Create Account</button>;
 };
 
 export default compose(

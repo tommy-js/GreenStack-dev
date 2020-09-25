@@ -32,6 +32,7 @@ const CreateAccountPage: React.FC<Props> = (props) => {
   }
 
   function setObject(obj: any) {
+    console.log(obj);
     setPassValidation({
       char8: obj.greaterThan8,
       char64: obj.lessThan64,
