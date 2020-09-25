@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { createUserMutation } from "../queries/queries.js";
@@ -13,6 +13,7 @@ interface Props {
 
 const CreateNewUser: React.FC<Props> = (props) => {
   const { status, setStatus } = useContext(statusContext);
+  const [acceptable, setAcceptable] = useState(false);
 
   const passwordEffective = {
     greaterThan8: false,
@@ -22,16 +23,27 @@ const CreateNewUser: React.FC<Props> = (props) => {
     includesNum: false,
   };
 
+  useEffect(() => {
+    if (acceptable === true) {
+      submitButton();
+    }
+  }, [acceptable]);
+
   function testedCap(pass: string) {
     let password = pass.toLowerCase();
     let checkPass = pass;
-    let bool;
+    let bool = false;
     if (password !== checkPass) {
       bool = true;
-    } else if (password === checkPass) {
-      bool = false;
     }
     return bool;
+  }
+
+  function checkTruth(obj: any) {
+    for (let i in obj) {
+      if (!obj[i]) return false;
+    }
+    return true;
   }
 
   function checkUser(pass: string) {
@@ -39,14 +51,20 @@ const CreateNewUser: React.FC<Props> = (props) => {
       pass
     );
 
-    if (testedSpecial === true) {
-      passwordEffective.includesSpecial = true;
+    if (pass.length >= 8) {
+      passwordEffective.greaterThan8 = true;
     }
-    if (testedCap(pass) === true) {
-      passwordEffective.includesCapital = true;
+    if (pass.length <= 64) {
+      passwordEffective.lessThan64 = true;
     }
 
-    console.log(passwordEffective);
+    let testedNum = /[0-9]/g.test(pass);
+
+    passwordEffective.includesSpecial = testedSpecial;
+    passwordEffective.includesNum = testedNum;
+    passwordEffective.includesCapital = testedCap(pass);
+
+    setAcceptable(checkTruth(passwordEffective));
 
     return null;
   }
