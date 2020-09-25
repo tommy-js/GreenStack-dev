@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
-import { graphql } from "react-apollo";
+import { graphql, useLazyQuery } from "react-apollo";
 import { flowRight as compose } from "lodash";
-import { createUserMutation } from "../queries/queries.js";
+import { createUserMutation, distinctUserQuery } from "../queries/queries.js";
 import { browserHist } from "../AppMain/history.js";
 import { statusContext } from "../AppMain/App";
 
@@ -14,6 +14,10 @@ interface Props {
 const CreateNewUser: React.FC<Props> = (props) => {
   const { status, setStatus } = useContext(statusContext);
   const [acceptable, setAcceptable] = useState(false);
+  const [newUsername, setNewUsername] = useState(false);
+  const [callUser, { loading, data }] = useLazyQuery(distinctUserQuery, {
+    variables: { username: props.username },
+  });
 
   const passwordEffective = {
     greaterThan8: false,
@@ -24,11 +28,24 @@ const CreateNewUser: React.FC<Props> = (props) => {
   };
 
   useEffect(() => {
-    if (acceptable === true) {
+    if (acceptable === true && newUsername === true) {
       submitButton();
     }
   }, [acceptable]);
 
+  // Checks for username in the database
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+      if (data.specUser) {
+        setNewUsername(false);
+      } else {
+        setNewUsername(true);
+      }
+    }
+  }, [data]);
+
+  // Checks for capitalization in the provided password
   function testedCap(pass: string) {
     let password = pass.toLowerCase();
     let checkPass = pass;
@@ -47,6 +64,9 @@ const CreateNewUser: React.FC<Props> = (props) => {
   }
 
   function checkUser(pass: string) {
+    console.log(newUsername);
+    callUser();
+
     let testedSpecial = /[\s~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?()\._]/g.test(
       pass
     );

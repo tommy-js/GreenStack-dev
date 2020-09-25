@@ -470,6 +470,15 @@ const userLoginQuery = gql`
   }
 `;
 
+const distinctUserQuery = gql`
+  query($username: String!) {
+    specUser(username: $username) {
+      username
+      userId
+    }
+  }
+`;
+
 const userQuery = gql`
   query($userId: ID!) {
     user(userId: $userId) {
@@ -612,6 +621,7 @@ export {
   pushSharesToUserMutation,
   pushStockToWatchlistMutation,
   removeStockFromWatchlistMutation,
+  distinctUserQuery,
   userQuery,
   stockQuery,
   userLoginQuery,
