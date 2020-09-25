@@ -14,6 +14,43 @@ interface Props {
 const CreateNewUser: React.FC<Props> = (props) => {
   const { status, setStatus } = useContext(statusContext);
 
+  const passwordEffective = {
+    greaterThan8: false,
+    lessThan64: false,
+    includesSpecial: false,
+    includesCapital: false,
+    includesNum: false,
+  };
+
+  function testedCap(pass: string) {
+    let password = pass.toLowerCase();
+    let checkPass = pass;
+    let bool;
+    if (password !== checkPass) {
+      bool = true;
+    } else if (password === checkPass) {
+      bool = false;
+    }
+    return bool;
+  }
+
+  function checkUser(pass: string) {
+    let testedSpecial = /[\s~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?()\._]/g.test(
+      pass
+    );
+
+    if (testedSpecial === true) {
+      passwordEffective.includesSpecial = true;
+    }
+    if (testedCap(pass) === true) {
+      passwordEffective.includesCapital = true;
+    }
+
+    console.log(passwordEffective);
+
+    return null;
+  }
+
   function submitButton() {
     let userId = Math.floor(Math.random() * 1000000);
     let id = Math.floor(Math.random() * 1000000);
@@ -49,7 +86,9 @@ const CreateNewUser: React.FC<Props> = (props) => {
       });
   }
 
-  return <button onClick={() => submitButton()}>Create Account</button>;
+  return (
+    <button onClick={() => checkUser(props.password)}>Create Account</button>
+  );
 };
 
 export default compose(

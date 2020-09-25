@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import LoginHeader from "./LoginHeader";
-import InputContainer from "../misc/InputContainer";
+import UserNameInput from "./UserNameInput";
+import PasswordInput from "./PasswordInput";
 import CreateNewUser from "../resolvers/CreateNewUser";
 
 const CreateAccountPage: React.FC = () => {
@@ -18,8 +19,16 @@ const CreateAccountPage: React.FC = () => {
   return (
     <div>
       <LoginHeader text="Create Account" />
-      <InputContainer passString={passUsername} placeholder="Username" />
-      <InputContainer passString={passPassword} placeholder="Password" />
+      <UserNameInput
+        username={username}
+        passString={passUsername}
+        placeholder="Username"
+      />
+      <PasswordInput
+        password={password}
+        passString={passPassword}
+        placeholder="Password"
+      />
       <CreateNewUser username={username} password={password} />
     </div>
   );
