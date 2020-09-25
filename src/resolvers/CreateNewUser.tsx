@@ -8,6 +8,7 @@ import { statusContext } from "../AppMain/App";
 interface Props {
   username: string;
   password: string;
+  passObjectUp: (passwordEffective: any) => void;
   createUserMutation: (variables: object) => any;
 }
 
@@ -63,8 +64,9 @@ const CreateNewUser: React.FC<Props> = (props) => {
     return true;
   }
 
-  function checkUser(pass: string) {
+  useEffect(() => {
     console.log(newUsername);
+    let pass = props.password;
     callUser();
 
     let testedSpecial = /[\s~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?()\._]/g.test(
@@ -84,49 +86,74 @@ const CreateNewUser: React.FC<Props> = (props) => {
     passwordEffective.includesNum = testedNum;
     passwordEffective.includesCapital = testedCap(pass);
 
-    setAcceptable(checkTruth(passwordEffective));
+    console.log(passwordEffective);
+    props.passObjectUp(passwordEffective);
 
-    return null;
-  }
+    setAcceptable(checkTruth(passwordEffective));
+  }, [props.password]);
+
+  // function checkUser(pass: string) {
+  // console.log(newUsername);
+  // callUser();
+  //
+  // let testedSpecial = /[\s~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?()\._]/g.test(
+  //   pass
+  // );
+  //
+  // if (pass.length >= 8) {
+  //   passwordEffective.greaterThan8 = true;
+  // }
+  // if (pass.length <= 64) {
+  //   passwordEffective.lessThan64 = true;
+  // }
+  //
+  // let testedNum = /[0-9]/g.test(pass);
+  //
+  // passwordEffective.includesSpecial = testedSpecial;
+  // passwordEffective.includesNum = testedNum;
+  // passwordEffective.includesCapital = testedCap(pass);
+  //
+  // setAcceptable(checkTruth(passwordEffective));
+
+  //   return null;
+  // }
 
   function submitButton() {
-    let userId = Math.floor(Math.random() * 1000000);
-    let id = Math.floor(Math.random() * 1000000);
-    let date = new Date();
-    let currentTime = Math.floor(date.getTime() / 1000);
-    let notif = "Welcome to TIKR! Make your first trade...";
-    props
-      .createUserMutation({
-        variables: {
-          userId: userId,
-          username: props.username,
-          password: props.password,
-          money: 1000,
-          darkmode: false,
-          invisible: false,
-          allowCommentsOnTrades: true,
-          timestamp: currentTime,
-          id: id,
-          viewed: false,
-          content: notif,
-          prog1: Math.floor(Math.random() * 10000),
-          prog2: Math.floor(Math.random() * 10000),
-          prog3: Math.floor(Math.random() * 10000),
-        },
-      })
-      .then((res: string) => {
-        console.log("success");
-        setStatus(true);
-        browserHist.push("/");
-      })
-      .catch((res: string) => {
-        console.log("error");
-      });
+    // let userId = Math.floor(Math.random() * 1000000);
+    // let id = Math.floor(Math.random() * 1000000);
+    // let date = new Date();
+    // let currentTime = Math.floor(date.getTime() / 1000);
+    // let notif = "Welcome to TIKR! Make your first trade...";
+    // props
+    //   .createUserMutation({
+    //     variables: {
+    //       userId: userId,
+    //       username: props.username,
+    //       password: props.password,
+    //       money: 1000,
+    //       darkmode: false,
+    //       invisible: false,
+    //       allowCommentsOnTrades: true,
+    //       timestamp: currentTime,
+    //       id: id,
+    //       viewed: false,
+    //       content: notif,
+    //       prog1: Math.floor(Math.random() * 10000),
+    //       prog2: Math.floor(Math.random() * 10000),
+    //       prog3: Math.floor(Math.random() * 10000),
+    //     },
+    //   })
+    //   .then((res: string) => {
+    //     console.log("success");
+    //     setStatus(true);
+    //     browserHist.push("/");
+    //   })
+    //   .catch((res: string) => {
+    //     console.log("error");
+    //   });
   }
 
-  return (
-    <button onClick={() => checkUser(props.password)}>Create Account</button>
-  );
+  return <button onClick={() => submitButton()}>Create Account</button>;
 };
 
 export default compose(
