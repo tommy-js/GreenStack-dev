@@ -578,6 +578,7 @@ $island_green: #2bae66ff;
   margin-left: auto;
   margin-right: auto;
   top: 200px;
+  @include testing;
 }
 
 #login_page_about {
@@ -1293,4 +1294,21 @@ $feed_width: 45%;
 .element_username:hover {
   color: teal;
   transition: 0.3s;
+}
+
+#password_validation {
+  position: relative;
+  font-size: 14px;
+  top: 0;
+  width: 250px;
+  max-width: 30%;
+  float: left;
+  transition: 0.3s;
+  @include testing;
+}
+
+.password_validation_checkbox {
+  display: block;
+  margin: 5px;
+  box-sizing: border-box;
 }

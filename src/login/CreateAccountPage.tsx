@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import LoginHeader from "./LoginHeader";
+import RenderAccountLink from "./RenderAccountLink";
 import UserNameInput from "./UserNameInput";
 import PasswordInput from "./PasswordInput";
 import PasswordValidation from "./PasswordValidation";
 import CreateNewUser from "../resolvers/CreateNewUser";
 
-const CreateAccountPage: React.FC = () => {
+interface Props {
+  newAccount: boolean;
+  triggerNewAccount: () => void;
+}
+
+const CreateAccountPage: React.FC<Props> = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -37,23 +43,29 @@ const CreateAccountPage: React.FC = () => {
 
   return (
     <div>
-      <LoginHeader text="Create Account" />
-      <UserNameInput
-        username={username}
-        passString={passUsername}
-        placeholder="Username"
-      />
-      <PasswordInput
-        password={password}
-        passString={passPassword}
-        placeholder="Password"
-      />
-      <PasswordValidation {...passValidation} />
-      <CreateNewUser
-        username={username}
-        password={password}
-        passObjectUp={setObject}
-      />
+      <div id="login_forms">
+        <LoginHeader text="Create Account" />
+        <UserNameInput
+          username={username}
+          passString={passUsername}
+          placeholder="Username"
+        />
+        <PasswordInput
+          password={password}
+          passString={passPassword}
+          placeholder="Password"
+        />
+        <CreateNewUser
+          username={username}
+          password={password}
+          passObjectUp={setObject}
+        />
+        <RenderAccountLink
+          newAccount={props.newAccount}
+          triggerNewAccount={props.triggerNewAccount}
+        />
+      </div>
+      <PasswordValidation {...passValidation} password={password} />
     </div>
   );
 };

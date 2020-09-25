@@ -27,24 +27,28 @@ const Login: React.FC = () => {
   function displayBlock() {
     if (newAccount === false) {
       return (
-        <div>
-          <SigninPage />
-        </div>
-      );
-    } else return <CreateAccountPage />;
-  }
-
-  return (
-    <div id="login_page">
-      <div id="centered_login_page">
         <div id="login_forms">
-          {displayBlock()}
+          <SigninPage />
           <RenderAccountLink
             newAccount={newAccount}
             triggerNewAccount={triggerNewAccount}
           />
         </div>
-      </div>
+      );
+    } else
+      return (
+        <div>
+          <CreateAccountPage
+            newAccount={newAccount}
+            triggerNewAccount={triggerNewAccount}
+          />
+        </div>
+      );
+  }
+
+  return (
+    <div id="login_page">
+      <div id="centered_login_page">{displayBlock()}</div>
       <div id="login_page_about">
         <h3>What is Stockly?</h3>
         <h4>Join a community of memers, learners, traders, and educators.</h4>
