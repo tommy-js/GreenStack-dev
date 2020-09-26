@@ -8,6 +8,8 @@ import { comparePass } from "../login/hashing.js";
 interface Props {
   username: string;
   password: string;
+  renderPasswordNull: () => void;
+  renderUsernameNull: () => void;
 }
 
 const QueryUserLogin: React.FC<Props> = (props) => {
@@ -30,9 +32,21 @@ const QueryUserLogin: React.FC<Props> = (props) => {
     });
   }, [props.password]);
 
+  function checkValid() {
+    if (props.username.length > 0 && props.password.length > 0) {
+      logIn();
+    }
+    if (props.username.length === 0) {
+      props.renderUsernameNull();
+    }
+    if (props.password.length === 0) {
+      props.renderPasswordNull();
+    }
+  }
+
   function logIn() {
     if (dataCheckUser) {
-      if (dataCheckUser.userLogin.hash) {
+      if (dataCheckUser.userLogin) {
         let compared = comparePass(
           props.password,
           dataCheckUser.userLogin.hash
@@ -80,7 +94,7 @@ const QueryUserLogin: React.FC<Props> = (props) => {
     }
   }
 
-  return <button onClick={() => logIn()}>Sign In</button>;
+  return <button onClick={() => checkValid()}>Sign In</button>;
 };
 
 export default QueryUserLogin;
