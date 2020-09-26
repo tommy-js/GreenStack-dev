@@ -110,40 +110,40 @@ const CreateNewUser: React.FC<Props> = (props) => {
   }, [props.password]);
 
   function submitButton() {
-    let test = hashPass(props.password);
-    console.log(test);
-    // let userId = Math.floor(Math.random() * 1000000);
-    // let id = Math.floor(Math.random() * 1000000);
-    // let date = new Date();
-    // let currentTime = Math.floor(date.getTime() / 1000);
-    // let notif = "Welcome to TIKR! Make your first trade...";
-    // props
-    //   .createUserMutation({
-    //     variables: {
-    //       userId: userId,
-    //       username: props.username,
-    //       password: props.password,
-    //       money: 1000,
-    //       darkmode: false,
-    //       invisible: false,
-    //       allowCommentsOnTrades: true,
-    //       timestamp: currentTime,
-    //       id: id,
-    //       viewed: false,
-    //       content: notif,
-    //       prog1: Math.floor(Math.random() * 10000),
-    //       prog2: Math.floor(Math.random() * 10000),
-    //       prog3: Math.floor(Math.random() * 10000),
-    //     },
-    //   })
-    //   .then((res: string) => {
-    //     console.log("success");
-    //     setStatus(true);
-    //     browserHist.push("/");
-    //   })
-    //   .catch((res: string) => {
-    //     console.log("error");
-    //   });
+    let calcHash = hashPass(props.password);
+    let userId = Math.floor(Math.random() * 1000000);
+    let id = Math.floor(Math.random() * 1000000);
+    let date = new Date();
+    let currentTime = Math.floor(date.getTime() / 1000);
+    let notif = "Welcome to TIKR! Make your first trade...";
+    props
+      .createUserMutation({
+        variables: {
+          userId: userId,
+          username: props.username,
+          hash: calcHash.hash,
+          salt: calcHash.salt,
+          money: 1000,
+          darkmode: false,
+          invisible: false,
+          allowCommentsOnTrades: true,
+          timestamp: currentTime,
+          id: id,
+          viewed: false,
+          content: notif,
+          prog1: Math.floor(Math.random() * 10000),
+          prog2: Math.floor(Math.random() * 10000),
+          prog3: Math.floor(Math.random() * 10000),
+        },
+      })
+      .then((res: string) => {
+        console.log("success");
+        setStatus(true);
+        browserHist.push("/");
+      })
+      .catch((res: string) => {
+        console.log("error");
+      });
   }
 
   return <button onClick={() => checkValidity()}>Create Account</button>;

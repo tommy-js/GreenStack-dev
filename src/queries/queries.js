@@ -5,7 +5,8 @@ const createUserMutation = gql`
   mutation(
     $userId: ID!
     $username: String!
-    $password: String!
+    $hash: String!
+    $salt: String!
     $money: Float!
     $darkmode: Boolean!
     $invisible: Boolean!
@@ -21,7 +22,8 @@ const createUserMutation = gql`
     createUser(
       userId: $userId
       username: $username
-      password: $password
+      hash: $hash
+      salt: $salt
       money: $money
       darkmode: $darkmode
       invisible: $invisible
@@ -36,7 +38,6 @@ const createUserMutation = gql`
     ) {
       userId
       username
-      password
       money
     }
   }
@@ -380,92 +381,9 @@ const addCommentStockMutation = gql`
 const userLoginQuery = gql`
   query($username: String!) {
     userLogin(username: $username) {
-      userId
       username
-      password
-      membership
-      money
-      darkmode
-      newaccount
-      invisible
-      allowCommentsOnTrades
-      profileImage
-      followed {
-        followerId
-        followerName
-      }
-      followers {
-        id
-        followerId
-        followerName
-        blocked
-      }
-      stocks {
-        stockId
-        ticker
-        name
-        about
-        creation
-        prediction
-        comments {
-          userId
-          username
-          timestamp
-          text
-          likes
-          dislikes
-        }
-      }
-      shares {
-        stockId
-        shareId
-        shares
-      }
-      trades {
-        price
-        tradeId
-        timestamp
-        title
-        ticker
-        shares
-        gain
-      }
-      referenceTrades {
-        tradeAuthorID
-        tradeAuthorUsername
-        price
-        tradeId
-        timestamp
-        title
-        ticker
-        shares
-        gain
-      }
-      comments {
-        userId
-        username
-        timestamp
-        text
-        likes
-        dislikes
-      }
-      watchlist {
-        stockId
-        title
-        ticker
-        timestamp
-      }
-      notifications {
-        content
-        timestamp
-        id
-        viewed
-      }
-      progress {
-        title
-        id
-        percent
-      }
+      userId
+      hash
     }
   }
 `;
@@ -484,7 +402,6 @@ const userQuery = gql`
     user(userId: $userId) {
       userId
       username
-      password
       money
       newaccount
       darkmode

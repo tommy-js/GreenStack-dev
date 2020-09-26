@@ -28,7 +28,8 @@ const UserQuery = new GraphQLObjectType({
   fields: () => ({
     userId: { type: GraphQLID },
     username: { type: GraphQLString },
-    password: { type: GraphQLString },
+    hash: { type: GraphQLString },
+    salt: { type: GraphQLString },
     profileImage: { type: GraphQLString },
     membership: { type: GraphQLBoolean },
     money: { type: GraphQLFloat },
@@ -197,7 +198,9 @@ const RootQuery = new GraphQLObjectType({
         username: { type: GraphQLString },
       },
       resolve(parent, args) {
-        return User.find({ username: args.username });
+        return User.findOne({
+          username: args.username,
+        });
       },
     },
     getTrade: {
@@ -229,7 +232,8 @@ const Mutation = new GraphQLObjectType({
       args: {
         userId: { type: GraphQLID },
         username: { type: GraphQLString },
-        password: { type: GraphQLString },
+        hash: { type: GraphQLString },
+        salt: { type: GraphQLString },
         money: { type: GraphQLFloat },
         darkmode: { type: GraphQLBoolean },
         invisible: { type: GraphQLBoolean },
@@ -248,7 +252,8 @@ const Mutation = new GraphQLObjectType({
         let user = new User({
           userId: args.userId,
           username: args.username,
-          password: args.password,
+          hash: args.hash,
+          salt: args.salt,
           money: args.money,
           membership: false,
           newaccount: true,
