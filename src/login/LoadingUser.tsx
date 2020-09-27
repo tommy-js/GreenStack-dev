@@ -3,7 +3,10 @@ import React from "react";
 const LoadingUser: React.FC = () => {
   return (
     <div>
-      <h1>Loading User...</h1>
+      <div id="spinning_dial_container">
+        <div id="spinning_dial"></div>
+      </div>
+      <h2 id="loading_user">Loading...</h2>
     </div>
   );
 };

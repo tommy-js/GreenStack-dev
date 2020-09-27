@@ -4,7 +4,12 @@ import InputContainer from "../misc/InputContainer";
 import QueryUserLogin from "../resolvers/QueryUserLogin";
 import HiddenVisual from "./HiddenVisual";
 
-const SigninPage: React.FC = () => {
+interface Props {
+  loadingUser: () => void;
+  passUserAuth: (id: number) => void;
+}
+
+const SigninPage: React.FC<Props> = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernameOpac, setUsernameOpac] = useState(0);
@@ -26,6 +31,10 @@ const SigninPage: React.FC = () => {
     setUsernameOpac(1);
   }
 
+  function loadingUser() {
+    props.loadingUser();
+  }
+
   return (
     <div>
       <LoginHeader text="Login" />
@@ -34,8 +43,10 @@ const SigninPage: React.FC = () => {
       <QueryUserLogin
         username={username}
         password={password}
+        loadingUser={loadingUser}
         renderUsernameNull={renderUsernameNull}
         renderPasswordNull={renderPasswordNull}
+        passUserAuth={props.passUserAuth}
       />
       <HiddenVisual text="You must enter a username" opac={usernameOpac} />
       <HiddenVisual text="You must enter a password" opac={passwordOpac} />
