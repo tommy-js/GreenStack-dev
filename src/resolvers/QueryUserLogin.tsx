@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useLazyQuery } from "react-apollo";
 import { userLoginQuery, userQuery } from "../queries/queries";
 import { statusContext, userContext } from "../AppMain/App";
@@ -13,6 +13,8 @@ interface Props {
 }
 
 const QueryUserLogin: React.FC<Props> = (props) => {
+  const [delay, setDelay] = useState(0);
+  const [incorrectAnswers, setIncorrectAnswers] = useState(0);
   const { status, setStatus } = useContext(statusContext);
   const { userVal, setUserVal } = useContext(userContext);
   const [
@@ -25,11 +27,14 @@ const QueryUserLogin: React.FC<Props> = (props) => {
   ] = useLazyQuery(userQuery);
 
   useEffect(() => {
-    getUser({
-      variables: {
-        username: props.username,
-      },
-    });
+    setTimeout(() => {
+      getUser({
+        variables: {
+          username: props.username,
+        },
+      });
+      console.log("checked for user at: " + delay);
+    }, delay);
   }, [props.password]);
 
   function checkValid() {
@@ -57,6 +62,12 @@ const QueryUserLogin: React.FC<Props> = (props) => {
               userId: dataCheckUser.userLogin.userId,
             },
           });
+        } else if (compared === false) {
+          let currentIncorrect = incorrectAnswers + 1;
+          setDelay(2 ** currentIncorrect * 1000);
+          setIncorrectAnswers(currentIncorrect);
+          console.log("delay: " + delay);
+          console.log("Current incorrect: " + incorrectAnswers);
         }
       }
     }

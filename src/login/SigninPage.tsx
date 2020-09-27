@@ -30,8 +30,6 @@ const SigninPage: React.FC = () => {
     <div>
       <LoginHeader text="Login" />
       <InputContainer passString={passUsername} placeholder="Username" />
-      <HiddenVisual text="You must enter a username" opac={usernameOpac} />
-      <HiddenVisual text="You must enter a password" opac={passwordOpac} />
       <InputContainer passString={passPassword} placeholder="Password" />
       <QueryUserLogin
         username={username}
@@ -39,6 +37,8 @@ const SigninPage: React.FC = () => {
         renderUsernameNull={renderUsernameNull}
         renderPasswordNull={renderPasswordNull}
       />
+      <HiddenVisual text="You must enter a username" opac={usernameOpac} />
+      <HiddenVisual text="You must enter a password" opac={passwordOpac} />
     </div>
   );
 };

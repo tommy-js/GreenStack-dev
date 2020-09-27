@@ -6,7 +6,11 @@ interface Props {
 }
 
 const HiddenVisual: React.FC<Props> = (props) => {
-  return <p style={{ opacity: props.opac }}>{props.text}</p>;
+  return (
+    <p className="hidden_visual" style={{ opacity: props.opac }}>
+      {props.text}
+    </p>
+  );
 };
 
 export default HiddenVisual;
