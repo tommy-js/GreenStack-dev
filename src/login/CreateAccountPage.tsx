@@ -5,6 +5,7 @@ import UserNameInput from "./UserNameInput";
 import PasswordInput from "./PasswordInput";
 import PasswordValidation from "./PasswordValidation";
 import CreateNewUser from "../resolvers/CreateNewUser";
+import UserAlreadyExists from "./UserAlreadyExists";
 
 interface Props {
   newAccount: boolean;
@@ -14,6 +15,7 @@ interface Props {
 const CreateAccountPage: React.FC<Props> = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [usernameAlreadyExists, setUsernameAlreadyExists] = useState(false);
 
   const [passValidation, setPassValidation] = useState({
     char8: false,
@@ -22,6 +24,14 @@ const CreateAccountPage: React.FC<Props> = (props) => {
     charCapital: false,
     charNum: false,
   });
+
+  function alreadyExists(prop: boolean) {
+    if (prop === true) {
+      setUsernameAlreadyExists(true);
+    } else {
+      setUsernameAlreadyExists(false);
+    }
+  }
 
   function passUsername(val: string) {
     setUsername(val);
@@ -51,6 +61,7 @@ const CreateAccountPage: React.FC<Props> = (props) => {
           passString={passUsername}
           placeholder="Username"
         />
+        <UserAlreadyExists visible={usernameAlreadyExists} />
         <PasswordInput
           password={password}
           passString={passPassword}
@@ -60,6 +71,7 @@ const CreateAccountPage: React.FC<Props> = (props) => {
           username={username}
           password={password}
           passObjectUp={setObject}
+          alreadyExists={alreadyExists}
         />
         <RenderAccountLink
           newAccount={props.newAccount}

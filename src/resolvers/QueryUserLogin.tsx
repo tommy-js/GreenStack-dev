@@ -50,27 +50,29 @@ const QueryUserLogin: React.FC<Props> = (props) => {
   }
 
   function logIn() {
-    if (dataCheckUser) {
-      if (dataCheckUser.userLogin) {
-        let compared = comparePass(
-          props.password,
-          dataCheckUser.userLogin.hash
-        );
-        if (compared === true) {
-          logUserIn({
-            variables: {
-              userId: dataCheckUser.userLogin.userId,
-            },
-          });
-        } else if (compared === false) {
-          let currentIncorrect = incorrectAnswers + 1;
-          setDelay(2 ** currentIncorrect * 1000);
-          setIncorrectAnswers(currentIncorrect);
-          console.log("delay: " + delay);
-          console.log("Current incorrect: " + incorrectAnswers);
+    setTimeout(() => {
+      if (dataCheckUser) {
+        if (dataCheckUser.userLogin) {
+          let compared = comparePass(
+            props.password,
+            dataCheckUser.userLogin.hash
+          );
+          if (compared === true) {
+            logUserIn({
+              variables: {
+                userId: dataCheckUser.userLogin.userId,
+              },
+            });
+          } else if (compared === false) {
+            let currentIncorrect = incorrectAnswers + 1;
+            setDelay(2 ** currentIncorrect * 1000);
+            setIncorrectAnswers(currentIncorrect);
+            console.log("delay: " + delay);
+            console.log("Current incorrect: " + incorrectAnswers);
+          }
         }
       }
-    }
+    }, delay);
   }
 
   useEffect(() => {

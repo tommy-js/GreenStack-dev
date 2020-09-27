@@ -11,6 +11,7 @@ interface Props {
   password: string;
   passObjectUp: (passwordEffective: any) => void;
   createUserMutation: (variables: object) => any;
+  alreadyExists: (val: boolean) => void;
 }
 
 const CreateNewUser: React.FC<Props> = (props) => {
@@ -50,8 +51,10 @@ const CreateNewUser: React.FC<Props> = (props) => {
       console.log(data);
       if (data.specUser) {
         setNewUsername(false);
+        props.alreadyExists(true);
       } else {
         setNewUsername(true);
+        props.alreadyExists(false);
       }
     }
   }, [data]);
