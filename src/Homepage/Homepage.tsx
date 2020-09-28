@@ -10,9 +10,8 @@ import UserProfile from "../User/UserProfile";
 import Profile from "./profile/Profile";
 import UserTrade from "./UserTrade";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
-import { userQuery } from "../queries/queries";
-import { flowRight as compose } from "lodash";
-import { graphql, useLazyQuery } from "react-apollo";
+import { queryToken } from "../queries/queries";
+import { useLazyQuery } from "react-apollo";
 import { statusContext, userContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
 
@@ -24,14 +23,38 @@ const Homepage: React.FC<Props> = (props) => {
   const [userRoutePaths, setUserRoutePaths] = useState([]);
   const [tradeRoutePaths, setTradeRoutePaths] = useState([]);
 
+  const [passToken, { data, loading }] = useLazyQuery(queryToken);
+
   const { userVal } = useContext(userContext);
   const { status, setStatus } = useContext(statusContext);
 
   useEffect(() => {
     if (status === false) {
-      browserHist.push("/login");
+      let sessionToken = sessionStorage.getItem("Token");
+      if (sessionToken) {
+        passToken({
+          variables: {
+            token: sessionToken,
+          },
+        });
+      } else {
+        browserHist.push("/login");
+      }
     }
   }, []);
+
+  useEffect(() => {
+    let sessionToken = sessionStorage.getItem("Token");
+    if (data) {
+      console.log(data);
+      if (data.token.token === sessionToken) {
+        setStatus(true);
+      } else {
+        setStatus(false);
+        browserHist.push("/login");
+      }
+    }
+  }, data);
 
   function modRoutes(route: any) {
     setUserRoutePaths(route);
@@ -81,4 +104,4 @@ const Homepage: React.FC<Props> = (props) => {
   );
 };
 
-export default compose(graphql(userQuery, { name: "userQuery" }))(Homepage);
+export default Homepage;

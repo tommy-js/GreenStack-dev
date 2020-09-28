@@ -4,7 +4,7 @@ import { flowRight as compose } from "lodash";
 import { createUserMutation, distinctUserQuery } from "../queries/queries.js";
 import { browserHist } from "../AppMain/history.js";
 import { statusContext } from "../AppMain/App";
-import { hashPass } from "../login/hashing.js";
+import { hashPass, hashToken } from "../login/hashing.js";
 
 interface Props {
   username: string;
@@ -116,14 +116,17 @@ const CreateNewUser: React.FC<Props> = (props) => {
     let calcHash = hashPass(props.password);
     let userId = Math.floor(Math.random() * 1000000);
     let id = Math.floor(Math.random() * 1000000);
+    let token = hashToken(userId, props.username);
     let date = new Date();
     let currentTime = Math.floor(date.getTime() / 1000);
     let notif = "Welcome to TIKR! Make your first trade...";
+    sessionStorage.setItem("Token", token);
     props
       .createUserMutation({
         variables: {
           userId: userId,
           username: props.username,
+          token: token,
           hash: calcHash.hash,
           salt: calcHash.salt,
           money: 1000,

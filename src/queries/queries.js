@@ -7,6 +7,7 @@ const createUserMutation = gql`
     $username: String!
     $hash: String!
     $salt: String!
+    $token: String!
     $money: Float!
     $darkmode: Boolean!
     $invisible: Boolean!
@@ -24,6 +25,7 @@ const createUserMutation = gql`
       username: $username
       hash: $hash
       salt: $salt
+      token: $token
       money: $money
       darkmode: $darkmode
       invisible: $invisible
@@ -388,6 +390,14 @@ const userLoginQuery = gql`
   }
 `;
 
+const queryToken = gql`
+  query($token: String!) {
+    token(token: $token) {
+      token
+    }
+  }
+`;
+
 const distinctUserQuery = gql`
   query($username: String!) {
     specUser(username: $username) {
@@ -544,4 +554,5 @@ export {
   userLoginQuery,
   queryTradeQuery,
   queryPosts,
+  queryToken,
 };

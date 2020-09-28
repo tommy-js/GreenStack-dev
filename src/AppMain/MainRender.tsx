@@ -69,11 +69,11 @@ const MainRender: React.FC = () => {
     console.log(id);
   }
 
-  useEffect(() => {
-    if (status === false) {
-      browserHist.push("/login");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (status === false) {
+  //     browserHist.push("/login");
+  //   }
+  // }, []);
 
   function returnTradePath() {
     if (tradeMap && userMap) {

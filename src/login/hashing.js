@@ -9,3 +9,10 @@ export function hashPass(password) {
 export function comparePass(password, hash) {
   return bcrypt.compareSync(password, hash);
 }
+
+export function hashToken(id, username) {
+  let concat = id + username;
+  let salt = bcrypt.genSaltSync(10);
+  let hash = bcrypt.hashSync(concat, salt);
+  return hash;
+}

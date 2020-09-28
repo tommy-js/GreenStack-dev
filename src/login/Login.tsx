@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import SigninPage from "./SigninPage";
 import CreateAccountPage from "./CreateAccountPage";
 import StandardButton from "../StandardButton";
@@ -11,12 +11,48 @@ import {
   LoginPageCommunityInfo,
 } from "./LoginPageInfo";
 import { Link } from "react-router-dom";
+import { statusContext } from "../AppMain/App";
+import { queryToken } from "../queries/queries";
+import { useLazyQuery } from "react-apollo";
+import { browserHist } from "../AppMain/history";
 
 const Login: React.FC = () => {
   const [userId, setUserId] = useState(0);
   const [newAccount, setNewAccount] = useState(false);
   const [buttonText, setButtonText] = useState("Log in");
   const [loadingUser, setLoadingUser] = useState(false);
+
+  const { status, setStatus } = useContext(statusContext);
+
+  const [passToken, { data, loading }] = useLazyQuery(queryToken);
+
+  useEffect(() => {
+    if (status === false) {
+      let sessionToken = sessionStorage.getItem("Token");
+      if (sessionToken) {
+        passToken({
+          variables: {
+            token: sessionToken,
+          },
+        });
+      } else {
+        browserHist.push("/login");
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    let sessionToken = sessionStorage.getItem("Token");
+    if (data) {
+      console.log(data);
+      if (data.token.token === sessionToken) {
+        setStatus(true);
+        browserHist.push("/home");
+      } else {
+        setStatus(false);
+      }
+    }
+  }, data);
 
   function passUserAuth(id: number) {
     setUserId(id);
