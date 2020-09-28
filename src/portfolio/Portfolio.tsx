@@ -8,6 +8,8 @@ import WatchStocks from "./WatchStocks";
 import { Route } from "react-router-dom";
 import { userContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
+import { queryToken } from "../queries/queries";
+import { useLazyQuery } from "react-apollo";
 
 import { statusContext } from "../AppMain/App";
 
@@ -36,13 +38,35 @@ const Portfolio: React.FC = () => {
     },
   ]);
 
+  const [passToken, { data, loading }] = useLazyQuery(queryToken);
+
   useEffect(() => {
     if (status === false) {
-      browserHist.push("/login");
-    } else {
-      // setUserTrades(userVal.trades);
+      let sessionToken = sessionStorage.getItem("Token");
+      if (sessionToken) {
+        passToken({
+          variables: {
+            token: sessionToken,
+          },
+        });
+      } else {
+        browserHist.push("/login");
+      }
     }
   }, []);
+
+  useEffect(() => {
+    let sessionToken = sessionStorage.getItem("Token");
+    if (data) {
+      console.log(data);
+      if (data.token.token === sessionToken) {
+        setStatus(true);
+      } else {
+        setStatus(false);
+        browserHist.push("/login");
+      }
+    }
+  }, data);
 
   return (
     <div>
