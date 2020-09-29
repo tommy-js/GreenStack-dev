@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import SigninPage from "./SigninPage";
 import CreateAccountPage from "./CreateAccountPage";
-import StandardButton from "../StandardButton";
 import UserLoginAuthSubresolver from "../resolvers/UserLoginAuthSubresolver";
 import LoadingUser from "./LoadingUser";
 import RenderAccountLink from "./RenderAccountLink";

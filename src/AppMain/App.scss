@@ -87,26 +87,6 @@ $emerald: 59cd90;
   float: right;
 }
 
-.input_box {
-  padding: 5px;
-  border-radius: 5px;
-  width: 150px;
-  border: 1px solid grey;
-  font-size: 14px;
-}
-
-.form_block_view {
-  display: block;
-  margin: 5px;
-}
-
-#account_creation {
-  text-align: center;
-  width: 170px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 #company_mapper {
   position: relative;
   width: 400px;
@@ -166,36 +146,10 @@ $emerald: 59cd90;
   margin-right: 5px;
 }
 
-#portfolio {
-  position: relative;
-  width: 50%;
-  min-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#owned_stocked {
-  position: relative;
-  display: block;
-}
-
-#share_listing {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100px;
-  border-bottom: 1px dashed grey;
-}
-
 #trade_buttons {
   opacity: 0;
   display: inline-block;
   float: right;
-  transition: 0.3s;
-}
-
-#share_listing:hover #trade_buttons {
-  opacity: 1;
   transition: 0.3s;
 }
 
@@ -225,11 +179,6 @@ $emerald: 59cd90;
   background-color: red;
 }
 
-.share_listing_additional_info {
-  font-size: 14px;
-  margin: 0;
-}
-
 #learn_component {
   position: relative;
   width: 50%;
@@ -247,22 +196,6 @@ $emerald: 59cd90;
 #learn_individual_div:hover {
   background-color: teal;
   transition: 0.3s;
-}
-
-.nav_el {
-  color: black;
-  text-decoration: none;
-  margin: 5px;
-}
-
-.nav_el_light {
-  color: black;
-  text-decoration: none;
-}
-
-.active_nav_el {
-  color: orange;
-  border-bottom: 1px solid teal;
 }
 
 #leaderboard {
@@ -509,16 +442,6 @@ $emerald: 59cd90;
   margin-right: auto;
 }
 
-#watch_listing {
-  position: relative;
-  display: flex;
-  box-sizing: border-box;
-  flex-wrap: wrap;
-  width: 200px;
-  height: 200px;
-  border: 1px solid grey;
-}
-
 #comment_input {
   position: relative;
   width: 500px;
@@ -537,83 +460,6 @@ $emerald: 59cd90;
   box-sizing: border-box;
 }
 
-#trigger_icon {
-  position: relative;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  display: inline-block;
-  cursor: pointer;
-}
-
-#notification_icon {
-  position: absolute;
-  top: 0;
-  width: 250px;
-  right: 0;
-  display: inline-block;
-}
-
-#login_page {
-  width: 100vw;
-  height: 100vh;
-  box-sizing: border-box;
-  overflow: none;
-  margin-bottom: 0;
-}
-
-#login_header {
-  text-align: center;
-  color: $cream_white;
-  font-size: 22px;
-}
-
-#centered_login_page {
-  position: fixed;
-  display: inline-block;
-  background-color: $island_green;
-  width: 50%;
-  height: 100%;
-  box-sizing: border-box;
-}
-
-#login_forms {
-  position: relative;
-  width: 200px;
-  margin-left: auto;
-  margin-right: auto;
-  top: 200px;
-}
-
-#login_page_about {
-  position: relative;
-  display: inline-block;
-  width: 50%;
-  height: 100%;
-  margin-bottom: 0;
-  float: right;
-  box-sizing: border-box;
-  @include testing;
-}
-
-.login_page_information {
-  position: relative;
-  width: 80%;
-  height: 200px;
-  margin-left: auto;
-  margin-right: auto;
-  @include testing;
-}
-
-.login_page_text {
-  position: relative;
-  height: 100%;
-  width: 60%;
-  margin: 0;
-  float: right;
-  @include testing;
-}
-
 .input_container {
   position: relative;
   margin: 5px;
@@ -621,27 +467,6 @@ $emerald: 59cd90;
   font-size: 14px;
   border-radius: 5px;
   border: 1px solid grey;
-}
-
-.teal_link {
-  color: teal;
-}
-
-.notifications_link {
-  position: relative;
-  @include noselect;
-  width: 100%;
-  height: 100%;
-  padding: 15px;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-block;
-  border-bottom: 1px dashed black;
-}
-
-.notifications_link_text {
-  margin: 0;
-  padding: 0;
 }
 
 @mixin noselect {
@@ -655,13 +480,6 @@ $emerald: 59cd90;
 
 $darkGrey: #b0b0b0;
 $grey: #c8c8c8;
-
-.notification {
-  width: 225px;
-  background-color: white;
-  border: 1px solid $darkGrey;
-  box-shadow: 1px 2px 2px $grey;
-}
 
 .about_paragraph {
   position: relative;
@@ -795,106 +613,6 @@ $grey: #c8c8c8;
   margin-right: auto;
   box-sizing: border-box;
   @include testing;
-}
-
-.reference_trade {
-  position: relative;
-  width: 85%;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid grey;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  border-radius: 5px;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-#render_questions_page {
-  position: relative;
-  width: 500px;
-  height: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid black;
-  top: 50px;
-  border-radius: 20px;
-}
-
-.ticker_container {
-  position: relative;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 5px;
-  display: inline-block;
-  box-sizing: border-box;
-  height: 90px;
-  width: 90px;
-  border: 1px solid black;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.ticker_container:hover .ticker_id {
-  opacity: 1;
-  transition: 0.3s;
-}
-
-#ticker_list {
-  position: relative;
-  width: 400px;
-  height: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  top: 0px;
-}
-
-.ticker_id {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  margin-bottom: 0;
-  text-align: center;
-  opacity: 0;
-  transition: 0.3s;
-  @include noselect;
-}
-
-.user_init_check {
-  position: relative;
-  margin-top: 5px;
-}
-
-.user_init_classification {
-  margin-left: 15px;
-  font-size: 16px;
-  margin-bottom: 0;
-  margin-top: 0;
-  opacity: 0.5;
-  color: $island_green;
-}
-
-.user_init_hover {
-  position: relative;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 5px;
-  border: 1px solid transparent;
-  transition: 0.3s;
-}
-
-.user_init_hover:hover {
-  border: 1px solid black;
-  transition: 0.3s;
-}
-
-.user_init_name {
-  font-size: 16px;
-}
-
-.user_init_questions {
-  font-size: 16px;
 }
 
 #learn_link {
@@ -1087,44 +805,6 @@ $feed_width: 45%;
   transition: 0.2s;
 }
 
-.explore_container {
-  position: relative;
-  @include testing;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 5px;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.explore_component {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-  margin-bottom: 5px;
-  padding: 10px;
-  box-sizing: border-box;
-  border-bottom: 1px solid grey;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.explore_component:hover {
-  box-shadow: 1px 1px 1px 1px grey;
-  transition: 0.2s;
-}
-
-.explore_header {
-  position: relative;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 20px;
-  color: teal;
-}
-
 #comment {
   position: relative;
   border-bottom: 1px solid lightgray;
@@ -1257,26 +937,6 @@ $feed_width: 45%;
   color: green;
 }
 
-#portfolio_graph {
-  width: 600px;
-  height: 300px;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid black;
-}
-
-.homepage_block_component {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  box-sizing: border-box;
-  padding: 5px;
-  border: 1px solid black;
-  border-radius: 5px;
-  margin: 10px;
-  font-family: $standard_font;
-}
-
 .block_link {
   color: black;
   text-decoration: none;
@@ -1290,63 +950,6 @@ $feed_width: 45%;
 .element_username:hover {
   color: teal;
   transition: 0.3s;
-}
-
-#password_validation {
-  position: relative;
-  font-size: 14px;
-  top: 0;
-  width: 250px;
-  max-width: 30%;
-  float: left;
-  transition: 0.3s;
-  @include testing;
-}
-
-.password_validation_checkbox {
-  display: block;
-  margin: 5px;
-  box-sizing: border-box;
-}
-
-.hidden_visual {
-  margin: 0;
-  color: red;
-}
-
-#loading_user {
-  position: relative;
-  font-size: 24px;
-  width: 100%;
-  text-align: center;
-  color: white;
-  height: 50px;
-}
-
-@keyframes spinning_dial {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-#spinning_dial_container {
-  position: relative;
-  width: 75px;
-  height: 75px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#spinning_dial:before {
-  content: "";
-  box-sizing: border-box;
-  position: absolute;
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  border: 5px solid transparent;
-  border-top-color: white;
-  animation: spinning_dial 1s linear infinite;
 }
 
 .render_loading {
