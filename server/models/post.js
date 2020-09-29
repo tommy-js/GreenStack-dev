@@ -9,6 +9,16 @@ const postSchema = new Schema({
   dislikes: Number,
   title: String,
   text: String,
+  comments: [
+    {
+      userId: String,
+      username: String,
+      timestamp: Number,
+      text: String,
+      likes: Number,
+      dislikes: Number,
+    },
+  ],
 });
 
 module.exports = mongoose.model("Post", postSchema);

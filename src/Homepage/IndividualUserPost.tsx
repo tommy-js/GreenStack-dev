@@ -1,18 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 interface Props {
-  postId: number;
+  postId: string;
   title: string;
   text: string;
   timestamp: number;
   likes: number;
   dislikes: number;
+  modId: (id: string) => void;
 }
 
 const IndividualUserPost: React.FC<Props> = (props) => {
   return (
-    <Link className="block_link" to={`/home/post/${props.postId}`}>
+    <div onClick={() => props.modId(props.postId)}>
       <div className="homepage_block_component">
         <h2 className="individual_user_post_title">{props.title}</h2>
         <p className="individual_user_post_textblock">{props.text}</p>
@@ -24,7 +24,7 @@ const IndividualUserPost: React.FC<Props> = (props) => {
           </p>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

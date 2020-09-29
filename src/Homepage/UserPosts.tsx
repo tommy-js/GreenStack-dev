@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import IndividualUserPost from "./IndividualUserPost";
+import PostPage from "./PostPage";
 import { useLazyQuery } from "react-apollo";
 import { queryPosts } from "../queries/queries";
 import { userContext } from "../AppMain/App";
@@ -10,7 +11,7 @@ interface Props {
 
 interface Posts {
   key: number;
-  postId: number;
+  postId: string;
   title: string;
   text: string;
   timestamp: number;
@@ -22,6 +23,8 @@ const UserPosts: React.FC<Props> = (props) => {
   const [sortedArr, setSortedArr] = useState();
   const [callPosts, { loading, data }] = useLazyQuery(queryPosts);
   const { userVal } = useContext(userContext);
+  const [postId, setPostId] = useState("");
+  const [postView, setPostView] = useState(false);
 
   useEffect(() => {
     callPosts({ variables: { userId: userVal.userId } });
@@ -37,26 +40,40 @@ const UserPosts: React.FC<Props> = (props) => {
     }
   }, [data]);
 
+  function modId(id: string) {
+    setPostId(id);
+    setPostView(true);
+  }
+
   function renderPosts() {
     if (sortedArr) {
-      return (
-        <div>
-          <h2 className="list_header">Your Posts</h2>
+      if (postView === true) {
+        return (
           <div>
-            {sortedArr.map((el: Posts) => (
-              <IndividualUserPost
-                key={el.timestamp}
-                postId={el.postId}
-                title={el.title}
-                text={el.text}
-                timestamp={el.timestamp}
-                likes={el.likes}
-                dislikes={el.dislikes}
-              />
-            ))}
+            <PostPage postId={postId} />
           </div>
-        </div>
-      );
+        );
+      } else {
+        return (
+          <div>
+            <h2 className="list_header">Your Posts</h2>
+            <div>
+              {sortedArr.map((el: Posts) => (
+                <IndividualUserPost
+                  key={el.timestamp}
+                  postId={el.postId}
+                  title={el.title}
+                  text={el.text}
+                  timestamp={el.timestamp}
+                  likes={el.likes}
+                  dislikes={el.dislikes}
+                  modId={modId}
+                />
+              ))}
+            </div>
+          </div>
+        );
+      }
     } else {
       return null;
     }

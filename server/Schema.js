@@ -161,6 +161,7 @@ const PostQuery = new GraphQLObjectType({
     dislikes: { type: GraphQLInt },
     title: { type: GraphQLString },
     text: { type: GraphQLString },
+    comments: { type: new GraphQLList(CommentQuery) },
   }),
 });
 
@@ -230,6 +231,15 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return Post.find({ userId: args.userId });
+      },
+    },
+    post: {
+      type: PostQuery,
+      args: {
+        postId: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        return Post.findOne({ postId: args.postId });
       },
     },
   },
