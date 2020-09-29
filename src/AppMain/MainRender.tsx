@@ -1,16 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
 import { BasicsPage, OptionsPage, ProtectionPage } from "../about/LearnPage";
 import StockPage from "../companies/StockPage";
+import { BuyStock, SellStock } from "../companies/BuyStock";
 import SubscribePage from "../SubscribePage";
 import Portfolio from "../portfolio/Portfolio";
 import AboutPage from "../about/AboutPage";
 import LeaderBoard from "../misc/LeaderBoard";
 import Homepage from "../Homepage/Homepage";
-import UserTrade from "../Homepage/UserTrade";
 import NewAccountRender from "../NewAccountRender/NewAccountRender";
 import companyProfiles from "../companies/companyProfiles";
 import { Route, Switch } from "react-router-dom";
-import { browserHist } from "./history.js";
 import User from "../User";
 import { userContext, statusContext } from "./App";
 
@@ -126,6 +125,28 @@ const MainRender: React.FC = () => {
                   path={`/home/stock/${el.stockId}`}
                 >
                   <StockPage
+                    stockId={el.stockId}
+                    title={el.title}
+                    ticker={el.ticker}
+                  />
+                </Route>
+                <Route
+                  key={el.stockId}
+                  exact
+                  path={`/home/stock/${el.stockId}/buy`}
+                >
+                  <BuyStock
+                    stockId={el.stockId}
+                    title={el.title}
+                    ticker={el.ticker}
+                  />
+                </Route>
+                <Route
+                  key={el.stockId}
+                  exact
+                  path={`/home/stock/${el.stockId}/sell`}
+                >
+                  <SellStock
                     stockId={el.stockId}
                     title={el.title}
                     ticker={el.ticker}

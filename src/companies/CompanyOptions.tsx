@@ -4,7 +4,7 @@ import RemoveFromWatchlist from "../resolvers/RemoveFromWatchlist";
 import { userContext } from "../AppMain/App";
 
 interface Props {
-  stockId: number;
+  stockId: string;
   title: string;
   ticker: string;
 }

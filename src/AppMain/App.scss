@@ -994,14 +994,6 @@ $feed_width: 45%;
   // @include testing;
 }
 
-.feed {
-  position: relative;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  @include testing;
-}
-
 #sidebar_search_container {
   position: relative;
   width: 95%;
@@ -1363,4 +1355,37 @@ $feed_width: 45%;
   position: relative;
   width: 100%;
   top: 20%;
+}
+
+#trade_overlay {
+  position: absolute;
+  top: 200px;
+  height: 200px;
+  width: 150px;
+  background-color: white;
+}
+
+#trade {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  opacity: 0.8;
+  @include testing;
+}
+
+.feed {
+  position: relative;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  @include testing;
+}
+
+.stock_page {
+  position: relative;
+  width: 50%;
+  left: 30%;
+  @include testing;
 }

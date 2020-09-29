@@ -6,7 +6,7 @@ import CompanyStockListing from "./CompanyStockListing";
 interface Props {
   title: string;
   ticker: string;
-  stockId: number;
+  stockId: string;
 }
 const CompanyComments: React.FC<Props> = (props) => {
   const [comments, setComments] = useState([]);

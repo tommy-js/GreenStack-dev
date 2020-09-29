@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AddCommentToStock from "../resolvers/AddCommentToStock";
 
 interface Props {
-  stockId: number;
+  stockId: string;
 }
 
 const CommentInputStock: React.FC<Props> = (props) => {
