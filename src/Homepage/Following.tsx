@@ -1,34 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import FollowingElement from "./FollowingElement";
+import { userContext } from "../AppMain/App";
 
 interface Props {
   modRoutes: (arr: any) => void;
 }
 
 const Following: React.FC<Props> = (props) => {
-  const testData = [
-    {
-      userId: 1111,
-      username: "Phil",
-      descriptor: "Analyst for the New York Times",
-    },
-    { userId: 2423, username: "Tempty", descriptor: "Good trader(sometimes)" },
-  ];
+  const { userVal, setUserVal } = useContext(userContext);
+  const data = userVal.followers;
 
   // Creates routes within the Homepage component for all the users in our Following list
   useEffect(() => {
     let arr = [];
-    for (let i = 0; i < testData.length; i++) {
-      arr.push(testData[i].userId);
+    for (let i = 0; i < data.length; i++) {
+      arr.push(data[i].userId);
     }
     props.modRoutes(arr);
   }, []);
 
   return (
     <div className="feed">
-      <h2 className="list_header">Following({testData.length})</h2>
+      <h2 className="list_header">Following({data.length})</h2>
       <div>
-        {testData.map((el: any) => (
+        {data.map((el: any) => (
           <FollowingElement
             userId={el.userId}
             username={el.username}

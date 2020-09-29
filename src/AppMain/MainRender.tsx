@@ -1,7 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
 import { BasicsPage, OptionsPage, ProtectionPage } from "../about/LearnPage";
 import StockPage from "../companies/StockPage";
-import { BuyStock, SellStock, OptionStock } from "../companies/BuyStock";
+import {
+  BuyStockPage,
+  SellStockPage,
+  OptionStockPage,
+} from "../companies/BuyStock";
 import SubscribePage from "../SubscribePage";
 import Portfolio from "../portfolio/Portfolio";
 import AboutPage from "../about/AboutPage";
@@ -135,10 +139,11 @@ const MainRender: React.FC = () => {
                   exact
                   path={`/home/stock/${el.stockId}/buy`}
                 >
-                  <BuyStock
+                  <BuyStockPage
                     stockId={el.stockId}
                     title={el.title}
                     ticker={el.ticker}
+                    userId={userVal.userId}
                   />
                 </Route>
                 <Route
@@ -146,10 +151,11 @@ const MainRender: React.FC = () => {
                   exact
                   path={`/home/stock/${el.stockId}/sell`}
                 >
-                  <SellStock
+                  <SellStockPage
                     stockId={el.stockId}
                     title={el.title}
                     ticker={el.ticker}
+                    userId={userVal.userId}
                   />
                 </Route>
                 <Route
@@ -157,10 +163,11 @@ const MainRender: React.FC = () => {
                   exact
                   path={`/home/stock/${el.stockId}/options`}
                 >
-                  <OptionStock
+                  <OptionStockPage
                     stockId={el.stockId}
                     title={el.title}
                     ticker={el.ticker}
+                    userId={userVal.userId}
                   />
                 </Route>
               </Switch>

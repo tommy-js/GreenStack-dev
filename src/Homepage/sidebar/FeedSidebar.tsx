@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import SidebarUsername from "./SidebarUsername";
 import SidebarSearch from "./SidebarSearch";
 import SidebarElement from "./SidebarElement";
-import { Link } from "react-router-dom";
 
 const FeedSidebar: React.FC = () => {
   const [search, setSearch] = useState("");

@@ -29,7 +29,7 @@ const PostPage: React.FC<Props> = (props) => {
     } else {
       return (
         <div>
-          <h2>Stil Loading...</h2>
+          <h2>Still Loading...</h2>
         </div>
       );
     }

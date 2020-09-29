@@ -16,6 +16,7 @@ const createUserMutation = gql`
   }
 `;
 
+// May not be needed
 const updateNewAccountMutation = gql`
   mutation($userId: ID!, $newaccount: Boolean!) {
     updateNewAccount(userId: $userId, newaccount: $newaccount) {
@@ -66,6 +67,7 @@ const pushTradeMutation = gql`
   }
 `;
 
+// Replace
 const pushSharesToUserMutation = gql`
   mutation($shareId: ID!, $shares: Number!, $stockId: ID!) {
     pushSharesToUser(shareId: $shareId, shares: $shares, stockId: $stockId) {
@@ -117,6 +119,7 @@ const updateDislikesMutation = gql`
   }
 `;
 
+// Replace
 const deleteCommentUserMutation = gql`
   mutation($userId: ID!, $commentId: ID!) {
     deleteCommentUser(userId: $userId, commentId: $commentId) {
@@ -301,6 +304,22 @@ const newTokenMutation = gql`
   mutation($userId: ID!, $token: String!) {
     newToken(userId: $userId, token: $token) {
       userId
+    }
+  }
+`;
+
+const purchaseStockMutation = gql`
+  mutation($userId: ID!, $stockId: ID!, $shares: Int) {
+    buyStock(userId: $userId, stockId: $stockId, shares: $shares) {
+      shares
+    }
+  }
+`;
+
+const sellStockMutation = gql`
+  mutation($userId: ID!, $stockId: ID!, $shares: Int) {
+    sellStock(userId: $userId, stockId: $stockId, shares: $shares) {
+      shares
     }
   }
 `;
@@ -496,6 +515,8 @@ export {
   pushStockToWatchlistMutation,
   removeStockFromWatchlistMutation,
   newTokenMutation,
+  purchaseStockMutation,
+  sellStockMutation,
   distinctUserQuery,
   userQuery,
   stockQuery,
