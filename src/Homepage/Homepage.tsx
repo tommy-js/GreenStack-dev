@@ -55,7 +55,6 @@ const Homepage: React.FC<Props> = (props) => {
       if (data && data.token) {
         console.log(data);
         console.log("session token same as data token");
-        setStatus(true);
         setUserId(data.token.userId);
         setLoadingInUser(true);
       }
@@ -76,17 +75,8 @@ const Homepage: React.FC<Props> = (props) => {
     setLoadingInUser(false);
   }
 
-  function returnLoading() {
-    if (loadingInUser === true) {
-      return (
-        <div className="render_loading">
-          <div className="drop_loading_block">
-            <UserLoginAuthSubresolver id={userId} loggedIn={loggedIn} />
-            <LoadingUser />
-          </div>
-        </div>
-      );
-    } else if (loadingInUser === false) {
+  function returnLoadingIcon() {
+    if (status === true) {
       return (
         <div>
           <NavBar />
@@ -123,6 +113,21 @@ const Homepage: React.FC<Props> = (props) => {
           </div>
         </div>
       );
+    }
+  }
+
+  function returnLoading() {
+    if (loadingInUser === true) {
+      return (
+        <div className="render_loading">
+          <div className="drop_loading_block">
+            <LoadingUser />
+            <UserLoginAuthSubresolver id={userId} loggedIn={loggedIn} />
+          </div>
+        </div>
+      );
+    } else if (loadingInUser === false) {
+      return <div>{returnLoadingIcon()}</div>;
     }
   }
 
