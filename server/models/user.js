@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  userId: Number,
+  userId: String,
   username: String,
   token: String,
   hash: String,
@@ -14,13 +14,13 @@ const userSchema = new Schema({
   newaccount: Boolean,
   allowCommentsOnTrades: Boolean,
   profileImage: String,
-  followed: [{ userId: Number, username: String }],
+  followed: [{ userId: String, username: String }],
   followers: [
-    { followerId: Number, followerName: String, blocked: Boolean, id: Number },
+    { followerId: String, followerName: String, blocked: Boolean, id: String },
   ],
   stocks: [
     {
-      stockId: Number,
+      stockId: String,
       ticker: String,
       name: String,
       about: String,
@@ -38,7 +38,7 @@ const userSchema = new Schema({
       ],
     },
   ],
-  shares: [{ stockId: Number, shares: Number }],
+  shares: [{ stockId: String, shares: Number }],
   trades: [
     {
       tradeId: Number,
@@ -81,7 +81,7 @@ const userSchema = new Schema({
     {
       content: String,
       timestamp: Number,
-      id: Number,
+      id: String,
       viewed: Boolean,
     },
   ],
@@ -89,7 +89,7 @@ const userSchema = new Schema({
     {
       title: String,
       percent: Number,
-      id: Number,
+      id: String,
     },
   ],
 });

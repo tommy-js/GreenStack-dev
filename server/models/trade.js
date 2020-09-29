@@ -5,7 +5,7 @@ const tradeSchema = new Schema({
   tradeId: Number,
   ticker: String,
   title: String,
-  userId: Number,
+  userId: String,
   username: String,
   price: Number,
   type: String,

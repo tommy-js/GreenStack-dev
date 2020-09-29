@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const shareSchema = new Schema({
-  stockId: Number,
-  shareId: Number,
+  stockId: String,
+  shareId: String,
   shares: Number,
 });
 

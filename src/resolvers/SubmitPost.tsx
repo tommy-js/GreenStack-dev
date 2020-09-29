@@ -15,23 +15,23 @@ interface Props {
 
 const SubmitPost: React.FC<Props> = (props) => {
   function submit() {
-    let currentTime = Math.floor(Date.now() / 1000);
-    let randomNum = Math.floor(Math.random() * 1000000);
     props
       .postMutation({
         variables: {
           userId: props.userId,
-          postId: randomNum,
           username: props.username,
           title: props.title,
           text: props.text,
-          likes: 0,
-          dislikes: 0,
-          timestamp: currentTime,
         },
       })
-      .catch((res: any) => props.unsuccessfulEvent())
-      .then((res: any) => props.successfulEvent());
+      .catch((err: any) => {
+        console.log(err);
+        props.unsuccessfulEvent();
+      })
+      .then((res: any) => {
+        console.log(res);
+        props.successfulEvent();
+      });
   }
 
   return <button onClick={() => submit()}>Submit</button>;

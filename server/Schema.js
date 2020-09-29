@@ -1,4 +1,5 @@
 const graphql = require("graphql");
+const { v4: uuidv4 } = require("uuid");
 
 const {
   GraphQLObjectType,
@@ -240,33 +241,22 @@ const Mutation = new GraphQLObjectType({
     createUser: {
       type: UserQuery,
       args: {
-        userId: { type: GraphQLID },
         username: { type: GraphQLString },
         hash: { type: GraphQLString },
         token: { type: GraphQLString },
         salt: { type: GraphQLString },
-        money: { type: GraphQLFloat },
-        darkmode: { type: GraphQLBoolean },
-        invisible: { type: GraphQLBoolean },
-        allowCommentsOnTrades: { type: GraphQLBoolean },
-        profileImage: { type: GraphQLID },
-        content: { type: GraphQLString },
-        timestamp: { type: GraphQLID },
-        id: { type: GraphQLID },
-        viewed: { type: GraphQLBoolean },
-        membership: { type: GraphQLBoolean },
-        prog1: { type: GraphQLInt },
-        prog2: { type: GraphQLInt },
-        prog3: { type: GraphQLInt },
       },
       resolve(parent, args) {
+        let date = new Date();
+        let currentTime = Math.floor(date.getTime() / 1000);
         let user = new User({
-          userId: args.userId,
+          userId: uuidv4(),
           username: args.username,
           token: args.token,
           hash: args.hash,
           salt: args.salt,
-          money: args.money,
+          money: 1000,
+          timestamp: currentTime,
           membership: false,
           newaccount: true,
           darkmode: false,
@@ -275,27 +265,27 @@ const Mutation = new GraphQLObjectType({
           profileImage: 0,
           notifications: [
             {
-              content: args.content,
-              timestamp: args.timestamp,
-              id: args.id,
-              viewed: args.viewed,
+              content: "Welcome to TIKR! Make your first trade...",
+              timestamp: currentTime,
+              id: uuidv4(),
+              viewed: false,
             },
           ],
           progress: [
             {
               title: "Basics of The Market",
               percent: 0,
-              id: args.prog1,
+              id: uuidv4(),
             },
             {
               title: "Options",
               percent: 0,
-              id: args.prog2,
+              id: uuidv4(),
             },
             {
               title: "Long Term Success",
               percent: 0,
-              id: args.prog3,
+              id: uuidv4(),
             },
           ],
         });
@@ -371,12 +361,11 @@ const Mutation = new GraphQLObjectType({
       type: ProgressQuery,
       args: {
         id: { type: GraphQLID },
-        percent: { type: GraphQLInt },
       },
       resolve(parent, args) {
         return User.findOneAndUpdate(
           { "progress.id": args.id },
-          { $set: { "progress.$.percent": args.percent } },
+          { $inc: { "progress.$.percent": 5 } },
           { upsert: true, new: true }
         );
       },
@@ -422,9 +411,9 @@ const Mutation = new GraphQLObjectType({
         stockId: { type: GraphQLID },
         title: { type: GraphQLString },
         ticker: { type: GraphQLString },
-        timestamp: { type: GraphQLInt },
       },
       resolve(parent, args) {
+        let currentTime = Math.floor(Date.now() / 1000);
         return User.update(
           { userId: args.userId },
           {
@@ -433,7 +422,7 @@ const Mutation = new GraphQLObjectType({
                 stockId: args.stockId,
                 title: args.title,
                 ticker: args.ticker,
-                timestamp: args.timestamp,
+                timestamp: currentTime,
               },
             },
           }
@@ -477,20 +466,17 @@ const Mutation = new GraphQLObjectType({
       type: PostQuery,
       args: {
         userId: { type: GraphQLID },
-        postId: { type: GraphQLID },
-        timestamp: { type: GraphQLInt },
-        likes: { type: GraphQLInt },
-        dislikes: { type: GraphQLInt },
         title: { type: GraphQLString },
         text: { type: GraphQLString },
       },
       resolve(parent, args) {
+        let currentTime = Math.floor(Date.now() / 1000);
         let newPost = new Post({
           userId: args.userId,
-          postId: args.postId,
-          timestamp: args.timestamp,
-          likes: args.likes,
-          dislikes: args.dislikes,
+          postId: uuidv4(),
+          timestamp: currentTime,
+          likes: 0,
+          dislikes: 0,
           title: args.title,
           text: args.text,
         });
@@ -539,13 +525,13 @@ const Mutation = new GraphQLObjectType({
         userId: { type: GraphQLID },
         tradeId: { type: GraphQLID },
         price: { type: GraphQLFloat },
-        timestamp: { type: GraphQLID },
         title: { type: GraphQLString },
         ticker: { type: GraphQLString },
         shares: { type: GraphQLInt },
         gain: { type: GraphQLInt },
       },
       resolve(parent, args) {
+        let currentTime = Math.floor(Date.now() / 1000);
         return User.update(
           { userId: args.userId },
           {
@@ -553,7 +539,7 @@ const Mutation = new GraphQLObjectType({
               trades: {
                 price: args.price,
                 tradeId: args.tradeId,
-                timestamp: args.timestamp,
+                timestamp: currentTime,
                 title: args.title,
                 ticker: args.ticker,
                 shares: args.shares,
@@ -571,19 +557,19 @@ const Mutation = new GraphQLObjectType({
         username: { type: GraphQLString },
         tradeId: { type: GraphQLID },
         price: { type: GraphQLFloat },
-        timestamp: { type: GraphQLID },
         title: { type: GraphQLString },
         ticker: { type: GraphQLString },
         shares: { type: GraphQLInt },
         gain: { type: GraphQLFloat },
       },
       resolve(parent, args) {
+        let currentTime = Math.floor(Date.now() / 1000);
         let trade = new Trade({
           userId: args.userId,
           username: args.username,
           tradeId: args.tradeId,
           price: args.price,
-          timestamp: args.timestamp,
+          timestamp: currentTime,
           title: args.title,
           ticker: args.ticker,
           shares: args.shares,
@@ -652,20 +638,19 @@ const Mutation = new GraphQLObjectType({
         username: { type: GraphQLString },
         timestamp: { type: GraphQLID },
         comment: { type: GraphQLString },
-        likes: { type: GraphQLID },
-        dislikes: { type: GraphQLID },
       },
       resolve(parent, args) {
+        let currentTime = Math.floor(Date.now() / 1000);
         return Stock.update(
           { stockId: args.stockId },
           {
             $push: {
               comments: {
                 username: args.username,
-                timestamp: args.timestamp,
+                timestamp: currentTime,
                 comment: args.comment,
-                likes: args.likes,
-                dislikes: args.dislikes,
+                likes: 0,
+                dislikes: 0,
               },
             },
           }
@@ -679,9 +664,9 @@ const Mutation = new GraphQLObjectType({
         userId: { type: GraphQLID },
         username: { type: GraphQLString },
         text: { type: GraphQLString },
-        timestamp: { type: GraphQLInt },
       },
       resolve(parent, args) {
+        let currentTime = Math.floor(Date.now() / 1000);
         return Trade.update(
           { tradeId: args.tradeId },
           {
@@ -690,7 +675,7 @@ const Mutation = new GraphQLObjectType({
                 userId: args.userId,
                 username: args.username,
                 text: args.text,
-                timestamp: args.timestamp,
+                timestamp: currentTime,
               },
             },
           }
@@ -704,9 +689,9 @@ const Mutation = new GraphQLObjectType({
         userId: { type: GraphQLID },
         username: { type: GraphQLString },
         text: { type: GraphQLString },
-        timestamp: { type: GraphQLInt },
       },
       resolve(parent, args) {
+        let currentTime = Math.floor(Date.now() / 1000);
         return Stock.update(
           { stockId: args.stockId },
           {
@@ -715,7 +700,7 @@ const Mutation = new GraphQLObjectType({
                 userId: args.userId,
                 username: args.username,
                 text: args.text,
-                timestamp: args.timestamp,
+                timestamp: currentTime,
               },
             },
           }
@@ -768,7 +753,6 @@ const Mutation = new GraphQLObjectType({
         followerId: { type: GraphQLID },
         id: { type: GraphQLID },
         followerName: { type: GraphQLString },
-        blocked: { type: GraphQLBoolean },
       },
       resolve(parent, args) {
         return User.update(

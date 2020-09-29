@@ -3,41 +3,12 @@ import { graphql } from "react-apollo";
 
 const createUserMutation = gql`
   mutation(
-    $userId: ID!
     $username: String!
     $hash: String!
     $salt: String!
     $token: String!
-    $money: Float!
-    $darkmode: Boolean!
-    $invisible: Boolean!
-    $allowCommentsOnTrades: Boolean!
-    $timestamp: ID!
-    $id: ID!
-    $content: String!
-    $viewed: Boolean!
-    $prog1: Int!
-    $prog2: Int!
-    $prog3: Int!
   ) {
-    createUser(
-      userId: $userId
-      username: $username
-      hash: $hash
-      salt: $salt
-      token: $token
-      money: $money
-      darkmode: $darkmode
-      invisible: $invisible
-      allowCommentsOnTrades: $allowCommentsOnTrades
-      timestamp: $timestamp
-      id: $id
-      content: $content
-      viewed: $viewed
-      prog1: $prog1
-      prog2: $prog2
-      prog3: $prog3
-    ) {
+    createUser(username: $username, hash: $hash, salt: $salt, token: $token) {
       userId
       username
       money
@@ -54,10 +25,9 @@ const updateNewAccountMutation = gql`
 `;
 
 const updateUserProgressMutation = gql`
-  mutation($id: ID!, $percent: Int!) {
-    updateUserProgress(id: $id, percent: $percent) {
+  mutation($id: ID!) {
+    updateUserProgress(id: $id) {
       id
-      percent
     }
   }
 `;
@@ -76,7 +46,6 @@ const pushTradeMutation = gql`
     $username: String!
     $tradeId: ID!
     $price: Float!
-    $timestamp: ID!
     $title: String!
     $ticker: String!
     $shares: Int!
@@ -87,7 +56,6 @@ const pushTradeMutation = gql`
       username: $username
       tradeId: $tradeId
       price: $price
-      timestamp: $timestamp
       title: $title
       ticker: $ticker
       shares: $shares
@@ -204,19 +172,12 @@ const updateUserSettingsMutation = gql`
 `;
 
 const pushFollowerToUserMutation = gql`
-  mutation(
-    $userId: ID!
-    $id: ID!
-    $followerId: ID!
-    $followerName: String!
-    $blocked: Boolean!
-  ) {
+  mutation($userId: ID!, $id: ID!, $followerId: ID!, $followerName: String!) {
     followUser(
       userId: $userId
       id: $id
       followerId: $followerId
       followerName: $followerName
-      blocked: $blocked
     ) {
       userId
     }
@@ -232,16 +193,9 @@ const unfollowUserMutation = gql`
 `;
 
 const pushStockToWatchlistMutation = gql`
-  mutation(
-    $stockId: ID!
-    $timestamp: Int!
-    $userId: ID!
-    $title: String!
-    $ticker: String!
-  ) {
+  mutation($stockId: ID!, $userId: ID!, $title: String!, $ticker: String!) {
     pushStockToWatchlist(
       stockId: $stockId
-      timestamp: $timestamp
       ticker: $ticker
       title: $title
       userId: $userId
@@ -249,7 +203,6 @@ const pushStockToWatchlistMutation = gql`
       stockId
       title
       ticker
-      timestamp
     }
   }
 `;
@@ -273,29 +226,9 @@ const blockUserMutation = gql`
 `;
 
 const postMutation = gql`
-  mutation(
-    $userId: ID!
-    $postId: ID!
-    $likes: Int!
-    $dislikes: Int!
-    $timestamp: Int!
-    $title: String!
-    $text: String!
-  ) {
-    post(
-      userId: $userId
-      postId: $postId
-      likes: $likes
-      dislikes: $dislikes
-      timestamp: $timestamp
-      title: $title
-      text: $text
-    ) {
+  mutation($userId: ID!, $title: String!, $text: String!) {
+    post(userId: $userId, title: $title, text: $text) {
       userId
-      postId
-      likes
-      dislikes
-      timestamp
       title
       text
     }
@@ -336,45 +269,29 @@ const updateUserNotificationsViewedMutation = gql`
 `;
 
 const addCommentTradeMutation = gql`
-  mutation(
-    $tradeId: ID!
-    $userId: ID!
-    $username: String!
-    $text: String!
-    $timestamp: Int!
-  ) {
+  mutation($tradeId: ID!, $userId: ID!, $username: String!, $text: String!) {
     addCommentTrade(
       tradeId: $tradeId
       userId: $userId
       username: $username
       text: $text
-      timestamp: $timestamp
     ) {
       text
       username
-      timestamp
       userId
     }
   }
 `;
 
 const addCommentStockMutation = gql`
-  mutation(
-    $stockId: ID!
-    $userId: ID!
-    $username: String!
-    $timestamp: Int!
-    $text: String!
-  ) {
+  mutation($stockId: ID!, $userId: ID!, $username: String!, $text: String!) {
     addCommentStock(
       stockId: $stockId
       userId: $userId
       username: $username
-      timestamp: $timestamp
       text: $text
     ) {
       username
-      timestamp
       text
     }
   }

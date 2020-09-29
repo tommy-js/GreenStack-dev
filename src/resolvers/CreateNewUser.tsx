@@ -3,7 +3,7 @@ import { graphql, useLazyQuery } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { createUserMutation, distinctUserQuery } from "../queries/queries.js";
 import { browserHist } from "../AppMain/history.js";
-import { statusContext } from "../AppMain/App";
+import { statusContext, userContext } from "../AppMain/App";
 import { hashPass, hashToken } from "../login/hashing.js";
 
 interface Props {
@@ -16,6 +16,7 @@ interface Props {
 
 const CreateNewUser: React.FC<Props> = (props) => {
   const { status, setStatus } = useContext(statusContext);
+  const { userVal, setUserVal } = useContext(userContext);
   const [newUsername, setNewUsername] = useState(false);
   const [callUser, { loading, data }] = useLazyQuery(distinctUserQuery, {
     variables: { username: props.username },
@@ -114,41 +115,22 @@ const CreateNewUser: React.FC<Props> = (props) => {
 
   function submitButton() {
     let calcHash = hashPass(props.password);
-    let userId = Math.floor(Math.random() * 1000000);
-    let id = Math.floor(Math.random() * 1000000);
-    let token = hashToken(userId, props.username);
-    let date = new Date();
-    let currentTime = Math.floor(date.getTime() / 1000);
-    let notif = "Welcome to TIKR! Make your first trade...";
+    let token = hashToken(props.username);
     sessionStorage.setItem("Token", token);
     props
       .createUserMutation({
         variables: {
-          userId: userId,
           username: props.username,
           token: token,
           hash: calcHash.hash,
           salt: calcHash.salt,
-          money: 1000,
-          darkmode: false,
-          invisible: false,
-          allowCommentsOnTrades: true,
-          timestamp: currentTime,
-          id: id,
-          viewed: false,
-          content: notif,
-          prog1: Math.floor(Math.random() * 10000),
-          prog2: Math.floor(Math.random() * 10000),
-          prog3: Math.floor(Math.random() * 10000),
         },
       })
-      .then((res: string) => {
-        console.log("success");
-        setStatus(true);
-        browserHist.push("/home");
+      .then((res: any) => {
+        console.log(res);
       })
-      .catch((res: string) => {
-        console.log("error");
+      .catch((err: any) => {
+        console.log(err);
       });
   }
 

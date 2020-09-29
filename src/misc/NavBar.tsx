@@ -3,6 +3,13 @@ import { NavLink } from "react-router-dom";
 import NotificationIcon from "../navigation/NotificationIcon";
 
 const NavBar: React.FC = () => {
+  function dropToken() {
+    let token = sessionStorage.getItem("Token");
+    if (token) {
+      sessionStorage.removeItem("Token");
+    }
+  }
+
   return (
     <div className="navbar">
       <NavLink
@@ -23,7 +30,12 @@ const NavBar: React.FC = () => {
       <NavLink className="nav_el" activeClassName="active_nav_el" to="/about">
         About
       </NavLink>
-      <NavLink className="nav_el" activeClassName="active_nav_el" to="/login">
+      <NavLink
+        className="nav_el"
+        activeClassName="active_nav_el"
+        onClick={() => dropToken()}
+        to="/login"
+      >
         Logout
       </NavLink>
       <NotificationIcon />

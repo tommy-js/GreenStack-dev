@@ -25,7 +25,6 @@ const AddCommentToStock: React.FC<Props> = (props) => {
   }, [props.passFunc]);
 
   function pushData() {
-    let time = Math.floor(Date.now() / 1000);
     props
       .addCommentStockMutation({
         variables: {
@@ -33,7 +32,6 @@ const AddCommentToStock: React.FC<Props> = (props) => {
           userId: userVal.userId,
           username: userVal.username,
           text: props.text,
-          timestamp: time,
         },
       })
       .then((res: any) => console.log("passed"))

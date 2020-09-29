@@ -18,16 +18,13 @@ const SaveToWatchlist: React.FC<Props> = (props) => {
   const { userVal, setUserVal } = useContext(userContext);
 
   function pushData() {
-    const parsedId = parseInt(userVal.userId);
-    let time = Math.floor(Date.now() / 1000);
     props
       .pushStockToWatchlistMutation({
         variables: {
-          userId: parsedId,
+          userId: userVal.userId,
           stockId: props.stockId,
           title: props.title,
           ticker: props.ticker,
-          timestamp: time,
         },
       })
       .then(() => console.log("passed"))

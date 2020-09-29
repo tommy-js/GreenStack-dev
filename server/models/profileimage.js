@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const profileImageSchema = new Schema({
-  id: Number,
+  id: String,
   url: String,
 });
 

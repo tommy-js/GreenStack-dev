@@ -25,7 +25,6 @@ const AddCommentToTrade: React.FC<Props> = (props) => {
   }, [props.passFunc]);
 
   function pushData() {
-    let time = Math.floor(Date.now() / 1000);
     props
       .addCommentTradeMutation({
         variables: {
@@ -33,11 +32,10 @@ const AddCommentToTrade: React.FC<Props> = (props) => {
           userId: userVal.userId,
           username: userVal.username,
           text: props.text,
-          timestamp: time,
         },
       })
-      .then((res: any) => console.log("passed"))
-      .catch((res: any) => console.log("err"));
+      .catch((err: any) => console.log(err))
+      .then((res: any) => console.log(res));
   }
 
   return null;
