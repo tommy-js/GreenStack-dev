@@ -145,7 +145,7 @@ const CreateNewUser: React.FC<Props> = (props) => {
       .then((res: string) => {
         console.log("success");
         setStatus(true);
-        browserHist.push("/");
+        browserHist.push("/home");
       })
       .catch((res: string) => {
         console.log("error");

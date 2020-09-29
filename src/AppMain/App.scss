@@ -1350,3 +1350,17 @@ $feed_width: 45%;
   border-top-color: white;
   animation: spinning_dial 1s linear infinite;
 }
+
+.render_loading {
+  position: absolute;
+  top: -50px;
+  height: 100vh;
+  width: 100vw;
+  background-color: green;
+}
+
+.drop_loading_block {
+  position: relative;
+  width: 100%;
+  top: 20%;
+}

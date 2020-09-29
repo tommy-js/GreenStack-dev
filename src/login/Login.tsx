@@ -35,21 +35,19 @@ const Login: React.FC = () => {
             token: sessionToken,
           },
         });
-      } else {
-        browserHist.push("/login");
+        setLoadingUser(true);
       }
     }
   }, []);
 
   useEffect(() => {
     let sessionToken = sessionStorage.getItem("Token");
-    if (data) {
-      console.log(data);
+    if (data && data.token) {
+      console.log(data.token);
       if (data.token.token === sessionToken) {
         setStatus(true);
-        browserHist.push("/home");
-      } else {
-        setStatus(false);
+        setUserId(data.token.userId);
+        setLoadingUser(true);
       }
     }
   }, data);
@@ -74,6 +72,10 @@ const Login: React.FC = () => {
 
   function modLoadingUser() {
     setLoadingUser(true);
+  }
+
+  function loggedIn() {
+    browserHist.push("/home");
   }
 
   function displayBlock() {
@@ -104,6 +106,7 @@ const Login: React.FC = () => {
       return (
         <div id="login_forms">
           <LoadingUser />
+          <UserLoginAuthSubresolver id={userId} loggedIn={loggedIn} />
         </div>
       );
     }
@@ -112,7 +115,6 @@ const Login: React.FC = () => {
   return (
     <div id="login_page">
       <div id="centered_login_page">{displayBlock()}</div>
-      <UserLoginAuthSubresolver id={userId} />
       <div id="login_page_about">
         <h3>What is Stockly?</h3>
         <h4>Join a community of memers, learners, traders, and educators.</h4>

@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
-import { userQuery } from "../queries/queries";
+import { userQuery, newTokenMutation } from "../queries/queries";
 import { useLazyQuery } from "react-apollo";
-import { browserHist } from "../AppMain/history";
 import { statusContext, userContext } from "../AppMain/App";
+import { hashToken } from "../login/hashing.js";
+import { flowRight as compose } from "lodash";
+import { graphql } from "react-apollo";
 
 interface Props {
   id: number;
+  loggedIn: () => void;
+  newTokenMutation: (variables: object) => any;
 }
 
 const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
@@ -53,12 +57,27 @@ const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
         referenceTrades: dataLogIn.user.referenceTrades,
         progress: dataLogIn.user.progress,
       });
-      setStatus(true);
-      browserHist.push("/home");
+      let token = hashToken(dataLogIn.user.userId, dataLogIn.user.username);
+      sessionStorage.setItem("Token", token);
+      props
+        .newTokenMutation({
+          variables: {
+            userId: dataLogIn.user.userId,
+            token: token,
+          },
+        })
+        .catch((err: any) => console.log(err))
+        .then((res: any) => {
+          props.loggedIn();
+          setStatus(true);
+          console.log("New token mutation passed");
+        });
     }
   }
 
   return null;
 };
 
-export default UserLoginAuthSubresolver;
+export default compose(graphql(newTokenMutation, { name: "newTokenMutation" }))(
+  UserLoginAuthSubresolver
+);

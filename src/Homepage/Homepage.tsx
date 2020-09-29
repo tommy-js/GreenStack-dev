@@ -9,6 +9,8 @@ import Followers from "./Followers";
 import UserProfile from "../User/UserProfile";
 import Profile from "./profile/Profile";
 import UserTrade from "./UserTrade";
+import LoadingUser from "../login/LoadingUser";
+import UserLoginAuthSubresolver from "../resolvers/UserLoginAuthSubresolver";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { queryToken } from "../queries/queries";
 import { useLazyQuery } from "react-apollo";
@@ -22,6 +24,8 @@ interface Props {
 const Homepage: React.FC<Props> = (props) => {
   const [userRoutePaths, setUserRoutePaths] = useState([]);
   const [tradeRoutePaths, setTradeRoutePaths] = useState([]);
+  const [loadingInUser, setLoadingInUser] = useState(false);
+  const [userId, setUserId] = useState(0);
 
   const [passToken, { data, loading }] = useLazyQuery(queryToken);
 
@@ -29,6 +33,7 @@ const Homepage: React.FC<Props> = (props) => {
   const { status, setStatus } = useContext(statusContext);
 
   useEffect(() => {
+    console.log("homepage status: " + status);
     if (status === false) {
       let sessionToken = sessionStorage.getItem("Token");
       if (sessionToken) {
@@ -44,14 +49,15 @@ const Homepage: React.FC<Props> = (props) => {
   }, []);
 
   useEffect(() => {
-    let sessionToken = sessionStorage.getItem("Token");
-    if (data) {
-      console.log(data);
-      if (data.token.token === sessionToken) {
+    console.log("homepage status: " + status);
+    if (status === false) {
+      let sessionToken = sessionStorage.getItem("Token");
+      if (data && data.token) {
+        console.log(data);
+        console.log("session token same as data token");
         setStatus(true);
-      } else {
-        setStatus(false);
-        browserHist.push("/login");
+        setUserId(data.token.userId);
+        setLoadingInUser(true);
       }
     }
   }, data);
@@ -66,42 +72,61 @@ const Homepage: React.FC<Props> = (props) => {
     setTradeRoutePaths(route);
   }
 
-  return (
-    <div>
-      <NavBar />
-      <div id="homepage">
-        <FeedSidebar />
-        <Switch>
-          <Route exact path="/home">
-            <Feed modRoutes={modRoutes} />
-          </Route>
-          <Route exact path="/home/profile">
-            <Profile username={userVal.username} />
-          </Route>
-          <Route exact path="/home/explore" component={Explore} />
-          <Route exact path="/home/posts">
-            <UserPosts modRoutes={modTradeRoutes} />
-          </Route>
-          <Route exact path="/home/followers">
-            <Followers modRoutes={modRoutes} />
-          </Route>
-          <Route exact path="/home/following">
-            <Following modRoutes={modRoutes} />
-          </Route>
-          {userRoutePaths.map((userId: number) => (
-            <Route key={userId} path={`/home/user/${userId}`}>
-              <UserProfile userId={userId} />
-            </Route>
-          ))}
-          {tradeRoutePaths.map((tradeId: number) => (
-            <Route key={tradeId} path={`/home/post/${tradeId}`}>
-              <UserTrade tradeId={tradeId} />
-            </Route>
-          ))}
-        </Switch>
-      </div>
-    </div>
-  );
+  function loggedIn() {
+    setLoadingInUser(false);
+  }
+
+  function returnLoading() {
+    if (loadingInUser === true) {
+      return (
+        <div className="render_loading">
+          <div className="drop_loading_block">
+            <UserLoginAuthSubresolver id={userId} loggedIn={loggedIn} />
+            <LoadingUser />
+          </div>
+        </div>
+      );
+    } else if (loadingInUser === false) {
+      return (
+        <div>
+          <NavBar />
+          <div id="homepage">
+            <FeedSidebar />
+            <Switch>
+              <Route exact path="/home">
+                <Feed modRoutes={modRoutes} />
+              </Route>
+              <Route exact path="/home/profile">
+                <Profile username={userVal.username} />
+              </Route>
+              <Route exact path="/home/explore" component={Explore} />
+              <Route exact path="/home/posts">
+                <UserPosts modRoutes={modTradeRoutes} />
+              </Route>
+              <Route exact path="/home/followers">
+                <Followers modRoutes={modRoutes} />
+              </Route>
+              <Route exact path="/home/following">
+                <Following modRoutes={modRoutes} />
+              </Route>
+              {userRoutePaths.map((userId: number) => (
+                <Route key={userId} path={`/home/user/${userId}`}>
+                  <UserProfile userId={userId} />
+                </Route>
+              ))}
+              {tradeRoutePaths.map((tradeId: number) => (
+                <Route key={tradeId} path={`/home/post/${tradeId}`}>
+                  <UserTrade tradeId={tradeId} />
+                </Route>
+              ))}
+            </Switch>
+          </div>
+        </div>
+      );
+    }
+  }
+
+  return <div>{returnLoading()}</div>;
 };
 
 export default Homepage;

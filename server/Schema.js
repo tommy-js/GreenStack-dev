@@ -302,6 +302,19 @@ const Mutation = new GraphQLObjectType({
         return user.save();
       },
     },
+    newToken: {
+      type: UserQuery,
+      args: {
+        userId: { type: GraphQLID },
+        token: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return User.update(
+          { userId: args.userId },
+          { $set: { token: args.token } }
+        );
+      },
+    },
     likeStock: {
       type: CommentQuery,
       args: {

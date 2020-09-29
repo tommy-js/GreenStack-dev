@@ -380,6 +380,14 @@ const addCommentStockMutation = gql`
   }
 `;
 
+const newTokenMutation = gql`
+  mutation($userId: ID!, $token: String!) {
+    newToken(userId: $userId, token: $token) {
+      userId
+    }
+  }
+`;
+
 const userLoginQuery = gql`
   query($username: String!) {
     userLogin(username: $username) {
@@ -394,6 +402,7 @@ const queryToken = gql`
   query($token: String!) {
     token(token: $token) {
       token
+      userId
     }
   }
 `;
@@ -548,6 +557,7 @@ export {
   pushSharesToUserMutation,
   pushStockToWatchlistMutation,
   removeStockFromWatchlistMutation,
+  newTokenMutation,
   distinctUserQuery,
   userQuery,
   stockQuery,
