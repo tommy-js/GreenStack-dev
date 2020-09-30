@@ -15,7 +15,7 @@ const FeedSidebar: React.FC<Props> = (props) => {
   const [searchUser, { loading, data }] = useLazyQuery(searchUserQuery);
 
   useEffect(() => {
-    if (data) {
+    if (data && data.searchUser) {
       let username = data.searchUser.username;
       let userId = data.searchUser.userId;
       props.modRes(username, userId);
