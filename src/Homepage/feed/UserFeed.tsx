@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Feed from "./Feed";
 import Explore from "../explore/Explore";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";

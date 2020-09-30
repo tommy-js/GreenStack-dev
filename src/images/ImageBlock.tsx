@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { images } from "../images.js";
-import hat from "./images/hat.png";
-import money from "./images/money.png";
+import { images } from "./images.js";
+import hat from "./hat.png";
+import money from "./money.png";
 
 interface Props {
   image: string;

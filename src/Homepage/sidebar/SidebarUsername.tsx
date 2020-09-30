@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { userContext } from "../AppMain/App";
+import { userContext } from "../../AppMain/App";
 import { Link } from "react-router-dom";
 
 const SidebarUsername: React.FC = () => {

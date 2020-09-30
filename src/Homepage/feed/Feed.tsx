@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import FeedModal from "./FeedModal";
-import Suggested from "./Suggested";
-import Post from "./Post";
+import Suggested from "../Suggested";
+import Post from "../Post";
 import { PostType, NewsType, CommentType } from "./FeedTypes";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import UserMap from "../UserMap";
-import ExplorePageMenu from "../ExplorePageMenu";
-import NavBar from "./NavBar";
+import ExplorePageMenu from "../Homepage/explore/ExplorePageMenu";
+import NavBar from "../navigation/NavBar";
 
 interface TradeData {
   user: string;

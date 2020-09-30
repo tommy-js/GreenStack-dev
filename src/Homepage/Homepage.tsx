@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
-import FeedSidebar from "./FeedSidebar";
-import NavBar from "../misc/NavBar";
-import Feed from "./Feed";
-import Explore from "./Explore";
+import FeedSidebar from "./sidebar/FeedSidebar";
+import NavBar from "../navigation/NavBar";
+import Feed from "./feed/Feed";
+import Explore from "./explore/Explore";
 import UserPosts from "./UserPosts";
 import Following from "./Following";
 import Followers from "./Followers";

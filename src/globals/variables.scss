@@ -1,0 +1,29 @@
+@mixin testing {
+  border: 1px solid red;
+}
+
+@mixin noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+$standard_font: "Roboto", sans-serif;
+
+$space_red: #990011ff;
+$cream_white: #fcf6f5ff;
+$island_green: #2bae66ff;
+
+$rich_black: 071013;
+$honey_yellow: FBAF00;
+$white: FCFCFC;
+$red_RYB: F72C25;
+$emerald: 59cd90;
+
+$darkGrey: #b0b0b0;
+$grey: #c8c8c8;
+
+$feed_width: 45%;

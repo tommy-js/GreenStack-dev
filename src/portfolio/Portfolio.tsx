@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Header from "../Header";
 import OwnedStocks from "./OwnedStocks";
-import NewTrade from "../NewTrade";
-import NavBar from "../misc/NavBar";
+import NavBar from "../navigation/NavBar";
 import LiquidCapital from "./LiquidCapital";
 import WatchStocks from "./WatchStocks";
 import LoadingUser from "../login/LoadingUser";
@@ -92,18 +91,6 @@ const Portfolio: React.FC = () => {
               <WatchStocks stocks={userWatch} />
               <Header text="Profile" />
             </Route>
-            {userTrades.map((el: any) => (
-              <Route path={`/portfolio/newtrade/${el.ticker}`}>
-                <NewTrade
-                  title={el.title}
-                  ticker={el.ticker}
-                  stockId={el.stockId}
-                  purchasePrice={el.purchasePrice}
-                  currentPrice={el.currentPrice}
-                  shares={el.shares}
-                />
-              </Route>
-            ))}
           </div>
         </div>
       );

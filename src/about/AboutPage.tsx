@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import AboutUs from "./AboutUs";
 import Learn from "./Learn";
-import NavBar from "../misc/NavBar";
+import NavBar from "../navigation/NavBar";
 import LoadingUser from "../login/LoadingUser";
 import UserLoginAuthSubresolver from "../resolvers/UserLoginAuthSubresolver";
 import { statusContext } from "../AppMain/App";

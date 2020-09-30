@@ -1,31 +1,16 @@
+@import "../globals/variables.scss";
+@import "../login/login.scss";
+@import "../Homepage/homepage.scss";
+@import "../Homepage/explore/explore.scss";
+@import "../Homepage/profile/profile.scss";
+@import "../Homepage/sidebar/sidebar.scss";
+@import "../navigation/navigation.scss";
+@import "../NewAccountRender/new_acct.scss";
+@import "../portfolio/portfolio.scss";
+
 body {
-  margin-bottom: 100px;
+  margin: 0;
 }
-
-@mixin testing {
-  border: 1px solid red;
-}
-
-@mixin noselect {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-$standard_font: "Roboto", sans-serif;
-
-$space_red: #990011ff;
-$cream_white: #fcf6f5ff;
-$island_green: #2bae66ff;
-
-$rich_black: 071013;
-$honey_yellow: FBAF00;
-$white: FCFCFC;
-$red_RYB: F72C25;
-$emerald: 59cd90;
 
 .news_block {
   position: relative;
@@ -478,9 +463,6 @@ $emerald: 59cd90;
   user-select: none;
 }
 
-$darkGrey: #b0b0b0;
-$grey: #c8c8c8;
-
 .about_paragraph {
   position: relative;
   width: 50%;
@@ -631,8 +613,6 @@ $grey: #c8c8c8;
   @include testing;
 }
 
-$feed_width: 45%;
-
 #suggestion_div {
   position: relative;
   width: 90%;
@@ -644,165 +624,6 @@ $feed_width: 45%;
   border-radius: 5px;
   padding: 10px;
   box-sizing: border-box;
-}
-
-.feed_component {
-  position: relative;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 5px;
-  padding: 10px;
-  box-sizing: border-box;
-  border-bottom: 1px solid grey;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.feed_component:hover {
-  box-shadow: 1px 1px 1px 1px grey;
-  transition: 0.2s;
-}
-
-@mixin modal_backdrop {
-  position: fixed;
-  z-index: 98;
-}
-
-#modal {
-  @include modal_backdrop;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-}
-
-#feed_modal {
-  @include modal_backdrop;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: white;
-  opacity: 0.8;
-}
-
-#central_modal {
-  position: relative;
-  top: 100px;
-  width: 40vw;
-  height: 80vh;
-  overflow: scroll;
-  opacity: 1;
-  background-color: white;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 10px;
-  box-sizing: border-box;
-  z-index: 999;
-  box-shadow: 1px 1px 1px 1px grey;
-}
-
-.feed_link {
-  color: black;
-  text-decoration: none;
-}
-
-#feed_sidebar {
-  position: fixed;
-  top: 50px;
-  float: left;
-  height: 500px;
-  width: 250px;
-  border-right: 1px dashed grey;
-  // @include testing;
-}
-
-#sidebar_search_container {
-  position: relative;
-  width: 95%;
-  height: 40px;
-  // @include testing;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  box-sizing: border-box;
-}
-
-#sidebar_search_button {
-  width: 25%;
-  display: inline-block;
-  box-sizing: border-box;
-}
-
-#sidebar_search {
-  width: 75%;
-  border-bottom: 2px solid grey;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  display: inline-block;
-  box-sizing: border-box;
-  padding: 5px;
-  font-size: 16px;
-  transition: 0.2s;
-}
-
-#sidebar_search:focus {
-  border-bottom: 2px solid teal;
-  outline: none;
-  transition: 0.2s;
-}
-
-.sidebar_element {
-  position: relative;
-  width: 95%;
-  vertical-align: top;
-  padding: 0;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  color: black;
-  // @include testing;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  text-decoration: none;
-}
-
-.active_sidebar_element {
-  color: teal;
-}
-
-.sidebar_element_text {
-  font-size: 20px;
-  padding: 5px;
-  margin: 0;
-  transition: 0.2s;
-}
-
-.sidebar_element:hover {
-  color: teal;
-  transition: 0.2s;
-}
-
-#sidebar_username_link_spec {
-  font-size: 22px;
-  text-decoration: none;
-  color: black;
-  transition: 0.2s;
-}
-
-#sidebar_username_link {
-  position: relative;
-  margin: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-bottom: 1px solid black;
-}
-
-#sidebar_username_link_spec:hover {
-  color: teal;
-  transition: 0.2s;
 }
 
 #comment {
@@ -849,26 +670,6 @@ $feed_width: 45%;
 #comment_section {
   position: relative;
   top: 50px;
-}
-
-.profile_trade {
-  position: relative;
-  display: block;
-  border: 1px solid black;
-  border-radius: 5px;
-  margin: 10px;
-  padding: 5px;
-  box-sizing: border-box;
-}
-
-.profile_like {
-  position: relative;
-  display: block;
-  border: 1px solid black;
-  border-radius: 5px;
-  margin: 10px;
-  padding: 5px;
-  box-sizing: border-box;
 }
 
 .noclass {
@@ -981,14 +782,6 @@ $feed_width: 45%;
   height: 100vh;
   width: 100vw;
   opacity: 0.8;
-  @include testing;
-}
-
-.feed {
-  position: relative;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
   @include testing;
 }
 

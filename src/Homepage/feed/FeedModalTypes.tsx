@@ -1,6 +1,6 @@
 import React from "react";
-import CommentInput from "./CommentInput";
-import CommentSection from "./CommentSection";
+import CommentInput from "../CommentInput";
+import CommentSection from "../CommentSection";
 import { Link } from "react-router-dom";
 
 interface Post {

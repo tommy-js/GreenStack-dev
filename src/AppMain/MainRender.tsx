@@ -6,7 +6,6 @@ import {
   SellStockPage,
   OptionStockPage,
 } from "../companies/BuyStock";
-import SubscribePage from "../SubscribePage";
 import Portfolio from "../portfolio/Portfolio";
 import AboutPage from "../about/AboutPage";
 import LeaderBoard from "../misc/LeaderBoard";
@@ -102,9 +101,6 @@ const MainRender: React.FC = () => {
         <div>
           <div id="push_under_navbar">
             <Switch>
-              <Route path="/signin">
-                <SubscribePage />
-              </Route>
               <Route path="/portfolio">
                 <Portfolio />
               </Route>

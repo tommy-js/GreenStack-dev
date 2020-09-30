@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import NavBar from "../misc/NavBar";
+import NavBar from "../navigation/NavBar";
 import { MultipleChoice } from "./KnowledgeCheck/KnowledgeCheck";
 import { statusContext, userContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
