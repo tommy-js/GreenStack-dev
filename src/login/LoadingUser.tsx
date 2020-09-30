@@ -1,6 +1,6 @@
 import React from "react";
 
-const LoadingUser: React.FC = () => {
+export const LoadingUser: React.FC = () => {
   return (
     <div>
       <div id="spinning_dial_container">
@@ -11,4 +11,13 @@ const LoadingUser: React.FC = () => {
   );
 };
 
-export default LoadingUser;
+export const LoadingGeneral: React.FC = () => {
+  return (
+    <div>
+      <div id="spinning_dial_container">
+        <div id="spinning_dial_general"></div>
+      </div>
+      <h2 id="loading_user_general">Loading...</h2>
+    </div>
+  );
+};

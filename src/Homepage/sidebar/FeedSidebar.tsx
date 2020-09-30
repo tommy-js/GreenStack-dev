@@ -5,14 +5,20 @@ import SidebarElement from "./SidebarElement";
 import { searchUserQuery } from "../../queries/queries.js";
 import { useLazyQuery } from "react-apollo";
 
-const FeedSidebar: React.FC = () => {
+interface Props {
+  modRes: (username: string, userId: string) => void;
+}
+
+const FeedSidebar: React.FC<Props> = (props) => {
   const [search, setSearch] = useState("");
 
   const [searchUser, { loading, data }] = useLazyQuery(searchUserQuery);
 
   useEffect(() => {
     if (data) {
-      console.log(data);
+      let username = data.searchUser.username;
+      let userId = data.searchUser.userId;
+      props.modRes(username, userId);
     }
   }, [data]);
 

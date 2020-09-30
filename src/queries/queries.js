@@ -175,13 +175,20 @@ const updateUserSettingsMutation = gql`
 `;
 
 const pushFollowerToUserMutation = gql`
-  mutation($userId: ID!, $id: ID!, $followerId: ID!, $followerName: String!) {
+  mutation(
+    $userId: ID!
+    $followerId: ID!
+    $followerName: String!
+    $username: String!
+  ) {
     followUser(
       userId: $userId
-      id: $id
       followerId: $followerId
       followerName: $followerName
     ) {
+      userId
+    }
+    followingUser(userId: $followerId, username: $username) {
       userId
     }
   }
@@ -352,6 +359,67 @@ const distinctUserQuery = gql`
   }
 `;
 
+const otherUserQuery = gql`
+  query($userId: ID!) {
+    user(userId: $userId) {
+      userId
+      username
+      money
+      membership
+      profileImage
+      following {
+        followerId
+        followerName
+      }
+      followers {
+        id
+        followerId
+        followerName
+        blocked
+      }
+      stocks {
+        stockId
+        ticker
+        name
+        about
+        creation
+        prediction
+        comments {
+          userId
+          username
+          timestamp
+          text
+          likes
+          dislikes
+        }
+      }
+      trades {
+        price
+        tradeId
+        timestamp
+        title
+        ticker
+        shares
+        gain
+      }
+      comments {
+        userId
+        username
+        timestamp
+        text
+        likes
+        dislikes
+      }
+      watchlist {
+        stockId
+        title
+        ticker
+        timestamp
+      }
+    }
+  }
+`;
+
 const userQuery = gql`
   query($userId: ID!) {
     user(userId: $userId) {
@@ -364,7 +432,7 @@ const userQuery = gql`
       invisible
       allowCommentsOnTrades
       profileImage
-      followed {
+      following {
         followerId
         followerName
       }
@@ -535,4 +603,5 @@ export {
   queryToken,
   individualPostQuery,
   searchUserQuery,
+  otherUserQuery,
 };

@@ -2,8 +2,12 @@ import React, { useEffect, useContext } from "react";
 import FollowerElement from "./FollowerElement";
 import { userContext } from "../AppMain/App";
 
+interface Array {
+  userId: string;
+}
+
 interface Props {
-  modRoutes: (arr: any) => void;
+  modRoutes: (arr: Array[]) => void;
 }
 
 const Followers: React.FC<Props> = (props) => {
@@ -14,7 +18,7 @@ const Followers: React.FC<Props> = (props) => {
   useEffect(() => {
     let arr = [];
     for (let i = 0; i < data.length; i++) {
-      arr.push(data[i].userId);
+      arr.push({ userId: data[i].userId });
     }
     props.modRoutes(arr);
   }, []);

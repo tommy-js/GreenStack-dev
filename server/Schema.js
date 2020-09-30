@@ -39,7 +39,7 @@ const UserQuery = new GraphQLObjectType({
     invisible: { type: GraphQLBoolean },
     newaccount: { type: GraphQLBoolean },
     allowCommentsOnTrades: { type: GraphQLBoolean },
-    followed: { type: new GraphQLList(FollowerQuery) },
+    following: { type: new GraphQLList(FollowerQuery) },
     followers: { type: new GraphQLList(FollowerQuery) },
     stocks: { type: new GraphQLList(StockQuery) },
     shares: { type: new GraphQLList(ShareQuery) },
@@ -771,19 +771,39 @@ const Mutation = new GraphQLObjectType({
       args: {
         userId: { type: GraphQLID },
         followerId: { type: GraphQLID },
-        id: { type: GraphQLID },
         followerName: { type: GraphQLString },
       },
       resolve(parent, args) {
+        let id = uuidv4();
         return User.update(
           { userId: args.userId },
           {
             $push: {
               followers: {
                 followerId: args.followerId,
-                id: args.id,
+                id: id,
                 followerName: args.followerName,
                 blocked: false,
+              },
+            },
+          }
+        );
+      },
+    },
+    followingUser: {
+      type: UserQuery,
+      args: {
+        userId: { type: GraphQLID },
+        username: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return User.update(
+          { userId: args.userId },
+          {
+            $push: {
+              following: {
+                userId: args.userId,
+                username: args.username,
               },
             },
           }

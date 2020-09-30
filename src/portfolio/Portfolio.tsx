@@ -4,7 +4,7 @@ import OwnedStocks from "./OwnedStocks";
 import NavBar from "../navigation/NavBar";
 import LiquidCapital from "./LiquidCapital";
 import WatchStocks from "./WatchStocks";
-import LoadingUser from "../login/LoadingUser";
+import { LoadingUser } from "../login/LoadingUser";
 import UserLoginAuthSubresolver from "../resolvers/UserLoginAuthSubresolver";
 import { Route } from "react-router-dom";
 import { userContext } from "../AppMain/App";

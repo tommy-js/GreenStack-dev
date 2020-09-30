@@ -9,7 +9,8 @@ import Followers from "./Followers";
 import UserProfile from "../User/UserProfile";
 import Profile from "./profile/Profile";
 import UserTrade from "./UserTrade";
-import LoadingUser from "../login/LoadingUser";
+import { LoadingUser } from "../login/LoadingUser";
+import SearchResults from "./SearchResults";
 import UserLoginAuthSubresolver from "../resolvers/UserLoginAuthSubresolver";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { queryToken } from "../queries/queries";
@@ -22,10 +23,11 @@ interface Props {
 }
 
 const Homepage: React.FC<Props> = (props) => {
-  const [userRoutePaths, setUserRoutePaths] = useState([]);
+  const [userRoutePaths, setUserRoutePaths] = useState([] as any);
   const [tradeRoutePaths, setTradeRoutePaths] = useState([]);
   const [loadingInUser, setLoadingInUser] = useState(false);
   const [userId, setUserId] = useState(0);
+  const [results, setResults] = useState({ username: "", userId: "" });
 
   const [passToken, { data, loading }] = useLazyQuery(queryToken);
 
@@ -75,16 +77,33 @@ const Homepage: React.FC<Props> = (props) => {
     setLoadingInUser(false);
   }
 
+  function modRes(username: string, userId: string) {
+    let arr: any[] = userRoutePaths;
+    let index = { userId };
+    arr.push(index);
+    setResults({ username: username, userId: userId });
+    setUserRoutePaths(arr);
+    browserHist.push("/home/search");
+  }
+
+  useEffect(() => {
+    console.log("userRoutePaths");
+    console.log(userRoutePaths);
+  }, [userRoutePaths]);
+
   function returnLoadingIcon() {
     if (status === true) {
       return (
         <div>
           <NavBar />
           <div id="homepage">
-            <FeedSidebar />
+            <FeedSidebar modRes={modRes} />
             <Switch>
               <Route exact path="/home">
                 <Feed modRoutes={modRoutes} />
+              </Route>
+              <Route exact path="/home/search">
+                <SearchResults results={results} />
               </Route>
               <Route exact path="/home/profile">
                 <Profile username={userVal.username} />
@@ -99,9 +118,9 @@ const Homepage: React.FC<Props> = (props) => {
               <Route exact path="/home/following">
                 <Following modRoutes={modRoutes} />
               </Route>
-              {userRoutePaths.map((userId: number) => (
-                <Route key={userId} path={`/home/user/${userId}`}>
-                  <UserProfile userId={userId} />
+              {userRoutePaths.map((el: any) => (
+                <Route key={el.userId} path={`/home/user/${el.userId}`}>
+                  <UserProfile userId={el.userId} />
                 </Route>
               ))}
               {tradeRoutePaths.map((tradeId: number) => (

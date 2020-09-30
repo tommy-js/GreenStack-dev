@@ -14,7 +14,7 @@ const userSchema = new Schema({
   newaccount: Boolean,
   allowCommentsOnTrades: Boolean,
   profileImage: String,
-  followed: [{ userId: String, username: String }],
+  following: [{ userId: String, username: String }],
   followers: [
     { followerId: String, followerName: String, blocked: Boolean, id: String },
   ],
