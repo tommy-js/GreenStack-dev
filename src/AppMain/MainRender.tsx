@@ -8,13 +8,13 @@ import {
 } from "../companies/BuyStock";
 import Portfolio from "../portfolio/Portfolio";
 import AboutPage from "../about/AboutPage";
-import LeaderBoard from "../misc/LeaderBoard";
 import Homepage from "../Homepage/Homepage";
 import NewAccountRender from "../NewAccountRender/NewAccountRender";
 import companyProfiles from "../companies/companyProfiles";
 import { Route, Switch } from "react-router-dom";
-import User from "../User";
+import User from "../User/User";
 import { userContext, statusContext } from "./App";
+import { browserHist } from "./history.js";
 
 interface TradeData {
   user: string;
@@ -44,6 +44,12 @@ const MainRender: React.FC = () => {
   const { userVal, setUserVal } = useContext(userContext);
   const [tradeId, setTradeId] = useState(0);
   const [newacc, setNewacc] = useState(false);
+
+  useEffect(() => {
+    if (status === false) {
+      browserHist.push("/login");
+    }
+  }, []);
 
   useEffect(() => {
     // setNewacc(userVal.newaccount);
@@ -103,12 +109,6 @@ const MainRender: React.FC = () => {
             <Switch>
               <Route path="/portfolio">
                 <Portfolio />
-              </Route>
-              <Route path="/leaderboard">
-                <LeaderBoard
-                  updateUserMap={updateUserMap}
-                  updateTradeMap={updateTradeMap}
-                />
               </Route>
               <Route path="/home">
                 <Homepage updateConstantActivity={updateConstantActivity} />

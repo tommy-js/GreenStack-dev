@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { userContext, statusContext } from "./AppMain/App";
+import { userContext, statusContext } from "../AppMain/App";
 import UserAccountSnippet from "./UserAccountSnippet";
 import SettingsInputBox from "./SettingsInputBox";
-import { browserHist } from "./AppMain/history.js";
+import { browserHist } from "../AppMain/history.js";
 
 const UserFollowerList: React.FC = () => {
   const [stateHide, setStateHide] = useState(false);

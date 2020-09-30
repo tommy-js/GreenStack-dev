@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ReferenceTrade from "./portfolio/ReferenceTrade";
+import ReferenceTrade from "../portfolio/ReferenceTrade";
 
 const UserProfileReferences: React.FC = () => {
   const [testData, setTestData] = useState([

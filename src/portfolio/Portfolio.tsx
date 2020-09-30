@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import Header from "../Header";
+import Header from "../User/Header";
 import OwnedStocks from "./OwnedStocks";
 import NavBar from "../navigation/NavBar";
 import LiquidCapital from "./LiquidCapital";

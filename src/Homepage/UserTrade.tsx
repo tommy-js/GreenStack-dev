@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { userContext } from "../AppMain/App";
 import Comment from "../misc/Comment";
 import CommentInput from "./CommentInput";
-import Header from "../Header";
+import Header from "../User/Header";
 import TradeInformation from "../TradeInformation";
 import FollowUser from "../resolvers/FollowUser";
 

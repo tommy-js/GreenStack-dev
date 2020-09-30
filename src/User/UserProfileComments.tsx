@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
 import { flowRight as compose } from "lodash";
 import { graphql } from "react-apollo";
-import { browserHist } from "./AppMain/history.js";
+import { browserHist } from "../AppMain/history.js";
 import {
   deleteCommentUserMutation,
   deleteCommentStockMutation,
-} from "./queries/queries.js";
-import { userContext, statusContext } from "./AppMain/App";
+} from "../queries/queries.js";
+import { userContext, statusContext } from "../AppMain/App";
 
 interface Props {
   deleteCommentUserMutation: (variables: object) => void;

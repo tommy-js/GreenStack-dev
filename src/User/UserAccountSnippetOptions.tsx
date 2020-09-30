@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { flowRight as compose } from "lodash";
 import { graphql } from "react-apollo";
-import { blockUserMutation } from "./queries/queries.js";
+import { blockUserMutation } from "../queries/queries.js";
 
 interface Props {
   blocked: boolean;

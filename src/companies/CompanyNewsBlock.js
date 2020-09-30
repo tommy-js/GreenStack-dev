@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NewsComponent from "../Homepage/NewsComponent";
-import Header from "../Header";
+import Header from "../User/Header";
 
 const CompanyNewsBlock = (props) => {
   const [loggedNews, setLoggedNews] = useState();
