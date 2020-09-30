@@ -120,7 +120,7 @@ const Homepage: React.FC<Props> = (props) => {
               </Route>
               {userRoutePaths.map((el: any) => (
                 <Route key={el.userId} path={`/home/user/${el.userId}`}>
-                  <UserProfile userId={el.userId} />
+                  <UserProfile username={el.username} userId={el.userId} />
                 </Route>
               ))}
               {tradeRoutePaths.map((tradeId: number) => (

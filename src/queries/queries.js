@@ -188,7 +188,7 @@ const pushFollowerToUserMutation = gql`
     ) {
       userId
     }
-    followingUser(userId: $followerId, username: $username) {
+    followingUser(userId: $userId, username: $username) {
       userId
     }
   }
@@ -368,8 +368,8 @@ const otherUserQuery = gql`
       membership
       profileImage
       following {
-        followerId
-        followerName
+        userId
+        username
       }
       followers {
         id
