@@ -14,6 +14,7 @@ const {
 
 const User = require("./models/user");
 const Follower = require("./models/follower");
+const Following = require("./models/following");
 const Trade = require("./models/trade");
 const Comment = require("./models/comment");
 const Stock = require("./models/stock");
@@ -39,7 +40,7 @@ const UserQuery = new GraphQLObjectType({
     invisible: { type: GraphQLBoolean },
     newaccount: { type: GraphQLBoolean },
     allowCommentsOnTrades: { type: GraphQLBoolean },
-    following: { type: new GraphQLList(FollowerQuery) },
+    following: { type: new GraphQLList(FollowingQuery) },
     followers: { type: new GraphQLList(FollowerQuery) },
     stocks: { type: new GraphQLList(StockQuery) },
     shares: { type: new GraphQLList(ShareQuery) },
@@ -96,6 +97,14 @@ const FollowerQuery = new GraphQLObjectType({
     id: { type: GraphQLID },
     followerName: { type: GraphQLString },
     blocked: { type: GraphQLBoolean },
+  }),
+});
+
+const FollowingQuery = new GraphQLObjectType({
+  name: "Following",
+  fields: () => ({
+    userId: { type: GraphQLID },
+    username: { type: GraphQLString },
   }),
 });
 

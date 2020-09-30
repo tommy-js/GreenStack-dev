@@ -6,7 +6,6 @@ import { userContext } from "../AppMain/App";
 interface Props {
   userId: number;
   username: string;
-  descriptor: string;
 }
 
 const FollowingElement: React.FC<Props> = (props) => {
@@ -17,7 +16,7 @@ const FollowingElement: React.FC<Props> = (props) => {
       <Link className="block_link" to={`/home/user/${props.userId}`}>
         <p className="element_username">{props.username}</p>
       </Link>
-      <p className="following_element_descriptor">{props.descriptor}</p>
+      <p className="following_element_descriptor">props.descriptor</p>
       <UnfollowUser userId={userVal.userId} followerId={props.userId} />
     </div>
   );

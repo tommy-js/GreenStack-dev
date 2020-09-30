@@ -49,6 +49,7 @@ const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
         newaccount: dataLogIn.user.newaccount,
         allowCommentsOnTrades: dataLogIn.user.allowCommentsOnTrades,
         followers: dataLogIn.user.followers,
+        following: dataLogIn.user.following,
         profileImage: dataLogIn.user.profileImage,
         trades: dataLogIn.user.trades,
         watchlist: dataLogIn.user.watchlist,

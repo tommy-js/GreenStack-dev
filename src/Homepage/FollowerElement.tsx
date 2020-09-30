@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 interface Props {
   userId: number;
   username: string;
-  descriptor: string;
 }
 
 const FollowerElement: React.FC<Props> = (props) => {
@@ -14,7 +13,7 @@ const FollowerElement: React.FC<Props> = (props) => {
       <Link className="block_link" to={`/home/user/${props.userId}`}>
         <p className="element_username">{props.username}</p>
       </Link>
-      <p className="follower_element_descriptor">{props.descriptor}</p>
+      <p className="follower_element_descriptor">props.descriptor</p>
       <BlockUser followerId={props.userId} />
     </div>
   );

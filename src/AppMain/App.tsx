@@ -28,6 +28,8 @@ interface UserCont {
   trades: object[];
   referenceTrades: object[];
   progress: object[];
+  following: object[];
+  followers: object[];
 }
 
 export const userContext = createContext<any>({});

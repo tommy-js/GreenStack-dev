@@ -433,8 +433,8 @@ const userQuery = gql`
       allowCommentsOnTrades
       profileImage
       following {
-        followerId
-        followerName
+        userId
+        username
       }
       followers {
         id

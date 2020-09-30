@@ -12,7 +12,7 @@ interface Props {
 
 const Following: React.FC<Props> = (props) => {
   const { userVal, setUserVal } = useContext(userContext);
-  const data = userVal.followers;
+  const data = userVal.following;
 
   // Creates routes within the Homepage component for all the users in our Following list
   useEffect(() => {
@@ -28,11 +28,7 @@ const Following: React.FC<Props> = (props) => {
       <h2 className="list_header">Following({data.length})</h2>
       <div>
         {data.map((el: any) => (
-          <FollowingElement
-            userId={el.userId}
-            username={el.username}
-            descriptor={el.descriptor}
-          />
+          <FollowingElement userId={el.userId} username={el.username} />
         ))}
       </div>
     </div>
