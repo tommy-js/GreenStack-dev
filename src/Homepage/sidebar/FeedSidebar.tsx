@@ -1,17 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SidebarUsername from "./SidebarUsername";
 import SidebarSearch from "./SidebarSearch";
 import SidebarElement from "./SidebarElement";
+import { searchUserQuery } from "../../queries/queries.js";
+import { useLazyQuery } from "react-apollo";
 
 const FeedSidebar: React.FC = () => {
   const [search, setSearch] = useState("");
+
+  const [searchUser, { loading, data }] = useLazyQuery(searchUserQuery);
+
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+    }
+  }, [data]);
 
   function modSearch(input: string) {
     setSearch(input);
   }
 
   function submitSearch() {
-    console.log("searched");
+    searchUser({
+      variables: {
+        username: search,
+      },
+    });
   }
 
   return (

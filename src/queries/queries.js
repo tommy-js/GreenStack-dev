@@ -489,6 +489,15 @@ const individualPostQuery = gql`
   }
 `;
 
+const searchUserQuery = gql`
+  query($username: String!) {
+    searchUser(username: $username) {
+      username
+      userId
+    }
+  }
+`;
+
 export {
   createUserMutation,
   addCommentTradeMutation,
@@ -525,4 +534,5 @@ export {
   queryPosts,
   queryToken,
   individualPostQuery,
+  searchUserQuery,
 };

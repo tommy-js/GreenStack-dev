@@ -242,6 +242,15 @@ const RootQuery = new GraphQLObjectType({
         return Post.findOne({ postId: args.postId });
       },
     },
+    searchUser: {
+      type: UserQuery,
+      args: {
+        username: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return User.findOne({ username: args.username });
+      },
+    },
   },
 });
 
@@ -259,9 +268,10 @@ const Mutation = new GraphQLObjectType({
       resolve(parent, args) {
         let date = new Date();
         let currentTime = Math.floor(date.getTime() / 1000);
+        let modUsername = args.username.toLowerCase();
         let user = new User({
           userId: uuidv4(),
-          username: args.username,
+          username: modUsername,
           token: args.token,
           hash: args.hash,
           salt: args.salt,
