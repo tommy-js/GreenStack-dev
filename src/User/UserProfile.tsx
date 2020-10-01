@@ -12,7 +12,7 @@ interface Props {
 
 const UserProfile: React.FC<Props> = (props) => {
   const [userProfileState, setUserProfileState] = useState(false);
-  const [alreadyAdded, setAlreadyAdded] = useState(true);
+  const [alreadyAdded, setAlreadyAdded] = useState(false);
   const [userProfile, setUserProfile] = useState({} as any);
   const { userVal, setUserVal } = useContext(userContext);
 
@@ -22,8 +22,13 @@ const UserProfile: React.FC<Props> = (props) => {
 
   useEffect(() => {
     let arr = userVal.following;
+    console.log("userval.following:");
+    console.log(arr);
+    console.log("props.userId: " + props.userId);
     let filter = arr.filter((arr: any) => arr.userId === props.userId);
-    if (filter) {
+    console.log("filter:");
+    console.log(filter);
+    if (filter.length > 0) {
       setAlreadyAdded(true);
     } else {
       setAlreadyAdded(false);
@@ -33,10 +38,14 @@ const UserProfile: React.FC<Props> = (props) => {
   useEffect(() => {
     if (data) {
       console.log(data);
-      setUserProfileState(true);
       setUserProfile(data.user);
+      setUserProfileState(true);
     }
   }, [data]);
+
+  function modAlreadyAdded() {
+    setAlreadyAdded(true);
+  }
 
   function returnFollow() {
     if (alreadyAdded === true) {
@@ -49,6 +58,7 @@ const UserProfile: React.FC<Props> = (props) => {
             username={userVal.username}
             followerId={props.userId}
             followerName={userProfile.username}
+            modAlreadyAdded={modAlreadyAdded}
           />
         </div>
       );

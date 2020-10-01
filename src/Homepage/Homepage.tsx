@@ -65,8 +65,6 @@ const Homepage: React.FC<Props> = (props) => {
 
   function modRoutes(route: any) {
     setUserRoutePaths(route);
-    console.log("Routes: ");
-    console.log(route);
   }
 
   function modTradeRoutes(route: any) {
@@ -85,11 +83,6 @@ const Homepage: React.FC<Props> = (props) => {
     setUserRoutePaths(arr);
     browserHist.push("/home/search");
   }
-
-  useEffect(() => {
-    console.log("userRoutePaths");
-    console.log(userRoutePaths);
-  }, [userRoutePaths]);
 
   function returnLoadingIcon() {
     if (status === true) {

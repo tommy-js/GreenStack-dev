@@ -803,6 +803,7 @@ const Mutation = new GraphQLObjectType({
       type: UserQuery,
       args: {
         userId: { type: GraphQLID },
+        followingId: { type: GraphQLID },
         username: { type: GraphQLString },
       },
       resolve(parent, args) {
@@ -811,7 +812,7 @@ const Mutation = new GraphQLObjectType({
           {
             $push: {
               following: {
-                userId: args.userId,
+                userId: args.followingId,
                 username: args.username,
               },
             },

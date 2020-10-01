@@ -188,7 +188,11 @@ const pushFollowerToUserMutation = gql`
     ) {
       userId
     }
-    followingUser(userId: $userId, username: $username) {
+    followingUser(
+      followingId: $userId
+      userId: $followerId
+      username: $username
+    ) {
       userId
     }
   }
