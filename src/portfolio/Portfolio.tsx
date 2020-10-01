@@ -11,6 +11,7 @@ import { userContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
 import { queryToken } from "../queries/queries";
 import { useLazyQuery } from "react-apollo";
+import companyProfiles from "../companies/companyProfiles";
 
 import { statusContext } from "../AppMain/App";
 
@@ -19,29 +20,32 @@ const Portfolio: React.FC = () => {
   const { userVal, setUserVal } = useContext(userContext);
   const [loadingInUser, setLoadingInUser] = useState(false);
   const [userId, setUserId] = useState(0);
-  const [userTrades, setUserTrades] = useState([
-    {
-      title: "Apple",
-      ticker: "AAPL",
-      stockId: 0,
-      purchasePrice: 342,
-      currentPrice: 532,
-      shares: 4,
-      keyId: 24235,
-    },
-  ]);
-
-  const [userWatch, setUserWatch] = useState([
-    {
-      stockId: 0,
-      title: "Apple",
-      ticker: "AAPL",
-      price: 532,
-      keyId: 24235,
-    },
-  ]);
+  const [userWatch, setUserWatch] = useState(userVal.watchlist);
+  const [userStocks, setUserStocks] = useState([] as any);
 
   const [passToken, { data, loading }] = useLazyQuery(queryToken);
+
+  useEffect(() => {
+    if (status) {
+      let stocks = userVal.stocks;
+      let arr = [];
+      for (let i = 0; i < stocks.length; i++) {
+        let found = companyProfiles.find(
+          (el: any) => el.stockId === stocks[i].stockId
+        );
+        if (found) {
+          let obj = { ...found, shares: stocks[i].shares };
+          arr.push(obj);
+        }
+      }
+      setUserStocks(arr);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log("user stocks: ");
+    console.log(userStocks);
+  }, [userStocks]);
 
   useEffect(() => {
     console.log("homepage status: " + status);
@@ -86,7 +90,7 @@ const Portfolio: React.FC = () => {
             <Route exact path="/portfolio">
               <Header text="Your Portfolio" />
               <LiquidCapital />
-              <OwnedStocks testData={userTrades} />
+              <OwnedStocks owned={userStocks} />
               <Header text="Watch-list" />
               <WatchStocks stocks={userWatch} />
               <Header text="Profile" />

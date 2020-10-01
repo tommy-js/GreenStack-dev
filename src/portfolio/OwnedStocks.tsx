@@ -2,25 +2,33 @@ import React from "react";
 import ShareListing from "./ShareListing";
 
 interface Props {
-  testData: any;
+  owned: any;
 }
 
 const OwnedStocks: React.FC<Props> = (props) => {
-  return (
-    <div id="owned_stocked">
-      {props.testData.map((el: any) => (
-        <div>
-          <ShareListing
-            title={el.title}
-            ticker={el.ticker}
-            purchasePrice={el.purchasePrice}
-            currentPrice={el.currentPrice}
-            shares={el.shares}
-          />
+  function returnRender() {
+    if (props.owned.length != 0) {
+      return (
+        <div id="owned_stocked">
+          {props.owned.map((el: any) => (
+            <div>
+              <ShareListing
+                stockId={el.stockId}
+                title={el.title}
+                ticker={el.ticker}
+                shares={el.shares}
+                price={el.price}
+              />
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
-  );
+      );
+    } else {
+      return null;
+    }
+  }
+
+  return <div>{returnRender()}</div>;
 };
 
 export default OwnedStocks;
