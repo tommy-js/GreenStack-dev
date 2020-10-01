@@ -7,6 +7,7 @@ interface Props {
   stockId: string;
   title: string;
   ticker: string;
+  price: number;
 }
 
 export const BuyStockPage: React.FC<Props> = (props) => {
@@ -17,7 +18,11 @@ export const BuyStockPage: React.FC<Props> = (props) => {
         Buy {props.title} #{props.ticker}
       </h2>
       <div>Chart</div>
-      <BuyStock stockId={props.stockId} userId={props.userId} />
+      <BuyStock
+        stockId={props.stockId}
+        userId={props.userId}
+        price={props.price}
+      />
       <div>Data</div>
     </div>
   );
@@ -31,7 +36,11 @@ export const SellStockPage: React.FC<Props> = (props) => {
         Sell {props.title} #{props.ticker}
       </h2>
       <div>Chart</div>
-      <SellStock stockId={props.stockId} userId={props.userId} />
+      <SellStock
+        stockId={props.stockId}
+        userId={props.userId}
+        price={props.price}
+      />
       <div>Data</div>
     </div>
   );

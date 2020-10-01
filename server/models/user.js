@@ -18,27 +18,7 @@ const userSchema = new Schema({
   followers: [
     { followerId: String, followerName: String, blocked: Boolean, id: String },
   ],
-  stocks: [
-    {
-      stockId: String,
-      ticker: String,
-      name: String,
-      about: String,
-      creation: String,
-      prediction: Number,
-      comments: [
-        {
-          userId: String,
-          username: String,
-          timestamp: Number,
-          text: String,
-          likes: Number,
-          dislikes: Number,
-        },
-      ],
-    },
-  ],
-  shares: [{ stockId: String, shares: Number }],
+  stocks: [{ stockId: String, shares: Number }],
   trades: [
     {
       tradeId: Number,

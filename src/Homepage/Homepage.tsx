@@ -150,6 +150,7 @@ const Homepage: React.FC<Props> = (props) => {
                     title={el.title}
                     ticker={el.ticker}
                     userId={userVal.userId}
+                    price={el.price}
                   />
                 </Route>
                 <Route
@@ -162,6 +163,7 @@ const Homepage: React.FC<Props> = (props) => {
                     title={el.title}
                     ticker={el.ticker}
                     userId={userVal.userId}
+                    price={el.price}
                   />
                 </Route>
                 <Route
@@ -174,6 +176,7 @@ const Homepage: React.FC<Props> = (props) => {
                     title={el.title}
                     ticker={el.ticker}
                     userId={userVal.userId}
+                    price={el.price}
                   />
                 </Route>
               </div>

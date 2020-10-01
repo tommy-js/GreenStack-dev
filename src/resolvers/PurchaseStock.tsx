@@ -7,18 +7,24 @@ interface Props {
   stockId: string;
   userId: string;
   shares: number;
+  money: number;
+  price: number;
   purchaseStockMutation: (variables: object) => void;
 }
 
 const PurchaseStock: React.FC<Props> = (props) => {
   function buy() {
-    props.purchaseStockMutation({
-      variables: {
-        userId: props.userId,
-        stockId: props.stockId,
-        shares: props.shares,
-      },
-    });
+    let remainder = props.money - props.shares * props.price;
+    if (remainder >= 0) {
+      props.purchaseStockMutation({
+        variables: {
+          userId: props.userId,
+          stockId: props.stockId,
+          shares: props.shares,
+          money: remainder,
+        },
+      });
+    }
   }
 
   return <button onClick={() => buy()}>Buy</button>;

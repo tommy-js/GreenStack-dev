@@ -320,17 +320,23 @@ const newTokenMutation = gql`
 `;
 
 const purchaseStockMutation = gql`
-  mutation($userId: ID!, $stockId: ID!, $shares: Int) {
-    buyStock(userId: $userId, stockId: $stockId, shares: $shares) {
+  mutation($userId: ID!, $stockId: ID!, $shares: Int, $money: Float!) {
+    updateShares(userId: $userId, stockId: $stockId, shares: $shares) {
       shares
+    }
+    updateMoney(userId: $userId, money: $money) {
+      money
     }
   }
 `;
 
 const sellStockMutation = gql`
   mutation($userId: ID!, $stockId: ID!, $shares: Int) {
-    sellStock(userId: $userId, stockId: $stockId, shares: $shares) {
+    updateShares(userId: $userId, stockId: $stockId, shares: $shares) {
       shares
+    }
+    updateMoney(userId: $userId, money: $money) {
+      money
     }
   }
 `;

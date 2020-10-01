@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PurchaseStock from "../resolvers/PurchaseStock";
 import AuctionStock from "../resolvers/AuctionStock";
+import { userContext } from "../AppMain/App";
 
 interface Props {
   stockId: string;
   userId: string;
+  price: number;
 }
 
 export const BuyStock: React.FC<Props> = (props) => {
   const [purchaseNum, setPurchaseNum] = useState(0);
+  const { userVal } = useContext(userContext);
 
   function coerceInt(val: string) {
     let int = parseInt(val);
@@ -27,6 +30,8 @@ export const BuyStock: React.FC<Props> = (props) => {
         stockId={props.stockId}
         userId={props.userId}
         shares={purchaseNum}
+        price={props.price}
+        money={userVal.money}
       />
     </div>
   );
@@ -34,6 +39,7 @@ export const BuyStock: React.FC<Props> = (props) => {
 
 export const SellStock: React.FC<Props> = (props) => {
   const [sellNum, setSellNum] = useState(0);
+  const { userVal } = useContext(userContext);
 
   function coerceInt(val: string) {
     let int = parseInt(val);
@@ -51,7 +57,9 @@ export const SellStock: React.FC<Props> = (props) => {
       <AuctionStock
         stockId={props.stockId}
         userId={props.userId}
+        price={props.price}
         shares={sellNum}
+        money={userVal.money}
       />
     </div>
   );

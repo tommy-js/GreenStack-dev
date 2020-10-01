@@ -42,8 +42,7 @@ const UserQuery = new GraphQLObjectType({
     allowCommentsOnTrades: { type: GraphQLBoolean },
     following: { type: new GraphQLList(FollowingQuery) },
     followers: { type: new GraphQLList(FollowerQuery) },
-    stocks: { type: new GraphQLList(StockQuery) },
-    shares: { type: new GraphQLList(ShareQuery) },
+    stocks: { type: new GraphQLList(ShareQuery) },
     trades: { type: new GraphQLList(TradeQuery) },
     comments: { type: new GraphQLList(CommentQuery) },
     watchlist: { type: new GraphQLList(WatchlistQuery) },
@@ -427,7 +426,7 @@ const Mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return User.findOneAndUpdate(
-          { "shares.shareId": args.shareId },
+          { "stocks.shareId": args.shareId },
           { $set: { shares: args.shares, stockId: args.stockId } },
           { upsert: true, new: true }
         );
@@ -533,16 +532,17 @@ const Mutation = new GraphQLObjectType({
         stockId: { type: GraphQLID },
         shares: { type: GraphQLInt },
       },
-      resolve(parent, args) {
-        return UserQuery.findOneAndUpdate(
-          { shareId: args.shareId },
+      async resolve(parent, args) {
+        let user = await User.findOne({ userId: args.userId });
+        let arr = user.stocks;
+        let foundArr = arr.find((el) => el.stockId === args.stockId);
+        let stockObj = { stockId: args.stockId, shares: args.shares };
+        arr.push(stockObj);
+        return User.update(
+          { userId: args.userId },
           {
             $set: {
-              shares: {
-                userId: args.userId,
-                stockId: args.stockId,
-                shares: args.shares,
-              },
+              stocks: arr,
             },
           }
         );
