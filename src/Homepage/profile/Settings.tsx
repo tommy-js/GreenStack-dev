@@ -1,7 +1,8 @@
 import React from "react";
-import DarkMode from "./DarkMode";
-import Private from "./Private";
-import DeleteAccount from "./DeleteAccount";
+import DarkMode from "../../resolvers/DarkMode";
+import Private from "../../resolvers/Private";
+import DeleteAccount from "../../resolvers/DeleteAccount";
+import AllowComments from "../../resolvers/AllowComments";
 
 const Settings: React.FC = () => {
   return (
@@ -9,6 +10,7 @@ const Settings: React.FC = () => {
       <h2>Settings</h2>
       <DarkMode />
       <Private />
+      <AllowComments />
       <DeleteAccount />
     </div>
   );

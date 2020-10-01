@@ -41,6 +41,30 @@ const setProfileImageMutation = gql`
   }
 `;
 
+const updateDarkModeMutation = gql`
+  mutation($userId: ID!) {
+    updateDarkMode(userId: $userId) {
+      userId
+    }
+  }
+`;
+
+const updateAllowCommentsMutation = gql`
+  mutation($userId: ID!) {
+    updateAllowComments(userId: $userId) {
+      userId
+    }
+  }
+`;
+
+const updateInvisibleMutation = gql`
+  mutation($userId: ID!) {
+    updateInvisible(userId: $userId) {
+      userId
+    }
+  }
+`;
+
 const pushTradeMutation = gql`
   mutation(
     $userId: ID!
@@ -546,6 +570,9 @@ const searchUserQuery = gql`
 
 export {
   createUserMutation,
+  updateDarkModeMutation,
+  updateAllowCommentsMutation,
+  updateInvisibleMutation,
   addCommentTradeMutation,
   updateUserNotificationsViewedMutation,
   updateLikesMutation,

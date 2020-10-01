@@ -398,21 +398,53 @@ const Mutation = new GraphQLObjectType({
         );
       },
     },
-    updateUserSettings: {
+    updateDarkMode: {
       type: UserQuery,
       args: {
         userId: { type: GraphQLID },
-        darkmode: { type: GraphQLBoolean },
-        invisible: { type: GraphQLBoolean },
-        allowCommentsOnTrades: { type: GraphQLBoolean },
       },
-      resolve(parent, args) {
-        return User.update(
+      async resolve(parent, args) {
+        let user = await User.findOne({ userId: args.userId });
+        return User.findOneAndUpdate(
           { userId: args.userId },
           {
-            darkmode: args.darkmode,
-            invisible: args.invisible,
-            allowCommentsOnTrades: args.allowCommentsOnTrades,
+            $set: {
+              darkmode: !user.darkmode,
+            },
+          }
+        );
+      },
+    },
+    updateAllowComments: {
+      type: UserQuery,
+      args: {
+        userId: { type: GraphQLID },
+      },
+      async resolve(parent, args) {
+        let user = await User.findOne({ userId: args.userId });
+        return User.findOneAndUpdate(
+          { userId: args.userId },
+          {
+            $set: {
+              allowCommentsOnTrades: !user.allowCommentsOnTrades,
+            },
+          }
+        );
+      },
+    },
+    updateInvisible: {
+      type: UserQuery,
+      args: {
+        userId: { type: GraphQLID },
+      },
+      async resolve(parent, args) {
+        let user = await User.findOne({ userId: args.userId });
+        return User.findOneAndUpdate(
+          { userId: args.userId },
+          {
+            $set: {
+              invisible: !user.invisible,
+            },
           }
         );
       },
