@@ -1,13 +1,14 @@
 import React from "react";
 import ExploreCompany from "./ExploreCompany";
 import { ExploreStock, ExploreUser } from "./ExploreElement";
+import techData from "../../companies/techData";
 
 const Explore: React.FC = () => {
   const testData = [
     {
       dataId: 0,
       data: {
-        stockId: 0,
+        stockId: "d09a46e3-9edf-4c15-a9c6-fcabca281146",
         title: "Apple",
         ticker: "AAPL",
         sector: "Technology",
@@ -18,51 +19,10 @@ const Explore: React.FC = () => {
     {
       dataId: 1,
       data: {
-        id: 3523,
-        username: "Ty",
-        description: "Stock analyst for the NYT.",
+        id: "3523",
+        username: "Tommy",
+        description: "Developer of App",
       },
-    },
-  ];
-
-  const techData = [
-    {
-      stockId: 0,
-      title: "Apple",
-      ticker: "AAPL",
-      description:
-        "Largest company in the world. Specializes in computer and phone technology.",
-      country: "United States of America",
-      price: 432,
-      marketcap: "$2.1T",
-    },
-    {
-      stockId: 1,
-      title: "Microsoft",
-      ticker: "MSFT",
-      description:
-        "Creates computer chips, video games, and business infrastructure.",
-      country: "United States of America",
-      price: 203,
-      marketcap: "$1.6T",
-    },
-    {
-      stockId: 2,
-      title: "Alphabet",
-      ticker: "GOOGL",
-      description: "Search engines, software, and research company",
-      country: "United States of America",
-      price: 2000,
-      marketcap: "$971B",
-    },
-    {
-      stockId: 3,
-      title: "Samsung",
-      ticker: "Samsung Electronics Co Ltd",
-      description: "Phones, TVs, and other electronics.",
-      country: "South Korea",
-      price: 50,
-      marketcap: "$335B",
     },
   ];
 

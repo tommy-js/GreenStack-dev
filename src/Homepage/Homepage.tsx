@@ -13,10 +13,17 @@ import { LoadingUser } from "../login/LoadingUser";
 import SearchResults from "./SearchResults";
 import UserLoginAuthSubresolver from "../resolvers/UserLoginAuthSubresolver";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
+import {
+  BuyStockPage,
+  SellStockPage,
+  OptionStockPage,
+} from "../companies/BuyStock";
+import StockPage from "../companies/StockPage";
 import { queryToken } from "../queries/queries";
 import { useLazyQuery } from "react-apollo";
 import { statusContext, userContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
+import companyProfiles from "../companies/companyProfiles";
 
 interface Props {
   updateConstantActivity: (passInActivity: any) => void;
@@ -91,37 +98,86 @@ const Homepage: React.FC<Props> = (props) => {
           <NavBar />
           <div id="homepage">
             <FeedSidebar modRes={modRes} />
-            <Switch>
-              <Route exact path="/home">
-                <Feed modRoutes={modRoutes} />
+            <Route exact path="/home">
+              <Feed modRoutes={modRoutes} />
+            </Route>
+            <Route exact path="/home/search">
+              <SearchResults results={results} />
+            </Route>
+            <Route exact path="/home/profile">
+              <Profile username={userVal.username} />
+            </Route>
+            <Route exact path="/home/explore" component={Explore} />
+            <Route exact path="/home/posts">
+              <UserPosts modRoutes={modTradeRoutes} />
+            </Route>
+            <Route exact path="/home/followers">
+              <Followers modRoutes={modRoutes} />
+            </Route>
+            <Route exact path="/home/following">
+              <Following modRoutes={modRoutes} />
+            </Route>
+            {userRoutePaths.map((el: any) => (
+              <Route key={el.userId} path={`/home/user/${el.userId}`}>
+                <UserProfile username={el.username} userId={el.userId} />
               </Route>
-              <Route exact path="/home/search">
-                <SearchResults results={results} />
+            ))}
+            {tradeRoutePaths.map((tradeId: number) => (
+              <Route key={tradeId} path={`/home/post/${tradeId}`}>
+                <UserTrade tradeId={tradeId} />
               </Route>
-              <Route exact path="/home/profile">
-                <Profile username={userVal.username} />
-              </Route>
-              <Route exact path="/home/explore" component={Explore} />
-              <Route exact path="/home/posts">
-                <UserPosts modRoutes={modTradeRoutes} />
-              </Route>
-              <Route exact path="/home/followers">
-                <Followers modRoutes={modRoutes} />
-              </Route>
-              <Route exact path="/home/following">
-                <Following modRoutes={modRoutes} />
-              </Route>
-              {userRoutePaths.map((el: any) => (
-                <Route key={el.userId} path={`/home/user/${el.userId}`}>
-                  <UserProfile username={el.username} userId={el.userId} />
+            ))}
+            {companyProfiles.map((el: any) => (
+              <div>
+                <Route
+                  exact
+                  key={el.stockId}
+                  path={`/home/stock/${el.stockId}`}
+                >
+                  <StockPage
+                    stockId={el.stockId}
+                    title={el.title}
+                    ticker={el.ticker}
+                  />
                 </Route>
-              ))}
-              {tradeRoutePaths.map((tradeId: number) => (
-                <Route key={tradeId} path={`/home/post/${tradeId}`}>
-                  <UserTrade tradeId={tradeId} />
+                <Route
+                  key={el.stockId}
+                  exact
+                  path={`/home/stock/${el.stockId}/buy`}
+                >
+                  <BuyStockPage
+                    stockId={el.stockId}
+                    title={el.title}
+                    ticker={el.ticker}
+                    userId={userVal.userId}
+                  />
                 </Route>
-              ))}
-            </Switch>
+                <Route
+                  key={el.stockId}
+                  exact
+                  path={`/home/stock/${el.stockId}/sell`}
+                >
+                  <SellStockPage
+                    stockId={el.stockId}
+                    title={el.title}
+                    ticker={el.ticker}
+                    userId={userVal.userId}
+                  />
+                </Route>
+                <Route
+                  key={el.stockId}
+                  exact
+                  path={`/home/stock/${el.stockId}/options`}
+                >
+                  <OptionStockPage
+                    stockId={el.stockId}
+                    title={el.title}
+                    ticker={el.ticker}
+                    userId={userVal.userId}
+                  />
+                </Route>
+              </div>
+            ))}
           </div>
         </div>
       );

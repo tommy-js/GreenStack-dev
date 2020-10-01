@@ -49,6 +49,7 @@ const Feed: React.FC<Props> = (props) => {
         headline: "Apple Announces New Chip",
         name: "Apple",
         ticker: "AAPL",
+        stockId: "d09a46e3-9edf-4c15-a9c6-fcabca281146",
         subtext:
           "On September 23, Apple announced a new chip to rival those of Intel and Nvidia.",
         dataId: 2564634,

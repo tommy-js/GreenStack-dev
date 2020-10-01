@@ -1,7 +1,8 @@
 import React from "react";
 import CommentInput from "../CommentInput";
 import CommentSection from "../CommentSection";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import { browserHist } from "../../AppMain/history.js";
 
 interface Post {
   title: string;
@@ -24,6 +25,7 @@ interface Post {
 interface News {
   headline: string;
   ticker: string;
+  stockId: string;
   name: string;
   subtext: string;
   comments: {
@@ -72,9 +74,13 @@ export const PostType: React.FC<Post> = (props) => {
 };
 
 export const NewsType: React.FC<News> = (props) => {
+  function link() {
+    browserHist.push(`/home/stock/${props.stockId}`);
+  }
+
   return (
     <div>
-      <h2>
+      <h2 onClick={() => link()}>
         {props.name} #{props.ticker}
       </h2>
       <h2>{props.headline}</h2>

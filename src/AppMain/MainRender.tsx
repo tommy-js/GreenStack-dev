@@ -1,16 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import { BasicsPage, OptionsPage, ProtectionPage } from "../about/LearnPage";
-import StockPage from "../companies/StockPage";
-import {
-  BuyStockPage,
-  SellStockPage,
-  OptionStockPage,
-} from "../companies/BuyStock";
 import Portfolio from "../portfolio/Portfolio";
 import AboutPage from "../about/AboutPage";
 import Homepage from "../Homepage/Homepage";
 import NewAccountRender from "../NewAccountRender/NewAccountRender";
-import companyProfiles from "../companies/companyProfiles";
 import { Route, Switch } from "react-router-dom";
 import User from "../User/User";
 import { userContext, statusContext } from "./App";
@@ -117,57 +110,6 @@ const MainRender: React.FC = () => {
                 <AboutPage />
               </Route>
             </Switch>
-            {companyProfiles.map((el: any) => (
-              <Switch>
-                <Route
-                  key={el.stockId}
-                  exact
-                  path={`/home/stock/${el.stockId}`}
-                >
-                  <StockPage
-                    stockId={el.stockId}
-                    title={el.title}
-                    ticker={el.ticker}
-                  />
-                </Route>
-                <Route
-                  key={el.stockId}
-                  exact
-                  path={`/home/stock/${el.stockId}/buy`}
-                >
-                  <BuyStockPage
-                    stockId={el.stockId}
-                    title={el.title}
-                    ticker={el.ticker}
-                    userId={userVal.userId}
-                  />
-                </Route>
-                <Route
-                  key={el.stockId}
-                  exact
-                  path={`/home/stock/${el.stockId}/sell`}
-                >
-                  <SellStockPage
-                    stockId={el.stockId}
-                    title={el.title}
-                    ticker={el.ticker}
-                    userId={userVal.userId}
-                  />
-                </Route>
-                <Route
-                  key={el.stockId}
-                  exact
-                  path={`/home/stock/${el.stockId}/options`}
-                >
-                  <OptionStockPage
-                    stockId={el.stockId}
-                    title={el.title}
-                    ticker={el.ticker}
-                    userId={userVal.userId}
-                  />
-                </Route>
-              </Switch>
-            ))}
             {returnTradePath()}
             <Switch>
               <Route path="/about/learn/general">

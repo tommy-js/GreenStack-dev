@@ -30,6 +30,7 @@ const FeedModal: React.FC<Props> = (props) => {
         <div>
           <NewsType
             headline={props.data.headline}
+            stockId={props.data.stockId}
             ticker={props.data.ticker}
             name={props.data.name}
             subtext={props.data.subtext}
