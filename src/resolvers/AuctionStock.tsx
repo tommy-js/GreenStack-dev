@@ -32,7 +32,7 @@ const AuctionStock: React.FC<Props> = (props) => {
       variables: {
         stockId: props.stockId,
         userId: props.userId,
-        shares: props.shares,
+        shares: -props.shares,
         money: value,
       },
     });

@@ -11,6 +11,7 @@ interface Props {
   title: string;
   ticker: string;
   stockId: string;
+  price: number;
 }
 
 const StockPage: React.FC<Props> = (props) => {
@@ -24,7 +25,7 @@ const StockPage: React.FC<Props> = (props) => {
 
   return (
     <div className="stock_page">
-      <CompanyInformationBlock title={props.title} price={"0"} />
+      <CompanyInformationBlock title={props.title} price={props.price} />
       <CompanyOptions
         title={props.title}
         ticker={props.ticker}

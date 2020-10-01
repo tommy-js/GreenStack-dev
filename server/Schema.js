@@ -533,19 +533,28 @@ const Mutation = new GraphQLObjectType({
         shares: { type: GraphQLInt },
       },
       async resolve(parent, args) {
-        let user = await User.findOne({ userId: args.userId });
-        let arr = user.stocks;
-        let foundArr = arr.find((el) => el.stockId === args.stockId);
-        let stockObj = { stockId: args.stockId, shares: args.shares };
-        arr.push(stockObj);
-        return User.update(
-          { userId: args.userId },
-          {
-            $set: {
-              stocks: arr,
-            },
+        if (args.shares === 0) {
+          return null;
+        } else {
+          let user = await User.findOne({ userId: args.userId });
+          let arr = user.stocks;
+          let foundArr = arr.find((el) => el.stockId === args.stockId);
+          if (foundArr) {
+            let index = arr.indexOf(foundArr);
+            arr[index].shares = arr[index].shares + args.shares;
+          } else if (!foundArr) {
+            let stockObj = { stockId: args.stockId, shares: args.shares };
+            arr.push(stockObj);
           }
-        );
+          return User.update(
+            { userId: args.userId },
+            {
+              $set: {
+                stocks: arr,
+              },
+            }
+          );
+        }
       },
     },
     pushTradeToHistory: {

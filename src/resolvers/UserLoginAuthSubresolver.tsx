@@ -17,7 +17,7 @@ const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
   const { userVal, setUserVal } = useContext(userContext);
   const [
     logUserIn,
-    { called, loading: loadingLogIn, data: dataLogIn, error: errorLogIn },
+    { loading: loadingLogIn, data: dataLogIn, error: errorLogIn },
   ] = useLazyQuery(userQuery);
 
   useEffect(() => {
@@ -50,6 +50,7 @@ const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
         allowCommentsOnTrades: dataLogIn.user.allowCommentsOnTrades,
         followers: dataLogIn.user.followers,
         following: dataLogIn.user.following,
+        stocks: dataLogIn.user.stocks,
         profileImage: dataLogIn.user.profileImage,
         trades: dataLogIn.user.trades,
         watchlist: dataLogIn.user.watchlist,

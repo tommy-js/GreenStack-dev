@@ -322,7 +322,7 @@ const newTokenMutation = gql`
 const purchaseStockMutation = gql`
   mutation($userId: ID!, $stockId: ID!, $shares: Int, $money: Float!) {
     updateShares(userId: $userId, stockId: $stockId, shares: $shares) {
-      shares
+      userId
     }
     updateMoney(userId: $userId, money: $money) {
       money
@@ -331,9 +331,9 @@ const purchaseStockMutation = gql`
 `;
 
 const sellStockMutation = gql`
-  mutation($userId: ID!, $stockId: ID!, $shares: Int) {
+  mutation($userId: ID!, $stockId: ID!, $shares: Int, $money: Float!) {
     updateShares(userId: $userId, stockId: $stockId, shares: $shares) {
-      shares
+      userId
     }
     updateMoney(userId: $userId, money: $money) {
       money
@@ -387,22 +387,6 @@ const otherUserQuery = gql`
         followerName
         blocked
       }
-      stocks {
-        stockId
-        ticker
-        name
-        about
-        creation
-        prediction
-        comments {
-          userId
-          username
-          timestamp
-          text
-          likes
-          dislikes
-        }
-      }
       trades {
         price
         tradeId
@@ -453,22 +437,6 @@ const userQuery = gql`
         blocked
       }
       stocks {
-        stockId
-        ticker
-        name
-        about
-        creation
-        prediction
-        comments {
-          userId
-          username
-          timestamp
-          text
-          likes
-          dislikes
-        }
-      }
-      shares {
         stockId
         shareId
         shares

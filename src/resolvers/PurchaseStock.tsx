@@ -10,6 +10,7 @@ interface Props {
   money: number;
   price: number;
   purchaseStockMutation: (variables: object) => void;
+  returnCannotAfford: () => void;
 }
 
 const PurchaseStock: React.FC<Props> = (props) => {
@@ -24,6 +25,8 @@ const PurchaseStock: React.FC<Props> = (props) => {
           money: remainder,
         },
       });
+    } else {
+      props.returnCannotAfford();
     }
   }
 

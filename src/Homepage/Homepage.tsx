@@ -138,6 +138,7 @@ const Homepage: React.FC<Props> = (props) => {
                     stockId={el.stockId}
                     title={el.title}
                     ticker={el.ticker}
+                    price={el.price}
                   />
                 </Route>
                 <Route
