@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PostRender from "./PostRender";
 import { individualPostQuery } from "../queries/queries.js";
 import { useQuery } from "react-apollo";
 
@@ -6,8 +7,27 @@ interface Props {
   postId: string;
 }
 
+interface Data {
+  title: string;
+  text: string;
+  likes: number;
+  dislikes: number;
+  timestamp: number;
+  postId: number;
+  comments: {
+    userId: string;
+    username: string;
+    commentId: string;
+    timestamp: number;
+    text: string;
+    likes: number;
+    dislikes: number;
+  };
+}
+
 const PostPage: React.FC<Props> = (props) => {
   const [dataLoaded, setDataLoaded] = useState(false);
+  const [info, setInfo] = useState({} as Data);
   const { loading, data } = useQuery(individualPostQuery, {
     variables: { postId: props.postId },
   });
@@ -16,6 +36,15 @@ const PostPage: React.FC<Props> = (props) => {
     if (data) {
       setDataLoaded(true);
       console.log(data);
+      setInfo({
+        text: data.post.text,
+        title: data.post.title,
+        likes: data.post.likes,
+        dislikes: data.post.dislikes,
+        timestamp: data.post.timestamp,
+        postId: data.post.postId,
+        comments: data.post.comments,
+      });
     }
   }, [data]);
 
@@ -23,7 +52,7 @@ const PostPage: React.FC<Props> = (props) => {
     if (dataLoaded === true) {
       return (
         <div>
-          <h2>loaded....</h2>
+          <PostRender info={info} />
         </div>
       );
     } else {

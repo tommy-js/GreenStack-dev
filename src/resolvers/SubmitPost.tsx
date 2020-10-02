@@ -15,23 +15,25 @@ interface Props {
 
 const SubmitPost: React.FC<Props> = (props) => {
   function submit() {
-    props
-      .postMutation({
-        variables: {
-          userId: props.userId,
-          username: props.username,
-          title: props.title,
-          text: props.text,
-        },
-      })
-      .catch((err: any) => {
-        console.log(err);
-        props.unsuccessfulEvent();
-      })
-      .then((res: any) => {
-        console.log(res);
-        props.successfulEvent();
-      });
+    if (props.text !== "") {
+      props
+        .postMutation({
+          variables: {
+            userId: props.userId,
+            username: props.username,
+            title: props.title,
+            text: props.text,
+          },
+        })
+        .catch((err: any) => {
+          console.log(err);
+          props.unsuccessfulEvent();
+        })
+        .then((res: any) => {
+          console.log(res);
+          props.successfulEvent();
+        });
+    }
   }
 
   return <button onClick={() => submit()}>Submit</button>;
