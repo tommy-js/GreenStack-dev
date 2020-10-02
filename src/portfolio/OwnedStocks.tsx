@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ShareListing from "./ShareListing";
 
 interface Props {
@@ -6,11 +6,27 @@ interface Props {
 }
 
 const OwnedStocks: React.FC<Props> = (props) => {
+  const [trades, setTrades] = useState([] as any);
+
+  useEffect(() => {
+    console.log(props.owned);
+    let trades = [];
+    for (let i = 0; i < props.owned.length; i++) {
+      if (props.owned[i].shares != 0) {
+        trades.push(props.owned[i]);
+        console.log("pushing trade to ownedstocks");
+      }
+    }
+    console.log("trades: ");
+    console.log(trades);
+    setTrades(trades);
+  }, [props.owned]);
+
   function returnRender() {
-    if (props.owned.length != 0) {
+    if (trades.length != 0) {
       return (
         <div id="owned_stocked">
-          {props.owned.map((el: any) => (
+          {trades.map((el: any) => (
             <div>
               <ShareListing
                 stockId={el.stockId}

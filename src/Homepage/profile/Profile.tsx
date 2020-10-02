@@ -12,7 +12,6 @@ const Profile: React.FC<Props> = (props) => {
     <div className="feed">
       <p>{props.username}</p>
       <Settings />
-      <CurrentAccount />
       <TradeHistory />
     </div>
   );
