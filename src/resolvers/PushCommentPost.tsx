@@ -1,30 +1,31 @@
 import React from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
-import { pushCommentMutation } from "../queries/queries.js";
+import { pushCommentPostMutation } from "../queries/queries.js";
 
 interface Props {
   username: string;
   userId: string;
+  postId: string;
   text: string;
-  pushCommentMutation: (variables: object) => void;
+  pushCommentPostMutation: (variables: object) => void;
 }
 
-const PushComment: React.FC<Props> = (props) => {
+const PushCommentPost: React.FC<Props> = (props) => {
   function submitComment() {
-    props.pushCommentMutation({
+    props.pushCommentPostMutation({
       variables: {
         username: props.username,
         userId: props.userId,
+        postId: props.postId,
         text: props.text,
       },
     });
-    console.log("submitted!");
   }
 
   return <button onClick={() => submitComment()}>Submit</button>;
 };
 
 export default compose(
-  graphql(pushCommentMutation, { name: "pushCommentMutation" })
-)(PushComment);
+  graphql(pushCommentPostMutation, { name: "pushCommentPostMutation" })
+)(PushCommentPost);

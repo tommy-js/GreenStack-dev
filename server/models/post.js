@@ -13,6 +13,7 @@ const postSchema = new Schema({
     {
       userId: String,
       username: String,
+      commentId: String,
       timestamp: Number,
       text: String,
       likes: Number,

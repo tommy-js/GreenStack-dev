@@ -648,27 +648,114 @@ const Mutation = new GraphQLObjectType({
         return trade.save();
       },
     },
-    addCommentUser: {
+    pushCommentUser: {
       type: CommentQuery,
       args: {
         userId: { type: GraphQLID },
         username: { type: GraphQLString },
         timestamp: { type: GraphQLID },
-        comment: { type: GraphQLString },
-        likes: { type: GraphQLID },
-        dislikes: { type: GraphQLID },
+        text: { type: GraphQLString },
       },
-      resolve(parent, args) {
+      async resolve(parent, args) {
+        let user = await User.findOne({ userId: args.userId });
+        let currentTime = Math.floor(Date.now() / 1000);
+
         return User.update(
           { userId: args.userId },
           {
             $push: {
               comments: {
-                username: args.username,
-                timestamp: args.timestamp,
-                comment: args.comment,
-                likes: args.likes,
-                dislikes: args.dislikes,
+                userId: args.userId,
+                username: user.username,
+                timestamp: currentTime,
+                commentId: uuidv4(),
+                text: args.text,
+                likes: 0,
+                dislikes: 0,
+              },
+            },
+          }
+        );
+      },
+    },
+    pushCommentPost: {
+      type: PostQuery,
+      args: {
+        userId: { type: GraphQLID },
+        postId: { type: GraphQLID },
+        text: { type: GraphQLString },
+      },
+      async resolve(parent, args) {
+        let user = await User.findOne({ userId: args.userId });
+        let currentTime = Math.floor(Date.now() / 1000);
+        return Post.update(
+          { postId: args.postId },
+          {
+            $push: {
+              comments: {
+                userId: args.userId,
+                username: user.username,
+                timestamp: currentTime,
+                commentId: uuidv4(),
+                text: args.text,
+                likes: 0,
+                dislikes: 0,
+              },
+            },
+          }
+        );
+      },
+    },
+    pushCommentStock: {
+      type: StockQuery,
+      args: {
+        userId: { type: GraphQLID },
+        postId: { type: GraphQLID },
+        text: { type: GraphQLString },
+      },
+      async resolve(parent, args) {
+        let user = await User.findOne({ userId: args.userId });
+        let currentTime = Math.floor(Date.now() / 1000);
+        return Stock.update(
+          { stockId: args.stockId },
+          {
+            $push: {
+              comments: {
+                userId: args.userId,
+                username: user.username,
+                timestamp: currentTime,
+                commentId: uuidv4(),
+                text: args.text,
+                likes: 0,
+                dislikes: 0,
+              },
+            },
+          }
+        );
+      },
+    },
+    pushCommentTrade: {
+      type: StockQuery,
+      args: {
+        userId: { type: GraphQLID },
+        tradeId: { type: GraphQLID },
+        text: { type: GraphQLString },
+      },
+      async resolve(parent, args) {
+        let user = await User.findOne({ userId: args.userId });
+        let currentTime = Math.floor(Date.now() / 1000);
+        return Stock.update(
+          { tradeId: args.tradeId },
+          {
+            $push: {
+              comments: {
+                userId: args.userId,
+                username: user.username,
+                commentId: uuidv4(),
+                timestamp: currentTime,
+                text: props.text,
+                likes: 0,
+                dislikes: 0,
               },
             },
           }
@@ -698,82 +785,6 @@ const Mutation = new GraphQLObjectType({
         return Comment.update(
           { commentId: args.commentId },
           { $set: { dislikes: args.dislikes } }
-        );
-      },
-    },
-    addCommentStock: {
-      type: CommentQuery,
-      args: {
-        stockId: { type: GraphQLID },
-        username: { type: GraphQLString },
-        timestamp: { type: GraphQLID },
-        comment: { type: GraphQLString },
-      },
-      resolve(parent, args) {
-        let currentTime = Math.floor(Date.now() / 1000);
-        return Stock.update(
-          { stockId: args.stockId },
-          {
-            $push: {
-              comments: {
-                username: args.username,
-                timestamp: currentTime,
-                comment: args.comment,
-                likes: 0,
-                dislikes: 0,
-              },
-            },
-          }
-        );
-      },
-    },
-    addCommentTrade: {
-      type: CommentQuery,
-      args: {
-        tradeId: { type: GraphQLID },
-        userId: { type: GraphQLID },
-        username: { type: GraphQLString },
-        text: { type: GraphQLString },
-      },
-      resolve(parent, args) {
-        let currentTime = Math.floor(Date.now() / 1000);
-        return Trade.update(
-          { tradeId: args.tradeId },
-          {
-            $push: {
-              comments: {
-                userId: args.userId,
-                username: args.username,
-                text: args.text,
-                timestamp: currentTime,
-              },
-            },
-          }
-        );
-      },
-    },
-    addCommentStock: {
-      type: CommentQuery,
-      args: {
-        stockId: { type: GraphQLID },
-        userId: { type: GraphQLID },
-        username: { type: GraphQLString },
-        text: { type: GraphQLString },
-      },
-      resolve(parent, args) {
-        let currentTime = Math.floor(Date.now() / 1000);
-        return Stock.update(
-          { stockId: args.stockId },
-          {
-            $push: {
-              comments: {
-                userId: args.userId,
-                username: args.username,
-                text: args.text,
-                timestamp: currentTime,
-              },
-            },
-          }
         );
       },
     },

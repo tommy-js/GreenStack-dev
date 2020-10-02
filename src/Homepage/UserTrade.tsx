@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import { userContext } from "../AppMain/App";
 import Comment from "../misc/Comment";
-import CommentInput from "./CommentInput";
+import { CommentInputTrade } from "./CommentInput";
 import Header from "../User/Header";
-import TradeInformation from "../TradeInformation";
+import TradeInformation from "./TradeInformation";
 import FollowUser from "../resolvers/FollowUser";
 
 import { Link } from "react-router-dom";
@@ -12,7 +12,7 @@ import { graphql, useLazyQuery } from "react-apollo";
 import { queryTradeQuery } from "../queries/queries.js";
 
 interface Props {
-  tradeId: number;
+  tradeId: any;
 }
 
 const UserTrade: React.FC<Props> = (props) => {
@@ -23,7 +23,7 @@ const UserTrade: React.FC<Props> = (props) => {
   const [tradeData, setTradeData] = useState({
     userId: 0,
     user: "",
-    tradeId: 0,
+    tradeId: "0",
     price: 0,
     timestamp: 0,
     title: "",
@@ -90,7 +90,7 @@ const UserTrade: React.FC<Props> = (props) => {
             saveTrade={saveTrade}
           />
         </div>
-        <CommentInput />
+        <CommentInputTrade tradeId={props.tradeId} />
         <div id="previous_trade_comments">
           {testData.map((el) => (
             <Comment

@@ -1,5 +1,5 @@
 import React from "react";
-import CommentInput from "../CommentInput";
+import { CommentInputPost, CommentInputStock } from "../CommentInput";
 import CommentSection from "../CommentSection";
 import { NavLink, Link } from "react-router-dom";
 import { browserHist } from "../../AppMain/history.js";
@@ -7,6 +7,7 @@ import { browserHist } from "../../AppMain/history.js";
 interface Post {
   title: string;
   userId: number;
+  postId: string;
   user: string;
   text: string;
   timestamp: number;
@@ -67,7 +68,7 @@ export const PostType: React.FC<Post> = (props) => {
         {props.replies}
       </p>
       <p>{props.text}</p>
-      <CommentInput />
+      <CommentInputPost postId={props.postId} />
       <CommentSection comments={props.comments} />
     </div>
   );
@@ -85,7 +86,7 @@ export const NewsType: React.FC<News> = (props) => {
       </h2>
       <h2>{props.headline}</h2>
       <p>{props.subtext}</p>
-      <CommentInput />
+      <CommentInputStock stockId={props.stockId} />
       <CommentSection comments={props.comments} />
     </div>
   );
@@ -102,7 +103,6 @@ export const CommentType: React.FC<Comment> = (props) => {
       <p>
         likes: {props.likes} dislikes: {props.dislikes} shares: {props.replies}
       </p>
-      <CommentInput />
       <CommentSection comments={props.comments} />
     </div>
   );

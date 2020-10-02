@@ -18,7 +18,7 @@ const Feed: React.FC<Props> = (props) => {
         text:
           "We can see by the Apple announcement that they clearly don't care about their base users, and are only really chasing clout.",
         user: "Tyler",
-        userId: 253364746,
+        userId: "253364746",
         timestamp: 2312424535,
         likes: 15,
         dislikes: 6,
@@ -75,7 +75,7 @@ const Feed: React.FC<Props> = (props) => {
     {
       typeId: 2,
       data: {
-        userId: 259696,
+        userId: "259696",
         user: "Tyler",
         text:
           "Apple sucks. Nvidia's chips will be better because they specialize.",

@@ -31,7 +31,7 @@ interface Props {
 
 const Homepage: React.FC<Props> = (props) => {
   const [userRoutePaths, setUserRoutePaths] = useState([] as any);
-  const [tradeRoutePaths, setTradeRoutePaths] = useState([]);
+  const [tradeRoutePaths, setTradeRoutePaths] = useState([] as any);
   const [loadingInUser, setLoadingInUser] = useState(false);
   const [userId, setUserId] = useState(0);
   const [results, setResults] = useState({ username: "", userId: "" });

@@ -14,6 +14,7 @@ const FeedModal: React.FC<Props> = (props) => {
         <div>
           <PostType
             title={props.data.title}
+            postId={props.data.postId}
             userId={props.data.userId}
             user={props.data.user}
             text={props.data.text}

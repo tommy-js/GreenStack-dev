@@ -153,10 +153,35 @@ const deleteCommentUserMutation = gql`
   }
 `;
 
-const pushCommentMutation = gql`
-  mutation($id: ID!) {
-    pushComment(id: $id) {
-      id
+const pushCommentPostMutation = gql`
+  mutation($userId: ID!, $text: String!, $postId: ID!) {
+    pushCommentPost(userId: $userId, text: $text, postId: $postId) {
+      text
+    }
+    pushCommentUser(userId: $userId, text: $text) {
+      text
+    }
+  }
+`;
+
+const pushCommentStockMutation = gql`
+  mutation($userId: ID!, $text: String!, $stockId: ID!) {
+    pushCommentStock(userId: $userId, text: $text, stockId: $stockId) {
+      text
+    }
+    pushCommentUser(userId: $userId, text: $text) {
+      text
+    }
+  }
+`;
+
+const pushCommentTradeMutation = gql`
+  mutation($userId: ID!, $text: String!, $stockId: ID!) {
+    pushCommentTrade(userId: $userId, text: $text, stockId: $stockId) {
+      text
+    }
+    pushCommentUser(userId: $userId, text: $text) {
+      text
     }
   }
 `;
@@ -581,7 +606,9 @@ export {
   updateUserProgressMutation,
   deleteCommentUserMutation,
   dropNotificationMutation,
-  pushCommentMutation,
+  pushCommentPostMutation,
+  pushCommentStockMutation,
+  pushCommentTradeMutation,
   deleteCommentStockMutation,
   updateUserSettingsMutation,
   pushFollowerToUserMutation,

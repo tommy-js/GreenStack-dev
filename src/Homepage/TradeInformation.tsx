@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import TradeDropdown from "./TradeDropdown";
-import CommentInput from "./CommentInput";
+import { CommentInputTrade } from "./CommentInput";
 
 interface Props {
   type: string;
-  tradeId: number;
+  tradeId: string;
   title: string;
   ticker: string;
   shares: number;
@@ -40,7 +40,7 @@ const TradeInformation: React.FC<Props> = (props) => {
       <button onClick={() => props.saveTrade()}>
         Save trade for reference
       </button>
-      <CommentInput tradeId={props.tradeId} />
+      <CommentInputTrade tradeId={props.tradeId} />
       {makeTradeDropdown()}
     </div>
   );
