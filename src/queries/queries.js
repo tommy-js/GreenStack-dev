@@ -295,6 +295,9 @@ const postMutation = gql`
       title
       text
     }
+    pushPostToUser(userId: $userId, title: $title, text: $text) {
+      userId
+    }
   }
 `;
 

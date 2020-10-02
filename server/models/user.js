@@ -14,6 +14,28 @@ const userSchema = new Schema({
   newaccount: Boolean,
   allowCommentsOnTrades: Boolean,
   profileImage: String,
+  posts: [
+    {
+      userId: String,
+      postId: String,
+      timestamp: Number,
+      likes: Number,
+      dislikes: Number,
+      title: String,
+      text: String,
+      comments: [
+        {
+          userId: String,
+          username: String,
+          commentId: String,
+          timestamp: Number,
+          text: String,
+          likes: Number,
+          dislikes: Number,
+        },
+      ],
+    },
+  ],
   following: [{ userId: String, username: String }],
   followers: [
     { followerId: String, followerName: String, blocked: Boolean, id: String },

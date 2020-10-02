@@ -40,6 +40,7 @@ const UserQuery = new GraphQLObjectType({
     invisible: { type: GraphQLBoolean },
     newaccount: { type: GraphQLBoolean },
     allowCommentsOnTrades: { type: GraphQLBoolean },
+    posts: { type: new GraphQLList(PostQuery) },
     following: { type: new GraphQLList(FollowingQuery) },
     followers: { type: new GraphQLList(FollowerQuery) },
     stocks: { type: new GraphQLList(ShareQuery) },
@@ -541,6 +542,34 @@ const Mutation = new GraphQLObjectType({
           text: args.text,
         });
         return newPost.save();
+      },
+    },
+    pushPostToUser: {
+      type: UserQuery,
+      args: {
+        userId: { type: GraphQLID },
+        title: { type: GraphQLString },
+        text: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        let currentTime = Math.floor(Date.now() / 1000);
+
+        return User.findOneAndUpdate(
+          { userId: args.userId },
+          {
+            $push: {
+              posts: {
+                userId: args.userId,
+                postId: uuidv4(),
+                timestamp: currentTime,
+                likes: 0,
+                dislikes: 0,
+                title: args.title,
+                text: args.text,
+              },
+            },
+          }
+        );
       },
     },
     updateMoney: {
