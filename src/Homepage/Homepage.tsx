@@ -72,7 +72,10 @@ const Homepage: React.FC<Props> = (props) => {
   }, data);
 
   function modRoutes(route: any) {
-    setUserRoutePaths(route);
+    let findEl = userRoutePaths.find((el: any) => el.userId === route.userId);
+    if (!findEl) {
+      setUserRoutePaths(route);
+    }
   }
 
   function modTradeRoutes(route: any) {
