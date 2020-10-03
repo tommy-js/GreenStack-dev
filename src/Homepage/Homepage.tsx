@@ -3,7 +3,7 @@ import FeedSidebar from "./sidebar/FeedSidebar";
 import NavBar from "../navigation/NavBar";
 import Feed from "./feed/Feed";
 import Explore from "./explore/Explore";
-import UserPosts from "./UserPosts";
+import UserPosts from "./post/UserPosts";
 import Following from "./Following";
 import Followers from "./Followers";
 import UserProfile from "../User/UserProfile";
@@ -11,6 +11,7 @@ import Profile from "./profile/Profile";
 import UserTrade from "./UserTrade";
 import { LoadingUser } from "../login/LoadingUser";
 import SearchResults from "./SearchResults";
+import PostPage from "./post/PostPage";
 import UserLoginAuthSubresolver from "../resolvers/UserLoginAuthSubresolver";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import {
@@ -111,6 +112,11 @@ const Homepage: React.FC<Props> = (props) => {
             <Route exact path="/home/posts">
               <UserPosts modRoutes={modTradeRoutes} />
             </Route>
+            {userVal.posts.map((el: any) => (
+              <Route key={el.postId} path={`/home/post/${el.postId}`}>
+                <PostPage postId={el.postId} />
+              </Route>
+            ))}
             <Route exact path="/home/followers">
               <Followers modRoutes={modRoutes} />
             </Route>

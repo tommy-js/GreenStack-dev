@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PostRender from "./PostRender";
-import { individualPostQuery } from "../queries/queries.js";
+import { LoadingGeneral } from "../../login/LoadingUser";
+import { individualPostQuery } from "../../queries/queries.js";
 import { useQuery } from "react-apollo";
 
 interface Props {
@@ -22,7 +23,7 @@ interface Data {
     text: string;
     likes: number;
     dislikes: number;
-  };
+  }[];
 }
 
 const PostPage: React.FC<Props> = (props) => {
@@ -33,7 +34,7 @@ const PostPage: React.FC<Props> = (props) => {
   });
 
   useEffect(() => {
-    if (data) {
+    if (data && data.post) {
       setDataLoaded(true);
       console.log(data);
       setInfo({
@@ -58,7 +59,7 @@ const PostPage: React.FC<Props> = (props) => {
     } else {
       return (
         <div>
-          <h2>Still Loading...</h2>
+          <LoadingGeneral />
         </div>
       );
     }

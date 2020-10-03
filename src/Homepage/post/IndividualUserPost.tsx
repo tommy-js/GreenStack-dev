@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface Props {
   postId: string;
@@ -7,12 +8,11 @@ interface Props {
   timestamp: number;
   likes: number;
   dislikes: number;
-  modId: (id: string) => void;
 }
 
 const IndividualUserPost: React.FC<Props> = (props) => {
   return (
-    <div onClick={() => props.modId(props.postId)}>
+    <Link to={`/home/post/${props.postId}`}>
       <div className="homepage_block_component">
         <h2 className="individual_user_post_title">{props.title}</h2>
         <p className="individual_user_post_textblock">{props.text}</p>
@@ -24,7 +24,7 @@ const IndividualUserPost: React.FC<Props> = (props) => {
           </p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

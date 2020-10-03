@@ -292,11 +292,6 @@ const postMutation = gql`
   mutation($userId: ID!, $title: String!, $text: String!) {
     post(userId: $userId, title: $title, text: $text) {
       userId
-      title
-      text
-    }
-    pushPostToUser(userId: $userId, title: $title, text: $text) {
-      userId
     }
   }
 `;
@@ -448,6 +443,24 @@ const otherUserQuery = gql`
         shares
         gain
       }
+      posts {
+        userId
+        postId
+        timestamp
+        likes
+        dislikes
+        title
+        text
+        comments {
+          userId
+          username
+          commentId
+          timestamp
+          text
+          likes
+          dislikes
+        }
+      }
       comments {
         userId
         username
@@ -501,6 +514,24 @@ const userQuery = gql`
         ticker
         shares
         gain
+      }
+      posts {
+        userId
+        postId
+        timestamp
+        likes
+        dislikes
+        title
+        text
+        comments {
+          userId
+          username
+          commentId
+          timestamp
+          text
+          likes
+          dislikes
+        }
       }
       comments {
         userId

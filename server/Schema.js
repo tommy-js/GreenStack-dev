@@ -524,35 +524,26 @@ const Mutation = new GraphQLObjectType({
       },
     },
     post: {
-      type: PostQuery,
-      args: {
-        userId: { type: GraphQLID },
-        title: { type: GraphQLString },
-        text: { type: GraphQLString },
-      },
-      resolve(parent, args) {
-        let currentTime = Math.floor(Date.now() / 1000);
-        let newPost = new Post({
-          userId: args.userId,
-          postId: uuidv4(),
-          timestamp: currentTime,
-          likes: 0,
-          dislikes: 0,
-          title: args.title,
-          text: args.text,
-        });
-        return newPost.save();
-      },
-    },
-    pushPostToUser: {
       type: UserQuery,
       args: {
         userId: { type: GraphQLID },
         title: { type: GraphQLString },
         text: { type: GraphQLString },
       },
-      resolve(parent, args) {
+      async resolve(parent, args) {
         let currentTime = Math.floor(Date.now() / 1000);
+        let id = uuidv4();
+
+        let newPost = await new Post({
+          userId: args.userId,
+          postId: id,
+          timestamp: currentTime,
+          likes: 0,
+          dislikes: 0,
+          title: args.title,
+          text: args.text,
+        });
+        newPost.save();
 
         return User.findOneAndUpdate(
           { userId: args.userId },
@@ -560,7 +551,7 @@ const Mutation = new GraphQLObjectType({
             $push: {
               posts: {
                 userId: args.userId,
-                postId: uuidv4(),
+                postId: id,
                 timestamp: currentTime,
                 likes: 0,
                 dislikes: 0,
