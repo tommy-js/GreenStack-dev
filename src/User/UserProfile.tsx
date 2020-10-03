@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import Follow from "../resolvers/Follow";
+import UserProfilePosts from "./UserProfilePosts";
 import { LoadingGeneral } from "../login/LoadingUser";
 import { otherUserQuery } from "../queries/queries.js";
 import { useQuery } from "react-apollo";
@@ -74,6 +75,7 @@ const UserProfile: React.FC<Props> = (props) => {
           <p>{props.userId}</p>
           <h2>Followers: {userProfile.followers.length}</h2>
           <h2>Following: {userProfile.following.length}</h2>
+          <UserProfilePosts posts={userProfile.posts} />
         </div>
       );
     } else {

@@ -543,7 +543,7 @@ const Mutation = new GraphQLObjectType({
           title: args.title,
           text: args.text,
         });
-        newPost.save();
+        await newPost.save();
 
         return User.findOneAndUpdate(
           { userId: args.userId },

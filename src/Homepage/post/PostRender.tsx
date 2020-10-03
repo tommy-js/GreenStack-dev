@@ -28,7 +28,7 @@ interface Props {
 
 const PostRender: React.FC<Props> = ({ info }: Props) => {
   return (
-    <div>
+    <div className="feed">
       <PostTitle title={info.title} />
       <PostText text={info.text} />
       <PostInformation
