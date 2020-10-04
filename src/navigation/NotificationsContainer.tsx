@@ -35,9 +35,6 @@ export const NotificationsLinkContainer: React.FC<LocalLink> = (props) => {
       />
       <NotificationsLink title="History" tab={2} changeTab={props.changeTab} />
       <NotificationsLink title="Settings" tab={3} changeTab={props.changeTab} />
-      <Link to="/profile/account" className="notifications_link nav_el_light">
-        Account
-      </Link>
     </div>
   );
 };

@@ -254,10 +254,19 @@ const RootQuery = new GraphQLObjectType({
     searchUser: {
       type: UserQuery,
       args: {
-        username: { type: GraphQLString },
+        argument: { type: GraphQLString },
       },
       resolve(parent, args) {
-        return User.findOne({ username: args.username });
+        return User.findOne({ username: args.argument });
+      },
+    },
+    searchStock: {
+      type: StockQuery,
+      args: {
+        argument: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return Stock.findOne({ name: args.argument });
       },
     },
   },

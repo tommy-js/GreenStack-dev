@@ -93,7 +93,6 @@ const Portfolio: React.FC = () => {
               <OwnedStocks owned={userStocks} />
               <Header text="Watch-list" />
               <WatchStocks stocks={userWatch} />
-              <Header text="Profile" />
             </Route>
           </div>
         </div>

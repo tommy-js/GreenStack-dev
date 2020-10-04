@@ -62,8 +62,8 @@ const IndividualComment: React.FC<Props> = (props) => {
       <p id="comment_time">posted at {props.timestamp}</p>
       <p id="comment_text">{props.text}</p>
       <p id="comment_information">
-        {likes} <div onClick={() => like()}>upvote</div>, {dislikes}{" "}
-        <div onClick={() => dislike()}>downvote</div>,
+        {likes} <span onClick={() => like()}>upvote</span>, {dislikes}{" "}
+        <span onClick={() => dislike()}>downvote</span>,
       </p>
     </div>
   );

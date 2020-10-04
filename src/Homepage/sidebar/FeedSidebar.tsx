@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import SidebarUsername from "./SidebarUsername";
 import SidebarSearch from "./SidebarSearch";
 import SidebarElement from "./SidebarElement";
-import { searchUserQuery } from "../../queries/queries.js";
+import { searchQuery } from "../../queries/queries.js";
 import { useLazyQuery } from "react-apollo";
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 const FeedSidebar: React.FC<Props> = (props) => {
   const [search, setSearch] = useState("");
 
-  const [searchUser, { loading, data }] = useLazyQuery(searchUserQuery);
+  const [searchUser, { loading, data }] = useLazyQuery(searchQuery);
 
   useEffect(() => {
     if (data && data.searchUser) {
@@ -29,7 +29,7 @@ const FeedSidebar: React.FC<Props> = (props) => {
   function submitSearch() {
     searchUser({
       variables: {
-        username: search,
+        argument: search,
       },
     });
   }

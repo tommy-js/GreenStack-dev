@@ -8,17 +8,19 @@ interface Props {
   likes: number;
   dislikes: number;
   timestamp: number;
+  commentCount: number;
 }
 
 const IndividualUserProfilePost: React.FC<Props> = (props) => {
   return (
-    <div>
-      <h2>{props.title}</h2>
-      <p>{props.text}</p>
+    <div className="user_profile_post">
+      <h2 className="user_profile_title">{props.title}</h2>
+      <p className="user_profile_text">{props.text}</p>
       <PostStatus
         likes={props.likes}
         dislikes={props.dislikes}
         timestamp={props.timestamp}
+        commentCount={props.commentCount}
       />
     </div>
   );

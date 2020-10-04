@@ -9,6 +9,7 @@ interface Props {
     likes: number;
     dislikes: number;
     timestamp: number;
+    comments: any[];
   }[];
 }
 
@@ -23,6 +24,7 @@ const UserProfilePosts: React.FC<Props> = (props) => {
           likes={el.likes}
           dislikes={el.dislikes}
           timestamp={el.timestamp}
+          commentCount={el.comments.length}
         />
       ))}
     </div>

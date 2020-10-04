@@ -618,11 +618,15 @@ const individualPostQuery = gql`
   }
 `;
 
-const searchUserQuery = gql`
-  query($username: String!) {
-    searchUser(username: $username) {
+const searchQuery = gql`
+  query($argument: String!) {
+    searchUser(argument: $argument) {
       username
       userId
+    }
+    searchStock(argument: $argument) {
+      name
+      ticker
     }
   }
 `;
@@ -668,6 +672,6 @@ export {
   queryPosts,
   queryToken,
   individualPostQuery,
-  searchUserQuery,
+  searchQuery,
   otherUserQuery,
 };

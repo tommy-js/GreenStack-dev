@@ -36,7 +36,7 @@ const MainRender: React.FC = () => {
   const [constantActivity, setConstantActivity] = useState();
   const { userVal, setUserVal } = useContext(userContext);
   const [tradeId, setTradeId] = useState(0);
-  const [newacc, setNewacc] = useState(false);
+  const [newacc, setNewacc] = useState(true);
 
   useEffect(() => {
     if (status === false) {
@@ -46,7 +46,7 @@ const MainRender: React.FC = () => {
 
   useEffect(() => {
     // setNewacc(userVal.newaccount);
-    setNewacc(false);
+    // setNewacc(false);
   }, [userVal]);
 
   function submit() {
