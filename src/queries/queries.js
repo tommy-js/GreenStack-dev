@@ -91,6 +91,9 @@ const savePreferredCommentaryMutation = gql`
     ) {
       userId
     }
+    saveUserAsOld(userId: $userId) {
+      userId
+    }
   }
 `;
 

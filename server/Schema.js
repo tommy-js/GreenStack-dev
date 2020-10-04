@@ -385,6 +385,22 @@ const Mutation = new GraphQLObjectType({
         );
       },
     },
+    saveUserAsOld: {
+      type: UserQuery,
+      args: {
+        userId: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        return User.findOneAndUpdate(
+          { userId: args.userId },
+          {
+            $set: {
+              newaccount: false,
+            },
+          }
+        );
+      },
+    },
     likeStock: {
       type: CommentQuery,
       args: {
