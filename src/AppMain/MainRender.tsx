@@ -45,8 +45,7 @@ const MainRender: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // setNewacc(userVal.newaccount);
-    // setNewacc(false);
+    setNewacc(userVal.newaccount);
   }, [userVal]);
 
   function submit() {

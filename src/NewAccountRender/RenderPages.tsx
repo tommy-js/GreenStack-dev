@@ -1,6 +1,7 @@
 import React from "react";
 import TickerList from "./TickerList";
 import FollowerCheck from "./FollowerCheck";
+import UserQuestion from "./UserQuestion";
 
 interface Props {
   id: number;
@@ -13,33 +14,44 @@ interface Submission extends Props {
 }
 
 export const PageOne: React.FC<Props> = (props) => {
+  const option1 = [
+    { option: "Brand new" },
+    { option: "Pretty fresh" },
+    { option: "Been around a while" },
+    { option: "I'm very knowledgable" },
+    { option: "I'm an expert" },
+  ];
+
+  const option2 = [
+    { option: "I'm in middle school" },
+    { option: "I'm in high-school" },
+    { option: "I'm in college" },
+    { option: "I'm not in school" },
+  ];
+
+  const option3 = [
+    { option: "For the memes/community" },
+    { option: "To find new stocks" },
+    { option: "To learn without risk" },
+    { option: "To learn how to trade" },
+  ];
+
   return (
     <div>
-      <p className="user_init_questions">
-        How new to the stock market are you?
-      </p>
-      <select>
-        <option>Brand new</option>
-        <option>Pretty fresh</option>
-        <option>I've been around a while</option>
-        <option>I'm very knowledgable</option>
-        <option>I'm an expert</option>
-      </select>
-      <p className="user_init_questions">What best describes you?</p>
-      <select>
-        <option>I'm in middle school</option>
-        <option>I'm in high-school</option>
-        <option>I'm in college</option>
-        <option>I'm not in school</option>
-      </select>
-      <p className="user_init_questions">Why are you using this app?</p>
-      <select>
-        <option>For the memes</option>
-        <option>To find new stocks</option>
-        <option>To learn without risk</option>
-        <option>To learn how to trade</option>
-      </select>
-      <button onClick={() => props.nextPage(props.id)}>Next</button>
+      <UserQuestion
+        question="How new to the stock market are you?"
+        options={option1}
+      />
+      <UserQuestion question="What best describes you?" options={option2} />
+      <UserQuestion question="Why are you using this app?" options={option3} />
+      <div className="render_pages_button_container">
+        <button
+          className="render_button_right"
+          onClick={() => props.nextPage(props.id)}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
@@ -49,8 +61,20 @@ export const PageTwo: React.FC<Props> = (props) => {
     <div>
       <p className="user_init_questions">Which stocks here interest you?</p>
       <TickerList />
-      <button onClick={() => props.backPage(props.id)}>Back</button>
-      <button onClick={() => props.nextPage(props.id)}>Next</button>
+      <div className="render_pages_button_container">
+        <button
+          className="render_button_left"
+          onClick={() => props.backPage(props.id)}
+        >
+          Back
+        </button>
+        <button
+          className="render_button_right"
+          onClick={() => props.nextPage(props.id)}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
@@ -62,8 +86,17 @@ export const PageThree: React.FC<Submission> = (props) => {
         What kind of commentary are you looking for from those you follow?
       </p>
       <FollowerCheck />
-      <button onClick={() => props.backPage(props.id)}>Back</button>
-      <button onClick={() => props.submit()}>Submit and get started</button>
+      <div className="render_pages_button_container">
+        <button
+          className="render_button_left"
+          onClick={() => props.backPage(props.id)}
+        >
+          Back
+        </button>
+        <button className="render_button_right" onClick={() => props.submit()}>
+          Submit
+        </button>
+      </div>
     </div>
   );
 };
