@@ -39,6 +39,10 @@ const UserQuery = new GraphQLObjectType({
     darkmode: { type: GraphQLBoolean },
     invisible: { type: GraphQLBoolean },
     newaccount: { type: GraphQLBoolean },
+    experience: { type: GraphQLInt },
+    education: { type: GraphQLInt },
+    motivations: { type: GraphQLInt },
+    commentary: { type: GraphQLInt },
     allowCommentsOnTrades: { type: GraphQLBoolean },
     posts: { type: new GraphQLList(PostQuery) },
     following: { type: new GraphQLList(FollowingQuery) },
@@ -340,6 +344,27 @@ const Mutation = new GraphQLObjectType({
         return User.update(
           { userId: args.userId },
           { $set: { token: args.token } }
+        );
+      },
+    },
+    saveSettings: {
+      type: UserQuery,
+      args: {
+        userId: { type: GraphQLID },
+        experience: { type: GraphQLInt },
+        education: { type: GraphQLInt },
+        motivations: { type: GraphQLInt },
+      },
+      resolve(parent, args) {
+        return User.findOneAndUpdate(
+          { userId: args.userId },
+          {
+            $set: {
+              experience: args.experience,
+              education: args.education,
+              motivations: args.motivations,
+            },
+          }
         );
       },
     },

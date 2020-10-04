@@ -65,6 +65,24 @@ const updateInvisibleMutation = gql`
   }
 `;
 
+const saveSettingsMutation = gql`
+  mutation(
+    $userId: ID!
+    $experience: Int!
+    $education: Int!
+    $motivations: Int!
+  ) {
+    saveSettings(
+      userId: $userId
+      experience: $experience
+      education: $education
+      motivations: $motivations
+    ) {
+      userId
+    }
+  }
+`;
+
 const pushTradeMutation = gql`
   mutation(
     $userId: ID!
@@ -651,6 +669,7 @@ export {
   updateUserSettingsMutation,
   pushFollowerToUserMutation,
   unfollowUserMutation,
+  saveSettingsMutation,
   dislikeStockMutation,
   likeStockMutation,
   postMutation,

@@ -12,6 +12,10 @@ const userSchema = new Schema({
   invisible: Boolean,
   membership: Boolean,
   newaccount: Boolean,
+  experience: Number,
+  education: Number,
+  motivations: Number,
+  commentary: Number,
   allowCommentsOnTrades: Boolean,
   profileImage: String,
   posts: [
