@@ -1,10 +1,20 @@
 .user_init_check {
   position: relative;
   margin-top: 5px;
+  box-sizing: border-box;
+  border: 1px solid red;
+}
+
+.selected_button {
+  position: absolute;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 1px solid black;
+  border-radius: 50%;
 }
 
 .user_init_classification {
-  margin-left: 15px;
   font-size: 16px;
   margin-bottom: 0;
   margin-top: 0;
@@ -18,6 +28,11 @@
   margin-left: auto;
   margin-right: auto;
   border-radius: 5px;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   border: 1px solid transparent;
   transition: 0.3s;
 }

@@ -3,6 +3,7 @@ import TickerList from "./TickerList";
 import FollowerCheck from "./FollowerCheck";
 import UserQuestion from "./UserQuestion";
 import RenderPageButtonStateSave from "../resolvers/RenderPageButtonStateSave";
+import SubmitFinalNewRenderPage from "../resolvers/SubmitFinalNewRenderPage";
 
 interface Props {
   id: number;
@@ -131,12 +132,18 @@ export const PageTwo: React.FC<Props> = (props) => {
 };
 
 export const PageThree: React.FC<Submission> = (props) => {
+  const [index, setIndex] = useState(0);
+
+  function setCurrentIndex(index: number) {
+    setIndex(index);
+  }
+
   return (
     <div>
       <p className="user_init_questions">
         What kind of commentary are you looking for from those you follow?
       </p>
-      <FollowerCheck />
+      <FollowerCheck setCurrentIndex={setCurrentIndex} />
       <div className="render_pages_button_container">
         <button
           className="render_button_left"
@@ -144,9 +151,11 @@ export const PageThree: React.FC<Submission> = (props) => {
         >
           Back
         </button>
-        <button className="render_button_right" onClick={() => props.submit()}>
-          Submit
-        </button>
+        <SubmitFinalNewRenderPage
+          text="Submit"
+          index={index}
+          submit={props.submit}
+        />
       </div>
     </div>
   );

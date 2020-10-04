@@ -83,6 +83,17 @@ const saveSettingsMutation = gql`
   }
 `;
 
+const savePreferredCommentaryMutation = gql`
+  mutation($userId: ID!, $commentaryStyle: Int!) {
+    savePreferredCommentary(
+      userId: $userId
+      commentaryStyle: $commentaryStyle
+    ) {
+      userId
+    }
+  }
+`;
+
 const pushTradeMutation = gql`
   mutation(
     $userId: ID!
@@ -670,6 +681,7 @@ export {
   pushFollowerToUserMutation,
   unfollowUserMutation,
   saveSettingsMutation,
+  savePreferredCommentaryMutation,
   dislikeStockMutation,
   likeStockMutation,
   postMutation,

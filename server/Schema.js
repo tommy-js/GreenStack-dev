@@ -368,6 +368,23 @@ const Mutation = new GraphQLObjectType({
         );
       },
     },
+    savePreferredCommentary: {
+      type: UserQuery,
+      args: {
+        userId: { type: GraphQLID },
+        commentaryStyle: { type: GraphQLInt },
+      },
+      resolve(parent, args) {
+        return User.findOneAndUpdate(
+          { userId: args.userId },
+          {
+            $set: {
+              commentary: args.commentaryStyle,
+            },
+          }
+        );
+      },
+    },
     likeStock: {
       type: CommentQuery,
       args: {
