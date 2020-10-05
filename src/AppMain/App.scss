@@ -789,7 +789,14 @@ body {
 
 .stock_page {
   position: relative;
-  width: 50%;
-  left: 30%;
+  width: 65%;
+  left: 25%;
+  @include testing;
+}
+
+#company_graph_block {
+  position: relative;
+  width: 100%;
+  height: 300px;
   @include testing;
 }
