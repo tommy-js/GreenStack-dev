@@ -18,6 +18,12 @@ const stockSchema = new Schema({
       dislikes: Number,
     },
   ],
+  news: [
+    {
+      text: String,
+      timestamp: String,
+    },
+  ],
 });
 
 module.exports = mongoose.model("Stock", stockSchema);

@@ -13,14 +13,14 @@ interface Props {
 const CompanyOptions: React.FC<Props> = (props) => {
   const [elementExists, setElementExists] = useState(false);
   const { userVal, setUserVal } = useContext(userContext);
-  const [watchlist, setWatchlist] = useState();
+  const [watchlist, setWatchlist] = useState(userVal.watchlist);
 
   // Crash prevention due to unloaded userVal state
-  useEffect(() => {
-    if (userVal.watchlist) {
-      setWatchlist(userVal.watchlist);
-    }
-  }, [userVal]);
+  // useEffect(() => {
+  //   if (userVal.watchlist) {
+  //     setWatchlist(userVal.watchlist);
+  //   }
+  // }, [userVal]);
 
   // Checks to make sure we haven't already added to watchlist
   useEffect(() => {

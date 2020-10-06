@@ -24,6 +24,7 @@ const Watchlist = require("./models/watchlist");
 const Notifications = require("./models/notification");
 const Progress = require("./models/progress");
 const Post = require("./models/post");
+const News = require("./models/news");
 
 const UserQuery = new GraphQLObjectType({
   name: "User",
@@ -152,6 +153,15 @@ const StockQuery = new GraphQLObjectType({
     creation: { type: GraphQLString },
     prediction: { type: GraphQLInt },
     comments: { type: new GraphQLList(CommentQuery) },
+    news: { type: new GraphQLList(NewsQuery) },
+  }),
+});
+
+const NewsQuery = new GraphQLObjectType({
+  name: "News",
+  fields: () => ({
+    text: { type: GraphQLString },
+    timestamp: { type: GraphQLID },
   }),
 });
 
@@ -271,6 +281,54 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return Stock.findOne({ name: args.argument });
+      },
+    },
+    returnFollowerFeed: {
+      type: UserQuery,
+      args: {
+        userId: { type: GraphQLID },
+      },
+      async resolve(parent, args) {
+        let userFound = await User.findOne({ userId: args.userId });
+        let fillArr = [];
+        let newUser;
+        if (userFound) {
+          for (let i = 0; i < userFound.following.length; i++) {
+            newUser = await User.findOne({
+              userId: userFound.following[i].userId,
+            });
+            if (newUser) {
+              for (let j = 0; j < newUser.posts.length; j++) {
+                fillArr.push(newUser.posts[j]);
+              }
+            }
+          }
+        }
+        return fillArr;
+      },
+    },
+    returnStockFeed: {
+      type: StockQuery,
+      args: {
+        userId: { type: GraphQLID },
+      },
+      async resolve(parent, args) {
+        let userFound = await User.findOne({ userId: args.userId });
+        let fillArr = [];
+        let newUser;
+        if (userFound) {
+          for (let i = 0; i < userFound.watchlist.length; i++) {
+            newStock = await Stock.findOne({
+              stockId: userFound.watchlist[i].stockId,
+            });
+            if (newStock) {
+              for (let j = 0; j < newStock.news.length; j++) {
+                fillArr.push(newUser.posts[j]);
+              }
+            }
+          }
+        }
+        return fillArr;
       },
     },
   },

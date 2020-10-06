@@ -660,6 +660,20 @@ const searchQuery = gql`
   }
 `;
 
+const returnFeedQuery = gql`
+  query($userId: ID!) {
+    returnFollowerFeed(userId: $userId) {
+      userId
+    }
+    returnStockFeed(userId: $userId) {
+      news {
+        text
+        timestamp
+      }
+    }
+  }
+`;
+
 export {
   createUserMutation,
   updateDarkModeMutation,
@@ -705,4 +719,5 @@ export {
   individualPostQuery,
   searchQuery,
   otherUserQuery,
+  returnFeedQuery,
 };

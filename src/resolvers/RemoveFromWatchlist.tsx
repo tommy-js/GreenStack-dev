@@ -21,6 +21,7 @@ const RemoveFromWatchlist: React.FC<Props> = (props) => {
       })
       .catch((err: any) => console.log(err))
       .then((res: any) => {
+        console.log(res);
         props.modWatchlist(false);
       });
   }
