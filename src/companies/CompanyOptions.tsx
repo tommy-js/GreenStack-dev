@@ -15,10 +15,6 @@ const CompanyOptions: React.FC<Props> = (props) => {
   const { userVal, setUserVal } = useContext(userContext);
   const [watchlist, setWatchlist] = useState();
 
-  function returnElementExists() {
-    setElementExists(true);
-  }
-
   // Crash prevention due to unloaded userVal state
   useEffect(() => {
     if (userVal.watchlist) {
@@ -40,10 +36,18 @@ const CompanyOptions: React.FC<Props> = (props) => {
     }
   }, [watchlist]);
 
+  function modWatchlist(isThere: boolean) {
+    setElementExists(isThere);
+  }
+
   function showWatchlist() {
     if (elementExists === true) {
       return (
-        <RemoveFromWatchlist userId={userVal.userId} stockId={props.stockId} />
+        <RemoveFromWatchlist
+          userId={userVal.userId}
+          stockId={props.stockId}
+          modWatchlist={modWatchlist}
+        />
       );
     } else {
       return (
@@ -51,7 +55,7 @@ const CompanyOptions: React.FC<Props> = (props) => {
           title={props.title}
           ticker={props.ticker}
           stockId={props.stockId}
-          returnElementExists={returnElementExists}
+          modWatchlist={modWatchlist}
         />
       );
     }

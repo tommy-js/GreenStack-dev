@@ -295,9 +295,7 @@ const pushStockToWatchlistMutation = gql`
       title: $title
       userId: $userId
     ) {
-      stockId
-      title
-      ticker
+      userId
     }
   }
 `;
@@ -305,7 +303,6 @@ const pushStockToWatchlistMutation = gql`
 const removeStockFromWatchlistMutation = gql`
   mutation($stockId: ID!, $userId: ID!) {
     removeStockFromWatchlist(stockId: $stockId, userId: $userId) {
-      stockId
       userId
     }
   }

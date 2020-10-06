@@ -11,7 +11,7 @@ interface Props {
   elementExists: boolean;
   pushStockToWatchlistMutation: (variables: object) => any;
   saveToWatchlist: () => void;
-  returnElementExists: () => void;
+  modWatchlist: (isThere: boolean) => void;
 }
 
 const SaveToWatchlist: React.FC<Props> = (props) => {
@@ -27,9 +27,11 @@ const SaveToWatchlist: React.FC<Props> = (props) => {
           ticker: props.ticker,
         },
       })
-      .then(() => console.log("passed"))
-      .catch(() => console.log("err"));
-    props.returnElementExists();
+      .catch(() => console.log("err"))
+      .then((res: any) => {
+        console.log(res);
+        props.modWatchlist(true);
+      });
   }
 
   return <button onClick={() => pushData()}>Save to Watchlist</button>;

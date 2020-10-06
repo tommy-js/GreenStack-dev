@@ -6,17 +6,23 @@ import { removeStockFromWatchlistMutation } from "../queries/queries";
 interface Props {
   stockId: number;
   userId: number;
-  removeStockFromWatchlistMutation: (variables: object) => void;
+  removeStockFromWatchlistMutation: (variables: object) => any;
+  modWatchlist: (isThere: boolean) => void;
 }
 
 const RemoveFromWatchlist: React.FC<Props> = (props) => {
   function removeFromWatchlist() {
-    props.removeStockFromWatchlistMutation({
-      variables: {
-        stockId: props.stockId,
-        userId: props.userId,
-      },
-    });
+    props
+      .removeStockFromWatchlistMutation({
+        variables: {
+          stockId: props.stockId,
+          userId: props.userId,
+        },
+      })
+      .catch((err: any) => console.log(err))
+      .then((res: any) => {
+        props.modWatchlist(false);
+      });
   }
 
   return (

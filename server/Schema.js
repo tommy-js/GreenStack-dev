@@ -533,7 +533,7 @@ const Mutation = new GraphQLObjectType({
       },
     },
     pushStockToWatchlist: {
-      type: WatchlistQuery,
+      type: UserQuery,
       args: {
         userId: { type: GraphQLID },
         stockId: { type: GraphQLID },
@@ -542,7 +542,7 @@ const Mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         let currentTime = Math.floor(Date.now() / 1000);
-        return User.update(
+        return User.findOneAndUpdate(
           { userId: args.userId },
           {
             $push: {
@@ -557,14 +557,14 @@ const Mutation = new GraphQLObjectType({
         );
       },
     },
-    removeStockFromWatchlistMutation: {
-      type: WatchlistQuery,
+    removeStockFromWatchlist: {
+      type: UserQuery,
       args: {
         userId: { type: GraphQLID },
         stockId: { type: GraphQLID },
       },
       resolve(parent, args) {
-        return User.update(
+        return User.findOneAndUpdate(
           { userId: args.userId },
           {
             $pull: {

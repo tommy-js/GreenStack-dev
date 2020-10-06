@@ -68,7 +68,7 @@ const userSchema = new Schema({
   ],
   watchlist: [
     {
-      stockId: Number,
+      stockId: String,
       title: String,
       ticker: String,
       timestamp: Number,
