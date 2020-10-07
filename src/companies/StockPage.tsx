@@ -27,7 +27,7 @@ const StockPage: React.FC<Props> = (props) => {
   return (
     <div className="stock_page">
       <CompanyInformationBlock title={props.title} />
-      <CompanyGraph />
+      <CompanyGraph title={props.title} ticker={props.ticker} />
       <CompanyOptions
         title={props.title}
         ticker={props.ticker}
