@@ -29,7 +29,7 @@ const KCAcceptButton: React.FC<Props> = (props) => {
     }
   }
 
-  return <button onClick={() => submit()}>Submit</button>;
+  return <button onClick={() => submit()}>Check</button>;
 };
 
 export default compose(

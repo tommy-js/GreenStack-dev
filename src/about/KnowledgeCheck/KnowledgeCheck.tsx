@@ -19,6 +19,7 @@ export const MultipleChoice: React.FC<Props> = (props) => {
   const [selectedOption, setSelectedOption] = useState(0);
   const [correct, setCorrect] = useState();
   const [answer, setAnswer] = useState();
+  const [res, setRes] = useState();
 
   function modOption(id: number) {
     setSelectedOption(id);
@@ -31,23 +32,17 @@ export const MultipleChoice: React.FC<Props> = (props) => {
 
   function returnRes(ans: boolean) {
     setAnswer(ans);
-  }
-
-  function renderRes() {
-    if (answer === true) {
-      return <h1>True</h1>;
-    } else if (answer === false) {
-      return <h1>False</h1>;
-    } else {
-      return null;
+    if (ans === true) {
+      setRes("Correct");
+    } else if (ans === false) {
+      setRes("Incorrect");
     }
   }
 
   return (
     <div id="knowledge_check">
-      <KCHeadline headline={props.headline} />
+      <KCHeadline headline={props.headline} res={res} />
       <KCOptions options={props.options} modOption={modOption} />
-      {renderRes()}
       <KCAcceptButton
         id={props.id}
         progressOnComplete={props.progressOnComplete}

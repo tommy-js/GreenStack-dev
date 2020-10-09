@@ -9,6 +9,7 @@
 @import "../NewAccountRender/new_acct.scss";
 @import "../portfolio/portfolio.scss";
 @import "../User/user.scss";
+@import "../about/about.scss";
 
 body {
   margin: 0;
@@ -465,86 +466,6 @@ body {
   user-select: none;
 }
 
-.about_paragraph {
-  position: relative;
-  width: 50%;
-  margin-top: 15px;
-  font-size: 16px;
-  line-height: 165%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.learn_page_header {
-  position: relative;
-  width: 50%;
-  margin-top: 25px;
-  font-size: 22px;
-  line-height: 165%;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-.learn_page_paragraph {
-  position: relative;
-  width: 50%;
-  margin-top: 15px;
-  font-size: 16px;
-  line-height: 165%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.learn_page_subheader {
-  position: relative;
-  width: 50%;
-  margin-top: 15px;
-  font-size: 18px;
-  line-height: 165%;
-  font-weight: bold;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#knowledge_check {
-  position: relative;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid black;
-  box-sizing: border-box;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.select_container {
-  position: relative;
-  width: 25px;
-  height: 25px;
-  margin: 15px;
-  border-radius: 50%;
-  display: inline-block;
-  border: 1px solid black;
-}
-
-.option {
-  position: relative;
-  display: block;
-}
-
-.select_subheader {
-  position: relative;
-  display: inline-block;
-  vertical-align: top;
-  height: 25px;
-  font-weight: bold;
-}
-
-#knowledge_check_headline {
-  margin-left: 15px;
-}
-
 #profile_plan {
   position: relative;
   width: 50%;
@@ -800,5 +721,12 @@ body {
   height: 375px;
   padding-bottom: 10px;
   // box-sizing: border-box;
+  @include testing;
+}
+
+#graph_learning_block {
+  position: relative;
+  width: 100%;
+  height: 300px;
   @include testing;
 }

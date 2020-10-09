@@ -1,0 +1,101 @@
+.learn_page {
+  position: relative;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about_paragraph {
+  position: relative;
+  width: 50%;
+  margin-top: 15px;
+  font-size: 16px;
+  line-height: 165%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.learn_page_header {
+  position: relative;
+  margin-top: 25px;
+  font-size: 22px;
+  line-height: 165%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.learn_page_paragraph {
+  position: relative;
+  margin-top: 15px;
+  font-size: 22px;
+  line-height: 165%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.learn_page_subheader {
+  position: relative;
+  margin-top: 15px;
+  font-size: 22px;
+  line-height: 165%;
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#knowledge_check {
+  position: relative;
+  border: 1px solid black;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+#knowledge_check_headline {
+  margin-left: 15px;
+  margin-top: 5px;
+  margin-bottom: 0;
+  @include testing;
+}
+
+.option {
+  position: relative;
+  display: block;
+  height: 45px;
+  @include testing;
+}
+
+.select_container {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  margin: 15px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 1px solid black;
+}
+
+.select_subheader {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  height: 25px;
+  font-weight: bold;
+}
+
+.render_ans {
+  font-size: 22px;
+  margin-left: 15px;
+}
+
+.correct_ans {
+  color: green;
+}
+
+.incorrect_ans {
+  color: red;
+}
