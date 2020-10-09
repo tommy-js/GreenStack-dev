@@ -17,15 +17,13 @@ const WatchStocks: React.FC<Props> = (props) => {
   return (
     <div>
       {props.stocks.map((el: Keys) => (
-        <div key={el.keyId}>
-          <WatchListing
-            stockId={el.stockId}
-            key={el.keyId}
-            title={el.title}
-            ticker={el.ticker}
-            price={el.price}
-          />
-        </div>
+        <WatchListing
+          stockId={el.stockId}
+          key={el.keyId}
+          title={el.title}
+          ticker={el.ticker}
+          price={el.price}
+        />
       ))}
     </div>
   );

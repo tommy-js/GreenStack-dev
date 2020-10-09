@@ -7,6 +7,7 @@
 
 .about_paragraph {
   position: relative;
+  font-family: $standard_font;
   width: 50%;
   margin-top: 15px;
   font-size: 16px;
@@ -17,6 +18,7 @@
 
 .learn_page_header {
   position: relative;
+  font-family: $standard_font;
   margin-top: 25px;
   font-size: 22px;
   line-height: 165%;
@@ -104,5 +106,35 @@
   position: relative;
   width: 100%;
   height: 375px;
+  @include testing;
+}
+
+.learn_component_link {
+  color: black;
+}
+
+#learn_individual_div {
+  border-bottom: 1px dashed transparent;
+  transition: 0.3s;
+}
+
+#learn_individual_div:hover {
+  border-bottom: 1px dashed grey;
+  transition: 0.3s;
+}
+
+#learn_link {
+  position: relative;
+  display: inline-block;
+  @include testing;
+}
+
+#learn_individual_progress_div {
+  position: relative;
+  top: 0;
+  float: right;
+  display: inline-block;
+  height: 100%;
+  width: 200px;
   @include testing;
 }
