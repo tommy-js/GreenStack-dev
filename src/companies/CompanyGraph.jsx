@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef, createRef } from "react";
+import { LoadingGeneral } from "../login/LoadingUser.tsx";
 import { renderFull } from "stock-graphics";
 import { useQuery } from "react-apollo";
 import { requestDataQuery } from "../queries/queries.js";
 
 const CompanyGraph = ({ title, ticker }) => {
   const reference = createRef();
+  const [loaded, setLoaded] = useState(false);
   const [points, setPoints] = useState([]);
   const { data, loading } = useQuery(requestDataQuery, {
     variables: { ticker: ticker },
@@ -52,7 +54,19 @@ const CompanyGraph = ({ title, ticker }) => {
     renderFull(points, graphicalEffects);
   }
 
-  return <div id="company_graph_block"></div>;
+  function returnInfo() {
+    if (points.length > 0) {
+      return null;
+    } else {
+      return (
+        <div>
+          <LoadingGeneral />
+        </div>
+      );
+    }
+  }
+
+  return <div id="company_graph_block">{returnInfo()}</div>;
 };
 
 export default CompanyGraph;

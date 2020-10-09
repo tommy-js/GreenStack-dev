@@ -9,11 +9,13 @@ interface Props {
   correct: boolean;
   currentProgress: number;
   updateUserProgressMutation: (variables: object) => any;
+  returnRes: (ans: boolean) => void;
 }
 
 const KCAcceptButton: React.FC<Props> = (props) => {
   function submit() {
     if (props.correct === true) {
+      props.returnRes(true);
       props
         .updateUserProgressMutation({
           variables: {
@@ -23,7 +25,7 @@ const KCAcceptButton: React.FC<Props> = (props) => {
         .then((res: any) => console.log(res))
         .catch((err: any) => console.log(err));
     } else {
-      console.log("wrong answer!");
+      props.returnRes(false);
     }
   }
 

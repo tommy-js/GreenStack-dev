@@ -17,7 +17,8 @@ interface Props {
 
 export const MultipleChoice: React.FC<Props> = (props) => {
   const [selectedOption, setSelectedOption] = useState(0);
-  const [correct, setCorrect] = useState(false);
+  const [correct, setCorrect] = useState();
+  const [answer, setAnswer] = useState();
 
   function modOption(id: number) {
     setSelectedOption(id);
@@ -28,15 +29,31 @@ export const MultipleChoice: React.FC<Props> = (props) => {
     }
   }
 
+  function returnRes(ans: boolean) {
+    setAnswer(ans);
+  }
+
+  function renderRes() {
+    if (answer === true) {
+      return <h1>True</h1>;
+    } else if (answer === false) {
+      return <h1>False</h1>;
+    } else {
+      return null;
+    }
+  }
+
   return (
     <div id="knowledge_check">
       <KCHeadline headline={props.headline} />
       <KCOptions options={props.options} modOption={modOption} />
+      {renderRes()}
       <KCAcceptButton
         id={props.id}
         progressOnComplete={props.progressOnComplete}
         correct={correct}
         currentProgress={props.currentProgress}
+        returnRes={returnRes}
       />
     </div>
   );
