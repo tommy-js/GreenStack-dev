@@ -26,8 +26,8 @@ const updateNewAccountMutation = gql`
 `;
 
 const updateUserProgressMutation = gql`
-  mutation($id: ID!) {
-    updateUserProgress(id: $id) {
+  mutation($id: ID!, $increment: Int!) {
+    updateUserProgress(id: $id, increment: $increment) {
       id
     }
   }

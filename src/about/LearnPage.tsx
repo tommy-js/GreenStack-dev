@@ -42,7 +42,7 @@ export const BasicsPage: React.FC = () => {
             { title: "Option 3", id: 2 },
           ]}
           id={id}
-          progressOnComplete={5}
+          increment={5}
           correctAnswer={2}
           currentProgress={currentProgress}
           headline="Test Knowledge Check"
@@ -51,6 +51,10 @@ export const BasicsPage: React.FC = () => {
           points={generalData.points}
           graphicalEffects={generalData.graphicalEffects}
         />
+        <p className="learn_page_paragraph">
+          As you can see from the graph above, Apple has been on a growing trend
+          over the past few months
+        </p>
       </div>
     </div>
   );

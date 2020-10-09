@@ -99,3 +99,10 @@
 .incorrect_ans {
   color: red;
 }
+
+#graph_learning_block {
+  position: relative;
+  width: 100%;
+  height: 375px;
+  @include testing;
+}

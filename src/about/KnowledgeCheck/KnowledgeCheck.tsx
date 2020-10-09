@@ -9,7 +9,7 @@ interface Props {
     id: number;
   }[];
   id: number;
-  progressOnComplete: number;
+  increment: number;
   headline: string;
   correctAnswer: number;
   currentProgress: number;
@@ -45,7 +45,7 @@ export const MultipleChoice: React.FC<Props> = (props) => {
       <KCOptions options={props.options} modOption={modOption} />
       <KCAcceptButton
         id={props.id}
-        progressOnComplete={props.progressOnComplete}
+        increment={props.increment}
         correct={correct}
         currentProgress={props.currentProgress}
         returnRes={returnRes}

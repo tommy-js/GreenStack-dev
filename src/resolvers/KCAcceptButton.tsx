@@ -1,11 +1,11 @@
 import React from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
-import { updateUserProgressMutation } from "../queries/queries";
+import { updateUserProgressMutation } from "../queries/queries.js";
 
 interface Props {
-  progressOnComplete: number;
   id: number;
+  increment: number;
   correct: boolean;
   currentProgress: number;
   updateUserProgressMutation: (variables: object) => any;
@@ -20,6 +20,7 @@ const KCAcceptButton: React.FC<Props> = (props) => {
         .updateUserProgressMutation({
           variables: {
             id: props.id,
+            increment: props.increment,
           },
         })
         .then((res: any) => console.log(res))

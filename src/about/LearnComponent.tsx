@@ -5,11 +5,12 @@ interface Props {
   title: string;
   subtitle: string;
   path: string;
+  percent: number;
 }
 
 const LearnComponent: React.FC<Props> = (props) => {
   return (
-    <div id="learn_individual_div">
+    <div key={props.title} id="learn_individual_div">
       <div id="learn_link">
         <Link to={props.path}>
           <div>
@@ -19,7 +20,7 @@ const LearnComponent: React.FC<Props> = (props) => {
         </Link>
       </div>
       <div id="learn_individual_progress_div">
-        <p>Progress</p>
+        <p>Progress: {props.percent}</p>
       </div>
     </div>
   );

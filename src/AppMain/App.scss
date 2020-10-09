@@ -723,10 +723,3 @@ body {
   // box-sizing: border-box;
   @include testing;
 }
-
-#graph_learning_block {
-  position: relative;
-  width: 100%;
-  height: 300px;
-  @include testing;
-}
