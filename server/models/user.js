@@ -20,6 +20,8 @@ const userSchema = new Schema({
   profileImage: String,
   posts: [
     {
+      typeId: Number,
+      dataId: String,
       userId: String,
       postId: String,
       timestamp: Number,

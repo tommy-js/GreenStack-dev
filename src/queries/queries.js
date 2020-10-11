@@ -545,6 +545,8 @@ const userQuery = gql`
         gain
       }
       posts {
+        typeId
+        dataId
         userId
         postId
         timestamp
