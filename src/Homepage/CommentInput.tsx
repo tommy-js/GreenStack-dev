@@ -22,7 +22,7 @@ export const CommentInputPost: React.FC<Post> = (props) => {
 
   return (
     <div id="comment_input_div">
-      <textarea id="comment_input" />
+      <textarea id="comment_input" onChange={(e) => setText(e.target.value)} />
       <PushCommentPost
         username={userVal.username}
         userId={userVal.userId}

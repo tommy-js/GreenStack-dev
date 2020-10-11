@@ -3,7 +3,7 @@ import FeedModal from "./FeedModal";
 import Suggested from "../Suggested";
 import Post from "../Post";
 import { PostType, NewsType, CommentType } from "./FeedTypes";
-import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import { useQuery } from "react-apollo";
 import { userContext } from "../../AppMain/App";
 

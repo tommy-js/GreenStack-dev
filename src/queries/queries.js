@@ -190,9 +190,6 @@ const pushCommentPostMutation = gql`
     pushCommentPost(userId: $userId, text: $text, postId: $postId) {
       text
     }
-    pushCommentUser(userId: $userId, text: $text) {
-      text
-    }
   }
 `;
 
