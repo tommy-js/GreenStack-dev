@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import NavBar from "../navigation/NavBar";
-import { MultipleChoice } from "./KnowledgeCheck/KnowledgeCheck";
+import { MultipleChoice, Blanks } from "./KnowledgeCheck/KnowledgeCheck";
 import LearnGraphs from "./LearnGraphs.jsx";
 import { statusContext, userContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
@@ -13,6 +13,11 @@ export const BasicsPage: React.FC = () => {
   const [currentProgress, setCurrentProgress] = useState(
     userVal.progress[0].percent
   );
+
+  const options1 = [
+    { text: "Test 1", correctAnswer: "Yes", id: 0 },
+    { text: "Test 2", correctAnswer: "No", id: 1 },
+  ];
 
   useEffect(() => {
     if (status === false) {
@@ -55,6 +60,7 @@ export const BasicsPage: React.FC = () => {
           As you can see from the graph above, Apple has been on a growing trend
           over the past few months
         </p>
+        <Blanks options={options1} />
       </div>
     </div>
   );

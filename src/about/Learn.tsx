@@ -32,7 +32,7 @@ const Learn: React.FC = () => {
     let obj;
     let arr = [...learn];
     for (let i = 0; i < learn.length; i++) {
-      let obj = {
+      obj = {
         title: learn[i].title,
         subtitle: learn[i].subtitle,
         path: learn[i].path,
