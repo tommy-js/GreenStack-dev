@@ -15,7 +15,12 @@ export const BasicsPage: React.FC = () => {
   );
 
   const options1 = [
-    { text: "Test 1", correctAnswer: "Yes", id: 0 },
+    {
+      text:
+        "What percent would you rate tdwa dmwkmad mwaflkwlka dkwlafllegpl fla l;w,al dmlwma his stock is in terms of buy?",
+      correctAnswer: "Yes",
+      id: 0,
+    },
     { text: "Test 2", correctAnswer: "No", id: 1 },
   ];
 

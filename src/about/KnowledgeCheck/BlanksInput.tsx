@@ -25,9 +25,14 @@ const BlanksInput: React.FC<Props> = ({
   }
 
   return (
-    <div>
-      <p>{text}</p>
-      <input type="text" value={val} onChange={(e) => modVal(e.target.value)} />
+    <div className="blank_input_block">
+      <p className="blank_question">{text}</p>
+      <input
+        className="blank_input"
+        type="text"
+        value={val}
+        onChange={(e) => modVal(e.target.value)}
+      />
     </div>
   );
 };

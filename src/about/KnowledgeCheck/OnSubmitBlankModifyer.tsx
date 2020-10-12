@@ -23,22 +23,14 @@ const OnSubmitBlankModifyer: React.FC<Props> = ({ submitted, id, correct }) => {
   function returnRender() {
     if (submitted === true) {
       if (isCorrect === true) {
-        return (
-          <div>
-            <CorrectIcon />
-          </div>
-        );
+        return <CorrectIcon />;
       } else {
-        return (
-          <div>
-            <IncorrectIcon />
-          </div>
-        );
+        return <IncorrectIcon />;
       }
     } else return null;
   }
 
-  return <div>{returnRender()}</div>;
+  return <div className="inline">{returnRender()}</div>;
 };
 
 export default OnSubmitBlankModifyer;
