@@ -3,6 +3,7 @@ import { KCHeadline } from "./KCHeadline";
 import BlanksInput from "./BlanksInput";
 import KCOptions from "./KCOptions";
 import KCAcceptButton from "../../resolvers/KCAcceptButton";
+import OnSubmitBlankModifyer from "./OnSubmitBlankModifyer";
 
 interface MC {
   options: {
@@ -65,6 +66,7 @@ export const MultipleChoice: React.FC<MC> = (props) => {
 
 export const Blanks: React.FC<Blanks> = (props) => {
   const [correct, setCorrect] = useState([] as any);
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     let obj;
@@ -100,13 +102,21 @@ export const Blanks: React.FC<Blanks> = (props) => {
   return (
     <div id="knowledge_check">
       {props.options.map((el: any) => (
-        <BlanksInput
-          text={el.text}
-          id={el.id}
-          correctAnswer={el.correctAnswer}
-          modCorrect={modCorrect}
-        />
+        <div>
+          <BlanksInput
+            text={el.text}
+            id={el.id}
+            correctAnswer={el.correctAnswer}
+            modCorrect={modCorrect}
+          />
+          <OnSubmitBlankModifyer
+            submitted={submitted}
+            id={el.id}
+            correct={correct}
+          />
+        </div>
       ))}
+      <button onClick={() => setSubmitted(true)}>Submit</button>
     </div>
   );
 };
