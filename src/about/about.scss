@@ -146,6 +146,7 @@
   min-width: 250px;
   margin-bottom: 5px;
   margin-top: 5px;
+  margin-left: 10px;
   display: inline-block;
   @include testing;
 }
@@ -182,4 +183,14 @@
   vertical-align: top;
   @include testing;
   display: inline-block;
+}
+
+.blanks_title {
+  position: relative;
+  margin: 10px;
+}
+
+.blank_submit {
+  position: relative;
+  margin-left: 10px;
 }

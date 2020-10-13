@@ -18,8 +18,6 @@ const OnSubmitBlankModifyer: React.FC<Props> = ({ submitted, id, correct }) => {
     }
   }, [correct]);
 
-  console.log("correct bool:");
-  console.log(correct);
   function returnRender() {
     if (submitted === true) {
       if (isCorrect === true) {

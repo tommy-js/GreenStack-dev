@@ -14,15 +14,19 @@ export const BasicsPage: React.FC = () => {
     userVal.progress[0].percent
   );
 
-  const options1 = [
-    {
-      text:
-        "What percent would you rate tdwa dmwkmad mwaflkwlka dkwlafllegpl fla l;w,al dmlwma his stock is in terms of buy?",
-      correctAnswer: "Yes",
-      id: 0,
-    },
-    { text: "Test 2", correctAnswer: "No", id: 1 },
-  ];
+  const options1 = {
+    title: "Checkpoint 1",
+    options: [
+      {
+        text:
+          "What percent would you rate tdwa dmwkmad mwaflkwlka dkwlafllegpl fla l;w,al dmlwma his stock is in terms of buy?",
+        correctAnswer: "Yes",
+        value: 5,
+        id: 0,
+      },
+      { text: "Test 2", correctAnswer: "No", value: 5, id: 1 },
+    ],
+  };
 
   useEffect(() => {
     if (status === false) {
@@ -65,7 +69,7 @@ export const BasicsPage: React.FC = () => {
           As you can see from the graph above, Apple has been on a growing trend
           over the past few months
         </p>
-        <Blanks options={options1} />
+        <Blanks id={id} title={options1.title} options={options1.options} />
       </div>
     </div>
   );

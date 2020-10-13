@@ -3,6 +3,7 @@ import { KCHeadline } from "./KCHeadline";
 import BlanksInput from "./BlanksInput";
 import KCOptions from "./KCOptions";
 import KCAcceptButton from "../../resolvers/KCAcceptButton";
+import BlankSubmit from "../../resolvers/BlankSubmit";
 import OnSubmitBlankModifyer from "./OnSubmitBlankModifyer";
 
 interface MC {
@@ -10,7 +11,7 @@ interface MC {
     title: string;
     id: number;
   }[];
-  id: number;
+  id: string;
   increment: number;
   headline: string;
   correctAnswer: number;
@@ -18,9 +19,12 @@ interface MC {
 }
 
 interface Blanks {
+  title: string;
+  id: string;
   options: {
     text: string;
     correctAnswer: string;
+    value: number;
     id: number;
   }[];
 }
@@ -67,6 +71,7 @@ export const MultipleChoice: React.FC<MC> = (props) => {
 export const Blanks: React.FC<Blanks> = (props) => {
   const [correct, setCorrect] = useState([] as any);
   const [submitted, setSubmitted] = useState(false);
+  const [increment, setIncrement] = useState(0);
 
   useEffect(() => {
     let obj;
@@ -92,7 +97,17 @@ export const Blanks: React.FC<Blanks> = (props) => {
         arr[ind].correct = false;
       }
       setCorrect(arr);
+      let reducer = 0;
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i].correct === true) reducer += 5;
+      }
+      setIncrement(reducer);
+      console.log(reducer);
     }
+  }
+
+  function modSubmitted(set: boolean) {
+    setSubmitted(set);
   }
 
   useEffect(() => {
@@ -101,6 +116,7 @@ export const Blanks: React.FC<Blanks> = (props) => {
 
   return (
     <div id="knowledge_check">
+      <h3 className="blanks_title">{props.title}</h3>
       {props.options.map((el: any) => (
         <div>
           <BlanksInput
@@ -116,7 +132,7 @@ export const Blanks: React.FC<Blanks> = (props) => {
           />
         </div>
       ))}
-      <button onClick={() => setSubmitted(true)}>Submit</button>
+      <BlankSubmit id={props.id} increment={increment} submit={modSubmitted} />
     </div>
   );
 };

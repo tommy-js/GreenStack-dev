@@ -4,7 +4,7 @@ import { flowRight as compose } from "lodash";
 import { updateUserProgressMutation } from "../queries/queries.js";
 
 interface Props {
-  id: number;
+  id: string;
   increment: number;
   correct: boolean;
   currentProgress: number;
