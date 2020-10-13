@@ -26,8 +26,8 @@ const updateNewAccountMutation = gql`
 `;
 
 const updateUserProgressMutation = gql`
-  mutation($id: ID!, $increment: Int!) {
-    updateUserProgress(id: $id, increment: $increment) {
+  mutation($id: ID!, $specId: ID!, $increment: Int!) {
+    updateUserProgress(id: $id, specId: $specId, increment: $increment) {
       id
     }
   }
@@ -585,6 +585,10 @@ const userQuery = gql`
         title
         id
         percent
+        progressElements {
+          id
+          passed
+        }
       }
     }
   }

@@ -13,6 +13,7 @@ export const BasicsPage: React.FC = () => {
   const [currentProgress, setCurrentProgress] = useState(
     userVal.progress[0].percent
   );
+  const [specId, setSpecId] = useState(userVal.progress[0].progressElements);
 
   const options1 = {
     title: "Checkpoint 1",
@@ -21,10 +22,10 @@ export const BasicsPage: React.FC = () => {
         text:
           "What percent would you rate tdwa dmwkmad mwaflkwlka dkwlafllegpl fla l;w,al dmlwma his stock is in terms of buy?",
         correctAnswer: "Yes",
-        value: 5,
+        value: 2,
         id: 0,
       },
-      { text: "Test 2", correctAnswer: "No", value: 5, id: 1 },
+      { text: "Test 2", correctAnswer: "No", value: 9, id: 1 },
     ],
   };
 
@@ -56,6 +57,7 @@ export const BasicsPage: React.FC = () => {
             { title: "Option 3", id: 2 },
           ]}
           id={id}
+          specId={userVal.progress[0].progressElements[0].id}
           increment={5}
           correctAnswer={2}
           currentProgress={currentProgress}
@@ -69,7 +71,12 @@ export const BasicsPage: React.FC = () => {
           As you can see from the graph above, Apple has been on a growing trend
           over the past few months
         </p>
-        <Blanks id={id} title={options1.title} options={options1.options} />
+        <Blanks
+          id={id}
+          specId={userVal.progress[0].progressElements[1].id}
+          title={options1.title}
+          options={options1.options}
+        />
       </div>
     </div>
   );

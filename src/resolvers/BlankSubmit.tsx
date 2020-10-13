@@ -7,6 +7,7 @@ interface Props {
   submit: (set: boolean) => void;
   increment: number;
   id: string;
+  specId: string;
   updateUserProgressMutation: (variables: object) => any;
 }
 
@@ -16,6 +17,7 @@ const BlankSubmit: React.FC<Props> = (props) => {
       .updateUserProgressMutation({
         variables: {
           id: props.id,
+          specId: props.specId,
           increment: props.increment,
         },
       })

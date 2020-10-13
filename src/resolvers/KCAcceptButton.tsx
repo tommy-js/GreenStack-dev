@@ -5,6 +5,7 @@ import { updateUserProgressMutation } from "../queries/queries.js";
 
 interface Props {
   id: string;
+  specId: string;
   increment: number;
   correct: boolean;
   currentProgress: number;
@@ -20,6 +21,7 @@ const KCAcceptButton: React.FC<Props> = (props) => {
         .updateUserProgressMutation({
           variables: {
             id: props.id,
+            specId: props.specId,
             increment: props.increment,
           },
         })

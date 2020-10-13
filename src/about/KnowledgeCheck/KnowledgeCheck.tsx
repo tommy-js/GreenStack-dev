@@ -12,6 +12,7 @@ interface MC {
     id: number;
   }[];
   id: string;
+  specId: string;
   increment: number;
   headline: string;
   correctAnswer: number;
@@ -21,6 +22,7 @@ interface MC {
 interface Blanks {
   title: string;
   id: string;
+  specId: string;
   options: {
     text: string;
     correctAnswer: string;
@@ -59,6 +61,7 @@ export const MultipleChoice: React.FC<MC> = (props) => {
       <KCOptions options={props.options} modOption={modOption} />
       <KCAcceptButton
         id={props.id}
+        specId={props.specId}
         increment={props.increment}
         correct={correct}
         currentProgress={props.currentProgress}
@@ -99,7 +102,7 @@ export const Blanks: React.FC<Blanks> = (props) => {
       setCorrect(arr);
       let reducer = 0;
       for (let i = 0; i < arr.length; i++) {
-        if (arr[i].correct === true) reducer += 5;
+        if (arr[i].correct === true) reducer += props.options[i].value;
       }
       setIncrement(reducer);
       console.log(reducer);
@@ -132,7 +135,12 @@ export const Blanks: React.FC<Blanks> = (props) => {
           />
         </div>
       ))}
-      <BlankSubmit id={props.id} increment={increment} submit={modSubmitted} />
+      <BlankSubmit
+        id={props.id}
+        specId={props.specId}
+        increment={increment}
+        submit={modSubmitted}
+      />
     </div>
   );
 };
