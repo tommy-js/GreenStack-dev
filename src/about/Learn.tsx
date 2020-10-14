@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import LearnComponent from "./LearnComponent";
+import LearnHeader from "./LearnHeader";
 import { Route } from "react-router-dom";
 import { userContext } from "../AppMain/App";
 
@@ -47,7 +48,8 @@ const Learn: React.FC = () => {
   function renderState() {
     if (loaded === true) {
       return (
-        <div>
+        <div className="learn_state">
+          <LearnHeader header="Basics" />
           {learn.map((el) => (
             <LearnComponent
               key={el.title}

@@ -13,6 +13,7 @@
 
 body {
   margin: 0;
+  background-color: $background_white;
 }
 
 .news_block {
@@ -304,7 +305,8 @@ body {
 
 .navbar {
   position: fixed;
-  background-color: teal;
+  background-color: $background_white;
+  border-bottom: 1px solid $soft_grey;
   height: 40px;
   width: 100%;
   margin: 0;
