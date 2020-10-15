@@ -6,7 +6,12 @@ const LearnGraphs = (props) => {
     renderFull(props.points, props.graphicalEffects);
   }, []);
 
-  return <div id="graph_learning_block"></div>;
+  return (
+    <div
+      style={{ width: "100%", height: "375px" }}
+      id={props.contentsDiv}
+    ></div>
+  );
 };
 
 export default LearnGraphs;

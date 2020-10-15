@@ -1,6 +1,7 @@
 .learn_page {
   position: relative;
   width: 50%;
+  color: $text_black;
   font-family: $standard_font;
   margin-left: auto;
   margin-right: auto;
@@ -89,6 +90,7 @@
   height: 15px;
   margin: 15px;
   border-radius: 50%;
+  cursor: pointer;
   display: inline-block;
   border: 1px solid black;
 }

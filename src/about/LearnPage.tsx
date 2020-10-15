@@ -4,7 +4,7 @@ import { MultipleChoice, Blanks } from "./KnowledgeCheck/KnowledgeCheck";
 import LearnGraphs from "./LearnGraphs.jsx";
 import { statusContext, userContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
-import { generalData } from "./graphs/graphData.js";
+import { APPLE2month, AMZN10Year } from "./graphs/graphData.js";
 
 export const BasicsPage: React.FC = () => {
   const { status, setStatus } = useContext(statusContext);
@@ -62,8 +62,9 @@ export const BasicsPage: React.FC = () => {
         </p>
 
         <LearnGraphs
-          points={generalData.points}
-          graphicalEffects={generalData.graphicalEffects}
+          points={APPLE2month.points}
+          graphicalEffects={APPLE2month.graphicalEffects}
+          contentsDiv="apple_learning_graph"
         />
 
         <p className="learn_page_paragraph">
@@ -102,6 +103,11 @@ export const BasicsPage: React.FC = () => {
           over a period of years. $1,000 invested into Amazon stock, AMZN, in
           June of 2010 would have been worth $26.771.43 in October of 2020.
         </p>
+        <LearnGraphs
+          points={AMZN10Year.points}
+          graphicalEffects={AMZN10Year.graphicalEffects}
+          contentsDiv="amazon_10_year"
+        />
         <p className="learn_page_paragraph">
           That being said, Amazon is an extreme example of this kind of growth.
           Invested in another popular company, Walmart, that $1,000 would be
