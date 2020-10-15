@@ -1,5 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
-import { BasicsPage, OptionsPage, ProtectionPage } from "../about/LearnPage";
+import {
+  GlossaryPage,
+  BasicsPage,
+  OptionsPage,
+  ProtectionPage,
+} from "../about/LearnPage";
 import Portfolio from "../portfolio/Portfolio";
 import AboutPage from "../about/AboutPage";
 import Homepage from "../Homepage/Homepage";
@@ -111,6 +116,9 @@ const MainRender: React.FC = () => {
             </Switch>
             {returnTradePath()}
             <Switch>
+              <Route path="/about/glossary">
+                <GlossaryPage />
+              </Route>
               <Route path="/about/learn/general">
                 <BasicsPage />
               </Route>

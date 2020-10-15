@@ -5,6 +5,40 @@ import LearnGraphs from "./LearnGraphs.jsx";
 import { statusContext, userContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
 import { APPLE2month, AMZN10Year } from "./graphs/graphData.js";
+import { Link } from "react-router-dom";
+
+export const GlossaryPage: React.FC = () => {
+  return (
+    <div>
+      <NavBar />
+      <div className="learn_page">
+        <div className="glossary_term">
+          <span className="emphasize">Share:</span> a tiny portion of a company
+          owned by you, the investor.
+        </div>
+        <div className="glossary_term">
+          <span className="emphasize">Option:</span> a contract to buy or sell
+          shares at a predetermined price by a specific day.
+        </div>
+        <div className="glossary_term">
+          <span className="emphasize">Call:</span> an option contract betting
+          that the stock price will rise.
+        </div>
+        <div className="glossary_term">
+          <span className="emphasize">Put:</span> an option contract betting
+          that the stock price will fall.
+        </div>
+        <div className="glossary_term">
+          <span className="emphasize">Premium:</span> the price you pay when you
+          purchase a call option.
+        </div>
+        <div className="glossary_term">
+          <span className="emphasize">:</span>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export const BasicsPage: React.FC = () => {
   const { status, setStatus } = useContext(statusContext);
@@ -51,10 +85,13 @@ export const BasicsPage: React.FC = () => {
         <p className="learn_page_paragraph">
           At its most basic, the stock market is composed of companies and their
           investors(that's you!). Investors purchase portions of companies,
-          called shares, which fluctuate in value depending on how a company is
-          doing. It's your hope as an investor that the value of these shares
-          increase over time, so that you can sell them for a profit somewhere
-          down the line.
+          called{" "}
+          <Link to="/about/glossary">
+            <span className="emphasize">shares</span>
+          </Link>
+          , which fluctuate in value depending on how a company is doing. It's
+          your hope as an investor that the value of these shares increase over
+          time, so that you can sell them for a profit somewhere down the line.
         </p>
         <p className="learn_page_paragraph">
           Let's take a look at some historical Apple stock data to see how this
@@ -165,9 +202,32 @@ export const OptionsPage: React.FC = () => {
           and know what it means to invest in a company. However, there is a
           whole world out there within the stock market that most people aren't
           aware of. One of these terms you may be unfamiliar with is that of
-          "options," which is a fancy way of saying that owning an option
-          contract gives you the <i>option</i> to buy or sell a number of shares
-          at a certain time.
+          "options."
+        </p>
+        <p className="learn_page_paragraph">
+          An <span className="emphasize">option</span> is a contract with
+          another trader that gives you the right to buy or sell a number of
+          shares at a certain price. In fact, it specifically gives you the
+          right to buy or sell 100 shares. There are two types of options;{" "}
+          <span className="emphasize">call</span>, which basically means you
+          think the stock price will rise, and{" "}
+          <span className="emphasize">puts</span>, which implies that you
+          believe the stock value will fall.
+        </p>
+        <p className="learn_page_paragraph">
+          These terms sound complicated, but we'll explain them in simple terms
+          here, starting with the call option.
+        </p>
+        <p className="learn_page_subheader">The call option</p>
+        <p className="learn_page_paragraph">
+          Whenever you buy a call option, you're basically placing a bet that
+          the stock price will rise. In order to place a call option, you need
+          to pick a price you think the stock will rise to and a date you think
+          it will hit that level by. For instance, if I were certain that Tesla
+          stock would hit $600 by January 10, 2021, I would buy this option
+          contract and in return I would pay a fee. The fee is called a{" "}
+          <span className="emphasize">premium</span>, and it can range from as
+          little as $1 to tens of thousands or more.
         </p>
       </div>
     </div>
