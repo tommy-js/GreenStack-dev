@@ -14,7 +14,7 @@ const Option: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (props.id === props.selectedOption) {
-      setBcc("black");
+      setBcc("#2bae66ff");
     } else {
       setBcc("white");
     }

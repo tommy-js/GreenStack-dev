@@ -9,19 +9,19 @@ const Learn: React.FC = () => {
   const [loaded, setLoaded] = useState(false);
   const [learn, setLearn] = useState([
     {
-      title: "Stocks",
+      title: "Getting Started",
       subtitle: "Learn the market basics",
       path: "/about/learn/general",
       percent: 0,
     },
     {
-      title: "Options",
+      title: "What Are Options?",
       subtitle: "Learn all about calls and puts",
       path: "/about/learn/options",
       percent: 0,
     },
     {
-      title: "Protecting Yourself",
+      title: "What Is 'Diversification?'",
       subtitle: "Learn to protect yourself from the market",
       path: "/about/learn/protection",
       percent: 0,

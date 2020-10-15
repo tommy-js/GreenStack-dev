@@ -1,6 +1,7 @@
 .learn_page {
   position: relative;
   width: 50%;
+  font-family: $standard_font;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 100px;
@@ -11,7 +12,7 @@
   font-family: $standard_font;
   width: 50%;
   margin-top: 15px;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 165%;
   margin-left: auto;
   margin-right: auto;
@@ -31,7 +32,7 @@
 .learn_page_paragraph {
   position: relative;
   margin-top: 15px;
-  font-size: 22px;
+  font-size: 18px;
   line-height: 165%;
   margin-left: auto;
   margin-right: auto;
@@ -39,8 +40,16 @@
 
 .learn_page_subheader {
   position: relative;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.learn_page_notif {
+  position: relative;
   margin-top: 15px;
-  font-size: 22px;
+  font-size: 18px;
+  text-align: center;
+  color: $island_green;
   line-height: 165%;
   font-weight: bold;
   margin-left: auto;
@@ -76,8 +85,8 @@
 
 .select_container {
   position: relative;
-  width: 25px;
-  height: 25px;
+  width: 15px;
+  height: 15px;
   margin: 15px;
   border-radius: 50%;
   display: inline-block;
@@ -118,6 +127,7 @@
 
 #learn_individual_div {
   border-bottom: 1px dashed transparent;
+  font-family: $standard_font;
   transition: 0.3s;
 }
 

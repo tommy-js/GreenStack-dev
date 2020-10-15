@@ -39,38 +39,104 @@ export const BasicsPage: React.FC = () => {
     <div>
       <NavBar />
       <div className="learn_page">
-        <h2 className="learn_page_header">Your First Steps</h2>
+        <h2 className="learn_page_header">Getting Started</h2>
+
         <p className="learn_page_paragraph">
-          Getting involved with the stock market can be intimidating, especially
-          for those without a background in or good understand of the economy
-          and finance more generally. Fortunately, it doesn't have to be so
-          difficult. In this short tutorial we will break down the basics of the
-          stock market into terms that are easy to understand.
+          Getting involved in the stock market can be intimidating, especially
+          for those without a deep understanding of how the economy works.
+          Fortunately, it doesn't have to be so difficult. In this short
+          tutorial we'll break down the basics of the stock market into terms
+          that are easy to understand.
         </p>
-        <h3 className="learn_page_subheader">
-          Note: complete the knowledge check to save your progress!
-        </h3>
-        <MultipleChoice
-          options={[
-            { title: "Option 1", id: 0 },
-            { title: "Option 2", id: 1 },
-            { title: "Option 3", id: 2 },
-          ]}
-          id={id}
-          specId={userVal.progress[0].progressElements[0].id}
-          increment={5}
-          correctAnswer={2}
-          currentProgress={currentProgress}
-          headline="Test Knowledge Check"
-        />
+        <p className="learn_page_paragraph">
+          At its most basic, the stock market is composed of companies and their
+          investors(that's you!). Investors purchase portions of companies,
+          called shares, which fluctuate in value depending on how a company is
+          doing. It's your hope as an investor that the value of these shares
+          increase over time, so that you can sell them for a profit somewhere
+          down the line.
+        </p>
+        <p className="learn_page_paragraph">
+          Let's take a look at some historical Apple stock data to see how this
+          might work.
+        </p>
+
         <LearnGraphs
           points={generalData.points}
           graphicalEffects={generalData.graphicalEffects}
         />
+
         <p className="learn_page_paragraph">
-          As you can see from the graph above, Apple has been on a growing trend
-          over the past few months
+          The graph above is Apple stock-price data from March 1, 2019 to May
+          30, 2019. You can see that if you had purchased a share at the
+          beginning of this timeframe, by the end of May the value of your share
+          would have increased from $43.74 to $50.17. Selling this share would
+          have made you $6.43!
         </p>
+
+        <h3 className="learn_page_notif">
+          Complete the knowledge check to save your progress!
+        </h3>
+        <MultipleChoice
+          options={[
+            { title: "A portion of your portfolio", id: 0 },
+            { title: "A small piece of a company", id: 1 },
+            { title: "Something to brag about!", id: 2 },
+          ]}
+          id={id}
+          specId={userVal.progress[0].progressElements[0].id}
+          increment={5}
+          correctAnswer={1}
+          currentProgress={currentProgress}
+          headline="What is a share?"
+        />
+
+        <p className="learn_page_paragraph">
+          Of course, $6.43 isn't much money. However, this brings us to one of
+          the most common and successful investment strategies.
+        </p>
+        <p className="learn_page_subheader">Buy, hold, buy more</p>
+        <p className="learn_page_paragraph">
+          The goal of most investors is to make small gains slowly over time,
+          and to therefore increase the value of their investment significantly
+          over a period of years. $1,000 invested into Amazon stock, AMZN, in
+          June of 2010 would have been worth $26.771.43 in October of 2020.
+        </p>
+        <p className="learn_page_paragraph">
+          That being said, Amazon is an extreme example of this kind of growth.
+          Invested in another popular company, Walmart, that $1,000 would be
+          worth roughly $2,769 after those ten years.
+        </p>
+        <p className="learn_page_paragraph">
+          Not everyone has $1,000, $10,000, or $100,000 lying around, though.
+          Many investors are starting out with very small amounts. This brings
+          up an important saying: "time in the market beats timing the market."
+          Instead of trying to pick the perfect stock and get it at the perfect
+          time, small consistent investments into the market as a whole will
+          always lead to better results.
+        </p>
+        <p className="learn_page_subheader">Growth not guaranteed</p>
+        <p className="learn_page_paragraph">
+          It's tempting to think that because certain companies have seen
+          massive growth and success over a few short years, this means every
+          company will see success. Unfortunately, this couldn't be further from
+          the truth.
+        </p>
+        <p className="learn_page_paragraph">
+          Some companies, such as Gamestop and Hertz, have been on the downtrend
+          for years. $1,000 invested into Gamestop in 2015 would be worth about
+          $283 in 2020.
+        </p>
+        <p className="learn_page_paragraph">
+          This brings up a major concept in investing; risk. Risk is the
+          likelihood that you will lose money on an investment. You can reduce
+          risk in certain ways. One of these ways is to diversify your stocks.
+          Diversifying means spreading your money out among many companies,
+          instead of just a few. Being highly diversified means that you own at
+          least 15 different shares. This means if one of those companies loses
+          value or goes bankrupt, your portfolio will take less of a hit.
+        </p>
+
         <Blanks
           id={id}
           specId={userVal.progress[0].progressElements[1].id}
