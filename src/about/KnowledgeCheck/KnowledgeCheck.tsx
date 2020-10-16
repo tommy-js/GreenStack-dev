@@ -5,6 +5,7 @@ import KCOptions from "./KCOptions";
 import KCAcceptButton from "../../resolvers/KCAcceptButton";
 import BlankSubmit from "../../resolvers/BlankSubmit";
 import OnSubmitBlankModifyer from "./OnSubmitBlankModifyer";
+import KCSelectBoxes from "./KCSelectBoxes";
 
 interface MC {
   options: {
@@ -33,10 +34,29 @@ interface Blanks {
 
 interface SelectAll {
   title: string;
+  options: {
+    id: number;
+    title: string;
+    selected: boolean;
+  }[];
+  correctAnswers: {
+    id: number;
+  }[];
 }
 
 export const SelectAll: React.FC<SelectAll> = (props) => {
-  return <div></div>;
+  const [res, setRes] = useState();
+  const [answer, setAnswer] = useState(props.options);
+  const [correct, setCorrect] = useState(false);
+
+  function modAnswer(argument: any) {}
+
+  return (
+    <div id="knowledge_check">
+      <KCHeadline headline={props.title} res={res} />
+      <KCSelectBoxes options={props.options} modAnswer={modAnswer} />
+    </div>
+  );
 };
 
 export const MultipleChoice: React.FC<MC> = (props) => {

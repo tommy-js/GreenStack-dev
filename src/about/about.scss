@@ -73,6 +73,7 @@
 #knowledge_check_headline {
   margin-left: 15px;
   margin-top: 5px;
+  font-size: 18px;
   margin-bottom: 0;
   @include testing;
 }
@@ -253,4 +254,19 @@
 .glossary_header {
   text-align: center;
   font-family: $standard_font;
+}
+
+.select_boxes {
+  margin: 10px;
+  cursor: pointer;
+}
+
+.box_checkbox {
+  display: inline-block;
+}
+
+.box_title {
+  display: inline-block;
+  margin: 0;
+  font-size: 18px;
 }

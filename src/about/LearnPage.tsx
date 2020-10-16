@@ -224,6 +224,40 @@ export const OptionsPage: React.FC = () => {
     ],
   };
 
+  const optionsSelectAll = {
+    title: "The premium will be lost in which event(s)?",
+    options: [
+      {
+        id: 0,
+        title: "The stock price falls",
+        selected: false,
+      },
+      {
+        id: 1,
+        title: "Your puts expire above the strike price",
+        selected: false,
+      },
+      {
+        id: 2,
+        title: "You sell shares in the company",
+        selected: false,
+      },
+      {
+        id: 3,
+        title: "Your calls expire below the strike price",
+        selected: false,
+      },
+    ],
+    correctAnswers: [
+      {
+        id: 1,
+      },
+      {
+        id: 3,
+      },
+    ],
+  };
+
   useEffect(() => {
     if (status === false) {
       browserHist.push("/login");
@@ -372,6 +406,12 @@ export const OptionsPage: React.FC = () => {
           reached that price, your contract will expire worthless and you will
           lose that $240 premium.
         </p>
+
+        <SelectAll
+          title={optionsSelectAll.title}
+          options={optionsSelectAll.options}
+          correctAnswers={optionsSelectAll.correctAnswers}
+        />
       </div>
     </div>
   );
