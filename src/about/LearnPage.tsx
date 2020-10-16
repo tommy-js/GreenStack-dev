@@ -200,11 +200,11 @@ export const BasicsPage: React.FC = () => {
 export const OptionsPage: React.FC = () => {
   const { status, setStatus } = useContext(statusContext);
   const { userVal, setUserVal } = useContext(userContext);
-  const [id, setId] = useState(userVal.progress[0].id);
+  const [id, setId] = useState(userVal.progress[1].id);
   const [currentProgress, setCurrentProgress] = useState(
     userVal.progress[0].percent
   );
-  const [specId, setSpecId] = useState(userVal.progress[0].progressElements);
+  const [specId, setSpecId] = useState(userVal.progress[1].progressElements);
 
   const options1 = {
     title: "Vocab Test",
@@ -231,29 +231,25 @@ export const OptionsPage: React.FC = () => {
         id: 0,
         title: "The stock price falls",
         selected: false,
+        correct: false,
       },
       {
         id: 1,
         title: "Your puts expire above the strike price",
         selected: false,
+        correct: true,
       },
       {
         id: 2,
         title: "You sell shares in the company",
         selected: false,
+        correct: false,
       },
       {
         id: 3,
         title: "Your calls expire below the strike price",
         selected: false,
-      },
-    ],
-    correctAnswers: [
-      {
-        id: 1,
-      },
-      {
-        id: 3,
+        correct: true,
       },
     ],
   };
@@ -340,7 +336,7 @@ export const OptionsPage: React.FC = () => {
             { title: "The fee you pay to buy an options contract", id: 2 },
           ]}
           id={id}
-          specId={userVal.progress[0].progressElements[0].id}
+          specId={userVal.progress[1].progressElements[0].id}
           increment={5}
           correctAnswer={3}
           currentProgress={currentProgress}
@@ -380,7 +376,7 @@ export const OptionsPage: React.FC = () => {
 
         <Blanks
           id={id}
-          specId={userVal.progress[0].progressElements[1].id}
+          specId={userVal.progress[1].progressElements[1].id}
           title={options1.title}
           options={options1.options}
         />
@@ -408,9 +404,12 @@ export const OptionsPage: React.FC = () => {
         </p>
 
         <SelectAll
+          id={id}
+          specId={userVal.progress[1].progressElements[2].id}
           title={optionsSelectAll.title}
           options={optionsSelectAll.options}
-          correctAnswers={optionsSelectAll.correctAnswers}
+          currentProgress={currentProgress}
+          increment={5}
         />
       </div>
     </div>
