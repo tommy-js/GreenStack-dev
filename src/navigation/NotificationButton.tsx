@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import notif from "../images/notification.png";
+import ProfileImage from "./ProfileImage";
+import NewNotification from "./NewNotification";
 
 interface Props {
   notifyNew: boolean;
@@ -8,21 +11,11 @@ interface Props {
 const NotificationButton: React.FC<Props> = (props) => {
   const [bcc, setBcc] = useState("orange");
 
-  useEffect(() => {
-    console.log(props.notifyNew);
-    if (props.notifyNew === true) {
-      setBcc("red");
-    } else {
-      setBcc("orange");
-    }
-  });
-
   return (
-    <div
-      id="trigger_icon"
-      style={{ backgroundColor: bcc }}
-      onClick={() => props.triggerDropdown()}
-    ></div>
+    <div id="trigger_icon" onClick={() => props.triggerDropdown()}>
+      <ProfileImage />
+      <NewNotification notifyNew={props.notifyNew} />
+    </div>
   );
 };
 
