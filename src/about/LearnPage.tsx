@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import NavBar from "../navigation/NavBar";
-import { MultipleChoice, Blanks } from "./KnowledgeCheck/KnowledgeCheck";
+import {
+  MultipleChoice,
+  Blanks,
+  SelectAll,
+} from "./KnowledgeCheck/KnowledgeCheck";
 import LearnGraphs from "./LearnGraphs.jsx";
 import { statusContext, userContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
-import { APPLE2month, AMZN10Year } from "./graphs/graphData.js";
+import { APPLE2month, AMZN10Year, APPLEOptions } from "./graphs/graphData.js";
 import { Link } from "react-router-dom";
 
 export const GlossaryPage: React.FC = () => {
@@ -12,6 +16,7 @@ export const GlossaryPage: React.FC = () => {
     <div>
       <NavBar />
       <div className="learn_page">
+        <h2 className="glossary_header">Important Terms</h2>
         <div className="glossary_term">
           <span className="emphasize">Share:</span> a tiny portion of a company
           owned by you, the investor.
@@ -86,7 +91,7 @@ export const BasicsPage: React.FC = () => {
           At its most basic, the stock market is composed of companies and their
           investors(that's you!). Investors purchase portions of companies,
           called{" "}
-          <Link to="/about/glossary">
+          <Link className="featureless_link" to="/about/glossary">
             <span className="emphasize">shares</span>
           </Link>
           , which fluctuate in value depending on how a company is doing. It's
@@ -115,6 +120,7 @@ export const BasicsPage: React.FC = () => {
         <h3 className="learn_page_notif">
           Complete the knowledge check to save your progress!
         </h3>
+
         <MultipleChoice
           options={[
             { title: "A portion of your portfolio", id: 0 },
@@ -192,6 +198,38 @@ export const BasicsPage: React.FC = () => {
 };
 
 export const OptionsPage: React.FC = () => {
+  const { status, setStatus } = useContext(statusContext);
+  const { userVal, setUserVal } = useContext(userContext);
+  const [id, setId] = useState(userVal.progress[0].id);
+  const [currentProgress, setCurrentProgress] = useState(
+    userVal.progress[0].percent
+  );
+  const [specId, setSpecId] = useState(userVal.progress[0].progressElements);
+
+  const options1 = {
+    title: "Vocab Test",
+    options: [
+      {
+        text: "An options contract you don't own the assets to",
+        correctAnswer: "naked",
+        value: 2,
+        id: 0,
+      },
+      {
+        text: "An options contract you do own shares for",
+        correctAnswer: "covered",
+        value: 9,
+        id: 1,
+      },
+    ],
+  };
+
+  useEffect(() => {
+    if (status === false) {
+      browserHist.push("/login");
+    }
+  }, []);
+
   return (
     <div>
       <NavBar />
@@ -205,14 +243,22 @@ export const OptionsPage: React.FC = () => {
           "options."
         </p>
         <p className="learn_page_paragraph">
-          An <span className="emphasize">option</span> is a contract with
-          another trader that gives you the right to buy or sell a number of
-          shares at a certain price. In fact, it specifically gives you the
-          right to buy or sell 100 shares. There are two types of options;{" "}
-          <span className="emphasize">call</span>, which basically means you
-          think the stock price will rise, and{" "}
-          <span className="emphasize">puts</span>, which implies that you
-          believe the stock value will fall.
+          An{" "}
+          <Link className="featureless_link" to="/about/glossary">
+            <span className="emphasize">option</span>
+          </Link>{" "}
+          is a contract with another trader that gives you the right to buy or
+          sell a number of shares at a certain price. In fact, it specifically
+          gives you the right to buy or sell 100 shares. There are two types of
+          options;{" "}
+          <Link className="featureless_link" to="/about/glossary">
+            <span className="emphasize">call</span>
+          </Link>
+          , which basically means you think the stock price will rise, and{" "}
+          <Link className="featureless_link" to="/about/glossary">
+            <span className="emphasize">puts</span>
+          </Link>
+          , which implies that you believe the stock value will fall.
         </p>
         <p className="learn_page_paragraph">
           These terms sound complicated, but we'll explain them in simple terms
@@ -226,8 +272,105 @@ export const OptionsPage: React.FC = () => {
           it will hit that level by. For instance, if I were certain that Tesla
           stock would hit $600 by January 10, 2021, I would buy this option
           contract and in return I would pay a fee. The fee is called a{" "}
-          <span className="emphasize">premium</span>, and it can range from as
-          little as $1 to tens of thousands or more.
+          <Link className="featureless_link" to="/about/glossary">
+            <span className="emphasize">premium</span>
+          </Link>
+          , and it can range from as little as $1 to tens of thousands or more.
+          The fee is the cost for you to buy this option.
+        </p>
+        <p className="learn_page_paragraph">
+          Of course, you can also sell calls. This allows you to charge other
+          investors a premium, which lets you make money easily. There is,
+          however, greater risk in selling options, which we'll get into soon.
+        </p>
+        <p className="learn_page_paragraph">
+          There are two important concepts when it comes to selling calls, which
+          are that of{" "}
+          <Link className="featureless_link" to="/about/glossary">
+            <span className="emphasize">naked calls</span>
+          </Link>{" "}
+          and{" "}
+          <Link className="featureless_link" to="/about/glossary">
+            <span className="emphasize">covered calls</span>
+          </Link>
+          . The covered call takes place when you own the asset you're selling
+          the call option for. This means that if you lose your bet, and the
+          person on the other end of your contract excercizes, you're "covered".
+          There is limited risk associated with this.
+        </p>
+
+        <MultipleChoice
+          options={[
+            { title: "A more valuable share or asset", id: 0 },
+            { title: "The right to purchase shares before others", id: 1 },
+            { title: "The fee you pay to buy an options contract", id: 2 },
+          ]}
+          id={id}
+          specId={userVal.progress[0].progressElements[0].id}
+          increment={5}
+          correctAnswer={3}
+          currentProgress={currentProgress}
+          headline="What is a premium?"
+        />
+
+        <p className="learn_page_paragraph">
+          In comparison, the naked call is far riskier; it essentially means you
+          do not own the underlying asset, and so your potential loss is
+          technically unlimited.
+        </p>
+        <p className="learn_page_subheader">The put option</p>
+        <p className="learn_page_paragraph">
+          Puts are the exact opposite of calls. You believe the stock price will
+          fall and so you sell or buy a put option in the hopes of making money.
+          Selling a put option gives you the premium when someone buys your
+          contract. Buying the put option costs you money upfront but then if
+          the stock falls or stays below a certain level you can make large sums
+          of money.
+        </p>
+        <p className="learn_page_paragraph">
+          The same concepts of{" "}
+          <Link className="featureless_link" to="/about/glossary">
+            <span className="emphasize">naked puts</span>
+          </Link>{" "}
+          and{" "}
+          <Link className="featureless_link" to="/about/glossary">
+            <span className="emphasize">covered puts</span>
+          </Link>{" "}
+          applies here.
+        </p>
+        <p className="learn_page_subheader">Examples</p>
+        <p className="learn_page_paragraph">
+          The best way to learn is through example, so here we'll really get
+          into the nitty-gritty of options trading.
+        </p>
+
+        <Blanks
+          id={id}
+          specId={userVal.progress[0].progressElements[1].id}
+          title={options1.title}
+          options={options1.options}
+        />
+
+        <p className="learn_page_paragraph">
+          Let's say you think the price of Apple is going to rise. In fact,
+          you're confident that the share value of Apple will go above $130 by
+          November 6, 2020, three weeks from today. This represents a gain of
+          about $9 per share.
+        </p>
+        <p className="learn_page_paragraph">
+          Because you're so confident, you decide to buy calls on Apple at this{" "}
+          <Link className="featureless_link" to="/about/glossary">
+            <span className="emphasize">strike price</span>
+          </Link>{" "}
+          and for this date. Because it is widely believed that the price of
+          Apple will rise over time, and because the price of its shares are
+          relatively high, the cost of buying this option contract is also high.
+          In fact, buying one contract on this will cost you $240!
+        </p>
+        <p>
+          Remember that if the date you picked comes and goes and Apple hasn't
+          reached that price, your contract will expire worthless and you will
+          lose that $240 premium.
         </p>
       </div>
     </div>

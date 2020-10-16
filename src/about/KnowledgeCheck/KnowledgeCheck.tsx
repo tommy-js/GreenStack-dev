@@ -31,6 +31,14 @@ interface Blanks {
   }[];
 }
 
+interface SelectAll {
+  title: string;
+}
+
+export const SelectAll: React.FC<SelectAll> = (props) => {
+  return <div></div>;
+};
+
 export const MultipleChoice: React.FC<MC> = (props) => {
   const [selectedOption, setSelectedOption] = useState(0);
   const [correct, setCorrect] = useState();
