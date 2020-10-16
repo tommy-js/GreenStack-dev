@@ -1,6 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import NotificationIcon from "../navigation/NotificationIcon";
+import home from "../images/main_icon.png";
+import portfolio from "../images/portfolio_icon.png";
+import tutorial from "../images/tutorial_icon.png";
 
 const NavBar: React.FC = () => {
   function dropToken() {
@@ -12,30 +15,16 @@ const NavBar: React.FC = () => {
 
   return (
     <div className="navbar">
-      <NavLink
-        className="nav_el"
-        activeClassName="active_nav_el"
-        exact
-        to="/home"
-      >
-        Home
+      <NavLink exact to="/home">
+        <img src={home} className="navbar_icon" />
       </NavLink>
-      <NavLink
-        className="nav_el"
-        activeClassName="active_nav_el"
-        to="/portfolio"
-      >
-        Portfolio
+      <NavLink to="/portfolio">
+        <img src={portfolio} className="navbar_icon" />
       </NavLink>
-      <NavLink className="nav_el" activeClassName="active_nav_el" to="/about">
-        About
+      <NavLink to="/about">
+        <img src={tutorial} className="navbar_icon" />
       </NavLink>
-      <NavLink
-        className="nav_el"
-        activeClassName="active_nav_el"
-        onClick={() => dropToken()}
-        to="/login"
-      >
+      <NavLink onClick={() => dropToken()} to="/login">
         Logout
       </NavLink>
       <NotificationIcon />

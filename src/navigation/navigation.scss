@@ -63,6 +63,7 @@
   margin-right: auto;
   border-radius: 50%;
   background-color: $emerald;
+  border: 1px solid $soft_grey;
 }
 
 #profile_image {
@@ -88,4 +89,14 @@
 .active_nav_el {
   color: orange;
   border-bottom: 1px solid teal;
+}
+
+.navbar_icon {
+  position: relative;
+  height: 30px;
+  width: 30px;
+  vertical-align: middle;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 5px;
 }
