@@ -7,6 +7,7 @@ interface Props {
   userId: number;
   id: number;
   dropNotificationMutation: (variables: object) => any;
+  modDisp: () => void;
 }
 
 const DropNotification: React.FC<Props> = (props) => {
@@ -18,7 +19,6 @@ const DropNotification: React.FC<Props> = (props) => {
           id: props.id,
         },
       })
-      .then((res: any) => console.log("passed"))
       .catch((res: any) => console.log("err"));
   }
 

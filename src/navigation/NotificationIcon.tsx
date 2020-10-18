@@ -8,37 +8,28 @@ const NotificationIcon: React.FC = () => {
   const [notifyNew, setNotifyNew] = useState(false);
   const [opened, setOpened] = useState(false);
   const [triggerDisplay, setTriggerDisplay] = useState(0);
-  const [notifs, setNotifs] = useState([
-    { content: "", timestamp: 0, id: 0, viewed: false },
-  ]);
+  const [notifs, setNotifs] = useState([] as any);
+
+  // new code
 
   useEffect(() => {
-    if (userVal.notifications) {
-      setNotifs(userVal.notifications);
-    }
-  }, [userVal]);
+    modNotificationColor(userVal.notifications);
+  }, []);
 
-  function modNotificationColor(notifArr: any) {
-    setNotifs(notifArr);
-    console.log("notif arr:");
-    console.log(notifArr);
-    modNotifs();
-  }
-
-  function modNotifs() {
-    for (let v = 0; v < notifs.length; v++) {
-      if (notifs[v].viewed === false) {
-        setNotifyNew(true);
-        break;
-      } else if (notifs[v].viewed === true) {
-        setNotifyNew(false);
+  function modNotificationColor(arr: any) {
+    if (arr.length === 0) {
+      setNotifyNew(false);
+    } else {
+      for (let v = 0; v < arr.length; v++) {
+        if (arr[v].viewed === false) {
+          setNotifyNew(true);
+          break;
+        } else if (arr[v].viewed === true) {
+          setNotifyNew(false);
+        }
       }
     }
   }
-
-  useEffect(() => {
-    modNotifs();
-  }, []);
 
   function modOpened() {
     setOpened(!opened);

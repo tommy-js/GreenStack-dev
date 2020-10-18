@@ -18,19 +18,19 @@ const NotificationsElement: React.FC<Notifs> = (props) => {
 
   function checkViewed() {
     if (viewed === false) {
-      // props
-      //   .updateUserNotificationsViewedMutation({
-      //     variables: {
-      //       id: props.id,
-      //     },
-      //   })
-      //   .catch((err: any) => {
-      //     console.log("error");
-      //   })
-      //   .then((res: any) => {
-      //     console.log("success");
-      //     props.modNotifs(props.id);
-      //   });
+      props
+        .updateUserNotificationsViewedMutation({
+          variables: {
+            id: props.id,
+          },
+        })
+        .catch((err: any) => {
+          console.log(err);
+        })
+        .then((res: any) => {
+          console.log(res);
+          props.modNotifs(props.id);
+        });
       props.modNotifs(props.id);
       return (
         <div onClick={() => setViewed(true)}>
