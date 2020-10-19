@@ -22,11 +22,19 @@ import {
 import StockPage from "../companies/StockPage";
 import { queryToken } from "../queries/queries";
 import { useLazyQuery } from "react-apollo";
-import { statusContext, userContext } from "../AppMain/App";
+import { statusContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
 import companyProfiles from "../companies/companyProfiles";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
 
-interface Props {
+interface Redux {
+  userId: any;
+  username: string;
+  posts: any;
+}
+
+interface Props extends Redux {
   updateConstantActivity: (passInActivity: any) => void;
 }
 
@@ -39,7 +47,6 @@ const Homepage: React.FC<Props> = (props) => {
 
   const [passToken, { data, loading }] = useLazyQuery(queryToken);
 
-  const { userVal } = useContext(userContext);
   const { status, setStatus } = useContext(statusContext);
 
   useEffect(() => {
@@ -109,13 +116,13 @@ const Homepage: React.FC<Props> = (props) => {
               <SearchResults results={results} />
             </Route>
             <Route exact path="/home/profile">
-              <Profile username={userVal.username} />
+              <Profile username={props.username} />
             </Route>
             <Route exact path="/home/explore" component={Explore} />
             <Route exact path="/home/posts">
               <UserPosts modRoutes={modTradeRoutes} />
             </Route>
-            {userVal.posts.map((el: any) => (
+            {props.posts.map((el: any) => (
               <Route key={el.postId} path={`/home/post/${el.postId}`}>
                 <PostPage postId={el.postId} />
               </Route>
@@ -159,7 +166,7 @@ const Homepage: React.FC<Props> = (props) => {
                     stockId={el.stockId}
                     title={el.title}
                     ticker={el.ticker}
-                    userId={userVal.userId}
+                    userId={props.userId}
                     price={el.price}
                   />
                 </Route>
@@ -172,7 +179,7 @@ const Homepage: React.FC<Props> = (props) => {
                     stockId={el.stockId}
                     title={el.title}
                     ticker={el.ticker}
-                    userId={userVal.userId}
+                    userId={props.userId}
                     price={el.price}
                   />
                 </Route>
@@ -185,7 +192,7 @@ const Homepage: React.FC<Props> = (props) => {
                     stockId={el.stockId}
                     title={el.title}
                     ticker={el.ticker}
-                    userId={userVal.userId}
+                    userId={props.userId}
                     price={el.price}
                   />
                 </Route>
@@ -215,4 +222,4 @@ const Homepage: React.FC<Props> = (props) => {
   return <div>{returnLoading()}</div>;
 };
 
-export default Homepage;
+export default connect(mapStateToProps)(Homepage);

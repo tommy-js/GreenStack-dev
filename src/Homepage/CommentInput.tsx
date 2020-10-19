@@ -2,30 +2,35 @@ import React, { useState, useContext } from "react";
 import PushCommentStock from "../resolvers/PushCommentStock";
 import PushCommentPost from "../resolvers/PushCommentPost";
 import PushCommentTrade from "../resolvers/PushCommentTrade";
-import { userContext } from "../AppMain/App";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
 
-interface Post {
+interface Redux {
+  username: string;
+  userId: any;
+}
+
+interface Post extends Redux {
   postId: string;
 }
 
-interface Stock {
+interface Stock extends Redux {
   stockId: string;
 }
 
-interface Trade {
+interface Trade extends Redux {
   tradeId: string;
 }
 
-export const CommentInputPost: React.FC<Post> = (props) => {
+const CommentInputPost: React.FC<Post> = (props) => {
   const [text, setText] = useState("");
-  const { userVal, setUserVal } = useContext(userContext);
 
   return (
     <div id="comment_input_div">
       <textarea id="comment_input" onChange={(e) => setText(e.target.value)} />
       <PushCommentPost
-        username={userVal.username}
-        userId={userVal.userId}
+        username={props.username}
+        userId={props.userId}
         postId={props.postId}
         text={text}
       />
@@ -33,16 +38,15 @@ export const CommentInputPost: React.FC<Post> = (props) => {
   );
 };
 
-export const CommentInputStock: React.FC<Stock> = (props) => {
+const CommentInputStock: React.FC<Stock> = (props) => {
   const [text, setText] = useState("");
-  const { userVal, setUserVal } = useContext(userContext);
 
   return (
     <div id="comment_input_div">
       <textarea id="comment_input" />
       <PushCommentStock
-        username={userVal.username}
-        userId={userVal.userId}
+        username={props.username}
+        userId={props.userId}
         stockId={props.stockId}
         text={text}
       />
@@ -50,19 +54,22 @@ export const CommentInputStock: React.FC<Stock> = (props) => {
   );
 };
 
-export const CommentInputTrade: React.FC<Trade> = (props) => {
+const CommentInputTrade: React.FC<Trade> = (props) => {
   const [text, setText] = useState("");
-  const { userVal, setUserVal } = useContext(userContext);
 
   return (
     <div id="comment_input_div">
       <textarea id="comment_input" />
       <PushCommentTrade
-        username={userVal.username}
-        userId={userVal.userId}
+        username={props.username}
+        userId={props.userId}
         tradeId={props.tradeId}
         text={text}
       />
     </div>
   );
 };
+
+export const InputPost = connect(mapStateToProps)(CommentInputPost);
+export const InputStock = connect(mapStateToProps)(CommentInputStock);
+export const InputTrade = connect(mapStateToProps)(CommentInputTrade);

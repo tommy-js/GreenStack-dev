@@ -1,14 +1,19 @@
 import React, { useState, useContext } from "react";
 import SubmitPost from "../resolvers/SubmitPost";
 import PostNotifIcon from "./PostNotifIcon";
-import { userContext } from "../AppMain/App";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
 
-const Post: React.FC = () => {
+interface Redux {
+  userId: any;
+  username: string;
+}
+
+const Post: React.FC<Redux> = (props) => {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [success, setSuccess] = useState(false);
   const [posted, setPosted] = useState(false);
-  const { userVal } = useContext(userContext);
 
   function successfulEvent() {
     setTitle("");
@@ -54,8 +59,8 @@ const Post: React.FC = () => {
       />
       <div className="post_button">
         <SubmitPost
-          userId={userVal.userId}
-          username={userVal.username}
+          userId={props.userId}
+          username={props.username}
           title={title}
           text={text}
           successfulEvent={successfulEvent}
@@ -67,4 +72,4 @@ const Post: React.FC = () => {
   );
 };
 
-export default Post;
+export default connect(mapStateToProps)(Post);

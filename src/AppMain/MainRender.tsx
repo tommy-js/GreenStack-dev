@@ -1,17 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
-import {
-  GlossaryPage,
-  BasicsPage,
-  OptionsPage,
-  ProtectionPage,
-} from "../about/LearnPage";
+import { GlossaryPage, Basics, Options, Protection } from "../about/LearnPage";
 import Portfolio from "../portfolio/Portfolio";
 import AboutPage from "../about/AboutPage";
 import Homepage from "../Homepage/Homepage";
 import NewAccountRender from "../NewAccountRender/NewAccountRender";
 import { Route, Switch } from "react-router-dom";
 import User from "../User/User";
-import { userContext, statusContext } from "./App";
+import { statusContext } from "./App";
 import { browserHist } from "./history.js";
 
 interface TradeData {
@@ -34,12 +29,15 @@ interface User {
   timeInMarket: number;
 }
 
-const MainRender: React.FC = () => {
+interface Props {
+  newaccount: any;
+}
+
+const MainRender: React.FC<Props> = (props) => {
   const { status, setStatus } = useContext(statusContext);
   const [tradeMap, setTradeMap] = useState();
   const [userMap, setUserMap] = useState();
   const [constantActivity, setConstantActivity] = useState();
-  const { userVal, setUserVal } = useContext(userContext);
   const [tradeId, setTradeId] = useState(0);
   const [newacc, setNewacc] = useState(true);
 
@@ -50,8 +48,8 @@ const MainRender: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    setNewacc(userVal.newaccount);
-  }, [userVal]);
+    setNewacc(props.newaccount);
+  }, []);
 
   function submit() {
     setNewacc(false);
@@ -120,13 +118,13 @@ const MainRender: React.FC = () => {
                 <GlossaryPage />
               </Route>
               <Route path="/about/learn/general">
-                <BasicsPage />
+                <Basics />
               </Route>
               <Route path="/about/learn/options">
-                <OptionsPage />
+                <Options />
               </Route>
               <Route path="/about/learn/protection">
-                <ProtectionPage />
+                <Protection />
               </Route>
             </Switch>
           </div>

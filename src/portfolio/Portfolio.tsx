@@ -7,27 +7,32 @@ import WatchStocks from "./WatchStocks";
 import { LoadingUser } from "../login/LoadingUser";
 import UserLoginAuthSubresolver from "../resolvers/UserLoginAuthSubresolver";
 import { Route } from "react-router-dom";
-import { userContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
 import { queryToken } from "../queries/queries";
 import { useLazyQuery } from "react-apollo";
 import companyProfiles from "../companies/companyProfiles";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
 
 import { statusContext } from "../AppMain/App";
 
-const Portfolio: React.FC = () => {
+interface Redux {
+  watchlist: any;
+  stocks: any;
+}
+
+const Portfolio: React.FC<Redux> = (props) => {
   const { status, setStatus } = useContext(statusContext);
-  const { userVal, setUserVal } = useContext(userContext);
   const [loadingInUser, setLoadingInUser] = useState(false);
   const [userId, setUserId] = useState(0);
-  const [userWatch, setUserWatch] = useState(userVal.watchlist);
+  const [userWatch, setUserWatch] = useState(props.watchlist);
   const [userStocks, setUserStocks] = useState([] as any);
 
   const [passToken, { data, loading }] = useLazyQuery(queryToken);
 
   useEffect(() => {
     if (status) {
-      let stocks = userVal.stocks;
+      let stocks = props.stocks;
       let arr = [];
       for (let i = 0; i < stocks.length; i++) {
         let found = companyProfiles.find(
@@ -118,4 +123,4 @@ const Portfolio: React.FC = () => {
   return <div>{returnLoadingInUser()}</div>;
 };
 
-export default Portfolio;
+export default connect(mapStateToProps)(Portfolio);

@@ -1,14 +1,18 @@
 import React, { useContext } from "react";
-import { userContext } from "../AppMain/App";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
 
-const LiquidCapital: React.FC = () => {
-  const { userVal, setUserVal } = useContext(userContext);
+interface Redux {
+  money: any;
+}
+
+const LiquidCapital: React.FC<Redux> = (props) => {
   return (
     <div>
       <div id="portfolio_graph"></div>
-      <p>Liquid: ${userVal.money}</p>
+      <p>Liquid: ${props.money}</p>
     </div>
   );
 };
 
-export default LiquidCapital;
+export default connect(mapStateToProps)(LiquidCapital);

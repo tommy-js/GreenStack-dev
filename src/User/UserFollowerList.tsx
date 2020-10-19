@@ -1,13 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
-import { userContext, statusContext } from "../AppMain/App";
+import { statusContext } from "../AppMain/App";
 import UserAccountSnippet from "./UserAccountSnippet";
 import SettingsInputBox from "./SettingsInputBox";
 import { browserHist } from "../AppMain/history.js";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
 
-const UserFollowerList: React.FC = () => {
+interface Redux {
+  followers: any;
+}
+
+const UserFollowerList: React.FC<Redux> = (props) => {
   const [stateHide, setStateHide] = useState(false);
   const [updateBlocked, setUpdateBlocked] = useState(false);
-  const { userVal, setUserVal } = useContext(userContext);
 
   const { status, setStatus } = useContext(statusContext);
 
@@ -16,19 +21,6 @@ const UserFollowerList: React.FC = () => {
       browserHist.push("/login");
     }
   }, []);
-
-  const [followers, setFollowers] = useState([
-    {
-      key: 0,
-      user: "",
-      listingId: 0,
-      userId: 0,
-    },
-  ]);
-
-  useEffect(() => {
-    setFollowers(userVal.followers);
-  }, [userVal]);
 
   // const [testData, setTestData] = useState([
   //   { user: "John", userId: 0, blocked: false },
@@ -59,7 +51,7 @@ const UserFollowerList: React.FC = () => {
         isChecked={false}
         passInHide={passInHide}
       />
-      {followers.map((el: any) => (
+      {props.followers.map((el: any) => (
         <UserAccountSnippet
           key={el.id}
           user={el.followerName}
@@ -75,4 +67,4 @@ const UserFollowerList: React.FC = () => {
   );
 };
 
-export default UserFollowerList;
+export default connect(mapStateToProps)(UserFollowerList);

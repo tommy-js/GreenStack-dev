@@ -1,18 +1,22 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect } from "react";
 import FollowerElement from "./FollowerElement";
-import { userContext } from "../AppMain/App";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
+
+interface Redux {
+  followers: any;
+}
 
 interface Array {
   userId: string;
 }
 
-interface Props {
+interface Props extends Redux {
   modRoutes: (arr: Array[]) => void;
 }
 
 const Followers: React.FC<Props> = (props) => {
-  const { userVal, setUserVal } = useContext(userContext);
-  const data = userVal.followers;
+  const data = props.followers;
 
   // Creates routes within the Homepage component for all the users in our Followers list
   useEffect(() => {
@@ -41,4 +45,4 @@ const Followers: React.FC<Props> = (props) => {
   );
 };
 
-export default Followers;
+export default connect(mapStateToProps)(Followers);

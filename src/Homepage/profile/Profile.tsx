@@ -1,7 +1,6 @@
 import React from "react";
 import Settings from "./Settings";
 import TradeHistory from "./TradeHistory";
-import CurrentAccount from "./CurrentAccount";
 
 interface Props {
   username: string;

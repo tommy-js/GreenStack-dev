@@ -1,16 +1,22 @@
 import React, { useEffect, useState, useContext } from "react";
-import { userContext } from "../AppMain/App";
 import {
   NotificationsLinkContainer,
   NotificationsDataContainer,
 } from "./NotificationsContainer";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
 
-interface Props {
+interface Redux {
+  userId: any;
+  notifications: any;
+  trades: any;
+}
+
+interface Props extends Redux {
   modNotificationColor: (notifArr: object[]) => void;
 }
 
 const NotificationsMenu: React.FC<Props> = (props) => {
-  const { userVal, setUserVal } = useContext(userContext);
   const [tab, setTab] = useState(0);
   const [notifications, setNotifications] = useState([]);
   const [history, setHistory] = useState([]);
@@ -21,10 +27,9 @@ const NotificationsMenu: React.FC<Props> = (props) => {
   ]);
 
   useEffect(() => {
-    console.log(userVal);
-    setNotifications(userVal.notifications);
-    setHistory(userVal.trades);
-  }, [userVal]);
+    setNotifications(props.notifications);
+    setHistory(props.trades);
+  }, []);
 
   function changeTab(id: number) {
     setTab(id);
@@ -42,7 +47,7 @@ const NotificationsMenu: React.FC<Props> = (props) => {
         <div>
           <NotificationsDataContainer
             tab={tab}
-            userId={userVal.userId}
+            userId={props.userId}
             notifications={notifications}
             history={history}
             settings={settings}
@@ -56,4 +61,4 @@ const NotificationsMenu: React.FC<Props> = (props) => {
   return <div>{tabDisplay()}</div>;
 };
 
-export default NotificationsMenu;
+export default connect(mapStateToProps)(NotificationsMenu);

@@ -1,15 +1,18 @@
 import React, { useContext } from "react";
-import { userContext } from "../../AppMain/App";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../../actions/actions";
 
-const SidebarUsername: React.FC = () => {
-  const { userVal } = useContext(userContext);
+interface Props {
+  username: string;
+}
 
+const SidebarUsername: React.FC<Props> = (props) => {
   return (
     <Link id="sidebar_username_link_spec" to="/home/profile">
-      <div id="sidebar_username_link">{userVal.username}</div>
+      <div id="sidebar_username_link">{props.username}</div>
     </Link>
   );
 };
 
-export default SidebarUsername;
+export default connect(mapStateToProps)(SidebarUsername);

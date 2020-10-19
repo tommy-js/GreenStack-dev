@@ -1,18 +1,19 @@
 import React, { useState, useContext, useEffect } from "react";
 import PurchaseStock from "../resolvers/PurchaseStock";
 import AuctionStock from "../resolvers/AuctionStock";
-import { userContext } from "../AppMain/App";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
 
 interface Props {
   stockId: string;
   userId: string;
   price: number;
+  money: any;
 }
 
-export const BuyStock: React.FC<Props> = (props) => {
+const BuyStock: React.FC<Props> = (props) => {
   const [purchaseNum, setPurchaseNum] = useState(0);
   const [cantAfford, setCantAfford] = useState(false);
-  const { userVal } = useContext(userContext);
 
   function coerceInt(val: string) {
     let int = parseInt(val);
@@ -37,16 +38,15 @@ export const BuyStock: React.FC<Props> = (props) => {
         userId={props.userId}
         shares={purchaseNum}
         price={props.price}
-        money={userVal.money}
+        money={props.money}
         returnCannotAfford={returnCannotAfford}
       />
     </div>
   );
 };
 
-export const SellStock: React.FC<Props> = (props) => {
+const SellStock: React.FC<Props> = (props) => {
   const [sellNum, setSellNum] = useState(0);
-  const { userVal } = useContext(userContext);
   const [dontHave, setDontHave] = useState(false);
 
   function coerceInt(val: string) {
@@ -72,8 +72,11 @@ export const SellStock: React.FC<Props> = (props) => {
         userId={props.userId}
         price={props.price}
         shares={sellNum}
-        money={userVal.money}
+        money={props.money}
       />
     </div>
   );
 };
+
+export const Buy = connect(mapStateToProps)(BuyStock);
+export const Sell = connect(mapStateToProps)(SellStock);

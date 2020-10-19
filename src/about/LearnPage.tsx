@@ -6,7 +6,7 @@ import {
   SelectAll,
 } from "./KnowledgeCheck/KnowledgeCheck";
 import LearnGraphs from "./LearnGraphs.jsx";
-import { statusContext, userContext } from "../AppMain/App";
+import { statusContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
 import {
   APPLE2month,
@@ -15,6 +15,8 @@ import {
   SP500HalfDecade,
 } from "./graphs/graphData.js";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
 
 export const GlossaryPage: React.FC = () => {
   return (
@@ -50,14 +52,17 @@ export const GlossaryPage: React.FC = () => {
   );
 };
 
-export const BasicsPage: React.FC = () => {
+interface Props {
+  progress: any;
+}
+
+const BasicsPage: React.FC<Props> = (props) => {
   const { status, setStatus } = useContext(statusContext);
-  const { userVal, setUserVal } = useContext(userContext);
-  const [id, setId] = useState(userVal.progress[0].id);
+  const [id, setId] = useState(props.progress[0].id);
   const [currentProgress, setCurrentProgress] = useState(
-    userVal.progress[0].percent
+    props.progress[0].percent
   );
-  const [specId, setSpecId] = useState(userVal.progress[0].progressElements);
+  const [specId, setSpecId] = useState(props.progress[0].progressElements);
 
   const options1 = {
     title: "Checkpoint 1",
@@ -133,7 +138,7 @@ export const BasicsPage: React.FC = () => {
             { title: "Something to brag about!", id: 2 },
           ]}
           id={id}
-          specId={userVal.progress[0].progressElements[0].id}
+          specId={props.progress[0].progressElements[0].id}
           increment={5}
           correctAnswer={1}
           currentProgress={currentProgress}
@@ -193,7 +198,7 @@ export const BasicsPage: React.FC = () => {
 
         <Blanks
           id={id}
-          specId={userVal.progress[0].progressElements[1].id}
+          specId={props.progress[0].progressElements[1].id}
           title={options1.title}
           options={options1.options}
         />
@@ -202,14 +207,13 @@ export const BasicsPage: React.FC = () => {
   );
 };
 
-export const OptionsPage: React.FC = () => {
+const OptionsPage: React.FC<Props> = (props) => {
   const { status, setStatus } = useContext(statusContext);
-  const { userVal, setUserVal } = useContext(userContext);
-  const [id, setId] = useState(userVal.progress[1].id);
+  const [id, setId] = useState(props.progress[1].id);
   const [currentProgress, setCurrentProgress] = useState(
-    userVal.progress[0].percent
+    props.progress[0].percent
   );
-  const [specId, setSpecId] = useState(userVal.progress[1].progressElements);
+  const [specId, setSpecId] = useState(props.progress[1].progressElements);
 
   const options1 = {
     title: "Vocab Test",
@@ -341,7 +345,7 @@ export const OptionsPage: React.FC = () => {
             { title: "The fee you pay to buy an options contract", id: 2 },
           ]}
           id={id}
-          specId={userVal.progress[1].progressElements[0].id}
+          specId={props.progress[1].progressElements[0].id}
           increment={5}
           correctAnswer={3}
           currentProgress={currentProgress}
@@ -381,7 +385,7 @@ export const OptionsPage: React.FC = () => {
 
         <Blanks
           id={id}
-          specId={userVal.progress[1].progressElements[1].id}
+          specId={props.progress[1].progressElements[1].id}
           title={options1.title}
           options={options1.options}
         />
@@ -410,7 +414,7 @@ export const OptionsPage: React.FC = () => {
 
         <SelectAll
           id={id}
-          specId={userVal.progress[1].progressElements[2].id}
+          specId={props.progress[1].progressElements[2].id}
           title={optionsSelectAll.title}
           options={optionsSelectAll.options}
           currentProgress={currentProgress}
@@ -421,7 +425,7 @@ export const OptionsPage: React.FC = () => {
   );
 };
 
-export const EtfPage: React.FC = () => {
+const EtfPage: React.FC = () => {
   return (
     <div>
       <NavBar />
@@ -433,7 +437,7 @@ export const EtfPage: React.FC = () => {
   );
 };
 
-export const ProtectionPage: React.FC = () => {
+const ProtectionPage: React.FC = () => {
   return (
     <div>
       <NavBar />
@@ -496,3 +500,7 @@ export const ProtectionPage: React.FC = () => {
     </div>
   );
 };
+
+export const Basics = connect(mapStateToProps)(BasicsPage);
+export const Options = connect(mapStateToProps)(OptionsPage);
+export const Protection = connect(mapStateToProps)(ProtectionPage);

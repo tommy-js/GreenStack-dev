@@ -1,22 +1,26 @@
 import React, { useEffect, useState, useContext } from "react";
-import { userContext } from "../AppMain/App";
 import Comment from "../misc/Comment";
-import { CommentInputTrade } from "./CommentInput";
+import { InputTrade } from "./CommentInput";
 import Header from "../User/Header";
 import TradeInformation from "./TradeInformation";
 import FollowUser from "../resolvers/FollowUser";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
 
 import { Link } from "react-router-dom";
 import { flowRight as compose } from "lodash";
 import { graphql, useLazyQuery } from "react-apollo";
 import { queryTradeQuery } from "../queries/queries.js";
 
-interface Props {
+interface Redux {
+  userId: any;
+}
+
+interface Props extends Redux {
   tradeId: any;
 }
 
 const UserTrade: React.FC<Props> = (props) => {
-  const { userVal, setUserVal } = useContext(userContext);
   const [queryTrade, { loading, data }] = useLazyQuery(queryTradeQuery, {
     variables: { tradeId: props.tradeId },
   });
@@ -74,7 +78,7 @@ const UserTrade: React.FC<Props> = (props) => {
           <Link to={`/user/${tradeData.userId}`}>
             <Header text={tradeData.user} />
           </Link>
-          <FollowUser tradeData={tradeData} userId={userVal.userId} />
+          <FollowUser tradeData={tradeData} userId={props.userId} />
         </div>
         <div id="previous_trade_graph"></div>
         <div id="previous_trade_subinfo">
@@ -90,7 +94,7 @@ const UserTrade: React.FC<Props> = (props) => {
             saveTrade={saveTrade}
           />
         </div>
-        <CommentInputTrade tradeId={props.tradeId} />
+        <InputTrade tradeId={props.tradeId} />
         <div id="previous_trade_comments">
           {testData.map((el) => (
             <Comment
@@ -114,4 +118,4 @@ const UserTrade: React.FC<Props> = (props) => {
   }
 };
 
-export default UserTrade;
+export default connect(mapStateToProps)(UserTrade);

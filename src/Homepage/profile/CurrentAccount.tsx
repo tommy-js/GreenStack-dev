@@ -1,12 +1,16 @@
-import React, { useState, useEffect, useContext } from "react";
-import { userContext } from "../../AppMain/App";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../../actions/actions";
 
-const CurrentAccount: React.FC = () => {
-  const { userVal } = useContext(userContext);
+interface Props {
+  membership: any;
+}
+
+const CurrentAccount: React.FC<Props> = (props) => {
   const [membership, setMembership] = useState("");
 
   useEffect(() => {
-    if (userVal.membership === false) {
+    if (props.membership === false) {
       setMembership("Free");
     } else {
       setMembership("Basic");
@@ -14,9 +18,9 @@ const CurrentAccount: React.FC = () => {
   }, []);
 
   function accountSetting() {
-    if (userVal.membership === false) {
+    if (props.membership === false) {
       return <button>Upgrade</button>;
-    } else if (userVal.membership === true) {
+    } else if (props.membership === true) {
       return <button>Downgrade</button>;
     }
   }
@@ -30,4 +34,4 @@ const CurrentAccount: React.FC = () => {
   );
 };
 
-export default CurrentAccount;
+export default connect(mapStateToProps)(CurrentAccount);

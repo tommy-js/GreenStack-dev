@@ -1,10 +1,14 @@
 import React, { useEffect, useContext, useState } from "react";
 import NotificationButton from "./NotificationButton";
 import Notification from "./Notification";
-import { userContext } from "../AppMain/App";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
 
-const NotificationIcon: React.FC = () => {
-  const { userVal, setUserVal } = useContext(userContext);
+interface Redux {
+  notifications: any;
+}
+
+const NotificationIcon: React.FC<Redux> = (props) => {
   const [notifyNew, setNotifyNew] = useState(false);
   const [opened, setOpened] = useState(false);
   const [triggerDisplay, setTriggerDisplay] = useState(0);
@@ -13,7 +17,7 @@ const NotificationIcon: React.FC = () => {
   // new code
 
   useEffect(() => {
-    modNotificationColor(userVal.notifications);
+    modNotificationColor(props.notifications);
   }, []);
 
   function modNotificationColor(arr: any) {
@@ -50,4 +54,4 @@ const NotificationIcon: React.FC = () => {
   );
 };
 
-export default NotificationIcon;
+export default connect(mapStateToProps)(NotificationIcon);

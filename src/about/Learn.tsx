@@ -2,10 +2,14 @@ import React, { useState, useContext, useEffect } from "react";
 import LearnComponent from "./LearnComponent";
 import LearnHeader from "./LearnHeader";
 import { Route } from "react-router-dom";
-import { userContext } from "../AppMain/App";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
 
-const Learn: React.FC = () => {
-  const { userVal, setUserVal } = useContext(userContext);
+interface Props {
+  progress: any;
+}
+
+const Learn: React.FC<Props> = (props) => {
   const [loaded, setLoaded] = useState(false);
   const [learn, setLearn] = useState([
     {
@@ -37,7 +41,7 @@ const Learn: React.FC = () => {
         title: learn[i].title,
         subtitle: learn[i].subtitle,
         path: learn[i].path,
-        percent: userVal.progress[i].percent,
+        percent: props.progress[i].percent,
       };
       arr[i] = obj;
     }
@@ -69,4 +73,4 @@ const Learn: React.FC = () => {
   return <div id="learn_component">{renderState()}</div>;
 };
 
-export default Learn;
+export default connect(mapStateToProps)(Learn);

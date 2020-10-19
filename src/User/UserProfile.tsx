@@ -4,9 +4,16 @@ import UserProfilePosts from "./UserProfilePosts";
 import { LoadingGeneral } from "../login/LoadingUser";
 import { otherUserQuery } from "../queries/queries.js";
 import { useQuery } from "react-apollo";
-import { userContext } from "../AppMain/App";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
 
-interface Props {
+interface Redux {
+  userId: any;
+  username: string;
+  following: any;
+}
+
+interface Props extends Redux {
   username: string;
   userId: string;
 }
@@ -15,14 +22,13 @@ const UserProfile: React.FC<Props> = (props) => {
   const [userProfileState, setUserProfileState] = useState(false);
   const [alreadyAdded, setAlreadyAdded] = useState(false);
   const [userProfile, setUserProfile] = useState({} as any);
-  const { userVal, setUserVal } = useContext(userContext);
 
   const { loading, data } = useQuery(otherUserQuery, {
     variables: { userId: props.userId },
   });
 
   useEffect(() => {
-    let arr = userVal.following;
+    let arr = props.following;
     console.log("userval.following:");
     console.log(arr);
     console.log("props.userId: " + props.userId);
@@ -55,8 +61,8 @@ const UserProfile: React.FC<Props> = (props) => {
       return (
         <div>
           <Follow
-            userId={userVal.userId}
-            username={userVal.username}
+            userId={props.userId}
+            username={props.username}
             followerId={props.userId}
             followerName={userProfile.username}
             modAlreadyAdded={modAlreadyAdded}
@@ -94,4 +100,4 @@ const UserProfile: React.FC<Props> = (props) => {
   );
 };
 
-export default UserProfile;
+export default connect(mapStateToProps)(UserProfile);

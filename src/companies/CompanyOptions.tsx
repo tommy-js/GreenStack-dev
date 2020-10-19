@@ -1,26 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
 import SaveToWatchlist from "../resolvers/SaveToWatchlist";
 import RemoveFromWatchlist from "../resolvers/RemoveFromWatchlist";
-import { userContext } from "../AppMain/App";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
 
 interface Props {
   stockId: string;
   title: string;
   ticker: string;
   price: number;
+  watchlist: any;
+  userId: string;
 }
 
 const CompanyOptions: React.FC<Props> = (props) => {
   const [elementExists, setElementExists] = useState(false);
-  const { userVal, setUserVal } = useContext(userContext);
-  const [watchlist, setWatchlist] = useState(userVal.watchlist);
-
-  // Crash prevention due to unloaded userVal state
-  // useEffect(() => {
-  //   if (userVal.watchlist) {
-  //     setWatchlist(userVal.watchlist);
-  //   }
-  // }, [userVal]);
+  const [watchlist, setWatchlist] = useState(props.watchlist);
 
   // Checks to make sure we haven't already added to watchlist
   useEffect(() => {
@@ -44,7 +39,7 @@ const CompanyOptions: React.FC<Props> = (props) => {
     if (elementExists === true) {
       return (
         <RemoveFromWatchlist
-          userId={userVal.userId}
+          userId={props.userId}
           stockId={props.stockId}
           modWatchlist={modWatchlist}
         />
@@ -69,4 +64,4 @@ const CompanyOptions: React.FC<Props> = (props) => {
   );
 };
 
-export default CompanyOptions;
+export default connect(mapStateToProps)(CompanyOptions);

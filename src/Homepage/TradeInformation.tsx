@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import TradeDropdown from "./TradeDropdown";
-import { CommentInputTrade } from "./CommentInput";
+import { InputTrade } from "./CommentInput";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
 
 interface Props {
   type: string;
@@ -40,10 +42,10 @@ const TradeInformation: React.FC<Props> = (props) => {
       <button onClick={() => props.saveTrade()}>
         Save trade for reference
       </button>
-      <CommentInputTrade tradeId={props.tradeId} />
+      <InputTrade tradeId={props.tradeId} />
       {makeTradeDropdown()}
     </div>
   );
 };
 
-export default TradeInformation;
+export default connect(mapStateToProps)(TradeInformation);

@@ -1,38 +1,19 @@
-import React, { useContext, useState, useEffect } from "react";
-import { flowRight as compose } from "lodash";
-import { graphql } from "react-apollo";
+import React, { useContext, useEffect } from "react";
 import { browserHist } from "../AppMain/history.js";
-import {
-  deleteCommentUserMutation,
-  deleteCommentStockMutation,
-} from "../queries/queries.js";
-import { userContext, statusContext } from "../AppMain/App";
+import { statusContext } from "../AppMain/App";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
 
-interface Props {
+interface Redux {
+  comments: any;
+}
+
+interface Props extends Redux {
   deleteCommentUserMutation: (variables: object) => void;
   deleteCommentStockMutation: (variables: object) => void;
 }
 
 const UserProfileComments: React.FC<Props> = (props) => {
-  const { userVal, setUserVal } = useContext(userContext);
-  const [comments, setComments] = useState([
-    {
-      userId: 0,
-      username: "",
-      comment: "",
-      likes: 0,
-      dislikes: 0,
-      commentId: 0,
-      tradeId: 0,
-    },
-  ]);
-
-  useEffect(() => {
-    if (userVal.comments) {
-      setComments(userVal.comments);
-    }
-  }, [userVal]);
-
   const { status, setStatus } = useContext(statusContext);
 
   useEffect(() => {
@@ -41,30 +22,8 @@ const UserProfileComments: React.FC<Props> = (props) => {
     }
   }, []);
 
-  function removeComment(commentId: number, userId: number, stockId: number) {
-    let testArray = comments;
-    let foundElement = testArray.find((el: any) => el.commentId === commentId);
-    if (foundElement) {
-      let elementIndex = testArray.indexOf(foundElement);
-      testArray.splice(elementIndex, 1);
-      console.log(testArray);
-    }
-    props.deleteCommentUserMutation({
-      variables: {
-        commentId: commentId,
-        userId: userId,
-      },
-    });
-    props.deleteCommentStockMutation({
-      variables: {
-        stockId: stockId,
-        userId: userId,
-      },
-    });
-  }
-
   function checkComments() {
-    if (comments.length > 0) {
+    if (props.comments.length > 0) {
       return <div></div>;
     } else {
       return (
@@ -78,6 +37,4 @@ const UserProfileComments: React.FC<Props> = (props) => {
   return <div>{checkComments()}</div>;
 };
 
-export default compose(
-  graphql(deleteCommentUserMutation, { name: "deleteCommentUserMutation" })
-)(UserProfileComments);
+export default connect(mapStateToProps)(UserProfileComments);

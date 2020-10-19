@@ -5,16 +5,16 @@ import Post from "../Post";
 import { PostType, NewsType, CommentType } from "./FeedTypes";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import { useQuery } from "react-apollo";
-import { userContext } from "../../AppMain/App";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../../actions/actions";
 
 interface Props {
+  posts: any;
   modRoutes: (arr: any) => void;
 }
 
 const Feed: React.FC<Props> = (props) => {
-  const { userVal, setUserVal } = useContext(userContext);
-  const [testData, setTestData] = useState(userVal.posts);
-  console.log(userVal);
+  const [testData, setTestData] = useState(props.posts);
 
   // const testData = [
   //   {
@@ -220,4 +220,4 @@ const Feed: React.FC<Props> = (props) => {
   );
 };
 
-export default Feed;
+export default connect(mapStateToProps)(Feed);

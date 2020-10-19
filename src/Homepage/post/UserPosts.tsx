@@ -1,11 +1,13 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import IndividualUserPost from "./IndividualUserPost";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../../actions/actions";
 import PostPage from "./PostPage";
 import { useLazyQuery } from "react-apollo";
 import { queryPosts } from "../../queries/queries";
-import { userContext } from "../../AppMain/App";
 
 interface Props {
+  posts: any;
   modRoutes: (arr: Posts[]) => void;
 }
 
@@ -20,13 +22,12 @@ interface Posts {
 }
 
 const UserPosts: React.FC<Props> = (props) => {
-  const { userVal } = useContext(userContext);
-  const [sortedArr, setSortedArr] = useState(userVal.posts);
+  const [sortedArr, setSortedArr] = useState(props.posts);
   const [postId, setPostId] = useState("");
   const [postView, setPostView] = useState(false);
 
   useEffect(() => {
-    let arr = userVal.posts.sort(function (a: any, b: any) {
+    let arr = props.posts.sort(function (a: any, b: any) {
       return b.timestamp - a.timestamp;
     });
     console.log(arr);
@@ -55,4 +56,4 @@ const UserPosts: React.FC<Props> = (props) => {
   );
 };
 
-export default UserPosts;
+export default connect(mapStateToProps)(UserPosts);
