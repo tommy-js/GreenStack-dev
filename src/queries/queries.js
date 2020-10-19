@@ -84,15 +84,12 @@ const saveSettingsMutation = gql`
 `;
 
 const savePreferredCommentaryMutation = gql`
-  mutation($userId: ID!, $commentaryStyle: Int!) {
-    savePreferredCommentary(
-      userId: $userId
-      commentaryStyle: $commentaryStyle
-    ) {
-      userId
+  mutation($token: String!, $commentaryStyle: Int!) {
+    savePreferredCommentary(token: $token, commentaryStyle: $commentaryStyle) {
+      username
     }
-    saveUserAsOld(userId: $userId) {
-      userId
+    saveUserAsOld(token: $token) {
+      username
     }
   }
 `;

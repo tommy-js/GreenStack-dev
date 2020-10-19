@@ -1,4 +1,8 @@
-const userReducer = (state: any, action: any) => {
+const initialState = {
+  username: "",
+};
+
+const userReducer = (state: any = initialState, action: any) => {
   const newState = { ...state };
   if (action.type == "SET_USERNAME") {
     newState.username = action.payload;
@@ -54,6 +58,7 @@ const userReducer = (state: any, action: any) => {
   if (action.type == "SET_PROFILE_IMAGE") {
     newState.profileImage = action.payload;
   }
+  return newState;
 };
 
 export default userReducer;

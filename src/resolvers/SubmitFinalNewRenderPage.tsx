@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { savePreferredCommentaryMutation } from "../queries/queries.js";
@@ -15,7 +15,7 @@ const SubmitFinalNewRenderPage: React.FC<Props> = (props) => {
     props
       .savePreferredCommentaryMutation({
         variables: {
-          userId: userVal.userId,
+          token: sessionStorage.getItem("Token"),
           commentaryStyle: props.index,
         },
       })
