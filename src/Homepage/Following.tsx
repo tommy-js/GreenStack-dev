@@ -5,6 +5,7 @@ import { mapStateToProps } from "../actions/actions";
 
 interface Redux {
   following: any;
+  userId: string;
 }
 
 interface Array {
@@ -33,7 +34,11 @@ const Following: React.FC<Props> = (props) => {
       <h2 className="list_header">Following({data.length})</h2>
       <div>
         {data.map((el: any) => (
-          <FollowingElement userId={el.userId} username={el.username} />
+          <FollowingElement
+            userId={props.userId}
+            secondaryUserId={el.userId}
+            username={el.username}
+          />
         ))}
       </div>
     </div>

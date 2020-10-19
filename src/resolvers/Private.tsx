@@ -1,22 +1,21 @@
 import React, { useState, useContext } from "react";
-import { userContext } from "../AppMain/App";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { updateInvisibleMutation } from "../queries/queries.js";
 
 interface Props {
+  invisible: boolean;
   updateInvisibleMutation: (variables: object) => any;
 }
 
 const Private: React.FC<Props> = (props) => {
-  const { userVal } = useContext(userContext);
-  const [checked, setChecked] = useState(userVal.invisible);
+  const [checked, setChecked] = useState(props.invisible);
 
   function updateInvisible() {
     props
       .updateInvisibleMutation({
         variables: {
-          userId: userVal.userId,
+          token: sessionStorage.getItem("Token"),
         },
       })
       .catch((err: any) => console.log(err))

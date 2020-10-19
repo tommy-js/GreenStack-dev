@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Follow from "../resolvers/Follow";
 import UserProfilePosts from "./UserProfilePosts";
 import { LoadingGeneral } from "../login/LoadingUser";
@@ -14,8 +14,8 @@ interface Redux {
 }
 
 interface Props extends Redux {
-  username: string;
-  userId: string;
+  inspectUsername: string;
+  inspectUserId: string;
 }
 
 const UserProfile: React.FC<Props> = (props) => {
@@ -24,7 +24,7 @@ const UserProfile: React.FC<Props> = (props) => {
   const [userProfile, setUserProfile] = useState({} as any);
 
   const { loading, data } = useQuery(otherUserQuery, {
-    variables: { userId: props.userId },
+    variables: { userId: props.inspectUserId },
   });
 
   useEffect(() => {
@@ -78,7 +78,7 @@ const UserProfile: React.FC<Props> = (props) => {
         <div>
           <h1>{userProfile.username}</h1>
           {returnFollow()}
-          <p>{props.userId}</p>
+          <p>{props.inspectUserId}</p>
           <h2>Followers: {userProfile.followers.length}</h2>
           <h2>Following: {userProfile.following.length}</h2>
           <UserProfilePosts posts={userProfile.posts} />

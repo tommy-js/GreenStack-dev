@@ -2,7 +2,6 @@ import React, { useEffect, useContext } from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { sellStockMutation } from "../queries/queries.js";
-import { userContext } from "../AppMain/App";
 
 interface Props {
   stockId: string;
@@ -11,17 +10,17 @@ interface Props {
   price: number;
   money: number;
   sellStockMutation: (variables: object) => void;
+  // Redux
+  stocks: any;
 }
 
 const AuctionStock: React.FC<Props> = (props) => {
-  const { userVal } = useContext(userContext);
-
   useEffect(() => {
-    let checkStocks = userVal.stocks.find(
+    let checkStocks = props.stocks.find(
       (el: any) => el.stockId === props.stockId
     );
     if (checkStocks) {
-      let index = userVal.stocks[checkStocks];
+      let index = props.stocks[checkStocks];
       console.log(index);
     }
   }, []);

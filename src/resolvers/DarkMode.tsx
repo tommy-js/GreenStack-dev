@@ -1,22 +1,21 @@
 import React, { useState, useContext } from "react";
-import { userContext } from "../AppMain/App";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { updateDarkModeMutation } from "../queries/queries.js";
 
 interface Props {
+  darkmode: boolean;
   updateDarkModeMutation: (variables: object) => any;
 }
 
 const DarkMode: React.FC<Props> = (props) => {
-  const { userVal } = useContext(userContext);
-  const [checked, setChecked] = useState(userVal.darkmode);
+  const [checked, setChecked] = useState(props.darkmode);
 
   function updateDarkMode() {
     props
       .updateDarkModeMutation({
         variables: {
-          userId: userVal.userId,
+          token: sessionStorage.getItem("Token"),
         },
       })
       .catch((err: any) => console.log(err))

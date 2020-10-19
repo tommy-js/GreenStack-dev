@@ -42,8 +42,8 @@ const setProfileImageMutation = gql`
 `;
 
 const updateDarkModeMutation = gql`
-  mutation($userId: ID!) {
-    updateDarkMode(userId: $userId) {
+  mutation($token: String!) {
+    updateDarkMode(token: $token) {
       userId
     }
   }
@@ -58,8 +58,8 @@ const updateAllowCommentsMutation = gql`
 `;
 
 const updateInvisibleMutation = gql`
-  mutation($userId: ID!) {
-    updateInvisible(userId: $userId) {
+  mutation($token: String!) {
+    updateInvisible(token: $token) {
       userId
     }
   }
@@ -356,16 +356,9 @@ const updateUserNotificationsViewedMutation = gql`
 `;
 
 const addCommentTradeMutation = gql`
-  mutation($tradeId: ID!, $userId: ID!, $username: String!, $text: String!) {
-    addCommentTrade(
-      tradeId: $tradeId
-      userId: $userId
-      username: $username
-      text: $text
-    ) {
+  mutation($tradeId: ID!, $text: String!, $token: String!) {
+    addCommentTrade(text: $text) {
       text
-      username
-      userId
     }
   }
 `;
@@ -506,8 +499,8 @@ const otherUserQuery = gql`
 `;
 
 const userQuery = gql`
-  query($userId: ID!) {
-    user(userId: $userId) {
+  query($userId: ID!, $token: String!) {
+    user(userId: $userId, token: $token) {
       userId
       username
       money

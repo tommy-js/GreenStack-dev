@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { flowRight as compose } from "lodash";
 import { graphql } from "react-apollo";
 import { addCommentTradeMutation } from "../queries/queries.js";
-import { userContext } from "../AppMain/App";
 
 interface Props {
   addCommentTradeMutation: (variables: object) => any;
@@ -12,7 +11,6 @@ interface Props {
 }
 
 const AddCommentToTrade: React.FC<Props> = (props) => {
-  const { userVal, setUserVal } = useContext(userContext);
   const [passFunc, setPassFunc] = useState(props.passFunc);
 
   useEffect(() => {
@@ -25,12 +23,12 @@ const AddCommentToTrade: React.FC<Props> = (props) => {
   }, [props.passFunc]);
 
   function pushData() {
+    let token = sessionStorage.getItem("Token");
     props
       .addCommentTradeMutation({
         variables: {
           tradeId: props.tradeId,
-          userId: userVal.userId,
-          username: userVal.username,
+          token: token,
           text: props.text,
         },
       })

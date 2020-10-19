@@ -4,7 +4,7 @@ import { useLazyQuery } from "react-apollo";
 import { statusContext } from "../AppMain/App";
 import { hashToken } from "../login/hashing.js";
 import { connect } from "react-redux";
-import { mapStateToProps } from "../actions/actions";
+import { mapStateToProps, mapDispatchToProps } from "../actions/actions";
 
 interface Redux {
   onUsernameSet: (username: string) => void;
@@ -29,7 +29,6 @@ interface Redux {
 interface Props extends Redux {
   id: number;
   loggedIn: () => void;
-  newTokenMutation: (variables: object) => any;
 }
 
 const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
@@ -41,9 +40,12 @@ const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
 
   useEffect(() => {
     setTimeout(() => {
+      let token = hashToken(dataLogIn.user.userId, dataLogIn.user.username);
+      sessionStorage.setItem("Token", token);
       logUserIn({
         variables: {
           userId: props.id,
+          token: token,
         },
       });
     }, 2000);
@@ -116,4 +118,7 @@ const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
   return null;
 };
 
-export default connect(mapStateToProps)(UserLoginAuthSubresolver);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserLoginAuthSubresolver);

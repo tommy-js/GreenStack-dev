@@ -8,6 +8,8 @@ import { Route, Switch } from "react-router-dom";
 import User from "../User/User";
 import { statusContext } from "./App";
 import { browserHist } from "./history.js";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
 
 interface TradeData {
   user: string;
@@ -136,4 +138,4 @@ const MainRender: React.FC<Props> = (props) => {
   return <div>{returnRenderPath()}</div>;
 };
 
-export default MainRender;
+export default connect(mapStateToProps)(MainRender);

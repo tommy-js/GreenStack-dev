@@ -1,22 +1,22 @@
 import React, { useState, useContext } from "react";
-import { userContext } from "../AppMain/App";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { updateAllowCommentsMutation } from "../queries/queries.js";
 
 interface Props {
+  allowCommentsOnTrades: boolean;
+  userId: string;
   updateAllowCommentsMutation: (variables: object) => any;
 }
 
 const AllowComments: React.FC<Props> = (props) => {
-  const { userVal } = useContext(userContext);
-  const [checked, setChecked] = useState(userVal.allowCommentsOnTrades);
+  const [checked, setChecked] = useState(props.allowCommentsOnTrades);
 
   function updateAllowComments() {
     props
       .updateAllowCommentsMutation({
         variables: {
-          userId: userVal.userId,
+          userId: props.userId,
         },
       })
       .catch((err: any) => console.log(err))

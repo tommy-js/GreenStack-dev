@@ -1,15 +1,10 @@
 import React, { useContext } from "react";
 import UnfollowUser from "../resolvers/UnfollowUser";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { mapStateToProps } from "../actions/actions";
 
-interface Redux {
-  userId: any;
-}
-
-interface Props extends Redux {
+interface Props {
   secondaryUserId: number;
+  userId: string;
   username: string;
 }
 
@@ -27,4 +22,4 @@ const FollowingElement: React.FC<Props> = (props) => {
   );
 };
 
-export default connect(mapStateToProps)(FollowingElement);
+export default FollowingElement;

@@ -135,7 +135,10 @@ const Homepage: React.FC<Props> = (props) => {
             </Route>
             {userRoutePaths.map((el: any) => (
               <Route key={el.userId} path={`/home/user/${el.userId}`}>
-                <UserProfile username={el.username} userId={el.userId} />
+                <UserProfile
+                  inspectUsername={el.username}
+                  inspectUserId={el.userId}
+                />
               </Route>
             ))}
             {tradeRoutePaths.map((tradeId: number) => (
@@ -166,7 +169,6 @@ const Homepage: React.FC<Props> = (props) => {
                     stockId={el.stockId}
                     title={el.title}
                     ticker={el.ticker}
-                    userId={props.userId}
                     price={el.price}
                   />
                 </Route>
@@ -179,7 +181,6 @@ const Homepage: React.FC<Props> = (props) => {
                     stockId={el.stockId}
                     title={el.title}
                     ticker={el.ticker}
-                    userId={props.userId}
                     price={el.price}
                   />
                 </Route>
@@ -192,7 +193,6 @@ const Homepage: React.FC<Props> = (props) => {
                     stockId={el.stockId}
                     title={el.title}
                     ticker={el.ticker}
-                    userId={props.userId}
                     price={el.price}
                   />
                 </Route>

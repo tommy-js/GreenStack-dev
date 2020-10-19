@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { flowRight as compose } from "lodash";
 import { graphql } from "react-apollo";
 import { pushStockToWatchlistMutation } from "../queries/queries.js";
-import { userContext } from "../AppMain/App";
 
 interface Props {
   stockId: number;
@@ -12,16 +11,16 @@ interface Props {
   pushStockToWatchlistMutation: (variables: object) => any;
   saveToWatchlist: () => void;
   modWatchlist: (isThere: boolean) => void;
+  // Redux
+  userId: string;
 }
 
 const SaveToWatchlist: React.FC<Props> = (props) => {
-  const { userVal, setUserVal } = useContext(userContext);
-
   function pushData() {
     props
       .pushStockToWatchlistMutation({
         variables: {
-          userId: userVal.userId,
+          userId: props.userId,
           stockId: props.stockId,
           title: props.title,
           ticker: props.ticker,

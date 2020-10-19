@@ -8,6 +8,8 @@ import { statusContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
 import { queryToken } from "../queries/queries";
 import { useLazyQuery } from "react-apollo";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
 
 const AboutPage: React.FC = () => {
   const [loadingInUser, setLoadingInUser] = useState(false);
@@ -79,4 +81,4 @@ const AboutPage: React.FC = () => {
   return <div>{returnLoadingInUser()}</div>;
 };
 
-export default AboutPage;
+export default connect(mapStateToProps)(AboutPage);

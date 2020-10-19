@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Buy, Sell } from "./PurchasePage";
 
 interface Props {
-  userId: string;
   stockId: string;
   title: string;
   ticker: string;
@@ -18,7 +17,7 @@ export const BuyStockPage: React.FC<Props> = (props) => {
         Buy {props.title} #{props.ticker}
       </h2>
       <div>Chart</div>
-      <Buy stockId={props.stockId} userId={props.userId} price={props.price} />
+      <Buy stockId={props.stockId} price={props.price} />
       <div>Data</div>
     </div>
   );
@@ -32,7 +31,7 @@ export const SellStockPage: React.FC<Props> = (props) => {
         Sell {props.title} #{props.ticker}
       </h2>
       <div>Chart</div>
-      <Sell stockId={props.stockId} userId={props.userId} price={props.price} />
+      <Sell stockId={props.stockId} price={props.price} />
       <div>Data</div>
     </div>
   );
