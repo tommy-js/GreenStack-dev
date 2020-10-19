@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BuyStock, SellStock } from "./PurchasePage";
+import { Buy, Sell } from "./PurchasePage";
 
 interface Props {
   userId: string;
@@ -18,11 +18,7 @@ export const BuyStockPage: React.FC<Props> = (props) => {
         Buy {props.title} #{props.ticker}
       </h2>
       <div>Chart</div>
-      <BuyStock
-        stockId={props.stockId}
-        userId={props.userId}
-        price={props.price}
-      />
+      <Buy stockId={props.stockId} userId={props.userId} price={props.price} />
       <div>Data</div>
     </div>
   );
@@ -36,11 +32,7 @@ export const SellStockPage: React.FC<Props> = (props) => {
         Sell {props.title} #{props.ticker}
       </h2>
       <div>Chart</div>
-      <SellStock
-        stockId={props.stockId}
-        userId={props.userId}
-        price={props.price}
-      />
+      <Sell stockId={props.stockId} userId={props.userId} price={props.price} />
       <div>Data</div>
     </div>
   );

@@ -67,18 +67,18 @@ const updateInvisibleMutation = gql`
 
 const saveSettingsMutation = gql`
   mutation(
-    $userId: ID!
+    $token: String!
     $experience: Int!
     $education: Int!
     $motivations: Int!
   ) {
     saveSettings(
-      userId: $userId
+      token: $token
       experience: $experience
       education: $education
       motivations: $motivations
     ) {
-      userId
+      experience
     }
   }
 `;

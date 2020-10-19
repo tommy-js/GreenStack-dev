@@ -3,6 +3,12 @@ const userReducer = (state: any, action: any) => {
   if (action.type == "SET_USERNAME") {
     newState.username = action.payload;
   }
+  if (action.type == "SET_USERID") {
+    newState.userId = action.payload;
+  }
+  if (action.type == "SET_MONEY") {
+    newState.money = action.payload;
+  }
   if (action.type == "SET_NEW_ACCOUNT") {
     newState.newaccount = action.payload;
   }
@@ -15,6 +21,12 @@ const userReducer = (state: any, action: any) => {
   if (action.type == "SET_INITIAL_TRADES") {
     newState.trades = action.trades;
   }
+  if (action.type == "SET_INITIAL_COMMENTS") {
+    newState.comments = action.comments;
+  }
+  if (action.type == "SET_INITIAL_PROGRESS") {
+    newState.progress = action.progress;
+  }
   if (action.type == "SET_INITIAL_FOLLOWERS") {
     newState.followers = action.payload;
   }
@@ -26,6 +38,21 @@ const userReducer = (state: any, action: any) => {
   }
   if (action.type == "SET_MEMBERSHIP") {
     newState.membership = action.payload;
+  }
+  if (action.type == "SET_DARKMODE") {
+    newState.darkmode = action.payload;
+  }
+  if (action.type == "SET_INVISIBLE") {
+    newState.invisible = action.payload;
+  }
+  if (action.type == "SET_ALLOW_COMMENTS_ON_TRADES") {
+    newState.allowCommentsOnTrades = action.payload;
+  }
+  if (action.type == "SET_STOCKS") {
+    newState.stocks = action.payload;
+  }
+  if (action.type == "SET_PROFILE_IMAGE") {
+    newState.profileImage = action.payload;
   }
 };
 

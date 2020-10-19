@@ -8,6 +8,8 @@ interface Props {
   passFunc: boolean;
   stockId: number;
   text: string;
+  userId: string;
+  username: string;
 }
 
 const AddCommentToStock: React.FC<Props> = (props) => {
@@ -32,8 +34,8 @@ const AddCommentToStock: React.FC<Props> = (props) => {
           text: props.text,
         },
       })
-      .then((res: any) => console.log("passed"))
-      .catch((res: any) => console.log("error"));
+      .then((res: any) => console.log(res))
+      .catch((err: any) => console.log(err));
   }
 
   return null;

@@ -2,8 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { graphql, useLazyQuery } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { createUserMutation, distinctUserQuery } from "../queries/queries.js";
-import { browserHist } from "../AppMain/history.js";
-import { statusContext, userContext } from "../AppMain/App";
+import { statusContext } from "../AppMain/App";
 import { hashPass, hashToken } from "../login/hashing.js";
 
 interface Props {
@@ -15,8 +14,6 @@ interface Props {
 }
 
 const CreateNewUser: React.FC<Props> = (props) => {
-  const { status, setStatus } = useContext(statusContext);
-  const { userVal, setUserVal } = useContext(userContext);
   const [newUsername, setNewUsername] = useState(false);
   const [callUser, { loading, data }] = useLazyQuery(distinctUserQuery, {
     variables: { username: props.username },

@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { saveSettingsMutation } from "../queries/queries.js";
-import { userContext } from "../AppMain/App";
 
 interface Props {
   text: string;
@@ -16,13 +15,11 @@ interface Props {
 }
 
 const RenderPageButtonStateSave: React.FC<Props> = (props) => {
-  const { userVal, setUserVal } = useContext(userContext);
-
   function save() {
     props
       .saveSettingsMutation({
         variables: {
-          userId: userVal.userId,
+          token: sessionStorage.getItem("Token"),
           experience: props.selectedState.experience,
           education: props.selectedState.education,
           motivations: props.selectedState.motivations,

@@ -1,5 +1,5 @@
 import React from "react";
-import { CommentInputPost, CommentInputStock } from "../CommentInput";
+import { InputPost, InputStock } from "../CommentInput";
 import CommentSection from "../CommentSection";
 import { NavLink, Link } from "react-router-dom";
 import { browserHist } from "../../AppMain/history.js";
@@ -68,7 +68,7 @@ export const PostType: React.FC<Post> = (props) => {
         {props.replies}
       </p>
       <p>{props.text}</p>
-      <CommentInputPost postId={props.postId} />
+      <InputPost postId={props.postId} />
       <CommentSection comments={props.comments} />
     </div>
   );
@@ -86,7 +86,7 @@ export const NewsType: React.FC<News> = (props) => {
       </h2>
       <h2>{props.headline}</h2>
       <p>{props.subtext}</p>
-      <CommentInputStock stockId={props.stockId} />
+      <InputStock stockId={props.stockId} />
       <CommentSection comments={props.comments} />
     </div>
   );

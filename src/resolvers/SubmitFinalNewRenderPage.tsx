@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { savePreferredCommentaryMutation } from "../queries/queries.js";
-import { userContext } from "../AppMain/App";
 
 interface Props {
   text: string;
@@ -12,8 +11,6 @@ interface Props {
 }
 
 const SubmitFinalNewRenderPage: React.FC<Props> = (props) => {
-  const { userVal, setUserVal } = useContext(userContext);
-
   function save() {
     props
       .savePreferredCommentaryMutation({
