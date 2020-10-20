@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { userQuery, newTokenMutation } from "../queries/queries";
 import { useLazyQuery } from "react-apollo";
-import { statusContext } from "../AppMain/App";
+import { browserHist } from "../AppMain/history";
 import { hashToken } from "../login/hashing.js";
+import { statusContext } from "../AppMain/App";
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "../actions/actions";
 
@@ -24,15 +25,18 @@ interface Redux {
   onInitialNotificationsSet: (notifications: any) => void;
   onInitialCommentsSet: (comments: any) => void;
   onInitialProgressSet: (progress: any) => void;
+  onInitialProgressElementsSet: (progressElements: any) => void;
 }
 
 interface Props extends Redux {
-  id: number;
+  id: string;
+  username: string;
   loggedIn: () => void;
 }
 
 const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
   const { status, setStatus } = useContext(statusContext);
+  const [progEl, setProgEl] = useState([]);
   const [
     logUserIn,
     { loading: loadingLogIn, data: dataLogIn, error: errorLogIn },
@@ -40,14 +44,17 @@ const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
 
   useEffect(() => {
     setTimeout(() => {
-      let token = hashToken(dataLogIn.user.userId, dataLogIn.user.username);
-      sessionStorage.setItem("Token", token);
-      logUserIn({
-        variables: {
-          userId: props.id,
-          token: token,
-        },
-      });
+      let token = sessionStorage.getItem("Token");
+      if (token) {
+        logUserIn({
+          variables: {
+            userId: props.id,
+            token: token,
+          },
+        });
+      } else {
+        browserHist.push("/login");
+      }
     }, 2000);
   }, [props.id]);
 
@@ -57,62 +64,44 @@ const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
     }
   }, [dataLogIn]);
 
+  function getProgEls(user: any) {
+    let progElements = [];
+    for (let i = 0; i < user.progress.length; i++) {
+      for (let j = 0; j < user.progress[i].progressElements.length; j++) {
+        progElements.push(user.progress[i].progressElements[j]);
+        console.log("progElements");
+      }
+    }
+    return progElements;
+  }
+
   function pushToUser() {
     console.log(dataLogIn);
-    if (dataLogIn.user) {
-      props.onUsernameSet(dataLogIn.user.username);
-      props.onUserIDSet(dataLogIn.user.userId);
-      props.onWatchlistSet(dataLogIn.user.watchlist);
-      props.onMoneySet(dataLogIn.user.money);
-      props.onNewAccountSet(dataLogIn.user.newaccount);
-      props.onDarkmodeSet(dataLogIn.user.darkmode);
-      props.onInvisibleSet(dataLogIn.user.invisible);
-      props.onAllowCommentsSet(dataLogIn.user.allowCommentsOnTrades);
-      props.onInitialFollowerSet(dataLogIn.user.followers);
-      props.onInitialFollowingSet(dataLogIn.user.following);
-      props.onStocksSet(dataLogIn.user.stocks);
-      props.onInitialPostsSet(dataLogIn.user.posts);
-      props.onProfileImageSet(dataLogIn.user.profileImage);
-      props.onInitialTradeSet(dataLogIn.user.trades);
-      props.onInitialNotificationsSet(dataLogIn.user.notifications);
-      props.onInitialCommentsSet(dataLogIn.user.comments);
-      props.onInitialProgressSet(dataLogIn.user.progress);
+    if (dataLogIn && dataLogIn.user) {
+      let user: any = dataLogIn.user;
 
-      // props.setUserVal({
-      // username: dataLogIn.user.username,
-      // userId: dataLogIn.user.userId,
-      // money: dataLogIn.user.money,
-      // darkmode: dataLogIn.user.darkmode,
-      // invisible: dataLogIn.user.invisible,
-      // newaccount: dataLogIn.user.newaccount,
-      // allowCommentsOnTrades: dataLogIn.user.allowCommentsOnTrades,
-      // followers: dataLogIn.user.followers,
-      // following: dataLogIn.user.following,
-      // stocks: dataLogIn.user.stocks,
-      // posts: dataLogIn.user.posts,
-      // profileImage: dataLogIn.user.profileImage,
-      // trades: dataLogIn.user.trades,
-      // watchlist: dataLogIn.user.watchlist,
-      // comments: dataLogIn.user.comments,
-      // notifications: dataLogIn.user.notifications,
-      // progress: dataLogIn.user.progress,
-      // });
-      let token = hashToken(dataLogIn.user.userId, dataLogIn.user.username);
-      sessionStorage.setItem("Token", token);
-      // props
-      //   .newTokenMutation({
-      //     variables: {
-      //       userId: dataLogIn.user.userId,
-      //       token: token,
-      //     },
-      //   })
-      //   .catch((err: any) => console.log(err))
-      //   .then((res: any) => {
-      //     props.loggedIn();
-      //     setStatus(true);
-      //     console.log("New token mutation passed");
-      //   });
+      let progs = getProgEls(user);
+      props.onUsernameSet(user.username);
+      props.onUserIDSet(user.userId);
+      props.onWatchlistSet(user.watchlist);
+      props.onMoneySet(user.money);
+      props.onNewAccountSet(user.newaccount);
+      props.onDarkmodeSet(user.darkmode);
+      props.onInvisibleSet(user.invisible);
+      props.onAllowCommentsSet(user.allowCommentsOnTrades);
+      props.onInitialFollowerSet(user.followers);
+      props.onInitialFollowingSet(user.following);
+      props.onStocksSet(user.stocks);
+      props.onInitialPostsSet(user.posts);
+      props.onProfileImageSet(user.profileImage);
+      props.onInitialTradeSet(user.trades);
+      props.onInitialNotificationsSet(user.notifications);
+      props.onInitialCommentsSet(user.comments);
+      props.onInitialProgressSet(user.progress);
+      props.onInitialProgressElementsSet(progs);
     }
+    setStatus(true);
+    browserHist.push("/home");
   }
 
   return null;

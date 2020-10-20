@@ -16,7 +16,7 @@ import { useLazyQuery } from "react-apollo";
 import { browserHist } from "../AppMain/history";
 
 const Login: React.FC = () => {
-  const [userId, setUserId] = useState(0);
+  const [userId, setUserId] = useState();
   const [newAccount, setNewAccount] = useState(false);
   const [buttonText, setButtonText] = useState("Log in");
   const [loadingUser, setLoadingUser] = useState(false);

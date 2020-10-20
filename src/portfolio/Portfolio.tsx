@@ -24,7 +24,7 @@ interface Redux {
 const Portfolio: React.FC<Redux> = (props) => {
   const { status, setStatus } = useContext(statusContext);
   const [loadingInUser, setLoadingInUser] = useState(false);
-  const [userId, setUserId] = useState(0);
+  const [userId, setUserId] = useState();
   const [userWatch, setUserWatch] = useState(props.watchlist);
   const [userStocks, setUserStocks] = useState([] as any);
 
@@ -71,7 +71,6 @@ const Portfolio: React.FC<Redux> = (props) => {
   useEffect(() => {
     console.log("homepage status: " + status);
     if (status === false) {
-      let sessionToken = sessionStorage.getItem("Token");
       if (data && data.token) {
         console.log(data);
         console.log("session token same as data token");

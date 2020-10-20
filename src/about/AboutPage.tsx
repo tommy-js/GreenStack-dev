@@ -13,7 +13,7 @@ import { mapStateToProps } from "../actions/actions";
 
 const AboutPage: React.FC = () => {
   const [loadingInUser, setLoadingInUser] = useState(false);
-  const [userId, setUserId] = useState(0);
+  const [userId, setUserId] = useState();
   const { status, setStatus } = useContext(statusContext);
   const [passToken, { data, loading }] = useLazyQuery(queryToken);
 
@@ -36,7 +36,6 @@ const AboutPage: React.FC = () => {
   useEffect(() => {
     console.log("homepage status: " + status);
     if (status === false) {
-      let sessionToken = sessionStorage.getItem("Token");
       if (data && data.token) {
         console.log(data);
         console.log("session token same as data token");

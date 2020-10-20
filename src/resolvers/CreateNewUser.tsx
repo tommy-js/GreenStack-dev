@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import { graphql, useLazyQuery } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { createUserMutation, distinctUserQuery } from "../queries/queries.js";
-import { statusContext } from "../AppMain/App";
 import { hashPass, hashToken } from "../login/hashing.js";
 
 interface Props {

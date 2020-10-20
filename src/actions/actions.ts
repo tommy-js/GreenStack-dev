@@ -3,16 +3,58 @@ const progress = [
     id: "",
     title: "Basics of The Market",
     percent: 0,
+    progressElements: [
+      {
+        id: "",
+        passed: false,
+      },
+      {
+        id: "",
+        passed: false,
+      },
+      {
+        id: "",
+        passed: false,
+      },
+    ],
   },
   {
     id: "",
     title: "Options",
     percent: 0,
+    progressElements: [
+      {
+        id: "",
+        passed: false,
+      },
+      {
+        id: "",
+        passed: false,
+      },
+      {
+        id: "",
+        passed: false,
+      },
+    ],
   },
   {
     id: "",
     title: "Diversifying",
     percent: 0,
+    progressElements: [
+      {
+        id: "",
+        passed: false,
+      },
+      {
+        id: "",
+        passed: false,
+      },
+      {
+        id: "",
+        passed: false,
+      },
+    ],
   },
 ];
 
@@ -21,11 +63,12 @@ export const mapStateToProps = (state: any) => {
     username: state.username,
     userId: state.userId,
     money: state.money,
-    progress: progress,
+    progress: state.progress,
     newaccount: state.newaccount,
     watchlist: state.watchlist,
     stocks: state.stocks,
     posts: state.posts,
+    progressElements: state.progressElements,
     trades: state.trades,
     followers: state.followers,
     following: state.following,
@@ -58,6 +101,11 @@ export const mapDispatchToProps = (dispatch: any) => {
       dispatch({ type: "SET_INITIAL_NOTIFICATIONS", payload: notifications }),
     onInitialProgressSet: (progress: any) =>
       dispatch({ type: "SET_INITIAL_PROGRESS", payload: progress }),
+    onInitialProgressElementsSet: (progressElements: any) =>
+      dispatch({
+        type: "SET_INITIAL_PROGRESS_ELEMENTS",
+        payload: progressElements,
+      }),
     onInitialCommentsSet: (comments: any) =>
       dispatch({ type: "SET_INITIAL_COMMENTS", payload: comments }),
     onDarkmodeSet: (darkmode: boolean) =>

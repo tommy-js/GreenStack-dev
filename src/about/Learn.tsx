@@ -34,6 +34,7 @@ const Learn: React.FC<Props> = (props) => {
 
   useEffect(() => {
     console.log("calling useffect on Learn comp");
+    console.log(props.progress);
     let obj;
     let arr = [...learn];
     for (let i = 0; i < learn.length; i++) {

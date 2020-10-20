@@ -42,7 +42,7 @@ const Homepage: React.FC<Props> = (props) => {
   const [userRoutePaths, setUserRoutePaths] = useState([] as any);
   const [tradeRoutePaths, setTradeRoutePaths] = useState([] as any);
   const [loadingInUser, setLoadingInUser] = useState(false);
-  const [userId, setUserId] = useState(0);
+  const [userId, setUserId] = useState();
   const [results, setResults] = useState({ username: "", userId: "" });
 
   const [passToken, { data, loading }] = useLazyQuery(queryToken);
@@ -68,7 +68,6 @@ const Homepage: React.FC<Props> = (props) => {
   useEffect(() => {
     console.log("homepage status: " + status);
     if (status === false) {
-      let sessionToken = sessionStorage.getItem("Token");
       if (data && data.token) {
         console.log(data);
         console.log("session token same as data token");

@@ -1,8 +1,4 @@
-const initialState = {
-  username: "",
-};
-
-const userReducer = (state: any = initialState, action: any) => {
+const userReducer = (state: any, action: any) => {
   const newState = { ...state };
   if (action.type == "SET_USERNAME") {
     newState.username = action.payload;
@@ -30,6 +26,9 @@ const userReducer = (state: any = initialState, action: any) => {
   }
   if (action.type == "SET_INITIAL_PROGRESS") {
     newState.progress = action.progress;
+  }
+  if (action.type == "SET_INITIAL_PROGRESS_ELEMENTS") {
+    newState.progressElements = action.progressElements;
   }
   if (action.type == "SET_INITIAL_FOLLOWERS") {
     newState.followers = action.payload;
