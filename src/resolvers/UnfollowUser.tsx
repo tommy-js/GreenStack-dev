@@ -11,9 +11,10 @@ interface Props {
 
 const UnfollowUser: React.FC<Props> = (props) => {
   function unfollow() {
+    let token = sessionStorage.getItem("Token");
     props.unfollowUserMutation({
       variables: {
-        userId: props.userId,
+        token: token,
         followerId: props.followerId,
       },
     });

@@ -13,10 +13,11 @@ const AllowComments: React.FC<Props> = (props) => {
   const [checked, setChecked] = useState(props.allowCommentsOnTrades);
 
   function updateAllowComments() {
+    let token = sessionStorage.getItem("Token");
     props
       .updateAllowCommentsMutation({
         variables: {
-          userId: props.userId,
+          token: token,
         },
       })
       .catch((err: any) => console.log(err))

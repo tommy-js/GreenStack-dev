@@ -12,10 +12,11 @@ interface Props {
 const FollowUser: React.FC<Props> = (props) => {
   function followUser() {
     let randVal = Math.floor(Math.random() * 1000000);
+    let token = sessionStorage.getItem("Token");
     props
       .pushFollowerToUserMutation({
         variables: {
-          userId: props.userId,
+          token: token,
           followerId: props.tradeData.userId,
           id: randVal,
           followerName: props.tradeData.user,

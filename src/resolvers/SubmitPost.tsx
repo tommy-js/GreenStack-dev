@@ -16,10 +16,11 @@ interface Props {
 const SubmitPost: React.FC<Props> = (props) => {
   function submit() {
     if (props.text !== "") {
+      let token = sessionStorage.getItem("Token");
       props
         .postMutation({
           variables: {
-            userId: props.userId,
+            token: token,
             username: props.username,
             title: props.title,
             text: props.text,

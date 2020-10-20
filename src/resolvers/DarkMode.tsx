@@ -12,10 +12,11 @@ const DarkMode: React.FC<Props> = (props) => {
   const [checked, setChecked] = useState(props.darkmode);
 
   function updateDarkMode() {
+    let token = sessionStorage.getItem("Token");
     props
       .updateDarkModeMutation({
         variables: {
-          token: sessionStorage.getItem("Token"),
+          token: token,
         },
       })
       .catch((err: any) => console.log(err))

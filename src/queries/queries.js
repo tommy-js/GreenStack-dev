@@ -18,9 +18,9 @@ const createUserMutation = gql`
 
 // May not be needed
 const updateNewAccountMutation = gql`
-  mutation($userId: ID!, $newaccount: Boolean!) {
-    updateNewAccount(userId: $userId, newaccount: $newaccount) {
-      userId
+  mutation($token: String!, $newaccount: Boolean!) {
+    updateNewAccount(token: $token, newaccount: $newaccount) {
+      newaccount
     }
   }
 `;
@@ -34,9 +34,9 @@ const updateUserProgressMutation = gql`
 `;
 
 const setProfileImageMutation = gql`
-  mutation($userId: ID!, $profileImage: String!) {
-    setProfileImage(userId: $userId, profileImage: $profileImage) {
-      userId
+  mutation($token: String!, $profileImage: String!) {
+    setProfileImage(token: $token, profileImage: $profileImage) {
+      profileImage
     }
   }
 `;
@@ -44,15 +44,15 @@ const setProfileImageMutation = gql`
 const updateDarkModeMutation = gql`
   mutation($token: String!) {
     updateDarkMode(token: $token) {
-      userId
+      token
     }
   }
 `;
 
 const updateAllowCommentsMutation = gql`
-  mutation($userId: ID!) {
-    updateAllowComments(userId: $userId) {
-      userId
+  mutation($token: String!) {
+    updateAllowComments(token: $token) {
+      token
     }
   }
 `;
@@ -60,7 +60,7 @@ const updateAllowCommentsMutation = gql`
 const updateInvisibleMutation = gql`
   mutation($token: String!) {
     updateInvisible(token: $token) {
-      userId
+      token
     }
   }
 `;
@@ -96,8 +96,7 @@ const savePreferredCommentaryMutation = gql`
 
 const pushTradeMutation = gql`
   mutation(
-    $userId: ID!
-    $username: String!
+    $token: String!
     $tradeId: ID!
     $price: Float!
     $title: String!
@@ -106,8 +105,7 @@ const pushTradeMutation = gql`
     $gain: Float!
   ) {
     pushTrade(
-      userId: $userId
-      username: $username
+      token: $token
       tradeId: $tradeId
       price: $price
       title: $title
@@ -115,7 +113,7 @@ const pushTradeMutation = gql`
       shares: $shares
       gain: $gain
     ) {
-      userId
+      shares
     }
   }
 `;
@@ -174,47 +172,46 @@ const updateDislikesMutation = gql`
 
 // Replace
 const deleteCommentUserMutation = gql`
-  mutation($userId: ID!, $commentId: ID!) {
-    deleteCommentUser(userId: $userId, commentId: $commentId) {
+  mutation($token: String!, $commentId: ID!) {
+    deleteCommentUser(token: $token, commentId: $commentId) {
       commentId
-      userId
     }
   }
 `;
 
 const pushCommentPostMutation = gql`
-  mutation($userId: ID!, $text: String!, $postId: ID!) {
-    pushCommentPost(userId: $userId, text: $text, postId: $postId) {
+  mutation($token: String!, $text: String!, $postId: ID!) {
+    pushCommentPost(token: $token, text: $text, postId: $postId) {
       text
     }
   }
 `;
 
 const pushCommentStockMutation = gql`
-  mutation($userId: ID!, $text: String!, $stockId: ID!) {
-    pushCommentStock(userId: $userId, text: $text, stockId: $stockId) {
+  mutation($token: String!, $text: String!, $stockId: ID!) {
+    pushCommentStock(token: $token, text: $text, stockId: $stockId) {
       text
     }
-    pushCommentUser(userId: $userId, text: $text) {
+    pushCommentUser(token: $token, text: $text) {
       text
     }
   }
 `;
 
 const pushCommentTradeMutation = gql`
-  mutation($userId: ID!, $text: String!, $stockId: ID!) {
-    pushCommentTrade(userId: $userId, text: $text, stockId: $stockId) {
+  mutation($token: String!, $text: String!, $stockId: ID!) {
+    pushCommentTrade(token: $token, text: $text, stockId: $stockId) {
       text
     }
-    pushCommentUser(userId: $userId, text: $text) {
+    pushCommentUser(token: $token, text: $text) {
       text
     }
   }
 `;
 
 const dropNotificationMutation = gql`
-  mutation($userId: ID!, $id: ID!) {
-    dropNotification(userId: $userId, id: $id) {
+  mutation($token: String!, $id: ID!) {
+    dropNotification(token: $token, id: $id) {
       id
     }
   }
@@ -251,52 +248,49 @@ const updateUserSettingsMutation = gql`
 
 const pushFollowerToUserMutation = gql`
   mutation(
+    $token: String!
     $userId: ID!
     $followerId: ID!
     $followerName: String!
     $username: String!
   ) {
     followUser(
-      userId: $userId
+      token: $token
       followerId: $followerId
       followerName: $followerName
     ) {
       userId
     }
-    followingUser(
-      followingId: $userId
-      userId: $followerId
-      username: $username
-    ) {
+    followingUser(token: $token, followingId: $userId, username: $username) {
       userId
     }
   }
 `;
 
 const unfollowUserMutation = gql`
-  mutation($userId: ID!, $followerId: ID!) {
-    unfollowUser(userId: $userId, followerId: $followerId) {
+  mutation($token: String!, $followerId: ID!) {
+    unfollowUser(token: $token, followerId: $followerId) {
       userId
     }
   }
 `;
 
 const pushStockToWatchlistMutation = gql`
-  mutation($stockId: ID!, $userId: ID!, $title: String!, $ticker: String!) {
+  mutation($stockId: ID!, $token: String!, $title: String!, $ticker: String!) {
     pushStockToWatchlist(
       stockId: $stockId
       ticker: $ticker
       title: $title
-      userId: $userId
+      token: $token
     ) {
-      userId
+      ticker
     }
   }
 `;
 
 const removeStockFromWatchlistMutation = gql`
-  mutation($stockId: ID!, $userId: ID!) {
-    removeStockFromWatchlist(stockId: $stockId, userId: $userId) {
+  mutation($stockId: ID!, $token: String!) {
+    removeStockFromWatchlist(stockId: $stockId, token: $token) {
       userId
     }
   }
@@ -312,9 +306,9 @@ const blockUserMutation = gql`
 `;
 
 const postMutation = gql`
-  mutation($userId: ID!, $title: String!, $text: String!) {
-    post(userId: $userId, title: $title, text: $text) {
-      userId
+  mutation($token: String!, $title: String!, $text: String!) {
+    post(token: $token, title: $title, text: $text) {
+      title
     }
   }
 `;
@@ -375,19 +369,19 @@ const addCommentStockMutation = gql`
 `;
 
 const newTokenMutation = gql`
-  mutation($userId: ID!, $token: String!) {
-    newToken(userId: $userId, token: $token) {
-      userId
+  mutation($token: String!, $newToken: String!) {
+    newToken(token: $token, newToken: $newToken) {
+      token
     }
   }
 `;
 
 const purchaseStockMutation = gql`
-  mutation($userId: ID!, $stockId: ID!, $shares: Int, $money: Float!) {
-    updateShares(userId: $userId, stockId: $stockId, shares: $shares) {
+  mutation($token: String!, $stockId: ID!, $shares: Int, $money: Float!) {
+    updateShares(token: $token, stockId: $stockId, shares: $shares) {
       userId
     }
-    updateMoney(userId: $userId, money: $money) {
+    updateMoney(token: $token, money: $money) {
       money
     }
   }

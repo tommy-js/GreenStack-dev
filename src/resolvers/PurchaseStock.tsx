@@ -16,10 +16,11 @@ interface Props {
 const PurchaseStock: React.FC<Props> = (props) => {
   function buy() {
     let remainder = props.money - props.shares * props.price;
+    let token = sessionStorage.getItem("Token");
     if (remainder >= 0) {
       props.purchaseStockMutation({
         variables: {
-          userId: props.userId,
+          token: token,
           stockId: props.stockId,
           shares: props.shares,
           money: remainder,

@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const elementSchema = new Schema({
   id: String,
+  headerId: String,
   passed: Boolean,
 });
 

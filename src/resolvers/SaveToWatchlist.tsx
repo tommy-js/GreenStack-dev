@@ -17,10 +17,11 @@ interface Props {
 
 const SaveToWatchlist: React.FC<Props> = (props) => {
   function pushData() {
+    let token = sessionStorage.getItem("Token");
     props
       .pushStockToWatchlistMutation({
         variables: {
-          userId: props.userId,
+          token: token,
           stockId: props.stockId,
           title: props.title,
           ticker: props.ticker,

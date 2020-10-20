@@ -13,11 +13,12 @@ interface Props {
 
 const PushCommentStock: React.FC<Props> = (props) => {
   function submitComment() {
+    let token = sessionStorage.getItem("Token");
     props.pushCommentStockMutation({
       variables: {
         username: props.username,
         stockId: props.stockId,
-        userId: props.userId,
+        token: token,
         text: props.text,
       },
     });

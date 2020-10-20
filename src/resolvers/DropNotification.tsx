@@ -12,10 +12,11 @@ interface Props {
 
 const DropNotification: React.FC<Props> = (props) => {
   function dropNotification() {
+    let token = sessionStorage.getItem("Token");
     props
       .dropNotificationMutation({
         variables: {
-          userId: props.userId,
+          token: token,
           id: props.id,
         },
       })

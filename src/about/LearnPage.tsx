@@ -18,6 +18,11 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../actions/actions";
 
+interface Props {
+  progress: any;
+  progressElements: any;
+}
+
 export const GlossaryPage: React.FC = () => {
   return (
     <div>
@@ -52,17 +57,12 @@ export const GlossaryPage: React.FC = () => {
   );
 };
 
-interface Props {
-  progress: any;
-}
-
 const BasicsPage: React.FC<Props> = (props) => {
   const { status, setStatus } = useContext(statusContext);
   const [id, setId] = useState(props.progress[0].id);
   const [currentProgress, setCurrentProgress] = useState(
     props.progress[0].percent
   );
-  const [specId, setSpecId] = useState(props.progress[0].progressElements);
 
   const options1 = {
     title: "Checkpoint 1",
@@ -138,7 +138,7 @@ const BasicsPage: React.FC<Props> = (props) => {
             { title: "Something to brag about!", id: 2 },
           ]}
           id={id}
-          specId={props.progress[0].progressElements[0].id}
+          specId="Basics01"
           increment={5}
           correctAnswer={1}
           currentProgress={currentProgress}
@@ -198,7 +198,7 @@ const BasicsPage: React.FC<Props> = (props) => {
 
         <Blanks
           id={id}
-          specId={props.progress[0].progressElements[1].id}
+          specId="Basics02"
           title={options1.title}
           options={options1.options}
         />
@@ -345,7 +345,7 @@ const OptionsPage: React.FC<Props> = (props) => {
             { title: "The fee you pay to buy an options contract", id: 2 },
           ]}
           id={id}
-          specId={props.progress[1].progressElements[0].id}
+          specId="Options01"
           increment={5}
           correctAnswer={3}
           currentProgress={currentProgress}
@@ -385,7 +385,7 @@ const OptionsPage: React.FC<Props> = (props) => {
 
         <Blanks
           id={id}
-          specId={props.progress[1].progressElements[1].id}
+          specId="Option02"
           title={options1.title}
           options={options1.options}
         />
@@ -414,7 +414,7 @@ const OptionsPage: React.FC<Props> = (props) => {
 
         <SelectAll
           id={id}
-          specId={props.progress[1].progressElements[2].id}
+          specId="Options03"
           title={optionsSelectAll.title}
           options={optionsSelectAll.options}
           currentProgress={currentProgress}

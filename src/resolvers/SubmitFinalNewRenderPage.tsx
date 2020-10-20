@@ -12,10 +12,11 @@ interface Props {
 
 const SubmitFinalNewRenderPage: React.FC<Props> = (props) => {
   function save() {
+    let token = sessionStorage.getItem("Token");
     props
       .savePreferredCommentaryMutation({
         variables: {
-          token: sessionStorage.getItem("Token"),
+          token: token,
           commentaryStyle: props.index,
         },
       })

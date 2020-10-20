@@ -25,11 +25,12 @@ const AddCommentToStock: React.FC<Props> = (props) => {
   }, [props.passFunc]);
 
   function pushData() {
+    let token = sessionStorage.getItem("Token");
     props
       .addCommentStockMutation({
         variables: {
           stockId: props.stockId,
-          userId: props.userId,
+          token: token,
           username: props.username,
           text: props.text,
         },

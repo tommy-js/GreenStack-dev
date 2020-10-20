@@ -12,10 +12,11 @@ const Private: React.FC<Props> = (props) => {
   const [checked, setChecked] = useState(props.invisible);
 
   function updateInvisible() {
+    let token = sessionStorage.getItem("Token");
     props
       .updateInvisibleMutation({
         variables: {
-          token: sessionStorage.getItem("Token"),
+          token: token,
         },
       })
       .catch((err: any) => console.log(err))

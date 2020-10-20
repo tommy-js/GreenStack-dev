@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import LearnComponent from "./LearnComponent";
 import LearnHeader from "./LearnHeader";
-import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../actions/actions";
 
@@ -10,6 +9,8 @@ interface Props {
 }
 
 const Learn: React.FC<Props> = (props) => {
+  console.log("Learn progress: ");
+  console.log(props.progress);
   const [loaded, setLoaded] = useState(false);
   const [learn, setLearn] = useState([
     {

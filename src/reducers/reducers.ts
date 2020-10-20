@@ -19,16 +19,16 @@ const userReducer = (state: any, action: any) => {
     newState.posts = action.payload;
   }
   if (action.type == "SET_INITIAL_TRADES") {
-    newState.trades = action.trades;
+    newState.trades = action.payload;
   }
   if (action.type == "SET_INITIAL_COMMENTS") {
-    newState.comments = action.comments;
+    newState.comments = action.payload;
   }
   if (action.type == "SET_INITIAL_PROGRESS") {
-    newState.progress = action.progress;
+    newState.progress = action.payload;
   }
   if (action.type == "SET_INITIAL_PROGRESS_ELEMENTS") {
-    newState.progressElements = action.progressElements;
+    newState.progressElements = action.payload;
   }
   if (action.type == "SET_INITIAL_FOLLOWERS") {
     newState.followers = action.payload;

@@ -27,10 +27,11 @@ const AuctionStock: React.FC<Props> = (props) => {
 
   function sell() {
     let value = props.money + props.price * props.shares;
+    let token = sessionStorage.getItem("Token");
     props.sellStockMutation({
       variables: {
         stockId: props.stockId,
-        userId: props.userId,
+        token: token,
         shares: -props.shares,
         money: value,
       },

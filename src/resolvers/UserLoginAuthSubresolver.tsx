@@ -75,12 +75,28 @@ const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
     return progElements;
   }
 
+  function getProgs(user: any) {
+    let prog = [];
+    for (let i = 0; i < user.progress.length; i++) {
+      let obj = {
+        title: user.progress[i].title,
+        id: user.progress[i].id,
+        percent: user.progress[i].percent,
+      };
+      prog.push(obj);
+    }
+    return prog;
+  }
+
   function pushToUser() {
     console.log(dataLogIn);
     if (dataLogIn && dataLogIn.user) {
       let user: any = dataLogIn.user;
 
       let progs = getProgEls(user);
+
+      let progress = getProgs(user);
+
       props.onUsernameSet(user.username);
       props.onUserIDSet(user.userId);
       props.onWatchlistSet(user.watchlist);
@@ -97,7 +113,7 @@ const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
       props.onInitialTradeSet(user.trades);
       props.onInitialNotificationsSet(user.notifications);
       props.onInitialCommentsSet(user.comments);
-      props.onInitialProgressSet(user.progress);
+      props.onInitialProgressSet(progress);
       props.onInitialProgressElementsSet(progs);
     }
     setStatus(true);

@@ -12,11 +12,12 @@ interface Props {
 
 const RemoveFromWatchlist: React.FC<Props> = (props) => {
   function removeFromWatchlist() {
+    let token = sessionStorage.getItem("Token");
     props
       .removeStockFromWatchlistMutation({
         variables: {
           stockId: props.stockId,
-          userId: props.userId,
+          token: token,
         },
       })
       .catch((err: any) => console.log(err))
