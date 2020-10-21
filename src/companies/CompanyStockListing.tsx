@@ -6,22 +6,34 @@ interface Props {
 }
 
 const CompanyStockListing: React.FC<Props> = (props) => {
-  return (
-    <div>
-      {props.comments.map((el: any) => (
-        <StockComment
-          user={el.user}
-          comment={el.comment}
-          commentId={el.commentId}
-          predictedPrice={el.predictedPrice}
-          recommendation={el.recommendation}
-          timestamp={el.timestamp}
-          likes={el.likes}
-          dislikes={el.dislikes}
-        />
-      ))}
-    </div>
-  );
+  function returnComments() {
+    if (props.comments) {
+      return (
+        <div>
+          {props.comments.map((el: any) => (
+            <StockComment
+              user={el.user}
+              comment={el.comment}
+              commentId={el.commentId}
+              predictedPrice={el.predictedPrice}
+              recommendation={el.recommendation}
+              timestamp={el.timestamp}
+              likes={el.likes}
+              dislikes={el.dislikes}
+            />
+          ))}
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h2>Nothing Here!</h2>
+        </div>
+      );
+    }
+  }
+
+  return <div>{returnComments()}</div>;
 };
 
 export default CompanyStockListing;

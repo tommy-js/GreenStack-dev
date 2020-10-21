@@ -355,14 +355,8 @@ const addCommentTradeMutation = gql`
 `;
 
 const addCommentStockMutation = gql`
-  mutation($stockId: ID!, $userId: ID!, $username: String!, $text: String!) {
-    addCommentStock(
-      stockId: $stockId
-      userId: $userId
-      username: $username
-      text: $text
-    ) {
-      username
+  mutation($stockId: ID!, $token: String!, $text: String!) {
+    addCommentStock(stockId: $stockId, token: $token, text: $text) {
       text
     }
   }
