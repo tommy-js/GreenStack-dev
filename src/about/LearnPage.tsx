@@ -17,6 +17,7 @@ import {
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../actions/actions";
+import { Pie } from "react-chartjs-2";
 
 interface Props {
   progress: any;
@@ -64,6 +65,33 @@ const BasicsPage: React.FC<Props> = (props) => {
     props.progress[0].percent
   );
 
+  const pieData = {
+    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    datasets: [
+      {
+        label: "# of Votes",
+        data: [12, 19, 3, 5, 2, 3],
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 206, 86, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(153, 102, 255, 0.2)",
+          "rgba(255, 159, 64, 0.2)",
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)",
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
+
   const options1 = {
     title: "Checkpoint 1",
     options: [
@@ -97,6 +125,13 @@ const BasicsPage: React.FC<Props> = (props) => {
           tutorial we'll break down the basics of the stock market into terms
           that are easy to understand.
         </p>
+        <Pie
+          data={pieData}
+          options={{
+            title: { display: true, text: "Avg Rainfall", fontSize: 20 },
+            legend: { display: true, position: "left" },
+          }}
+        />
         <p className="learn_page_paragraph">
           At its most basic, the stock market is composed of companies and their
           investors(that's you!). Investors purchase portions of companies,

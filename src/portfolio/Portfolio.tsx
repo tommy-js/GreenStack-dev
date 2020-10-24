@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Header from "../User/Header";
 import OwnedStocks from "./OwnedStocks";
 import NavBar from "../navigation/NavBar";
-import LiquidCapital from "./LiquidCapital";
+import Assets from "./Assets";
 import WatchStocks from "./WatchStocks";
 import { LoadingUser } from "../login/LoadingUser";
 import UserLoginAuthSubresolver from "../resolvers/UserLoginAuthSubresolver";
@@ -93,7 +93,7 @@ const Portfolio: React.FC<Redux> = (props) => {
           <div id="portfolio">
             <Route exact path="/portfolio">
               <Header text="Your Portfolio" />
-              <LiquidCapital />
+              <Assets />
               <OwnedStocks owned={userStocks} />
               <Header text="Watch-list" />
               <WatchStocks stocks={userWatch} />
