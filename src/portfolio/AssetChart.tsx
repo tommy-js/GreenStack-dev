@@ -14,8 +14,8 @@ const AssetChart: React.FC<Redux> = (props) => {
       {
         label: "# of Votes",
         data: [props.stocks[0].shares],
-        backgroundColor: ["rgba(255, 99, 132, 0.2)"],
-        borderColor: ["rgba(255, 99, 132, 1)"],
+        backgroundColor: [`${props.stocks[0].color}`],
+        borderColor: [props.stocks[0].color],
         borderWidth: 1,
       },
     ],

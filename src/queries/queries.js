@@ -524,6 +524,7 @@ const userQuery = gql`
         stockTitle
         shareId
         shares
+        color
       }
       trades {
         price

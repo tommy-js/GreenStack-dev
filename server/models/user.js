@@ -47,7 +47,12 @@ const userSchema = new Schema({
     { followerId: String, followerName: String, blocked: Boolean, id: String },
   ],
   stocks: [
-    { stockId: String, stockTitle: String, shareId: String, shares: Number },
+    {
+      stockId: String,
+      stockTitle: String,
+      shares: Number,
+      color: String,
+    },
   ],
   trades: [
     {
