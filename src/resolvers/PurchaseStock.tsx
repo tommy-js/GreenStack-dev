@@ -6,6 +6,7 @@ import { purchaseStockMutation } from "../queries/queries.js";
 interface Props {
   stockId: string;
   userId: string;
+  stockTitle: string;
   shares: number;
   money: number;
   price: number;
@@ -22,6 +23,7 @@ const PurchaseStock: React.FC<Props> = (props) => {
         variables: {
           token: token,
           stockId: props.stockId,
+          stockTitle: props.stockTitle,
           shares: props.shares,
           money: remainder,
         },

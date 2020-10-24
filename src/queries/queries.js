@@ -120,9 +120,23 @@ const pushTradeMutation = gql`
 
 // Replace
 const pushSharesToUserMutation = gql`
-  mutation($shareId: ID!, $shares: Number!, $stockId: ID!) {
-    pushSharesToUser(shareId: $shareId, shares: $shares, stockId: $stockId) {
-      shares
+  mutation(
+    $shareId: ID!
+    $token: ID!
+    $shares: Int!
+    $stockTitle: String!
+    $stockId: ID!
+  ) {
+    pushSharesToUser(
+      shareId: $shareId
+      shares: $shares
+      stockTitle: $stockTitle
+      stockId: $stockId
+      token: $token
+    ) {
+      stocks {
+        stockId
+      }
     }
   }
 `;
@@ -507,6 +521,7 @@ const userQuery = gql`
       }
       stocks {
         stockId
+        stockTitle
         shareId
         shares
       }

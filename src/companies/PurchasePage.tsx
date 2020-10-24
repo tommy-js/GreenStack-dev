@@ -6,6 +6,7 @@ import { mapStateToProps } from "../actions/actions";
 
 interface Props {
   stockId: string;
+  stockTitle: string;
   userId: string;
   price: number;
   money: any;
@@ -36,6 +37,7 @@ const BuyStock: React.FC<Props> = (props) => {
       <PurchaseStock
         stockId={props.stockId}
         userId={props.userId}
+        stockTitle={props.stockTitle}
         shares={purchaseNum}
         price={props.price}
         money={props.money}

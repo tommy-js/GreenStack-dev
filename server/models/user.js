@@ -46,7 +46,9 @@ const userSchema = new Schema({
   followers: [
     { followerId: String, followerName: String, blocked: Boolean, id: String },
   ],
-  stocks: [{ stockId: String, shares: Number }],
+  stocks: [
+    { stockId: String, stockTitle: String, shareId: String, shares: Number },
+  ],
   trades: [
     {
       tradeId: Number,

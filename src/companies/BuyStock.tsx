@@ -17,7 +17,11 @@ export const BuyStockPage: React.FC<Props> = (props) => {
         Buy {props.title} #{props.ticker}
       </h2>
       <div>Chart</div>
-      <Buy stockId={props.stockId} price={props.price} />
+      <Buy
+        stockId={props.stockId}
+        stockTitle={props.title}
+        price={props.price}
+      />
       <div>Data</div>
     </div>
   );
@@ -31,7 +35,11 @@ export const SellStockPage: React.FC<Props> = (props) => {
         Sell {props.title} #{props.ticker}
       </h2>
       <div>Chart</div>
-      <Sell stockId={props.stockId} price={props.price} />
+      <Sell
+        stockId={props.stockId}
+        stockTitle={props.title}
+        price={props.price}
+      />
       <div>Data</div>
     </div>
   );
