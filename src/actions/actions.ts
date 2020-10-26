@@ -14,6 +14,10 @@ export const mapStateToProps = (state: any) => {
     following: state.following,
     notifications: state.notifications,
     darkmode: state.darkmode,
+    oneday: state.oneday,
+    oneweek: state.oneweek,
+    onemonth: state.onemonth,
+    oneyear: state.oneyear,
   };
 };
 
@@ -61,5 +65,10 @@ export const mapDispatchToProps = (dispatch: any) => {
       dispatch({ type: "SET_STOCKS", payload: stocks }),
     onProfileImageSet: (profileImage: any) =>
       dispatch({ type: "SET_PROFILE_IMAGE", payload: profileImage }),
+    oneOneDaySet: (day: any) => dispatch({ type: "SET_DAY", payload: day }),
+    onOneWeekSet: (week: any) => dispatch({ type: "SET_WEEK", payload: week }),
+    onOneMonthSet: (month: any) =>
+      dispatch({ type: "SET_MONTH", payload: month }),
+    onOneYearSet: (year: any) => dispatch({ type: "SET_YEAR", payload: year }),
   };
 };

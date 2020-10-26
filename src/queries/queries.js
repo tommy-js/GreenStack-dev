@@ -680,6 +680,15 @@ const requestDataQuery = gql`
   }
 `;
 
+const requestDataSetQuery = gql`
+  query($tickers: [String!]) {
+    requestData(ticker: $ticker) {
+      x
+      y
+    }
+  }
+`;
+
 export {
   createUserMutation,
   updateDarkModeMutation,
@@ -727,4 +736,5 @@ export {
   otherUserQuery,
   returnFeedQuery,
   requestDataQuery,
+  requestDataSetQuery,
 };

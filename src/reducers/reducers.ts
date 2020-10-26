@@ -57,6 +57,18 @@ const userReducer = (state: any, action: any) => {
   if (action.type == "SET_PROFILE_IMAGE") {
     newState.profileImage = action.payload;
   }
+  if (action.type == "SET_DAY") {
+    newState.oneday = action.payload;
+  }
+  if (action.type == "SET_WEEK") {
+    newState.oneweek = action.payload;
+  }
+  if (action.type == "SET_MONTH") {
+    newState.onemonth = action.payload;
+  }
+  if (action.type == "SET_YEAR") {
+    newState.oneyear = action.payload;
+  }
   return newState;
 };
 

@@ -1,13 +1,7 @@
 import React, { useEffect } from "react";
 import { renderFull } from "stock-graphics";
 
-interface Props {
-  points: any;
-  graphicalEffects: any;
-  contentsDiv: any;
-}
-
-const PortfolioAssetsGraph: React.FC<Props> = (props) => {
+const PortfolioAssetsGraph = (props) => {
   useEffect(() => {
     renderFull(props.points, props.graphicalEffects);
   }, []);

@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { userQuery, newTokenMutation } from "../queries/queries";
+import { userQuery } from "../queries/queries";
 import { useLazyQuery } from "react-apollo";
 import { browserHist } from "../AppMain/history";
-import { hashToken } from "../login/hashing.js";
 import { statusContext } from "../AppMain/App";
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "../actions/actions";
