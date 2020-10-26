@@ -8,14 +8,16 @@ interface Redux {
 }
 
 const AssetChart: React.FC<Redux> = (props) => {
+  const stockTitles = props.stocks.map((el: any) => el.stockTitle);
+  const stockData = props.stocks.map((el: any) => el.shares);
+  const stockColor = props.stocks.map((el: any) => el.color);
   const pieData = {
-    labels: [props.stocks[0].stockTitle],
+    labels: stockTitles,
     datasets: [
       {
         label: "# of Votes",
-        data: [props.stocks[0].shares],
-        backgroundColor: [`${props.stocks[0].color}`],
-        borderColor: [props.stocks[0].color],
+        data: stockData,
+        backgroundColor: stockColor,
         borderWidth: 1,
       },
     ],
@@ -27,6 +29,7 @@ const AssetChart: React.FC<Redux> = (props) => {
         options={{
           title: { display: true, text: "Your Assets", fontSize: 20 },
           legend: { display: false },
+          cutoutPercentage: 25,
         }}
       />
     </div>

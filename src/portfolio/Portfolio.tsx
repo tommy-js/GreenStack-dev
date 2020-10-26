@@ -4,6 +4,7 @@ import OwnedStocks from "./OwnedStocks";
 import NavBar from "../navigation/NavBar";
 import Assets from "./Assets";
 import WatchStocks from "./WatchStocks";
+import PortfolioData from "./PortfolioData";
 import { LoadingUser } from "../login/LoadingUser";
 import UserLoginAuthSubresolver from "../resolvers/UserLoginAuthSubresolver";
 import { Route } from "react-router-dom";
@@ -97,6 +98,7 @@ const Portfolio: React.FC<Redux> = (props) => {
               <OwnedStocks owned={userStocks} />
               <Header text="Watch-list" />
               <WatchStocks stocks={userWatch} />
+              <PortfolioData />
             </Route>
           </div>
         </div>

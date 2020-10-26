@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../actions/actions";
 import PortfolioGraph from "./PortfolioGraph";
-import AssetChart from "./AssetChart";
 import LiquidCapital from "./LiquidCapital";
 
 interface Redux {
@@ -15,7 +14,6 @@ const Assets: React.FC<Redux> = (props) => {
       <PortfolioGraph />
       <LiquidCapital />
       <p>Liquid: ${props.money}</p>
-      <AssetChart />
     </div>
   );
 };

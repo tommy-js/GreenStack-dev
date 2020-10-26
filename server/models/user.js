@@ -115,6 +115,30 @@ const userSchema = new Schema({
       ],
     },
   ],
+  oneday: [
+    {
+      label: String,
+      value: Number,
+    },
+  ],
+  oneweek: [
+    {
+      label: String,
+      value: Number,
+    },
+  ],
+  onemonth: [
+    {
+      label: String,
+      value: Number,
+    },
+  ],
+  oneyear: [
+    {
+      label: String,
+      value: Number,
+    },
+  ],
 });
 
 module.exports = mongoose.model("User", userSchema);
