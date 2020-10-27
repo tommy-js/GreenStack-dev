@@ -40,7 +40,8 @@ const PortfolioGraph: React.FC<Redux> = (props) => {
         if (foundEl.shares > 0) {
           for (let i = 0; i < 99; i++) {
             let intVar = parseFloat(info[k].elements[i].y);
-            capital[i].y += intVar;
+            let multVar = intVar * foundEl.shares;
+            capital[i].y += multVar;
           }
         }
       }

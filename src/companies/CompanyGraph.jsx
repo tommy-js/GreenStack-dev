@@ -2,24 +2,30 @@ import React, { useState, useEffect, useRef, createRef } from "react";
 import { LoadingGeneral } from "../login/LoadingUser.tsx";
 import { renderFull } from "stock-graphics";
 import { useQuery } from "react-apollo";
-import { requestDataQuery } from "../queries/queries.js";
+import { requestDataSetQuery } from "../queries/queries.js";
 
 const CompanyGraph = ({ title, ticker }) => {
+  let arr = [];
+  let tickers = arr.push(ticker);
   const reference = createRef();
   const [loaded, setLoaded] = useState(false);
   const [points, setPoints] = useState([]);
-  const { data, loading } = useQuery(requestDataQuery, {
-    variables: { ticker: ticker },
+  const { data, loading } = useQuery(requestDataSetQuery, {
+    variables: { tickers: arr },
   });
+  console.log(arr);
 
   useEffect(() => {
     if (data) {
-      setPoints(data.requestData);
+      setPoints(data.requestData[0].elements);
+      console.log("data:");
+      console.log(data.requestData[0].elements);
     }
   }, [data]);
 
   useEffect(() => {
-    if (points.length > 0) {
+    console.log(points);
+    if (points && points.length > 0) {
       renderEl();
     }
   }, [points]);
@@ -55,7 +61,7 @@ const CompanyGraph = ({ title, ticker }) => {
   }
 
   function returnInfo() {
-    if (points.length > 0) {
+    if (points && points.length > 0) {
       return null;
     } else {
       return (

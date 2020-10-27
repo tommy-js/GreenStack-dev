@@ -671,15 +671,6 @@ const returnFeedQuery = gql`
   }
 `;
 
-const requestDataQuery = gql`
-  query($ticker: String!) {
-    requestData(ticker: $ticker) {
-      x
-      y
-    }
-  }
-`;
-
 const requestDataSetQuery = gql`
   query($tickers: [String!]) {
     requestData(tickers: $tickers) {
@@ -738,6 +729,5 @@ export {
   searchQuery,
   otherUserQuery,
   returnFeedQuery,
-  requestDataQuery,
   requestDataSetQuery,
 };
