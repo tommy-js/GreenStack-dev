@@ -683,8 +683,11 @@ const requestDataQuery = gql`
 const requestDataSetQuery = gql`
   query($tickers: [String!]) {
     requestData(tickers: $tickers) {
-      x
-      y
+      title
+      elements {
+        x
+        y
+      }
     }
   }
 `;

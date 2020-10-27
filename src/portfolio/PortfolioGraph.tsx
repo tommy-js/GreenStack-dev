@@ -27,7 +27,24 @@ const PortfolioGraph: React.FC<Redux> = (props) => {
 
   useEffect(() => {
     if (data) {
-      console.log(data);
+      let capital = [];
+      for (let l = 0; l < 99; l++) {
+        let obj = { x: l, y: 0 };
+        capital.push(obj);
+      }
+      let info = data.requestData;
+      for (let k = 0; k < info.length; k++) {
+        let foundEl = props.stocks.find(
+          (el: any) => el.ticker === info[k].title
+        );
+        if (foundEl.shares > 0) {
+          for (let i = 0; i < 99; i++) {
+            let intVar = parseFloat(info[k].elements[i].y);
+            capital[i].y += intVar;
+          }
+        }
+      }
+      setRenderPts(capital);
     }
   }, [data]);
 
@@ -38,7 +55,7 @@ const PortfolioGraph: React.FC<Redux> = (props) => {
       return (
         <div>
           <PortfolioAssetsGraph
-            points={props.oneday}
+            points={renderPts}
             graphicalEffects={PortData.graphicalEffects}
             contentsDiv="portfolio_graph_render"
           />
