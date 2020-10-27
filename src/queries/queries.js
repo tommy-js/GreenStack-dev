@@ -522,9 +522,9 @@ const userQuery = gql`
       stocks {
         stockId
         stockTitle
-        shareId
         shares
         color
+        ticker
       }
       trades {
         price
@@ -682,7 +682,7 @@ const requestDataQuery = gql`
 
 const requestDataSetQuery = gql`
   query($tickers: [String!]) {
-    requestData(ticker: $ticker) {
+    requestData(tickers: $tickers) {
       x
       y
     }

@@ -4,7 +4,7 @@ import { LoadingGeneral } from "../login/LoadingUser";
 import { PortData } from "./graphData.js";
 import { mapStateToProps } from "../actions/actions";
 import { connect } from "react-redux";
-import { useQuery } from "react-apollo";
+import { useLazyQuery } from "react-apollo";
 import { requestDataSetQuery } from "../queries/queries.js";
 
 interface Redux {
@@ -14,9 +14,22 @@ interface Redux {
 
 const PortfolioGraph: React.FC<Redux> = (props) => {
   const [renderPts, setRenderPts] = useState();
-  const { data, loading } = useQuery(requestDataSetQuery, {
-    variables: { tickers: props.stocks },
-  });
+  const [callQuery, { data, loading }] = useLazyQuery(requestDataSetQuery);
+
+  useEffect(() => {
+    let arr = props.stocks.map((el: any) => el.ticker);
+    callQuery({
+      variables: {
+        tickers: arr,
+      },
+    });
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+    }
+  }, [data]);
 
   console.log(props.stocks);
 

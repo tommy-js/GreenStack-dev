@@ -6,6 +6,7 @@ const shareSchema = new Schema({
   stockTitle: String,
   shares: Number,
   color: String,
+  ticker: String,
 });
 
 module.exports = mongoose.model("Share", shareSchema);

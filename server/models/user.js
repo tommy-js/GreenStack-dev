@@ -52,6 +52,7 @@ const userSchema = new Schema({
       stockTitle: String,
       shares: Number,
       color: String,
+      ticker: String,
     },
   ],
   trades: [
@@ -113,30 +114,6 @@ const userSchema = new Schema({
           passed: Boolean,
         },
       ],
-    },
-  ],
-  oneday: [
-    {
-      label: String,
-      value: Number,
-    },
-  ],
-  oneweek: [
-    {
-      label: String,
-      value: Number,
-    },
-  ],
-  onemonth: [
-    {
-      label: String,
-      value: Number,
-    },
-  ],
-  oneyear: [
-    {
-      label: String,
-      value: Number,
     },
   ],
 });
