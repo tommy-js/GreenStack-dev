@@ -25,6 +25,7 @@ interface Redux {
 const Portfolio: React.FC<Redux> = (props) => {
   const { status, setStatus } = useContext(statusContext);
   const [loadingInUser, setLoadingInUser] = useState(false);
+  const [currentPrice, setCurrentPrice] = useState([] as any);
   const [userId, setUserId] = useState();
   const [userWatch, setUserWatch] = useState(props.watchlist);
   const [userStocks, setUserStocks] = useState([] as any);

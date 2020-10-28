@@ -1,6 +1,7 @@
 import React from "react";
 import AssetChart from "./AssetChart";
 import IndustryInvolvementChart from "./IndustryInvolvementChart";
+import AssetBreakdown from "./AssetBreakdown";
 
 const PortfolioData: React.FC = () => {
   return (
@@ -8,6 +9,7 @@ const PortfolioData: React.FC = () => {
       <h2>Data</h2>
       <AssetChart />
       <IndustryInvolvementChart />
+      <AssetBreakdown />
     </div>
   );
 };

@@ -15,7 +15,7 @@ const AssetChart: React.FC<Redux> = (props) => {
     labels: stockTitles,
     datasets: [
       {
-        label: "# of Votes",
+        label: "",
         data: stockData,
         backgroundColor: stockColor,
         borderWidth: 1,
@@ -27,7 +27,7 @@ const AssetChart: React.FC<Redux> = (props) => {
       <Pie
         data={pieData}
         options={{
-          title: { display: true, text: "Your Assets", fontSize: 20 },
+          title: { display: true, text: "Your Share Breakdown", fontSize: 20 },
           legend: { display: false },
           cutoutPercentage: 25,
         }}

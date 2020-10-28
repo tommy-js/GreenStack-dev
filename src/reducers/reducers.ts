@@ -69,6 +69,9 @@ const userReducer = (state: any, action: any) => {
   if (action.type == "SET_YEAR") {
     newState.oneyear = action.payload;
   }
+  if (action.type == "SET_CURRENT_PRICES") {
+    newState.currentPrices = action.payload;
+  }
   return newState;
 };
 

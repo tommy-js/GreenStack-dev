@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PortfolioAssetsGraph from "./PortfolioAssetsGraph.jsx";
 import { LoadingGeneral } from "../login/LoadingUser";
 import { PortData } from "./graphData.js";
-import { mapStateToProps } from "../actions/actions";
+import { mapStateToProps, mapDispatchToProps } from "../actions/actions";
 import { connect } from "react-redux";
 import { useLazyQuery } from "react-apollo";
 import { requestDataSetQuery } from "../queries/queries.js";
@@ -10,6 +10,7 @@ import { requestDataSetQuery } from "../queries/queries.js";
 interface Redux {
   oneday: any;
   stocks: any;
+  onCurrentPricesSet: (currentPrices: any) => void;
 }
 
 const PortfolioGraph: React.FC<Redux> = (props) => {
@@ -27,6 +28,7 @@ const PortfolioGraph: React.FC<Redux> = (props) => {
 
   useEffect(() => {
     if (data) {
+      let prices = [];
       let capital = [];
       for (let l = 0; l < 99; l++) {
         let obj = { x: l, y: 0 };
@@ -42,9 +44,15 @@ const PortfolioGraph: React.FC<Redux> = (props) => {
             let intVar = parseFloat(info[k].elements[i].y);
             let multVar = intVar * foundEl.shares;
             capital[i].y += multVar;
+            capital[i].x = info[k].elements[i].x;
           }
+          prices.push(info[k].elements[info[k].elements.length - 1].y);
         }
       }
+      console.log("prices");
+      console.log(prices);
+      props.onCurrentPricesSet(prices);
+      console.log(data);
       setRenderPts(capital);
     }
   }, [data]);
@@ -78,4 +86,4 @@ const PortfolioGraph: React.FC<Redux> = (props) => {
   );
 };
 
-export default connect(mapStateToProps)(PortfolioGraph);
+export default connect(mapStateToProps, mapDispatchToProps)(PortfolioGraph);
