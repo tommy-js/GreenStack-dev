@@ -58,7 +58,7 @@ const AssetBreakdown: React.FC<Redux> = (props) => {
           options={{
             title: {
               display: true,
-              text: "Your Share Breakdown",
+              text: "Your Asset Breakdown",
               fontSize: 20,
             },
             legend: { display: false },

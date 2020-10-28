@@ -8,7 +8,6 @@ interface Props {
   stockId: string;
   title: string;
   ticker: string;
-  price: number;
   watchlist: any;
   userId: string;
 }
@@ -56,12 +55,7 @@ const CompanyOptions: React.FC<Props> = (props) => {
     }
   }
 
-  return (
-    <div className="default_middle">
-      <p>price: {props.price}</p>
-      {showWatchlist()}
-    </div>
-  );
+  return <div className="default_middle">{showWatchlist()}</div>;
 };
 
 export default connect(mapStateToProps)(CompanyOptions);

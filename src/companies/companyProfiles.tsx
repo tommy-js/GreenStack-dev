@@ -7,7 +7,6 @@ export default [
       "Largest company in the world. Specializes in computer and phone technology.",
     sector: "Technology",
     country: "United States of America",
-    price: 432,
     marketcap: "$2.1T",
   },
   {
@@ -18,7 +17,6 @@ export default [
       "Creates computer chips, video games, and business infrastructure.",
     sector: "Technology",
     country: "United States of America",
-    price: 203,
     marketcap: "$1.6T",
   },
   {
@@ -28,7 +26,6 @@ export default [
     description: "Search engines, software, and research company",
     sector: "Technology",
     country: "United States of America",
-    price: 2000,
     marketcap: "$971B",
   },
   {
@@ -38,7 +35,6 @@ export default [
     description: "Phones, TVs, and other electronics.",
     sector: "Technology",
     country: "South Korea",
-    price: 50,
     marketcap: "$335B",
   },
   {
@@ -49,7 +45,6 @@ export default [
       "Commonly known as Mercedes-Benz, this car manufacturer is one of the biggest in the world",
     sector: "Manufacturing",
     country: "Germany",
-    price: 13,
     marketcap: "$56B",
   },
   {
@@ -59,7 +54,6 @@ export default [
     description: "Oil and gas producer headquartered in the United States.",
     sector: "Energy",
     country: "United States of America",
-    price: 35,
     marketcap: "$148B",
   },
 ];

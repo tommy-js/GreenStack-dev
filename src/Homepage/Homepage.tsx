@@ -156,6 +156,7 @@ const Homepage: React.FC<Props> = (props) => {
                     stockId={el.stockId}
                     title={el.title}
                     ticker={el.ticker}
+                    description={el.description}
                     price={el.price}
                   />
                 </Route>

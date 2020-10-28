@@ -5,6 +5,7 @@ import CompanyNewsBlock from "./CompanyNewsBlock.js";
 import CompanyComments from "./CompanyComments";
 import TradeBlock from "./TradeBlock";
 import CompanyGraph from "./CompanyGraph.jsx";
+import CompanyDescription from "./CompanyDescription";
 import { statusContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
 
@@ -12,6 +13,7 @@ interface Props {
   title: string;
   ticker: string;
   stockId: string;
+  description: string;
   price: number;
 }
 
@@ -28,14 +30,13 @@ const StockPage: React.FC<Props> = (props) => {
     <div className="stock_page">
       <CompanyInformationBlock title={props.title} />
       <CompanyGraph title={props.title} ticker={props.ticker} />
-      <CompanyOptions
+      <CompanyDescription title={props.title} description={props.description} />
+      <CompanyNewsBlock title={props.title} />
+      <TradeBlock
+        stockId={props.stockId}
         title={props.title}
         ticker={props.ticker}
-        stockId={props.stockId}
-        price={props.price}
       />
-      <CompanyNewsBlock title={props.title} />
-      <TradeBlock stockId={props.stockId} />
       <CompanyComments
         title={props.title}
         ticker={props.ticker}

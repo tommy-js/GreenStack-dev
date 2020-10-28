@@ -8,7 +8,6 @@ const PortfolioData: React.FC = () => {
     <div>
       <h2>Data</h2>
       <AssetChart />
-      <IndustryInvolvementChart />
       <AssetBreakdown />
     </div>
   );

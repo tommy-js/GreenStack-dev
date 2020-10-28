@@ -6,7 +6,6 @@ export default [
     description:
       "Largest company in the world. Specializes in computer and phone technology.",
     country: "United States of America",
-    price: 432,
     marketcap: "$2.1T",
   },
   {
@@ -16,7 +15,6 @@ export default [
     description:
       "Creates computer chips, video games, and business infrastructure.",
     country: "United States of America",
-    price: 203,
     marketcap: "$1.6T",
   },
   {
@@ -25,7 +23,6 @@ export default [
     ticker: "GOOGL",
     description: "Search engines, software, and research company",
     country: "United States of America",
-    price: 2000,
     marketcap: "$971B",
   },
   {
@@ -34,7 +31,6 @@ export default [
     ticker: "Samsung Electronics Co Ltd",
     description: "Phones, TVs, and other electronics.",
     country: "South Korea",
-    price: 50,
     marketcap: "$335B",
   },
 ];
