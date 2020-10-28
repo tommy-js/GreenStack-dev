@@ -11,6 +11,11 @@
   user-select: none;
 }
 
+@mixin black_link {
+  color: black;
+  text-decoration: none;
+}
+
 $background_white: #f8f8f8;
 
 $standard_font: "Roboto", sans-serif;
