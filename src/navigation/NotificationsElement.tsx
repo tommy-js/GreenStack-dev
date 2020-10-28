@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DropNotification from "../resolvers/DropNotification";
+import { Link } from "react-router-dom";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { updateUserNotificationsViewedMutation } from "../queries/queries";
@@ -44,8 +45,10 @@ const NotificationsElement: React.FC<Notifs> = (props) => {
 
   return (
     <div className="notifications_link" key={props.id}>
-      <p>{props.content}</p>
-      <DropNotification id={props.id} userId={props.userId} />
+      <Link to="/notifications">
+        <p>{props.content}</p>
+      </Link>
+      <DropNotification id={props.id} />
       {checkViewed()}
     </div>
   );

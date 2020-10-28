@@ -4,7 +4,6 @@ import { flowRight as compose } from "lodash";
 import { dropNotificationMutation } from "../queries/queries";
 
 interface Props {
-  userId: number;
   id: number;
   dropNotificationMutation: (variables: object) => any;
   modDisp: () => void;

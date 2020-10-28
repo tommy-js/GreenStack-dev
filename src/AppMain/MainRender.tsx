@@ -4,6 +4,7 @@ import Portfolio from "../portfolio/Portfolio";
 import AboutPage from "../about/AboutPage";
 import Homepage from "../Homepage/Homepage";
 import NewAccountRender from "../NewAccountRender/NewAccountRender";
+import NotificationsPage from "../notifications/NotificationsPage";
 import { Route, Switch } from "react-router-dom";
 import User from "../User/User";
 import { statusContext } from "./App";
@@ -112,6 +113,9 @@ const MainRender: React.FC<Props> = (props) => {
               </Route>
               <Route exact path="/about">
                 <AboutPage />
+              </Route>
+              <Route exact path="/notifications">
+                <NotificationsPage />
               </Route>
             </Switch>
             {returnTradePath()}
