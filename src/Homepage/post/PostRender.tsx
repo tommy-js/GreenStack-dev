@@ -39,7 +39,7 @@ const PostRender: React.FC<Props> = ({ info }: Props) => {
         timestamp={info.timestamp}
       />
       <InputPost postId={info.postId} />
-      <PostComments comments={info.comments} />
+      <PostComments postId={info.postId} comments={info.comments} />
     </div>
   );
 };

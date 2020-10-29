@@ -3,6 +3,7 @@ import IndividualPostComment from "./IndividualPostComment";
 import { LoadingGeneral } from "../../login/LoadingUser";
 
 interface Props {
+  postId: string;
   comments: {
     userId: string;
     username: string;
@@ -18,10 +19,12 @@ const PostComments: React.FC<Props> = (props) => {
   const [comments, setComments] = useState();
 
   useEffect(() => {
-    props.comments.sort(function (a, b) {
-      return b.timestamp - a.timestamp;
-    });
-    setComments(props.comments);
+    if (props.comments) {
+      props.comments.sort(function (a, b) {
+        return b.timestamp - a.timestamp;
+      });
+      setComments(props.comments);
+    }
   }, []);
 
   useEffect(() => {
@@ -41,6 +44,7 @@ const PostComments: React.FC<Props> = (props) => {
               text={el.text}
               likes={el.likes}
               dislikes={el.dislikes}
+              postId={props.postId}
             />
           ))}
         </div>

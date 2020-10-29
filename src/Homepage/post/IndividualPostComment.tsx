@@ -1,4 +1,6 @@
 import React from "react";
+import LikePostComment from "../../resolvers/LikePostComment";
+import DislikePostComment from "../../resolvers/DislikePostComment";
 import { returnDate } from "../../notifications/notificationsTimestamp";
 
 interface Props {
@@ -9,6 +11,7 @@ interface Props {
   text: string;
   likes: number;
   dislikes: number;
+  postId: string;
 }
 
 const IndividualPostComment: React.FC<Props> = (props) => {
@@ -19,6 +22,12 @@ const IndividualPostComment: React.FC<Props> = (props) => {
       <p className="individual_post_comment_date">
         Posted {returnDate(props.timestamp)}
       </p>
+      <div className="individual_post_comment_option_block">
+        <p>{props.likes}</p>
+        <LikePostComment postId={props.postId} commentId={props.commentId} />
+        <p>{props.dislikes}</p>
+        <DislikePostComment postId={props.postId} commentId={props.commentId} />
+      </div>
     </div>
   );
 };

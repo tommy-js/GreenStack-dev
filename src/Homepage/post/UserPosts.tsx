@@ -6,8 +6,11 @@ import PostPage from "./PostPage";
 import { useLazyQuery } from "react-apollo";
 import { queryPosts } from "../../queries/queries";
 
-interface Props {
+interface Redux {
   posts: any;
+}
+
+interface Props extends Redux {
   modRoutes: (arr: Posts[]) => void;
 }
 
@@ -23,8 +26,6 @@ interface Posts {
 
 const UserPosts: React.FC<Props> = (props) => {
   const [sortedArr, setSortedArr] = useState(props.posts);
-  const [postId, setPostId] = useState("");
-  const [postView, setPostView] = useState(false);
 
   useEffect(() => {
     let arr = props.posts.sort(function (a: any, b: any) {

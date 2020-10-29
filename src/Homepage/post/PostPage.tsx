@@ -39,14 +39,14 @@ const PostPage: React.FC<Props> = (props) => {
       setDataLoaded(true);
       console.log(data);
       setInfo({
-        text: data.post.text,
-        title: data.post.title,
-        likes: data.post.likes,
-        dislikes: data.post.dislikes,
-        timestamp: data.post.timestamp,
-        postId: data.post.postId,
-        comments: data.post.comments,
-        accompaniedURL: data.post.accompaniedURL,
+        text: data.text,
+        title: data.title,
+        likes: data.likes,
+        dislikes: data.dislikes,
+        timestamp: data.timestamp,
+        postId: data.postId,
+        comments: data.comments,
+        accompaniedURL: data.accompaniedURL,
       });
     }
   }, [data]);

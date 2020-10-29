@@ -416,6 +416,22 @@ const sellStockMutation = gql`
   }
 `;
 
+const likePostMutation = gql`
+  mutation($postId: String!, $commentId: String!) {
+    likePost(postId: $postId, commentId: $commentId) {
+      username
+    }
+  }
+`;
+
+const dislikePostMutation = gql`
+  mutation($postId: String!, $commentId: String!) {
+    dislikePost(postId: $postId, commentId: $commentId) {
+      username
+    }
+  }
+`;
+
 const userLoginQuery = gql`
   query($username: String!) {
     userLogin(username: $username) {
@@ -649,6 +665,7 @@ const individualPostQuery = gql`
       accompaniedURL
       comments {
         userId
+        commentId
         username
         timestamp
         text
@@ -741,6 +758,7 @@ export {
   savePreferredCommentaryMutation,
   dislikeStockMutation,
   likeStockMutation,
+  dislikePostMutation,
   postMutation,
   pushTradeMutation,
   blockUserMutation,
@@ -751,6 +769,7 @@ export {
   removeStockFromWatchlistMutation,
   newTokenMutation,
   purchaseStockMutation,
+  likePostMutation,
   sellStockMutation,
   distinctUserQuery,
   userQuery,
