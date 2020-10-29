@@ -5,6 +5,7 @@ import Post from "../Post";
 import { PostType, NewsType, CommentType } from "./FeedTypes";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import { useQuery } from "react-apollo";
+import { returnFeedQuery } from "../../queries/queries";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../../actions/actions";
 

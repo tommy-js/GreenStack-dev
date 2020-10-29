@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import CompanyInformationBlock from "./CompanyInformationBlock";
-import CompanyOptions from "./CompanyOptions";
 import CompanyNewsBlock from "./CompanyNewsBlock.js";
 import CompanyComments from "./CompanyComments";
 import TradeBlock from "./TradeBlock";

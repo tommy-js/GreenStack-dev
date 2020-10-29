@@ -1,36 +1,47 @@
 import React, { useState, useEffect } from "react";
 import NewsComponent from "../Homepage/NewsComponent";
 import Header from "../User/Header";
+import { useQuery } from "react-apollo";
+import { returnNewsQuery } from "../queries/queries";
 
 const CompanyNewsBlock = (props) => {
   const [loggedNews, setLoggedNews] = useState();
   const [shortLoggedNews, setShortLoggedNews] = useState();
   const [maxLength, setMaxLength] = useState();
+  const { data, loading } = useQuery(returnNewsQuery, {
+    variables: { title: props.title },
+  });
 
   useEffect(() => {
-    var url =
-      "http://newsapi.org/v2/everything?" +
-      `q=${props.title}&` +
-      "from=2020-07-20&" +
-      "sortBy=popularity&" +
-      "apiKey=b35524fdc67945b19ed0553c2a92327f";
+    if (data) {
+      console.log(data);
+    }
+  }, [data]);
 
-    var req = new Request(url);
-    fetch(req)
-      .then(function (response) {
-        return response.json();
-      })
-      .then((el) => {
-        setLoggedNews(el.articles);
-        setMaxLength(el.articles.length);
-        let shortenedArray = el.articles.slice(0, 3);
-        setShortLoggedNews(shortenedArray);
-      })
-      .catch((error) => {
-        console.log("cannot get articles");
-        setShortLoggedNews([]);
-      });
-  }, []);
+  // useEffect(() => {
+  //   var url =
+  //     "http://newsapi.org/v2/everything?" +
+  //     `q=${props.title}&` +
+  //     "from=2020-10-20&" +
+  //     "sortBy=popularity&" +
+  //     "apiKey=b35524fdc67945b19ed0553c2a92327f";
+  //
+  //   var req = new Request(url);
+  //   fetch(req)
+  //     .then(function (response) {
+  //       return response.json();
+  //     })
+  //     .then((el) => {
+  //       setLoggedNews(el.articles);
+  //       setMaxLength(el.articles.length);
+  //       let shortenedArray = el.articles.slice(0, 3);
+  //       setShortLoggedNews(shortenedArray);
+  //     })
+  //     .catch((error) => {
+  //       console.log("cannot get articles");
+  //       setShortLoggedNews([]);
+  //     });
+  // }, []);
 
   function loadMore() {
     if (shortLoggedNews.length - 5 <= maxLength) {

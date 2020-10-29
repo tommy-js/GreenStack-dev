@@ -683,6 +683,24 @@ const requestDataSetQuery = gql`
   }
 `;
 
+const returnNewsQuery = gql`
+  query($title: String!) {
+    returnNews(title: $title) {
+      articles {
+        source {
+          id
+          name
+        }
+        author
+        title
+        description
+        publishedAt
+        content
+      }
+    }
+  }
+`;
+
 export {
   createUserMutation,
   updateDarkModeMutation,
@@ -730,4 +748,5 @@ export {
   otherUserQuery,
   returnFeedQuery,
   requestDataSetQuery,
+  returnNewsQuery,
 };
