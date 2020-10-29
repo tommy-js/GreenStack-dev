@@ -16,6 +16,7 @@ interface Redux {
 interface Props extends Redux {
   inspectUsername: string;
   inspectUserId: string;
+  modRoutes: (route: any) => void;
 }
 
 const UserProfile: React.FC<Props> = (props) => {
@@ -47,6 +48,7 @@ const UserProfile: React.FC<Props> = (props) => {
       console.log(data);
       setUserProfile(data.user);
       setUserProfileState(true);
+      props.modRoutes(data.user.posts);
     }
   }, [data]);
 

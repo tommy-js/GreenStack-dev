@@ -1,5 +1,6 @@
 import React from "react";
 import PostStatus from "./PostStatus";
+import { Link } from "react-router-dom";
 
 interface Props {
   postId: number;
@@ -14,8 +15,10 @@ interface Props {
 const IndividualUserProfilePost: React.FC<Props> = (props) => {
   return (
     <div className="user_profile_post">
-      <h2 className="user_profile_title">{props.title}</h2>
-      <p className="user_profile_text">{props.text}</p>
+      <Link to={`/home/post/${props.postId}`}>
+        <h2 className="user_profile_title">{props.title}</h2>
+        <p className="user_profile_text">{props.text}</p>
+      </Link>
       <PostStatus
         likes={props.likes}
         dislikes={props.dislikes}

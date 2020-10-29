@@ -39,6 +39,7 @@ interface Props extends Redux {
 }
 
 const Homepage: React.FC<Props> = (props) => {
+  const [posts, setPosts] = useState([] as any);
   const [userRoutePaths, setUserRoutePaths] = useState([] as any);
   const [tradeRoutePaths, setTradeRoutePaths] = useState([] as any);
   const [loadingInUser, setLoadingInUser] = useState(false);
@@ -101,6 +102,10 @@ const Homepage: React.FC<Props> = (props) => {
     browserHist.push("/home/search");
   }
 
+  function modPosts(routes: any) {
+    setPosts(routes);
+  }
+
   function returnLoadingIcon() {
     if (status === true) {
       return (
@@ -119,9 +124,9 @@ const Homepage: React.FC<Props> = (props) => {
             </Route>
             <Route exact path="/home/explore" component={Explore} />
             <Route exact path="/home/posts">
-              <UserPosts modRoutes={modTradeRoutes} />
+              <UserPosts modRoutes={modPosts} />
             </Route>
-            {props.posts.map((el: any) => (
+            {posts.map((el: any) => (
               <Route key={el.postId} path={`/home/post/${el.postId}`}>
                 <PostPage postId={el.postId} />
               </Route>
@@ -137,6 +142,7 @@ const Homepage: React.FC<Props> = (props) => {
                 <UserProfile
                   inspectUsername={el.username}
                   inspectUserId={el.userId}
+                  modRoutes={modPosts}
                 />
               </Route>
             ))}
