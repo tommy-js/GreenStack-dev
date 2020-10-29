@@ -23,9 +23,9 @@ const IndividualPostComment: React.FC<Props> = (props) => {
         Posted {returnDate(props.timestamp)}
       </p>
       <div className="individual_post_comment_option_block">
-        <p>{props.likes}</p>
+        <p className="individual_post_comment_likes">{props.likes}</p>
         <LikePostComment postId={props.postId} commentId={props.commentId} />
-        <p>{props.dislikes}</p>
+        <p className="individual_post_comment_likes">{props.dislikes}</p>
         <DislikePostComment postId={props.postId} commentId={props.commentId} />
       </div>
     </div>
