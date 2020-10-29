@@ -26,3 +26,18 @@
 .news_comp_button {
   display: inline-block;
 }
+
+.individual_post_comment {
+  position: relative;
+  padding: 5px;
+  box-sizing: border-box;
+  font-family: $standard_font;
+  border: 1px solid black;
+}
+
+.individual_post_comment_text {
+  width: 100%;
+  word-wrap: break-word;
+  line-height: 150%;
+  @include testing;
+}

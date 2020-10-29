@@ -12,23 +12,23 @@ interface Props {
 
 const PushCommentPost: React.FC<Props> = (props) => {
   function submitComment() {
-    console.log("post id: " + props.postId);
-    console.log("text: " + props.text);
-    let token = sessionStorage.getItem("Token");
-    props
-      .pushCommentPostMutation({
-        variables: {
-          token: token,
-          postId: props.postId,
-          text: props.text,
-        },
-      })
-      .catch((err: any) => {
-        console.log(err);
-      })
-      .then((res: any) => {
-        console.log(res);
-      });
+    if (props.text.length < 180 && props.text.length > 0) {
+      let token = sessionStorage.getItem("Token");
+      props
+        .pushCommentPostMutation({
+          variables: {
+            token: token,
+            postId: props.postId,
+            text: props.text,
+          },
+        })
+        .catch((err: any) => {
+          console.log(err);
+        })
+        .then((res: any) => {
+          console.log(res);
+        });
+    }
   }
 
   return <button onClick={() => submitComment()}>Submit</button>;

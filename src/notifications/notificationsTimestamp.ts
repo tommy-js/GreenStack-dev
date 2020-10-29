@@ -6,12 +6,18 @@ export function returnDate(timestamp: number) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
 
+  let updatedMin = `${minutes}`;
+
+  if (minutes < 10) {
+    updatedMin = `0${minutes}`;
+  }
+
   let timeOfDay = "AM";
   if (hours / 12 > 1) {
     timeOfDay = "PM";
     hours -= 12;
   }
 
-  let str = `${months}/${days}/${years} at ${hours}:${minutes}${timeOfDay}`;
+  let str = `${months}/${days}/${years} at ${hours}:${updatedMin}${timeOfDay}`;
   return str;
 }

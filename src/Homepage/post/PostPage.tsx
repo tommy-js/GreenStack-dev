@@ -15,6 +15,7 @@ interface Data {
   dislikes: number;
   timestamp: number;
   postId: string;
+  accompaniedURL: string;
   comments: {
     userId: string;
     username: string;
@@ -45,6 +46,7 @@ const PostPage: React.FC<Props> = (props) => {
         timestamp: data.post.timestamp,
         postId: data.post.postId,
         comments: data.post.comments,
+        accompaniedURL: data.post.accompaniedURL,
       });
     }
   }, [data]);

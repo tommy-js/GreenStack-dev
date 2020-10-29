@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import IndividualPostComment from "./IndividualPostComment";
+import { LoadingGeneral } from "../../login/LoadingUser";
 
 interface Props {
   comments: {
@@ -18,7 +19,7 @@ const PostComments: React.FC<Props> = (props) => {
 
   useEffect(() => {
     props.comments.sort(function (a, b) {
-      return a.timestamp - b.timestamp;
+      return b.timestamp - a.timestamp;
     });
     setComments(props.comments);
   }, []);
@@ -44,7 +45,7 @@ const PostComments: React.FC<Props> = (props) => {
           ))}
         </div>
       );
-    } else return null;
+    } else return <LoadingGeneral />;
   }
 
   return <div>{returnRender()}</div>;

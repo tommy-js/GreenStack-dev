@@ -25,9 +25,20 @@ interface Trade extends Redux {
 const CommentInputPost: React.FC<Post> = (props) => {
   const [text, setText] = useState("");
 
+  function modText(input: string) {
+    if (input.length < 180) {
+      setText(input);
+      console.log(input.length);
+    }
+  }
+
   return (
     <div id="comment_input_div">
-      <textarea id="comment_input" onChange={(e) => setText(e.target.value)} />
+      <textarea
+        id="comment_input"
+        value={text}
+        onChange={(e) => modText(e.target.value)}
+      />
       <PushCommentPost
         userId={props.userId}
         postId={props.postId}

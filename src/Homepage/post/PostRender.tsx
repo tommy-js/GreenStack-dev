@@ -12,6 +12,7 @@ interface Data {
   dislikes: number;
   timestamp: number;
   postId: string;
+  accompaniedURL: string;
   comments: {
     userId: string;
     username: string;
