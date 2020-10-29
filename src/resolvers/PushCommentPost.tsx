@@ -4,7 +4,6 @@ import { flowRight as compose } from "lodash";
 import { pushCommentPostMutation } from "../queries/queries.js";
 
 interface Props {
-  username: string;
   userId: string;
   postId: string;
   text: string;
@@ -13,11 +12,12 @@ interface Props {
 
 const PushCommentPost: React.FC<Props> = (props) => {
   function submitComment() {
+    console.log("post id: " + props.postId);
+    console.log("text: " + props.text);
     let token = sessionStorage.getItem("Token");
     props
       .pushCommentPostMutation({
         variables: {
-          username: props.username,
           token: token,
           postId: props.postId,
           text: props.text,

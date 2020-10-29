@@ -3,6 +3,7 @@ import PostTitle from "./PostTitle";
 import PostText from "./PostText";
 import PostInformation from "./PostInformation";
 import PostComments from "./PostComments";
+import { InputPost } from "../CommentInput";
 
 interface Data {
   title: string;
@@ -10,7 +11,7 @@ interface Data {
   likes: number;
   dislikes: number;
   timestamp: number;
-  postId: number;
+  postId: string;
   comments: {
     userId: string;
     username: string;
@@ -36,6 +37,7 @@ const PostRender: React.FC<Props> = ({ info }: Props) => {
         dislikes={info.dislikes}
         timestamp={info.timestamp}
       />
+      <InputPost postId={info.postId} />
       <PostComments comments={info.comments} />
     </div>
   );

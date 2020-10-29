@@ -12,7 +12,7 @@ interface Props {
 
 const IndividualUserPost: React.FC<Props> = (props) => {
   return (
-    <Link to={`/home/post/${props.postId}`}>
+    <Link className="standard_link" to={`/home/post/${props.postId}`}>
       <div className="homepage_block_component">
         <h2 className="individual_user_post_title">{props.title}</h2>
         <p className="individual_user_post_textblock">{props.text}</p>

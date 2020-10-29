@@ -320,9 +320,19 @@ const blockUserMutation = gql`
 `;
 
 const postMutation = gql`
-  mutation($token: String!, $title: String!, $text: String!) {
-    post(token: $token, title: $title, text: $text) {
-      title
+  mutation(
+    $token: String!
+    $title: String!
+    $text: String!
+    $accompaniedURL: String!
+  ) {
+    post(
+      token: $token
+      title: $title
+      text: $text
+      accompaniedURL: $accompaniedURL
+    ) {
+      username
     }
   }
 `;
@@ -469,6 +479,7 @@ const otherUserQuery = gql`
         dislikes
         title
         text
+        accompaniedURL
         comments {
           userId
           username
@@ -545,6 +556,7 @@ const userQuery = gql`
         dislikes
         title
         text
+        accompaniedURL
         comments {
           userId
           username
@@ -619,6 +631,7 @@ const queryPosts = gql`
       timestamp
       title
       text
+      accompaniedURL
     }
   }
 `;
@@ -628,10 +641,12 @@ const individualPostQuery = gql`
     post(postId: $postId) {
       userId
       timestamp
+      postId
       likes
       dislikes
       title
       text
+      accompaniedURL
       comments {
         userId
         username
@@ -694,6 +709,7 @@ const returnNewsQuery = gql`
         author
         title
         description
+        url
         publishedAt
         content
       }

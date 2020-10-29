@@ -4,10 +4,10 @@ import { flowRight as compose } from "lodash";
 import { postMutation } from "../queries/queries.js";
 
 interface Props {
-  userId: number;
-  username: string;
   title: string;
   text: string;
+  accompaniedURL: string;
+  buttonTitle: string;
   postMutation: (variables: object) => any;
   unsuccessfulEvent: () => void;
   successfulEvent: () => void;
@@ -21,9 +21,9 @@ const SubmitPost: React.FC<Props> = (props) => {
         .postMutation({
           variables: {
             token: token,
-            username: props.username,
             title: props.title,
             text: props.text,
+            accompaniedURL: props.accompaniedURL,
           },
         })
         .catch((err: any) => {
@@ -37,7 +37,7 @@ const SubmitPost: React.FC<Props> = (props) => {
     }
   }
 
-  return <button onClick={() => submit()}>Submit</button>;
+  return <button onClick={() => submit()}>{props.buttonTitle}</button>;
 };
 
 export default compose(graphql(postMutation, { name: "postMutation" }))(

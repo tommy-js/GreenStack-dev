@@ -16,7 +16,11 @@ const NewsComponent: React.FC<Props> = (props) => {
         <p>{props.author}</p>
         <p>{props.description}</p>
       </a>
-      <NewsCompOptions />
+      <NewsCompOptions
+        title={props.title}
+        text={props.description}
+        accompaniedURL={props.url}
+      />
     </div>
   );
 };

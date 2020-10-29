@@ -29,6 +29,7 @@ const userSchema = new Schema({
       dislikes: Number,
       title: String,
       text: String,
+      accompaniedURL: String,
       comments: [
         {
           userId: String,

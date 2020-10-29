@@ -14,34 +14,17 @@ const CompanyNewsBlock = (props) => {
 
   useEffect(() => {
     if (data) {
-      console.log(data);
+      if (data.returnNews.articles) {
+        setLoggedNews(data.returnNews.articles);
+        setMaxLength(data.returnNews.articles.length);
+        let shortenedArray = data.returnNews.articles.slice(0, 3);
+        setShortLoggedNews(shortenedArray);
+      } else {
+        setLoggedNews([]);
+        setShortLoggedNews([]);
+      }
     }
   }, [data]);
-
-  // useEffect(() => {
-  //   var url =
-  //     "http://newsapi.org/v2/everything?" +
-  //     `q=${props.title}&` +
-  //     "from=2020-10-20&" +
-  //     "sortBy=popularity&" +
-  //     "apiKey=b35524fdc67945b19ed0553c2a92327f";
-  //
-  //   var req = new Request(url);
-  //   fetch(req)
-  //     .then(function (response) {
-  //       return response.json();
-  //     })
-  //     .then((el) => {
-  //       setLoggedNews(el.articles);
-  //       setMaxLength(el.articles.length);
-  //       let shortenedArray = el.articles.slice(0, 3);
-  //       setShortLoggedNews(shortenedArray);
-  //     })
-  //     .catch((error) => {
-  //       console.log("cannot get articles");
-  //       setShortLoggedNews([]);
-  //     });
-  // }, []);
 
   function loadMore() {
     if (shortLoggedNews.length - 5 <= maxLength) {
@@ -66,11 +49,11 @@ const CompanyNewsBlock = (props) => {
                 description={el.description}
                 url={el.url}
               />
-              <button className="center_button" onClick={() => loadMore()}>
-                Load more
-              </button>
             </div>
           ))}
+          <button className="center_button" onClick={() => loadMore()}>
+            Load more
+          </button>
         </div>
       );
     } else {

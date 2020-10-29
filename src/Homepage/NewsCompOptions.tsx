@@ -1,10 +1,33 @@
 import React from "react";
+import SubmitPost from "../resolvers/SubmitPost";
 
-const NewsCompOptions: React.FC = () => {
+interface Props {
+  title: string;
+  text: string;
+  accompaniedURL: string;
+}
+
+const NewsCompOptions: React.FC<Props> = (props) => {
+  function unsuccessfulEvent() {
+    console.log("post not successful");
+  }
+
+  function successfulEvent() {
+    console.log("post successful");
+  }
+
   return (
     <div className="news_comp_options">
-      <button className="news_comp_button">Like</button>
-      <button className="news_comp_button">Post To Feed</button>
+      <div className="news_comp_button">
+        <SubmitPost
+          title={props.title}
+          text={props.text}
+          accompaniedURL={props.accompaniedURL}
+          buttonTitle="Post to timeline"
+          unsuccessfulEvent={unsuccessfulEvent}
+          successfulEvent={successfulEvent}
+        />
+      </div>
     </div>
   );
 };

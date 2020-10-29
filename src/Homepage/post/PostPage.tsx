@@ -14,7 +14,7 @@ interface Data {
   likes: number;
   dislikes: number;
   timestamp: number;
-  postId: number;
+  postId: string;
   comments: {
     userId: string;
     username: string;

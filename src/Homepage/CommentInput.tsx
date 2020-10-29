@@ -29,7 +29,6 @@ const CommentInputPost: React.FC<Post> = (props) => {
     <div id="comment_input_div">
       <textarea id="comment_input" onChange={(e) => setText(e.target.value)} />
       <PushCommentPost
-        username={props.username}
         userId={props.userId}
         postId={props.postId}
         text={text}
