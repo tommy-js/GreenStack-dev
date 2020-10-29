@@ -9,3 +9,22 @@
   margin: 10px;
   font-family: $standard_font;
 }
+
+.standard_link {
+  color: black;
+  text-decoration: none;
+}
+
+.news_comp_options {
+  position: relative;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.news_comp_button {
+  display: inline-block;
+}
