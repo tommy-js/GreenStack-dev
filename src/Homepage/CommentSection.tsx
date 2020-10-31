@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import IndividualComment from "./IndividualComment";
 
 interface Props {
+  postId: string;
   comments: {
+    commentId: string;
     username: string;
     text: string;
     timestamp: number;
@@ -13,6 +15,8 @@ interface Props {
 
 const CommentSection: React.FC<Props> = (props) => {
   const [comments, setComments] = useState();
+  console.log("props CommentSection: ");
+  console.log(props);
 
   useEffect(() => {
     props.comments.sort(function (a, b) {
@@ -31,6 +35,8 @@ const CommentSection: React.FC<Props> = (props) => {
         <div id="comment_section">
           {props.comments.map((el: any) => (
             <IndividualComment
+              postId={props.postId}
+              commentId={el.commentId}
               key={el.timestamp}
               username={el.username}
               text={el.text}

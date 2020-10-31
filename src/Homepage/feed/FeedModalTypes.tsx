@@ -1,8 +1,7 @@
 import React from "react";
 import { InputPost, InputStock } from "../CommentInput";
 import CommentSection from "../CommentSection";
-import { NavLink, Link } from "react-router-dom";
-import { browserHist } from "../../AppMain/history.js";
+import { Link } from "react-router-dom";
 
 interface Props {
   title: string;
@@ -15,6 +14,7 @@ interface Props {
   dislikes: number;
   replies: number;
   comments: {
+    commentId: string;
     username: string;
     text: string;
     timestamp: number;
@@ -38,7 +38,7 @@ export const RenderModal: React.FC<Props> = (props) => {
       </p>
       <p>{props.text}</p>
       <InputPost postId={props.postId} />
-      <CommentSection comments={props.comments} />
+      <CommentSection postId={props.postId} comments={props.comments} />
     </div>
   );
 };

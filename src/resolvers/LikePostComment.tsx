@@ -7,17 +7,24 @@ import like from "../images/like.png";
 interface Props {
   postId: string;
   commentId: string;
-  likePostMutation: (variables: object) => void;
+  likePostMutation: (variables: object) => any;
 }
 
 const LikePostComment: React.FC<Props> = (props) => {
   function passData() {
-    props.likePostMutation({
-      variables: {
-        postId: props.postId,
-        commentId: props.commentId,
-      },
-    });
+    props
+      .likePostMutation({
+        variables: {
+          postId: props.postId,
+          commentId: props.commentId,
+        },
+      })
+      .then((res: any) => {
+        console.log(res);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
   }
 
   return (

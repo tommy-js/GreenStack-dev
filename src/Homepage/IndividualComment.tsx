@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import LikePostComment from "../resolvers/LikePostComment";
+import DislikePostComment from "../resolvers/DislikePostComment";
 
 interface Props {
+  postId: string;
+  commentId: string;
   username: string;
   text: string;
   timestamp: number;
@@ -62,8 +66,11 @@ const IndividualComment: React.FC<Props> = (props) => {
       <p id="comment_time">posted at {props.timestamp}</p>
       <p id="comment_text">{props.text}</p>
       <p id="comment_information">
-        {likes} <span onClick={() => like()}>upvote</span>, {dislikes}{" "}
-        <span onClick={() => dislike()}>downvote</span>,
+        {likes}{" "}
+        <LikePostComment postId={props.postId} commentId={props.commentId} />,{" "}
+        {dislikes}{" "}
+        <DislikePostComment postId={props.postId} commentId={props.commentId} />
+        ,
       </p>
     </div>
   );
