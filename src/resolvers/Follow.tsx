@@ -4,10 +4,8 @@ import { flowRight as compose } from "lodash";
 import { pushFollowerToUserMutation } from "../queries/queries.js";
 
 interface Props {
-  userId: string;
-  username: string;
-  followerId: string;
-  followerName: string;
+  followId: string;
+  followName: string;
   modAlreadyAdded: () => void;
   pushFollowerToUserMutation: (variables: object) => any;
 }
@@ -19,9 +17,8 @@ const Follow: React.FC<Props> = (props) => {
       .pushFollowerToUserMutation({
         variables: {
           token: token,
-          followerName: props.username,
-          userId: props.followerId,
-          username: props.followerName,
+          followId: props.followId,
+          followName: props.followName,
         },
       })
       .catch((err: any) => console.log(err))

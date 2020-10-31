@@ -261,22 +261,9 @@ const updateUserSettingsMutation = gql`
 `;
 
 const pushFollowerToUserMutation = gql`
-  mutation(
-    $token: String!
-    $userId: ID!
-    $followerId: ID!
-    $followerName: String!
-    $username: String!
-  ) {
-    followUser(
-      token: $token
-      followerId: $followerId
-      followerName: $followerName
-    ) {
-      userId
-    }
-    followingUser(token: $token, followingId: $userId, username: $username) {
-      userId
+  mutation($token: String!, $followId: ID!, $followName: String!) {
+    followUser(token: $token, followId: $followId, followName: $followName) {
+      username
     }
   }
 `;
@@ -473,7 +460,6 @@ const otherUserQuery = gql`
         username
       }
       followers {
-        id
         followerId
         followerName
         blocked
@@ -541,7 +527,6 @@ const userQuery = gql`
         username
       }
       followers {
-        id
         followerId
         followerName
         blocked
@@ -563,8 +548,6 @@ const userQuery = gql`
         gain
       }
       posts {
-        typeId
-        dataId
         userId
         postId
         timestamp
@@ -690,14 +673,19 @@ const searchQuery = gql`
 `;
 
 const returnFeedQuery = gql`
-  query($userId: ID!) {
-    returnFollowerFeed(userId: $userId) {
-      userId
-    }
-    returnStockFeed(userId: $userId) {
-      news {
-        text
+  query($token: String!) {
+    returnFollowerFeed(token: $token) {
+      posts {
+        userId
+        postId
         timestamp
+        likes
+        dislikes
+        title
+        text
+        comments {
+          userId
+        }
       }
     }
   }

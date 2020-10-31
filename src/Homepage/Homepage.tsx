@@ -12,6 +12,7 @@ import UserTrade from "./UserTrade";
 import { LoadingUser } from "../login/LoadingUser";
 import SearchResults from "./SearchResults";
 import PostPage from "./post/PostPage";
+import FeedModal from "./feed/FeedModal";
 import UserLoginAuthSubresolver from "../resolvers/UserLoginAuthSubresolver";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import {
@@ -32,6 +33,7 @@ interface Redux {
   userId: any;
   username: string;
   posts: any;
+  feed: any;
 }
 
 interface Props extends Redux {
@@ -104,6 +106,20 @@ const Homepage: React.FC<Props> = (props) => {
 
   function modPosts(routes: any) {
     setPosts(routes);
+  }
+
+  function feedPathRender() {
+    if (props.feed) {
+      return (
+        <div>
+          {props.feed.map((el: any) => (
+            <Route exact path={`/home/post/${el.postId}`}>
+              <FeedModal data={el} />
+            </Route>
+          ))}
+        </div>
+      );
+    }
   }
 
   function returnLoadingIcon() {
@@ -202,6 +218,7 @@ const Homepage: React.FC<Props> = (props) => {
                     price={el.price}
                   />
                 </Route>
+                {feedPathRender()}
               </div>
             ))}
           </div>

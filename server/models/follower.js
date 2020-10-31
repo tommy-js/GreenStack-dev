@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 const followerSchema = new Schema({
   followerId: String,
   followerName: String,
-  id: String,
   blocked: Boolean,
 });
 

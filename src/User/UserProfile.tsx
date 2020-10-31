@@ -33,7 +33,7 @@ const UserProfile: React.FC<Props> = (props) => {
     console.log("userval.following:");
     console.log(arr);
     console.log("props.userId: " + props.userId);
-    let filter = arr.filter((arr: any) => arr.userId === props.userId);
+    let filter = arr.filter((arr: any) => arr.userId === props.inspectUserId);
     console.log("filter:");
     console.log(filter);
     if (filter.length > 0) {
@@ -63,10 +63,8 @@ const UserProfile: React.FC<Props> = (props) => {
       return (
         <div>
           <Follow
-            userId={props.userId}
-            username={props.username}
-            followerId={props.userId}
-            followerName={userProfile.username}
+            followId={props.inspectUserId}
+            followName={userProfile.username}
             modAlreadyAdded={modAlreadyAdded}
           />
         </div>

@@ -72,6 +72,9 @@ const userReducer = (state: any, action: any) => {
   if (action.type == "SET_CURRENT_PRICES") {
     newState.currentPrices = action.payload;
   }
+  if (action.type == "SET_FEED") {
+    newState.feed = action.payload;
+  }
   return newState;
 };
 

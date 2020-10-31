@@ -59,12 +59,13 @@ const Post: React.FC<Redux> = (props) => {
       />
       <div className="post_button">
         <SubmitPost
-          userId={props.userId}
           username={props.username}
           title={title}
           text={text}
+          buttonTitle="Post"
           successfulEvent={successfulEvent}
           unsuccessfulEvent={unsuccessfulEvent}
+          accompaniedURL=""
         />
       </div>
       {returnPass()}

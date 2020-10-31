@@ -20,8 +20,6 @@ const userSchema = new Schema({
   profileImage: String,
   posts: [
     {
-      typeId: Number,
-      dataId: String,
       userId: String,
       postId: String,
       timestamp: Number,
@@ -44,9 +42,7 @@ const userSchema = new Schema({
     },
   ],
   following: [{ userId: String, username: String }],
-  followers: [
-    { followerId: String, followerName: String, blocked: Boolean, id: String },
-  ],
+  followers: [{ followerId: String, followerName: String, blocked: Boolean }],
   stocks: [
     {
       stockId: String,
