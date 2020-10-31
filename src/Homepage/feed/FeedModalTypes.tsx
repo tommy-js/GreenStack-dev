@@ -24,6 +24,7 @@ interface Props {
 }
 
 export const RenderModal: React.FC<Props> = (props) => {
+  console.log(props.comments);
   return (
     <div>
       <h2>{props.title}</h2>

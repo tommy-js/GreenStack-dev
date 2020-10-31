@@ -113,7 +113,7 @@ const Homepage: React.FC<Props> = (props) => {
       return (
         <div>
           {props.feed.map((el: any) => (
-            <Route exact path={`/home/post/${el.postId}`}>
+            <Route path={`/home/post/${el.postId}`}>
               <FeedModal data={el} />
             </Route>
           ))}

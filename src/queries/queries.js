@@ -685,6 +685,12 @@ const returnFeedQuery = gql`
         text
         comments {
           userId
+          username
+          commentId
+          timestamp
+          text
+          likes
+          dislikes
         }
       }
     }
