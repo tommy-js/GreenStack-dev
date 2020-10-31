@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import LikePost from "../../resolvers/LikePost";
+import DislikePost from "../../resolvers/DislikePost";
 import { Link } from "react-router-dom";
 
 interface Props {
@@ -68,8 +70,10 @@ export const RenderModal: React.FC<Props> = (props) => {
         <p>{props.text}</p>
         <p>{props.timestamp}</p>
       </Link>
-      {props.likes} <span onClick={() => like()}>upvote</span>, {props.dislikes}{" "}
-      <span onClick={() => dislike()}>downvote</span>, shares: {props.replies}
+      <p>
+        {props.likes}, <LikePost postId={props.postId} /> {props.dislikes},{" "}
+        <DislikePost postId={props.postId} /> comments: {props.replies}
+      </p>
     </div>
   );
 };

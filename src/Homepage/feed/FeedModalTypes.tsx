@@ -1,6 +1,8 @@
 import React from "react";
 import { InputPost, InputStock } from "../CommentInput";
 import CommentSection from "../CommentSection";
+import LikePost from "../../resolvers/LikePost";
+import DislikePost from "../../resolvers/DislikePost";
 import { Link } from "react-router-dom";
 
 interface Props {
@@ -33,8 +35,8 @@ export const RenderModal: React.FC<Props> = (props) => {
         {props.timestamp}
       </h4>
       <p>
-        likes: {props.likes}, dislikes: {props.dislikes}, shares:{" "}
-        {props.replies}
+        {props.likes}, <LikePost postId={props.postId} /> {props.dislikes},{" "}
+        <DislikePost postId={props.postId} /> comments: {props.replies}
       </p>
       <p>{props.text}</p>
       <InputPost postId={props.postId} />

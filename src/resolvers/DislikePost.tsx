@@ -1,30 +1,26 @@
 import React from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
-import { dislikeCommentMutation } from "../queries/queries";
+import { dislikePostMutation } from "../queries/queries";
 import dislike from "../images/dislike.png";
 
 interface Props {
   postId: string;
-  commentId: string;
-  dislikeCommentMutation: (variables: object) => any;
+  dislikePostMutation: (variables: object) => any;
 }
 
-const DislikePostComment: React.FC<Props> = (props) => {
+const DislikePost: React.FC<Props> = (props) => {
   console.log("dislikes posts mutation postId: " + props.postId);
-  console.log("dislikes posts mutation commentId: " + props.commentId);
   function passData() {
     props
-      .dislikeCommentMutation({
+      .dislikePostMutation({
         variables: {
           postId: props.postId,
-          commentId: props.commentId,
         },
       })
       .then((res: any) => {
         console.log("passed");
         console.log("postId: " + props.postId);
-        console.log("commentId: " + props.commentId);
       })
       .catch((err: any) => {
         console.log("error");
@@ -39,5 +35,5 @@ const DislikePostComment: React.FC<Props> = (props) => {
 };
 
 export default compose(
-  graphql(dislikeCommentMutation, { name: "dislikeCommentMutation" })
-)(DislikePostComment);
+  graphql(dislikePostMutation, { name: "dislikePostMutation" })
+)(DislikePost);

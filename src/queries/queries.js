@@ -403,17 +403,33 @@ const sellStockMutation = gql`
   }
 `;
 
-const likePostMutation = gql`
+const likeCommentMutation = gql`
   mutation($postId: String!, $commentId: String!) {
-    likePost(postId: $postId, commentId: $commentId) {
+    likeComment(postId: $postId, commentId: $commentId) {
+      username
+    }
+  }
+`;
+
+const dislikeCommentMutation = gql`
+  mutation($postId: String!, $commentId: String!) {
+    dislikeComment(postId: $postId, commentId: $commentId) {
+      username
+    }
+  }
+`;
+
+const likePostMutation = gql`
+  mutation($postId: String!) {
+    likePost(postId: $postId) {
       username
     }
   }
 `;
 
 const dislikePostMutation = gql`
-  mutation($postId: String!, $commentId: String!) {
-    dislikePost(postId: $postId, commentId: $commentId) {
+  mutation($postId: String!) {
+    dislikePost(postId: $postId) {
       username
     }
   }
@@ -752,7 +768,7 @@ export {
   savePreferredCommentaryMutation,
   dislikeStockMutation,
   likeStockMutation,
-  dislikePostMutation,
+  dislikeCommentMutation,
   postMutation,
   pushTradeMutation,
   blockUserMutation,
@@ -763,8 +779,10 @@ export {
   removeStockFromWatchlistMutation,
   newTokenMutation,
   purchaseStockMutation,
-  likePostMutation,
+  likeCommentMutation,
   sellStockMutation,
+  likePostMutation,
+  dislikePostMutation,
   distinctUserQuery,
   userQuery,
   stockQuery,
