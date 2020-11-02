@@ -21,7 +21,6 @@ const FeedModal: React.FC<Props> = (props) => {
           timestamp={props.data.timestamp}
           likes={props.data.likes}
           dislikes={props.data.dislikes}
-          replies={props.data.replies}
           comments={props.data.comments}
         />
       </div>

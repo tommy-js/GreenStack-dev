@@ -67,6 +67,7 @@ export const APPLE2month = {
     buttonFontColor: "black",
     buttonBorder: "1px solid red",
     contentsDiv: "apple_learning_graph",
+    decluttering: 5,
   },
 };
 

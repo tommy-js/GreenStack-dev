@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import LikePost from "../../resolvers/LikePost";
 import DislikePost from "../../resolvers/DislikePost";
 import { Link } from "react-router-dom";
+import { returnDate } from "../../notifications/notificationsTimestamp";
 
 interface Props {
   title: string;
@@ -11,7 +12,7 @@ interface Props {
   timestamp: number;
   likes: number;
   dislikes: number;
-  replies: number;
+  comments: any;
   postId: string;
 }
 
@@ -63,16 +64,25 @@ export const RenderModal: React.FC<Props> = (props) => {
     }
   }
 
+  function returnIfCommentsNonNull() {
+    if (props.comments) {
+      return <div>{props.comments.length}</div>;
+    } else {
+      return <p>0</p>;
+    }
+  }
+
   return (
     <div>
       <Link className="feed_link" to={`/home/post/${props.postId}`}>
         <h3>{props.user}</h3>
         <p>{props.text}</p>
-        <p>{props.timestamp}</p>
+        <p>Posted {returnDate(props.timestamp)}</p>
       </Link>
       <p>
         {props.likes}, <LikePost postId={props.postId} /> {props.dislikes},{" "}
-        <DislikePost postId={props.postId} /> comments: {props.replies}
+        <DislikePost postId={props.postId} /> comments:{" "}
+        {returnIfCommentsNonNull()}
       </p>
     </div>
   );

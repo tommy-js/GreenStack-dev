@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import FeedModal from "./FeedModal";
 import { RenderModal } from "./FeedTypes";
 import Suggested from "../Suggested";
 import Post from "../Post";
 import { LoadingGeneral } from "../../login/LoadingUser";
-import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { useQuery } from "react-apollo";
 import { returnFeedQuery } from "../../queries/queries";
 import { connect } from "react-redux";
@@ -47,7 +45,7 @@ const Feed: React.FC<Props> = (props) => {
                 timestamp={el.timestamp}
                 likes={el.likes}
                 dislikes={el.dislikes}
-                replies={el.comments.length}
+                comments={el.comments}
                 postId={el.postId}
               />
             </div>
