@@ -26,7 +26,7 @@ const Feed: React.FC<Props> = (props) => {
     if (data) {
       setLoaded(true);
       setFeed(data.returnFollowerFeed.posts);
-      console.log(data.returnFollowerFeed.posts);
+      console.log(data.returnFollowerFeed);
     }
   }, [data]);
 
