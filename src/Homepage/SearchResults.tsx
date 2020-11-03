@@ -5,6 +5,7 @@ interface Props {
   results: {
     username: string;
     userId: string;
+    bio: string;
   };
 }
 
@@ -16,6 +17,7 @@ const SearchResults: React.FC<Props> = (props) => {
           <QueryResult
             username={props.results.username}
             userId={props.results.userId}
+            bio={props.results.bio}
           />
         </div>
       );

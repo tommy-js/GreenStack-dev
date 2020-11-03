@@ -6,7 +6,7 @@ import { searchQuery } from "../../queries/queries.js";
 import { useLazyQuery } from "react-apollo";
 
 interface Props {
-  modRes: (username: string, userId: string) => void;
+  modRes: (username: string, userId: string, bio: string) => void;
 }
 
 const FeedSidebar: React.FC<Props> = (props) => {
@@ -16,9 +16,12 @@ const FeedSidebar: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (data && data.searchUser) {
+      console.log("data from FeedSidebar");
+      console.log(data);
       let username = data.searchUser.username;
       let userId = data.searchUser.userId;
-      props.modRes(username, userId);
+      let bio = data.searchUser.bio;
+      props.modRes(username, userId, bio);
     }
   }, [data]);
 

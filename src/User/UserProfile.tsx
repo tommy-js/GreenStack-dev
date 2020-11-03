@@ -16,6 +16,7 @@ interface Redux {
 interface Props extends Redux {
   inspectUsername: string;
   inspectUserId: string;
+  inspectBio: string;
   modRoutes: (route: any) => void;
 }
 
@@ -78,7 +79,7 @@ const UserProfile: React.FC<Props> = (props) => {
         <div>
           <h1>{userProfile.username}</h1>
           {returnFollow()}
-          <p>{props.inspectUserId}</p>
+          <p>{props.inspectBio}</p>
           <h2>Followers: {userProfile.followers.length}</h2>
           <h2>Following: {userProfile.following.length}</h2>
           <UserProfilePosts posts={userProfile.posts} />

@@ -689,6 +689,7 @@ const searchQuery = gql`
     searchUser(argument: $argument) {
       username
       userId
+      bio
     }
     searchStock(argument: $argument) {
       name

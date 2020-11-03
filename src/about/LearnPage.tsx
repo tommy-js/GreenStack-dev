@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import NavBar from "../navigation/NavBar";
+import CommentSection from "./CommentSection";
 import {
   MultipleChoice,
   Blanks,
@@ -237,6 +238,7 @@ const BasicsPage: React.FC<Props> = (props) => {
           title={options1.title}
           options={options1.options}
         />
+        <CommentSection />
       </div>
     </div>
   );
