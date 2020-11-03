@@ -1,4 +1,5 @@
 import React from "react";
+import { returnDate } from "../notifications/notificationsTimestamp";
 
 interface Props {
   username: string;
@@ -8,10 +9,12 @@ interface Props {
 
 const IndividualComment: React.FC<Props> = (props) => {
   return (
-    <div>
-      <h3>{props.username}</h3>
-      <p>{props.text}</p>
-      <h4>Posted at {props.timestamp}</h4>
+    <div id="tutorial_comment">
+      <h3 id="tutorial_comment_username">{props.username}</h3>
+      <p id="tutorial_comment_text">{props.text}</p>
+      <h4 id="tutorial_comment_timestamp">
+        Posted at {returnDate(props.timestamp)}
+      </h4>
     </div>
   );
 };

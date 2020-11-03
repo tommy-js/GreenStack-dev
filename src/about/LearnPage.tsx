@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import NavBar from "../navigation/NavBar";
 import CommentSection from "./CommentSection";
+import Footer from "./Footer";
 import {
   MultipleChoice,
   Blanks,
@@ -253,6 +254,7 @@ const BasicsPage: React.FC<Props> = (props) => {
         />
         <CommentSection id="1" comments={comments} />
       </div>
+      <Footer />
     </div>
   );
 };
@@ -268,7 +270,7 @@ const OptionsPage: React.FC<Props> = (props) => {
   const [specId, setSpecId] = useState(props.progress[1].progressElements);
 
   useEffect(() => {
-    if (data) {
+    if (data && data.tutorial) {
       setComments(data.tutorial.comments);
     }
   }, [data]);
@@ -478,6 +480,7 @@ const OptionsPage: React.FC<Props> = (props) => {
           currentProgress={currentProgress}
           increment={5}
         />
+        <CommentSection id="2" comments={comments} />
       </div>
     </div>
   );
@@ -485,12 +488,14 @@ const OptionsPage: React.FC<Props> = (props) => {
 
 const EtfPage: React.FC = () => {
   const { data } = useQuery(tutorialQuery, { variables: { id: 3 } });
+  const [comments, setComments] = useState([] as any);
   return (
     <div>
       <NavBar />
       <div className="learn_page">
         <h2 className="learn_page_header">ETFs and Index Funds</h2>
         <p className="learn_page_paragraph"></p>
+        <CommentSection id="3" comments={comments} />
       </div>
     </div>
   );
@@ -498,6 +503,7 @@ const EtfPage: React.FC = () => {
 
 const ProtectionPage: React.FC = () => {
   const { data } = useQuery(tutorialQuery, { variables: { id: 4 } });
+  const [comments, setComments] = useState([] as any);
   return (
     <div>
       <NavBar />
@@ -556,6 +562,7 @@ const ProtectionPage: React.FC = () => {
           the economic state of the US has improved drastically in only a few
           years.
         </p>
+        <CommentSection id="4" comments={comments} />
       </div>
     </div>
   );

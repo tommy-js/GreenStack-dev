@@ -17,26 +17,34 @@ const CommentSectionInput: React.FC<Props> = (props) => {
 
   function passData() {
     let token = sessionStorage.getItem("Token");
-    props
-      .pushCommentTutorialMutation({
-        variables: {
-          token: token,
-          text: text,
-          id: props.id,
-        },
-      })
-      .catch((err: any) => {
-        console.log(err);
-      })
-      .then((res: any) => {
-        console.log(res);
-      });
+    if (text.length > 0) {
+      props
+        .pushCommentTutorialMutation({
+          variables: {
+            token: token,
+            text: text,
+            id: props.id,
+          },
+        })
+        .catch((err: any) => {
+          console.log(err);
+        })
+        .then((res: any) => {
+          console.log(res);
+        });
+    }
   }
 
   return (
-    <div>
-      <textarea value={text} onChange={(e) => setText(e.target.value)} />
-      <button onClick={() => passData()}>Submit</button>
+    <div id="comment_section_input">
+      <textarea
+        id="comment_section_textarea"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      <button id="comment_section_button" onClick={() => passData()}>
+        Submit
+      </button>
     </div>
   );
 };

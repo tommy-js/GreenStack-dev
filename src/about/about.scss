@@ -270,3 +270,71 @@
   margin: 0;
   font-size: 18px;
 }
+
+#comment_section {
+  position: relative;
+  margin-top: 50px;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#comment_section_header {
+  text-align: center;
+}
+
+#tutorial_comment {
+  border-bottom: 2px solid blue;
+}
+
+#footer {
+  width: 100%;
+  height: 25px;
+  margin-top: 50px;
+  background-color: teal;
+  margin-bottom: 0;
+}
+
+.footer_text {
+  text-align: center;
+  margin: 0;
+}
+
+#tutorial_comment_username {
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+#tutorial_comment_timestamp {
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+#comment_section_input {
+  @include testing;
+}
+
+#comment_section_textarea {
+  width: 85%;
+  height: 125px;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 5px;
+  font-size: 18px;
+  line-height: 125%;
+  font-family: $standard_font;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  resize: none;
+}
+
+#comment_section_textarea:focus {
+  outline: none;
+}
+
+#comment_section_button {
+  position: relative;
+  padding: 5px;
+  left: 7.5%;
+}

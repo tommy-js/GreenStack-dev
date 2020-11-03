@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import IndividualComment from "./IndividualComment";
 
 interface Props {
@@ -6,11 +6,25 @@ interface Props {
 }
 
 const Comments: React.FC<Props> = (props) => {
-  function conditionalCommentRender() {
+  const [comments, setComments] = useState([] as any);
+
+  useEffect(() => {
     if (props.comments.length > 0) {
+      let arr = [...props.comments];
+      arr.sort(function (a, b) {
+        return b.timestamp - a.timestamp;
+      });
+      setComments(arr);
+      console.log("COMMENTS: ");
+      console.log(props.comments);
+    }
+  }, [props.comments]);
+
+  function conditionalCommentRender() {
+    if (comments.length > 0) {
       return (
-        <div>
-          {props.comments.map((el: any) => (
+        <div id="tutorial_comments">
+          {comments.map((el: any) => (
             <IndividualComment
               username={el.username}
               text={el.text}
@@ -21,19 +35,14 @@ const Comments: React.FC<Props> = (props) => {
       );
     } else {
       return (
-        <div>
+        <div id="tutorial_comments">
           <h3>Apparently nothing... Yet!</h3>
         </div>
       );
     }
   }
 
-  return (
-    <div>
-      <h3>What do others think?</h3>
-      {conditionalCommentRender()}
-    </div>
-  );
+  return <div>{conditionalCommentRender()}</div>;
 };
 
 export default Comments;

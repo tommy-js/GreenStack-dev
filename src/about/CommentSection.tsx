@@ -9,7 +9,8 @@ interface Props {
 
 const CommentSection: React.FC<Props> = (props) => {
   return (
-    <div>
+    <div id="comment_section">
+      <h3 id="comment_section_header">Leave a comment</h3>
       <CommentSectionInput id={props.id} />
       <Comments comments={props.comments} />
     </div>
