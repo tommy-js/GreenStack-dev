@@ -1,4 +1,5 @@
 import React from "react";
+import ProfileHeader from "./ProfileHeader";
 import Settings from "./Settings";
 import TradeHistory from "./TradeHistory";
 
@@ -9,7 +10,7 @@ interface Props {
 const Profile: React.FC<Props> = (props) => {
   return (
     <div className="feed">
-      <p>{props.username}</p>
+      <ProfileHeader />
       <Settings />
       <TradeHistory />
     </div>

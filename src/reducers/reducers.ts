@@ -6,6 +6,9 @@ const userReducer = (state: any, action: any) => {
   if (action.type == "SET_USERID") {
     newState.userId = action.payload;
   }
+  if (action.type == "SET_BIO") {
+    newState.bio = action.payload;
+  }
   if (action.type == "SET_MONEY") {
     newState.money = action.payload;
   }

@@ -9,6 +9,7 @@ import { mapStateToProps, mapDispatchToProps } from "../actions/actions";
 interface Redux {
   onUsernameSet: (username: string) => void;
   onUserIDSet: (userId: string) => void;
+  onBioSet: (bio: string) => void;
   onWatchlistSet: (watchlist: any) => void;
   onMoneySet: (money: number) => void;
   onNewAccountSet: (newaccount: boolean) => void;
@@ -98,6 +99,7 @@ const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
 
       props.onUsernameSet(user.username);
       props.onUserIDSet(user.userId);
+      props.onBioSet(user.bio);
       props.onWatchlistSet(user.watchlist);
       props.onMoneySet(user.money);
       props.onNewAccountSet(user.newaccount);

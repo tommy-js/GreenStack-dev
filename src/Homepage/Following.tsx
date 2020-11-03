@@ -35,9 +35,9 @@ const Following: React.FC<Props> = (props) => {
       <div>
         {data.map((el: any) => (
           <FollowingElement
-            userId={props.userId}
-            secondaryUserId={el.userId}
+            userId={el.userId}
             username={el.username}
+            bio={el.bio}
           />
         ))}
       </div>

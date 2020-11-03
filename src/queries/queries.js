@@ -531,6 +531,7 @@ const userQuery = gql`
     user(userId: $userId, token: $token) {
       userId
       username
+      bio
       money
       newaccount
       darkmode

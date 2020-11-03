@@ -4,7 +4,6 @@ import { flowRight as compose } from "lodash";
 import { unfollowUserMutation } from "../queries/queries.js";
 
 interface Props {
-  userId: number;
   followerId: number;
   unfollowUserMutation: (variables: object) => void;
 }

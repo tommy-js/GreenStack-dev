@@ -2,6 +2,7 @@ export const mapStateToProps = (state: any) => {
   return {
     username: state.username,
     userId: state.userId,
+    bio: state.bio,
     money: state.money,
     progress: state.progress,
     newaccount: state.newaccount,
@@ -29,6 +30,7 @@ export const mapDispatchToProps = (dispatch: any) => {
       dispatch({ type: "SET_USERNAME", payload: username }),
     onUserIDSet: (userId: string) =>
       dispatch({ type: "SET_USERID", payload: userId }),
+    onBioSet: (bio: string) => dispatch({ type: "SET_BIO", payload: bio }),
     onMoneySet: (money: number) =>
       dispatch({ type: "SET_MONEY", payload: money }),
     onNewAccountSet: (newacc: boolean) =>
