@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   userId: String,
   username: String,
+  bio: String,
   token: String,
   hash: String,
   salt: String,
@@ -41,7 +42,7 @@ const userSchema = new Schema({
       ],
     },
   ],
-  following: [{ userId: String, username: String }],
+  following: [{ userId: String, username: String, bio: String }],
   followers: [{ followerId: String, followerName: String, blocked: Boolean }],
   stocks: [
     {

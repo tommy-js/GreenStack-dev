@@ -59,3 +59,60 @@
   box-sizing: border-box;
   @include noselect;
 }
+
+#profile_bio_container {
+  height: 25px;
+  position: relative;
+  margin-top: 10px;
+  @include testing;
+}
+
+#profile_header_bio {
+  top: -20px;
+  display: inline-block;
+  font-size: 18px;
+  @include testing;
+}
+
+#bio_image {
+  position: relative;
+  top: 0;
+  height: 25px;
+  width: 25px;
+  @include testing;
+}
+
+#left_container {
+  position: absolute;
+  box-sizing: border-box;
+  display: inline-block;
+  left: 0;
+  top: -20px;
+  width: 80%;
+  @include testing;
+}
+
+#right_container {
+  position: absolute;
+  box-sizing: border-box;
+  display: inline-block;
+  right: 0;
+  top: 0;
+  width: 20%;
+  opacity: 0;
+  transition: 0.2s;
+}
+
+#profile_bio_container:hover #right_container {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#bio_edit_textarea {
+  width: 80%;
+  padding: 2px;
+  line-height: 100%;
+  resize: none;
+  font-size: 16px;
+  font-family: $standard_font;
+}

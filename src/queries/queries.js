@@ -141,6 +141,14 @@ const pushSharesToUserMutation = gql`
   }
 `;
 
+const setBioMutation = gql`
+  mutation($token: ID!, $bio: String!) {
+    setBio(token: $token, bio: $bio) {
+      bio
+    }
+  }
+`;
+
 const queryTradeQuery = gql`
   query($tradeId: ID!) {
     getTrade(tradeId: $tradeId) {
@@ -776,6 +784,7 @@ export {
   updateMoneyMutation,
   setProfileImageMutation,
   pushSharesToUserMutation,
+  setBioMutation,
   pushStockToWatchlistMutation,
   removeStockFromWatchlistMutation,
   newTokenMutation,
