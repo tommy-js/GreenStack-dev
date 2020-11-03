@@ -15,8 +15,6 @@ const Comments: React.FC<Props> = (props) => {
         return b.timestamp - a.timestamp;
       });
       setComments(arr);
-      console.log("COMMENTS: ");
-      console.log(props.comments);
     }
   }, [props.comments]);
 

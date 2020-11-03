@@ -10,13 +10,19 @@ interface Props {
   buttonTitle: string;
   postMutation: (variables: object) => any;
   unsuccessfulEvent: () => void;
-  successfulEvent: () => void;
+  successfulEvent: (
+    title: string,
+    text: string,
+    username: string,
+    timestamp: number
+  ) => void;
 }
 
 const SubmitPost: React.FC<Props> = (props) => {
   function submit() {
     if (props.text !== "") {
       let token = sessionStorage.getItem("Token");
+      let timestamp = Math.floor(Date.now() / 1000);
       props
         .postMutation({
           variables: {
@@ -32,7 +38,7 @@ const SubmitPost: React.FC<Props> = (props) => {
         })
         .then((res: any) => {
           console.log(res);
-          props.successfulEvent();
+          props.successfulEvent(props.title, props.text, "You", timestamp);
         });
     }
   }

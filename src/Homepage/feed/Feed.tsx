@@ -27,8 +27,33 @@ const Feed: React.FC<Props> = (props) => {
       setLoaded(true);
       setFeed(data.returnFollowerFeed.posts);
       console.log(data.returnFollowerFeed);
+      let arr = [...data.returnFollowerFeed.posts];
+      arr.sort(function (a, b) {
+        return b.timestamp - a.timestamp;
+      });
+      setFeed(arr);
     }
   }, [data]);
+
+  function setToFeed(
+    title: string,
+    text: string,
+    username: string,
+    timestamp: number
+  ) {
+    let arr = [...feed];
+    let obj = {
+      title: title,
+      text: text,
+      user: username,
+      timestamp: timestamp,
+    };
+    arr.push(obj);
+    arr.sort(function (a, b) {
+      return b.timestamp - a.timestamp;
+    });
+    setFeed(arr);
+  }
 
   function renderFeed() {
     if (feed) {
@@ -63,7 +88,7 @@ const Feed: React.FC<Props> = (props) => {
 
   return (
     <div className="feed">
-      <Post />
+      <Post setToFeed={setToFeed} />
       <Suggested />
       {renderFeed()}
     </div>

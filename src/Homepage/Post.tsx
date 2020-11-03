@@ -7,6 +7,12 @@ import { mapStateToProps } from "../actions/actions";
 interface Redux {
   userId: any;
   username: string;
+  setToFeed: (
+    title: string,
+    text: string,
+    username: string,
+    timestamp: number
+  ) => void;
 }
 
 const Post: React.FC<Redux> = (props) => {
@@ -15,11 +21,17 @@ const Post: React.FC<Redux> = (props) => {
   const [success, setSuccess] = useState(false);
   const [posted, setPosted] = useState(false);
 
-  function successfulEvent() {
+  function successfulEvent(
+    title: string,
+    text: string,
+    username: string,
+    timestamp: number
+  ) {
     setTitle("");
     setText("");
     setSuccess(true);
     setPosted(true);
+    props.setToFeed(title, text, username, timestamp);
   }
 
   function unsuccessfulEvent() {
