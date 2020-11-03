@@ -2,11 +2,16 @@ import React from "react";
 import CommentSectionInput from "./CommentSectionInput";
 import Comments from "./Comments";
 
-const CommentSection: React.FC = () => {
+interface Props {
+  id: string;
+  comments: any;
+}
+
+const CommentSection: React.FC<Props> = (props) => {
   return (
     <div>
-      <CommentSectionInput />
-      <Comments />
+      <CommentSectionInput id={props.id} />
+      <Comments comments={props.comments} />
     </div>
   );
 };

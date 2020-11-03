@@ -18,6 +18,8 @@ import {
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../actions/actions";
+import { useQuery } from "react-apollo";
+import { tutorialQuery } from "../queries/queries";
 import { Pie } from "react-chartjs-2";
 
 interface Props {
@@ -26,6 +28,8 @@ interface Props {
 }
 
 export const GlossaryPage: React.FC = () => {
+  const { data } = useQuery(tutorialQuery, { variables: { id: 0 } });
+
   return (
     <div>
       <NavBar />
@@ -60,11 +64,20 @@ export const GlossaryPage: React.FC = () => {
 };
 
 const BasicsPage: React.FC<Props> = (props) => {
+  const { data } = useQuery(tutorialQuery, { variables: { id: 1 } });
+  const [comments, setComments] = useState([] as any);
   const { status, setStatus } = useContext(statusContext);
   const [id, setId] = useState(props.progress[0].id);
   const [currentProgress, setCurrentProgress] = useState(
     props.progress[0].percent
   );
+
+  useEffect(() => {
+    if (data && data.tutorial) {
+      console.log(data);
+      setComments(data.tutorial.comments);
+    }
+  }, [data]);
 
   const pieData = {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
@@ -238,19 +251,27 @@ const BasicsPage: React.FC<Props> = (props) => {
           title={options1.title}
           options={options1.options}
         />
-        <CommentSection />
+        <CommentSection id="1" comments={comments} />
       </div>
     </div>
   );
 };
 
 const OptionsPage: React.FC<Props> = (props) => {
+  const { data } = useQuery(tutorialQuery, { variables: { id: 2 } });
+  const [comments, setComments] = useState([] as any);
   const { status, setStatus } = useContext(statusContext);
   const [id, setId] = useState(props.progress[1].id);
   const [currentProgress, setCurrentProgress] = useState(
     props.progress[0].percent
   );
   const [specId, setSpecId] = useState(props.progress[1].progressElements);
+
+  useEffect(() => {
+    if (data) {
+      setComments(data.tutorial.comments);
+    }
+  }, [data]);
 
   const options1 = {
     title: "Vocab Test",
@@ -463,6 +484,7 @@ const OptionsPage: React.FC<Props> = (props) => {
 };
 
 const EtfPage: React.FC = () => {
+  const { data } = useQuery(tutorialQuery, { variables: { id: 3 } });
   return (
     <div>
       <NavBar />
@@ -475,6 +497,7 @@ const EtfPage: React.FC = () => {
 };
 
 const ProtectionPage: React.FC = () => {
+  const { data } = useQuery(tutorialQuery, { variables: { id: 4 } });
   return (
     <div>
       <NavBar />

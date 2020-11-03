@@ -209,6 +209,14 @@ const pushCommentPostMutation = gql`
   }
 `;
 
+const pushCommentTutorialMutation = gql`
+  mutation($id: ID!, $text: String!, $token: String!) {
+    pushCommentTutorial(id: $id, text: $text, token: $token) {
+      id
+    }
+  }
+`;
+
 const pushCommentStockMutation = gql`
   mutation($token: String!, $text: String!, $stockId: ID!) {
     pushCommentStock(token: $token, text: $text, stockId: $stockId) {
@@ -754,6 +762,23 @@ const returnNewsQuery = gql`
   }
 `;
 
+const tutorialQuery = gql`
+  query($id: ID!) {
+    tutorial(id: $id) {
+      id
+      comments {
+        userId
+        username
+        commentId
+        timestamp
+        text
+        likes
+        dislikes
+      }
+    }
+  }
+`;
+
 export {
   createUserMutation,
   updateDarkModeMutation,
@@ -768,6 +793,7 @@ export {
   deleteCommentUserMutation,
   dropNotificationMutation,
   pushCommentPostMutation,
+  pushCommentTutorialMutation,
   pushCommentStockMutation,
   pushCommentTradeMutation,
   deleteCommentStockMutation,
@@ -807,4 +833,5 @@ export {
   returnFeedQuery,
   requestDataSetQuery,
   returnNewsQuery,
+  tutorialQuery,
 };
