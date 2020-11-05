@@ -22,12 +22,13 @@ import {
 } from "../companies/BuyStock";
 import StockPage from "../companies/StockPage";
 import { queryToken } from "../queries/queries";
-import { useLazyQuery } from "react-apollo";
+import { useLazyQuery, useQuery } from "react-apollo";
 import { statusContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
 import companyProfiles from "../companies/companyProfiles";
 import { connect } from "react-redux";
-import { mapStateToProps } from "../actions/actions";
+import { mapStateToProps, mapDispatchToProps } from "../actions/actions";
+import { userQuery } from "../queries/queries";
 
 interface Redux {
   userId: any;
@@ -46,9 +47,10 @@ const Homepage: React.FC<Props> = (props) => {
   const [tradeRoutePaths, setTradeRoutePaths] = useState([] as any);
   const [loadingInUser, setLoadingInUser] = useState(false);
   const [userId, setUserId] = useState();
+  const [token, setToken] = useState();
   const [results, setResults] = useState({ username: "", userId: "", bio: "" });
 
-  const [passToken, { data, loading }] = useLazyQuery(queryToken);
+  const [passToken, { data, loading }] = useLazyQuery(userQuery);
 
   const { status, setStatus } = useContext(statusContext);
 
@@ -234,7 +236,7 @@ const Homepage: React.FC<Props> = (props) => {
         <div className="render_loading">
           <div className="drop_loading_block">
             <LoadingUser />
-            <UserLoginAuthSubresolver id={userId} loggedIn={loggedIn} />
+            <UserLoginAuthSubresolver token={token} loggedIn={loggedIn} />
           </div>
         </div>
       );
@@ -246,4 +248,4 @@ const Homepage: React.FC<Props> = (props) => {
   return <div>{returnLoading()}</div>;
 };
 
-export default connect(mapStateToProps)(Homepage);
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

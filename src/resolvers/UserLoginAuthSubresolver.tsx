@@ -29,7 +29,7 @@ interface Redux {
 }
 
 interface Props extends Redux {
-  id: string;
+  token: string;
   username: string;
   loggedIn: () => void;
 }
@@ -48,15 +48,14 @@ const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
       if (token) {
         logUserIn({
           variables: {
-            userId: props.id,
             token: token,
           },
         });
       } else {
         browserHist.push("/login");
       }
-    }, 2000);
-  }, [props.id]);
+    }, 500);
+  }, []);
 
   useEffect(() => {
     if (dataLogIn) {
@@ -116,6 +115,7 @@ const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
       props.onInitialCommentsSet(user.comments);
       props.onInitialProgressSet(progress);
       props.onInitialProgressElementsSet(progs);
+      sessionStorage.setItem("Token", user.token);
     }
     setStatus(true);
     browserHist.push("/home");

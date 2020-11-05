@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import { graphql, useLazyQuery } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { createUserMutation, distinctUserQuery } from "../queries/queries.js";
-import { hashPass, hashToken } from "../login/hashing.js";
 
 interface Props {
   username: string;
@@ -110,20 +109,16 @@ const CreateNewUser: React.FC<Props> = (props) => {
   }, [props.password]);
 
   function submitButton() {
-    let calcHash = hashPass(props.password);
-    let token = hashToken(props.username);
-    sessionStorage.setItem("Token", token);
     props
       .createUserMutation({
         variables: {
           username: props.username,
-          token: token,
-          hash: calcHash.hash,
-          salt: calcHash.salt,
+          password: props.password,
         },
       })
       .then((res: any) => {
-        console.log(res);
+        sessionStorage.setItem("Token", res.data.createUser.token);
+        window.location.reload();
       })
       .catch((err: any) => {
         console.log(err);

@@ -11,8 +11,7 @@ export function comparePass(password, hash) {
 }
 
 export function hashToken(id, username) {
-  let concat = id + username;
   let salt = bcrypt.genSaltSync(10);
-  let hash = bcrypt.hashSync(concat, salt);
+  let hash = bcrypt.hashSync(username, salt);
   return hash;
 }

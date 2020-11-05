@@ -14,6 +14,7 @@ import { mapStateToProps } from "../actions/actions";
 const AboutPage: React.FC = () => {
   const [loadingInUser, setLoadingInUser] = useState(false);
   const [userId, setUserId] = useState();
+  const [token, setToken] = useState();
   const { status, setStatus } = useContext(statusContext);
   const [passToken, { data, loading }] = useLazyQuery(queryToken);
 
@@ -40,6 +41,7 @@ const AboutPage: React.FC = () => {
         console.log(data);
         console.log("session token same as data token");
         setUserId(data.token.userId);
+        setToken(data.token.token);
         setLoadingInUser(true);
       }
     }
@@ -68,7 +70,7 @@ const AboutPage: React.FC = () => {
         <div className="render_loading">
           <div className="drop_loading_block">
             <LoadingUser />
-            <UserLoginAuthSubresolver id={userId} loggedIn={loggedIn} />
+            <UserLoginAuthSubresolver token={token} loggedIn={loggedIn} />
           </div>
         </div>
       );

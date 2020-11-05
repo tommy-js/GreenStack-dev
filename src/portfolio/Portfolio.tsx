@@ -27,6 +27,7 @@ const Portfolio: React.FC<Redux> = (props) => {
   const [loadingInUser, setLoadingInUser] = useState(false);
   const [currentPrice, setCurrentPrice] = useState([] as any);
   const [userId, setUserId] = useState();
+  const [token, setToken] = useState();
   const [userWatch, setUserWatch] = useState(props.watchlist);
   const [userStocks, setUserStocks] = useState([] as any);
 
@@ -77,6 +78,7 @@ const Portfolio: React.FC<Redux> = (props) => {
         console.log(data);
         console.log("session token same as data token");
         setUserId(data.token.userId);
+        setToken(data.token.token);
         setLoadingInUser(true);
       }
     }
@@ -113,7 +115,7 @@ const Portfolio: React.FC<Redux> = (props) => {
         <div className="render_loading">
           <div className="drop_loading_block">
             <LoadingUser />
-            <UserLoginAuthSubresolver id={userId} loggedIn={loggedIn} />
+            <UserLoginAuthSubresolver token={token} loggedIn={loggedIn} />
           </div>
         </div>
       );

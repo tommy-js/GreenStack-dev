@@ -2,16 +2,12 @@ import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
 
 const createUserMutation = gql`
-  mutation(
-    $username: String!
-    $hash: String!
-    $salt: String!
-    $token: String!
-  ) {
-    createUser(username: $username, hash: $hash, salt: $salt, token: $token) {
+  mutation($username: String!, $password: String!) {
+    createUser(username: $username, password: $password) {
       userId
       username
       money
+      token
     }
   }
 `;
@@ -543,8 +539,8 @@ const otherUserQuery = gql`
 `;
 
 const userQuery = gql`
-  query($userId: ID!, $token: String!) {
-    user(userId: $userId, token: $token) {
+  query($token: String!) {
+    user(token: $token) {
       userId
       username
       bio
@@ -555,6 +551,7 @@ const userQuery = gql`
       invisible
       allowCommentsOnTrades
       profileImage
+      token
       following {
         userId
         username
