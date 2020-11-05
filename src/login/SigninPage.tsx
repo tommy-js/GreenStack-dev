@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import LoginHeader from "./LoginHeader";
-import InputContainer from "../misc/InputContainer";
+import UserNameInput from "./UserNameInput";
+import PasswordInput from "./PasswordInput";
 import QueryUserLogin from "../resolvers/QueryUserLogin";
 import HiddenVisual from "./HiddenVisual";
 
@@ -38,8 +39,16 @@ const SigninPage: React.FC<Props> = (props) => {
   return (
     <div>
       <LoginHeader text="Login" />
-      <InputContainer passString={passUsername} placeholder="Username" />
-      <InputContainer passString={passPassword} placeholder="Password" />
+      <UserNameInput
+        username={username}
+        passString={passUsername}
+        placeholder="Username"
+      />
+      <PasswordInput
+        password={password}
+        passString={passPassword}
+        placeholder="Password"
+      />
       <QueryUserLogin
         username={username}
         password={password}

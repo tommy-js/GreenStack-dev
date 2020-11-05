@@ -7,14 +7,28 @@ interface Props {
 }
 
 const PasswordInput: React.FC<Props> = (props) => {
+  function showPassword() {
+    let input = document.getElementById("login_access") as HTMLInputElement;
+    if (input.type === "password") {
+      input.type = "text";
+    } else {
+      input.type = "password";
+    }
+  }
+
   return (
-    <input
-      className="input_container"
-      type="text"
-      value={props.password}
-      placeholder={props.placeholder}
-      onChange={(e) => props.passString(e.target.value)}
-    />
+    <div>
+      <input
+        id="login_access"
+        className="input_container"
+        type="password"
+        value={props.password}
+        placeholder={props.placeholder}
+        onChange={(e) => props.passString(e.target.value)}
+      />
+      <input type="checkbox" onClick={() => showPassword()} />
+      <label>Show Password</label>
+    </div>
   );
 };
 
