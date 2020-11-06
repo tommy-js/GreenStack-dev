@@ -21,14 +21,13 @@ import {
   OptionStockPage,
 } from "../companies/BuyStock";
 import StockPage from "../companies/StockPage";
-import { queryToken } from "../queries/queries";
 import { useLazyQuery, useQuery } from "react-apollo";
 import { statusContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
 import companyProfiles from "../companies/companyProfiles";
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "../actions/actions";
-import { userQuery } from "../queries/queries";
+import { userQuery, nonTokenModifyUserQuery } from "../queries/queries";
 
 interface Redux {
   userId: any;
@@ -51,6 +50,9 @@ const Homepage: React.FC<Props> = (props) => {
   const [results, setResults] = useState({ username: "", userId: "", bio: "" });
 
   const [passToken, { data, loading }] = useLazyQuery(userQuery);
+  const [getUser, { data: getUserData }] = useLazyQuery(
+    nonTokenModifyUserQuery
+  );
 
   const { status, setStatus } = useContext(statusContext);
 
@@ -67,8 +69,23 @@ const Homepage: React.FC<Props> = (props) => {
       } else {
         browserHist.push("/login");
       }
+    } else {
+      let sessionToken = sessionStorage.getItem("Token");
+      if (sessionToken) {
+        getUser({
+          variables: {
+            token: sessionToken,
+          },
+        });
+      }
     }
   }, []);
+
+  useEffect(() => {
+    if (getUserData) {
+      console.log(getUserData);
+    }
+  }, [getUserData]);
 
   useEffect(() => {
     console.log("homepage status: " + status);

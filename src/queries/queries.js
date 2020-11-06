@@ -538,6 +538,97 @@ const otherUserQuery = gql`
   }
 `;
 
+const nonTokenModifyUserQuery = gql`
+  query($token: String!) {
+    noTokenMod(token: $token) {
+      userId
+      username
+      bio
+      money
+      newaccount
+      darkmode
+      membership
+      invisible
+      allowCommentsOnTrades
+      profileImage
+      token
+      following {
+        userId
+        username
+      }
+      followers {
+        followerId
+        followerName
+        blocked
+      }
+      stocks {
+        stockId
+        stockTitle
+        shares
+        color
+        ticker
+      }
+      trades {
+        price
+        tradeId
+        timestamp
+        title
+        ticker
+        shares
+        gain
+      }
+      posts {
+        userId
+        postId
+        timestamp
+        likes
+        dislikes
+        title
+        text
+        accompaniedURL
+        comments {
+          userId
+          username
+          commentId
+          timestamp
+          text
+          likes
+          dislikes
+        }
+      }
+      comments {
+        userId
+        username
+        timestamp
+        text
+        likes
+        dislikes
+      }
+      watchlist {
+        stockId
+        title
+        ticker
+        timestamp
+      }
+      notifications {
+        content
+        timestamp
+        id
+        viewed
+      }
+      progress {
+        title
+        id
+        percent
+        progressElements {
+          id
+          passed
+        }
+      }
+    }
+  }
+`;
+
 const userQuery = gql`
   query($token: String!) {
     user(token: $token) {
@@ -819,6 +910,7 @@ export {
   dislikePostMutation,
   distinctUserQuery,
   userQuery,
+  nonTokenModifyUserQuery,
   stockQuery,
   userLoginQuery,
   queryTradeQuery,
