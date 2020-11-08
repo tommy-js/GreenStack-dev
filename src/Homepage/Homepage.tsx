@@ -34,6 +34,10 @@ interface Redux {
   username: string;
   posts: any;
   feed: any;
+  onInitialPostsSet: (posts: any) => void;
+  onInitialFollowerSet: (followers: any) => void;
+  onInitialFollowingSet: (following: any) => void;
+  onInitialNotificationsSet: (notifications: any) => void;
 }
 
 interface Props extends Redux {
@@ -51,7 +55,10 @@ const Homepage: React.FC<Props> = (props) => {
 
   const [passToken, { data, loading }] = useLazyQuery(userQuery);
   const [getUser, { data: getUserData }] = useLazyQuery(
-    nonTokenModifyUserQuery
+    nonTokenModifyUserQuery,
+    {
+      pollInterval: 500,
+    }
   );
 
   const { status, setStatus } = useContext(statusContext);
@@ -83,7 +90,11 @@ const Homepage: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (getUserData) {
-      console.log(getUserData);
+      console.log(getUserData.noTokenMod);
+      props.onInitialPostsSet(getUserData.noTokenMod.posts);
+      props.onInitialFollowerSet(getUserData.noTokenMod.followers);
+      props.onInitialFollowingSet(getUserData.noTokenMod.following);
+      props.onInitialNotificationsSet(getUserData.noTokenMod.notifications);
     }
   }, [getUserData]);
 
@@ -104,10 +115,6 @@ const Homepage: React.FC<Props> = (props) => {
     if (!findEl) {
       setUserRoutePaths(route);
     }
-  }
-
-  function modTradeRoutes(route: any) {
-    setTradeRoutePaths(route);
   }
 
   function loggedIn() {

@@ -18,6 +18,7 @@ const Feed: React.FC<Props> = (props) => {
   let token = sessionStorage.getItem("Token");
   const { data } = useQuery(returnFeedQuery, {
     variables: { token: token },
+    pollInterval: 500,
   });
   const [loaded, setLoaded] = useState(false);
   const [feed, setFeed] = useState();

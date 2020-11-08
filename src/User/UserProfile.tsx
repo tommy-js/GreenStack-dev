@@ -47,9 +47,9 @@ const UserProfile: React.FC<Props> = (props) => {
   useEffect(() => {
     if (data) {
       console.log(data);
-      setUserProfile(data.user);
+      setUserProfile(data.altUser);
       setUserProfileState(true);
-      props.modRoutes(data.user.posts);
+      props.modRoutes(data.altUser.posts);
     }
   }, [data]);
 

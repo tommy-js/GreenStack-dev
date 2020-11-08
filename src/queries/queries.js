@@ -477,7 +477,7 @@ const distinctUserQuery = gql`
 
 const otherUserQuery = gql`
   query($userId: ID!) {
-    user(userId: $userId) {
+    altUser(userId: $userId) {
       userId
       username
       money
