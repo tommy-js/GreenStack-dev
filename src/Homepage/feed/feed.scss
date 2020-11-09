@@ -97,3 +97,19 @@
   height: 100%;
   width: 100%;
 }
+
+.feed_link_header {
+}
+
+.feed_link_name {
+}
+
+.feed_link_unfollow {
+  margin-left: 10px;
+  transition: 0.3s;
+}
+
+.feed_link_name,
+.feed_link_unfollow {
+  display: inline-block;
+}

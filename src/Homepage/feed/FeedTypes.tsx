@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LikePost from "../../resolvers/LikePost";
 import DislikePost from "../../resolvers/DislikePost";
+import InlineUnfollow from "../../resolvers/InlineUnfollow";
 import { Link } from "react-router-dom";
 import comment from "../../images/comment.png";
 import { returnDate } from "../../notifications/notificationsTimestamp";
@@ -20,6 +21,9 @@ interface Props {
 }
 
 export const RenderModal: React.FC<Props> = (props) => {
+  const [over, setOver] = useState(false);
+  const [styledOpac, setStyledOpac] = useState(0);
+
   function returnAllowed() {
     if (props.allowLikes === true) {
       return (
@@ -45,10 +49,25 @@ export const RenderModal: React.FC<Props> = (props) => {
     } else return null;
   }
 
+  useEffect(() => {
+    if (over === true) {
+      setStyledOpac(1);
+    } else setStyledOpac(0);
+  }, [over]);
+
   return (
     <div>
+      <div
+        className="feed_link_header"
+        onMouseOver={() => setOver(true)}
+        onMouseOut={() => setOver(false)}
+      >
+        <h3 className="feed_link_name">{props.user}</h3>
+        <div style={{ opacity: styledOpac }} className="feed_link_unfollow">
+          <InlineUnfollow followerId={props.userId} />
+        </div>
+      </div>
       <Link className="feed_link" to={`/home/post/${props.postId}`}>
-        <h3>{props.user}</h3>
         <p>{props.text}</p>
         {returnAllowed()}
         <p>Posted {returnDate(props.timestamp)}</p>
