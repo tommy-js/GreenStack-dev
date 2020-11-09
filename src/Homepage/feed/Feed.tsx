@@ -74,6 +74,8 @@ const Feed: React.FC<Props> = (props) => {
                 dislikes={el.dislikes}
                 comments={el.comments}
                 postId={el.postId}
+                allowComments={el.allowComments}
+                allowLikes={el.allowLikes}
               />
             </div>
           ))}

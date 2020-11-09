@@ -28,6 +28,31 @@ interface Props {
 }
 
 export const RenderModal: React.FC<Props> = (props) => {
+  function returnAllowed() {
+    if (props.allowLikes === true) {
+      return (
+        <div>
+          <p>
+            <div className="post_values">
+              <span className="post_value_inner">{props.likes}</span>
+            </div>
+            <LikePost postId={props.postId} />
+            <div className="post_values">
+              <span className="post_value_inner">{props.dislikes}</span>
+            </div>
+            <DislikePost postId={props.postId} />
+            <div className="post_values">
+              <span className="post_value_inner">{props.comments.length}</span>
+            </div>
+            <div className="like_button_block">
+              <img className="like_button_image" src={comment} />
+            </div>
+          </p>
+        </div>
+      );
+    } else return null;
+  }
+
   return (
     <div>
       <h2>{props.title}</h2>
@@ -35,22 +60,7 @@ export const RenderModal: React.FC<Props> = (props) => {
         Posted by <Link to={`/home/user/${props.userId}`}>{props.user}</Link> at{" "}
         {props.timestamp}
       </h4>
-      <p>
-        <div className="post_values">
-          <span className="post_value_inner">{props.likes}</span>
-        </div>
-        <LikePost postId={props.postId} />
-        <div className="post_values">
-          <span className="post_value_inner">{props.dislikes}</span>
-        </div>
-        <DislikePost postId={props.postId} />
-        <div className="post_values">
-          <span className="post_value_inner">{props.comments.length}</span>
-        </div>
-        <div className="like_button_block">
-          <img className="like_button_image" src={comment} />
-        </div>
-      </p>
+      {returnAllowed()}
       <p>{props.text}</p>
       <InputPost postId={props.postId} allowComments={props.allowComments} />
       <CommentSection postId={props.postId} comments={props.comments} />
