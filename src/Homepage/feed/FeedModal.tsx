@@ -22,6 +22,8 @@ const FeedModal: React.FC<Props> = (props) => {
           likes={props.data.likes}
           dislikes={props.data.dislikes}
           comments={props.data.comments}
+          allowComments={props.data.allowComments}
+          allowLikes={props.data.allowLikes}
         />
       </div>
       <Link to="/home">

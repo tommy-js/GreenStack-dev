@@ -15,6 +15,8 @@ interface Props {
   timestamp: number;
   likes: number;
   dislikes: number;
+  allowComments: boolean;
+  allowLikes: boolean;
   comments: {
     commentId: string;
     username: string;
@@ -50,7 +52,7 @@ export const RenderModal: React.FC<Props> = (props) => {
         </div>
       </p>
       <p>{props.text}</p>
-      <InputPost postId={props.postId} />
+      <InputPost postId={props.postId} allowComments={props.allowComments} />
       <CommentSection postId={props.postId} comments={props.comments} />
     </div>
   );

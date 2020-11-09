@@ -65,7 +65,10 @@ export const GlossaryPage: React.FC = () => {
 };
 
 const BasicsPage: React.FC<Props> = (props) => {
-  const { data } = useQuery(tutorialQuery, { variables: { id: 1 } });
+  const { data } = useQuery(tutorialQuery, {
+    variables: { id: 1 },
+    pollInterval: 500,
+  });
   const [comments, setComments] = useState([] as any);
   const { status, setStatus } = useContext(statusContext);
   const [id, setId] = useState(props.progress[0].id);
@@ -260,7 +263,10 @@ const BasicsPage: React.FC<Props> = (props) => {
 };
 
 const OptionsPage: React.FC<Props> = (props) => {
-  const { data } = useQuery(tutorialQuery, { variables: { id: 2 } });
+  const { data } = useQuery(tutorialQuery, {
+    variables: { id: 2 },
+    pollInterval: 500,
+  });
   const [comments, setComments] = useState([] as any);
   const { status, setStatus } = useContext(statusContext);
   const [id, setId] = useState(props.progress[1].id);
@@ -487,7 +493,10 @@ const OptionsPage: React.FC<Props> = (props) => {
 };
 
 const EtfPage: React.FC = () => {
-  const { data } = useQuery(tutorialQuery, { variables: { id: 3 } });
+  const { data } = useQuery(tutorialQuery, {
+    variables: { id: 3 },
+    pollInterval: 500,
+  });
   const [comments, setComments] = useState([] as any);
   return (
     <div>
@@ -502,8 +511,16 @@ const EtfPage: React.FC = () => {
 };
 
 const ProtectionPage: React.FC = () => {
-  const { data } = useQuery(tutorialQuery, { variables: { id: 4 } });
+  const { data } = useQuery(tutorialQuery, {
+    variables: { id: 4 },
+    pollInterval: 500,
+  });
   const [comments, setComments] = useState([] as any);
+  useEffect(() => {
+    if (data && data.tutorial) {
+      setComments(data.tutorial.comments);
+    }
+  }, [data]);
   return (
     <div>
       <NavBar />

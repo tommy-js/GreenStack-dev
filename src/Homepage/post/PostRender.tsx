@@ -13,6 +13,8 @@ interface Data {
   timestamp: number;
   postId: string;
   accompaniedURL: string;
+  allowComments: boolean;
+  allowLikes: boolean;
   comments: {
     userId: string;
     username: string;
@@ -38,7 +40,7 @@ const PostRender: React.FC<Props> = ({ info }: Props) => {
         dislikes={info.dislikes}
         timestamp={info.timestamp}
       />
-      <InputPost postId={info.postId} />
+      <InputPost postId={info.postId} allowComments={info.allowComments} />
       <PostComments postId={info.postId} comments={info.comments} />
     </div>
   );

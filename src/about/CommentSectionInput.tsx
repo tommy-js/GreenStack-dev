@@ -5,12 +5,8 @@ import { pushCommentTutorialMutation } from "../queries/queries";
 
 interface Props {
   id: string;
+  successfulPost: () => void;
   pushCommentTutorialMutation: (variables: object) => any;
-  commentSuccessfullyPushed: (
-    text: string,
-    timestamp: number,
-    username: string
-  ) => void;
 }
 
 const CommentSectionInput: React.FC<Props> = (props) => {
@@ -22,7 +18,6 @@ const CommentSectionInput: React.FC<Props> = (props) => {
 
   function passData() {
     let token = sessionStorage.getItem("Token");
-    let timestamp = Math.floor(Date.now() / 1000);
     if (text.length > 0) {
       props
         .pushCommentTutorialMutation({
@@ -37,7 +32,7 @@ const CommentSectionInput: React.FC<Props> = (props) => {
         })
         .then((res: any) => {
           console.log(res);
-          props.commentSuccessfullyPushed(text, timestamp, "You");
+          setText("");
         });
     }
   }

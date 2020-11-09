@@ -16,28 +16,10 @@ const CommentSection: React.FC<Props> = (props) => {
     }
   }, [props.comments]);
 
-  function commentSuccessfullyPushed(
-    text: string,
-    timestamp: number,
-    username: string
-  ) {
-    let arr = [...comments];
-    let obj = {
-      text: text,
-      timestamp: timestamp,
-      username: username,
-    };
-    arr.push(obj);
-    setComments(arr);
-  }
-
   return (
     <div id="comment_section">
       <h3 id="comment_section_header">Leave a comment</h3>
-      <CommentSectionInput
-        commentSuccessfullyPushed={commentSuccessfullyPushed}
-        id={props.id}
-      />
+      <CommentSectionInput id={props.id} />
       <Comments comments={comments} />
     </div>
   );

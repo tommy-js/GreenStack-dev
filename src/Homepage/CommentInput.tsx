@@ -12,6 +12,7 @@ interface Redux {
 
 interface Post extends Redux {
   postId: string;
+  allowComments: boolean;
 }
 
 interface Stock extends Redux {
@@ -24,6 +25,8 @@ interface Trade extends Redux {
 
 const CommentInputPost: React.FC<Post> = (props) => {
   const [text, setText] = useState("");
+  console.log("comment_input textarea: ");
+  console.log(props.allowComments);
 
   function modText(input: string) {
     if (input.length < 180) {
@@ -32,20 +35,34 @@ const CommentInputPost: React.FC<Post> = (props) => {
     }
   }
 
-  return (
-    <div id="comment_input_div">
-      <textarea
-        id="comment_input"
-        value={text}
-        onChange={(e) => modText(e.target.value)}
-      />
-      <PushCommentPost
-        userId={props.userId}
-        postId={props.postId}
-        text={text}
-      />
-    </div>
-  );
+  function returnHiddenTextarea() {
+    if (props.allowComments === false) {
+      return (
+        <textarea
+          id="comment_input"
+          value="This user has disabled comment submission."
+          disabled={true}
+        />
+      );
+    } else if (props.allowComments === true) {
+      return (
+        <div>
+          <textarea
+            id="comment_input"
+            value={text}
+            onChange={(e) => modText(e.target.value)}
+          />
+          <PushCommentPost
+            userId={props.userId}
+            postId={props.postId}
+            text={text}
+          />
+        </div>
+      );
+    }
+  }
+
+  return <div id="comment_input_div">{returnHiddenTextarea()}</div>;
 };
 
 const CommentInputStock: React.FC<Stock> = (props) => {

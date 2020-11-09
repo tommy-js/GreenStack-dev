@@ -16,6 +16,8 @@ interface Data {
   timestamp: number;
   postId: string;
   accompaniedURL: string;
+  allowLikes: boolean;
+  allowComments: boolean;
   comments: {
     userId: string;
     username: string;
@@ -47,6 +49,8 @@ const PostPage: React.FC<Props> = (props) => {
         postId: data.post.postId,
         comments: data.post.comments,
         accompaniedURL: data.post.accompaniedURL,
+        allowLikes: data.post.allowLikes,
+        allowComments: data.post.allowComments,
       });
     }
   }, [data]);

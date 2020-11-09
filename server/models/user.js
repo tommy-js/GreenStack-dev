@@ -30,6 +30,8 @@ const userSchema = new Schema({
       title: String,
       text: String,
       accompaniedURL: String,
+      allowComments: Boolean,
+      allowLikes: Boolean,
       comments: [
         {
           userId: String,

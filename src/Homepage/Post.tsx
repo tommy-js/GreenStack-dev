@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import SubmitPost from "../resolvers/SubmitPost";
 import PostNotifIcon from "./PostNotifIcon";
+import PostOptions from "./post/PostOptions";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../actions/actions";
 
@@ -20,18 +21,14 @@ const Post: React.FC<Redux> = (props) => {
   const [text, setText] = useState("");
   const [success, setSuccess] = useState(false);
   const [posted, setPosted] = useState(false);
+  const [allowComments, setAllowComments] = useState(true);
+  const [allowLikes, setAllowLikes] = useState(true);
 
-  function successfulEvent(
-    title: string,
-    text: string,
-    username: string,
-    timestamp: number
-  ) {
+  function successfulEvent() {
     setTitle("");
     setText("");
     setSuccess(true);
     setPosted(true);
-    props.setToFeed(title, text, username, timestamp);
   }
 
   function unsuccessfulEvent() {
@@ -43,6 +40,14 @@ const Post: React.FC<Redux> = (props) => {
   function timeoutFunc() {
     setPosted(false);
     setSuccess(false);
+  }
+
+  function modAllowComments() {
+    setAllowComments(!allowComments);
+  }
+
+  function modAllowLikes() {
+    setAllowLikes(!allowLikes);
   }
 
   function returnPass() {
@@ -77,7 +82,15 @@ const Post: React.FC<Redux> = (props) => {
           buttonTitle="Post"
           successfulEvent={successfulEvent}
           unsuccessfulEvent={unsuccessfulEvent}
+          allowComments={allowComments}
+          allowLikes={allowLikes}
           accompaniedURL=""
+        />
+        <PostOptions
+          allowComments={allowComments}
+          allowLikes={allowLikes}
+          modAllowComments={modAllowComments}
+          modAllowLikes={modAllowLikes}
         />
       </div>
       {returnPass()}

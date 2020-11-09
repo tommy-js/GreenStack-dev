@@ -8,21 +8,17 @@ interface Props {
   text: string;
   accompaniedURL: string;
   buttonTitle: string;
+  allowComments: boolean;
+  allowLikes: boolean;
   postMutation: (variables: object) => any;
   unsuccessfulEvent: () => void;
-  successfulEvent: (
-    title: string,
-    text: string,
-    username: string,
-    timestamp: number
-  ) => void;
+  successfulEvent: () => void;
 }
 
 const SubmitPost: React.FC<Props> = (props) => {
   function submit() {
     if (props.text !== "") {
       let token = sessionStorage.getItem("Token");
-      let timestamp = Math.floor(Date.now() / 1000);
       props
         .postMutation({
           variables: {
@@ -30,6 +26,8 @@ const SubmitPost: React.FC<Props> = (props) => {
             title: props.title,
             text: props.text,
             accompaniedURL: props.accompaniedURL,
+            allowComments: props.allowComments,
+            allowLikes: props.allowLikes,
           },
         })
         .catch((err: any) => {
@@ -38,7 +36,7 @@ const SubmitPost: React.FC<Props> = (props) => {
         })
         .then((res: any) => {
           console.log(res);
-          props.successfulEvent(props.title, props.text, "You", timestamp);
+          props.successfulEvent();
         });
     }
   }

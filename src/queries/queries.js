@@ -324,12 +324,16 @@ const postMutation = gql`
     $title: String!
     $text: String!
     $accompaniedURL: String!
+    $allowComments: Boolean!
+    $allowLikes: Boolean!
   ) {
     post(
       token: $token
       title: $title
       text: $text
       accompaniedURL: $accompaniedURL
+      allowComments: $allowComments
+      allowLikes: $allowLikes
     ) {
       username
     }
@@ -511,6 +515,8 @@ const otherUserQuery = gql`
         title
         text
         accompaniedURL
+        allowComments
+        allowLikes
         comments {
           userId
           username
@@ -588,6 +594,8 @@ const nonTokenModifyUserQuery = gql`
         title
         text
         accompaniedURL
+        allowComments
+        allowLikes
         comments {
           userId
           username
@@ -680,6 +688,8 @@ const userQuery = gql`
         title
         text
         accompaniedURL
+        allowLikes
+        allowComments
         comments {
           userId
           username
@@ -770,6 +780,8 @@ const individualPostQuery = gql`
       title
       text
       accompaniedURL
+      allowLikes
+      allowComments
       comments {
         userId
         commentId
@@ -809,6 +821,8 @@ const returnFeedQuery = gql`
         dislikes
         title
         text
+        allowLikes
+        allowComments
         comments {
           userId
           username
