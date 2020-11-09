@@ -67,3 +67,33 @@
   color: black;
   text-decoration: none;
 }
+
+.post_values {
+  display: inline-block;
+  height: 18px;
+  vertical-align: top;
+  @include noselect;
+  @include testing;
+}
+
+.post_value_inner {
+  font-size: 18px;
+  line-height: 100%;
+  vertical-align: middle;
+}
+
+.like_button_block {
+  position: relative;
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  overflow: none;
+  margin-right: 10px;
+  cursor: pointer;
+  @include testing;
+}
+
+.like_button_image {
+  height: 100%;
+  width: 100%;
+}

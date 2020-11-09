@@ -18,7 +18,7 @@ const Feed: React.FC<Props> = (props) => {
   let token = sessionStorage.getItem("Token");
   const { data } = useQuery(returnFeedQuery, {
     variables: { token: token },
-    pollInterval: 500,
+    pollInterval: 200,
   });
   const [loaded, setLoaded] = useState(false);
   const [feed, setFeed] = useState();
@@ -26,6 +26,7 @@ const Feed: React.FC<Props> = (props) => {
   useEffect(() => {
     if (data) {
       setLoaded(true);
+      console.log(data);
       setFeed(data.returnFollowerFeed.posts);
       console.log(data.returnFollowerFeed);
       let arr = [...data.returnFollowerFeed.posts];

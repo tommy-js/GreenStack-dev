@@ -4,6 +4,7 @@ import CommentSection from "../CommentSection";
 import LikePost from "../../resolvers/LikePost";
 import DislikePost from "../../resolvers/DislikePost";
 import { Link } from "react-router-dom";
+import comment from "../../images/comment.png";
 
 interface Props {
   title: string;
@@ -25,7 +26,6 @@ interface Props {
 }
 
 export const RenderModal: React.FC<Props> = (props) => {
-  console.log(props.comments);
   return (
     <div>
       <h2>{props.title}</h2>
@@ -34,8 +34,20 @@ export const RenderModal: React.FC<Props> = (props) => {
         {props.timestamp}
       </h4>
       <p>
-        {props.likes}, <LikePost postId={props.postId} /> {props.dislikes},{" "}
-        <DislikePost postId={props.postId} /> comments: {props.comments.length}
+        <div className="post_values">
+          <span className="post_value_inner">{props.likes}</span>
+        </div>
+        <LikePost postId={props.postId} />
+        <div className="post_values">
+          <span className="post_value_inner">{props.dislikes}</span>
+        </div>
+        <DislikePost postId={props.postId} />
+        <div className="post_values">
+          <span className="post_value_inner">{props.comments.length}</span>
+        </div>
+        <div className="like_button_block">
+          <img className="like_button_image" src={comment} />
+        </div>
       </p>
       <p>{props.text}</p>
       <InputPost postId={props.postId} />

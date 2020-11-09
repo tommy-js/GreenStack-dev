@@ -16,7 +16,7 @@ const FeedModal: React.FC<Props> = (props) => {
           title={props.data.title}
           postId={props.data.postId}
           userId={props.data.userId}
-          user={props.data.user}
+          user={props.data.username}
           text={props.data.text}
           timestamp={props.data.timestamp}
           likes={props.data.likes}

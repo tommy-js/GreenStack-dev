@@ -680,23 +680,6 @@ body {
   margin-left: 25px;
 }
 
-.like_button_block {
-  position: relative;
-  display: inline-block;
-  height: 25px;
-  width: 25px;
-  margin: 0;
-  overflow: none;
-  margin-right: 10px;
-  cursor: pointer;
-  @include testing;
-}
-
-.like_button_image {
-  height: 100%;
-  width: 100%;
-}
-
 .individual_post_comment_option_block {
   position: relative;
   height: 40px;

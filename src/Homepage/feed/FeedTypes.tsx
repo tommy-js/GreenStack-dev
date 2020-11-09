@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import LikePost from "../../resolvers/LikePost";
 import DislikePost from "../../resolvers/DislikePost";
 import { Link } from "react-router-dom";
+import comment from "../../images/comment.png";
 import { returnDate } from "../../notifications/notificationsTimestamp";
 
 interface Props {
@@ -17,53 +18,6 @@ interface Props {
 }
 
 export const RenderModal: React.FC<Props> = (props) => {
-  const [stateLike] = useState(props.likes);
-  const [stateDislike] = useState(props.dislikes);
-  const [likes, setLikes] = useState(props.likes);
-  const [dislikes, setDislikes] = useState(props.dislikes);
-
-  function like() {
-    let updateLike;
-
-    if (stateDislike === dislikes) {
-      if (stateLike === likes) {
-        updateLike = stateLike + 1;
-        setLikes(updateLike);
-      } else {
-        setLikes(stateLike);
-      }
-    } else {
-      if (stateLike === likes) {
-        updateLike = stateLike + 1;
-        setLikes(updateLike);
-        setDislikes(stateDislike);
-      } else {
-        setLikes(stateLike);
-      }
-    }
-  }
-
-  function dislike() {
-    let updateDislike;
-
-    if (stateLike === likes) {
-      if (stateDislike === dislikes) {
-        updateDislike = stateDislike + 1;
-        setDislikes(updateDislike);
-      } else {
-        setDislikes(stateDislike);
-      }
-    } else {
-      if (stateDislike === dislikes) {
-        updateDislike = stateDislike + 1;
-        setDislikes(updateDislike);
-        setLikes(stateLike);
-      } else {
-        setDislikes(stateDislike);
-      }
-    }
-  }
-
   function returnIfCommentsNonNull() {
     if (props.comments) {
       return <div>{props.comments.length}</div>;
@@ -80,9 +34,20 @@ export const RenderModal: React.FC<Props> = (props) => {
         <p>Posted {returnDate(props.timestamp)}</p>
       </Link>
       <p>
-        {props.likes}, <LikePost postId={props.postId} /> {props.dislikes},{" "}
-        <DislikePost postId={props.postId} /> comments:{" "}
-        {returnIfCommentsNonNull()}
+        <div className="post_values">
+          <span className="post_value_inner">{props.likes}</span>
+        </div>
+        <LikePost postId={props.postId} />
+        <div className="post_values">
+          <span className="post_value_inner">{props.dislikes}</span>
+        </div>
+        <DislikePost postId={props.postId} />
+        <div className="post_values">
+          <span className="post_value_inner">{props.comments.length}</span>
+        </div>
+        <div className="like_button_block">
+          <img className="like_button_image" src={comment} />
+        </div>
       </p>
     </div>
   );

@@ -23,6 +23,7 @@ const userSchema = new Schema({
     {
       userId: String,
       postId: String,
+      username: String,
       timestamp: Number,
       likes: Number,
       dislikes: Number,

@@ -504,6 +504,7 @@ const otherUserQuery = gql`
       posts {
         userId
         postId
+        username
         timestamp
         likes
         dislikes
@@ -580,6 +581,7 @@ const nonTokenModifyUserQuery = gql`
       posts {
         userId
         postId
+        username
         timestamp
         likes
         dislikes
@@ -671,6 +673,7 @@ const userQuery = gql`
       posts {
         userId
         postId
+        username
         timestamp
         likes
         dislikes
@@ -800,6 +803,7 @@ const returnFeedQuery = gql`
       posts {
         userId
         postId
+        username
         timestamp
         likes
         dislikes
