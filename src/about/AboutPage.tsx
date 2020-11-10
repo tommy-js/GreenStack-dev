@@ -6,20 +6,38 @@ import { LoadingUser } from "../login/LoadingUser";
 import UserLoginAuthSubresolver from "../resolvers/UserLoginAuthSubresolver";
 import { statusContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
-import { queryToken } from "../queries/queries";
-import { useLazyQuery } from "react-apollo";
 import { connect } from "react-redux";
-import { mapStateToProps } from "../actions/actions";
+import { mapStateToProps, mapDispatchToProps } from "../actions/actions";
+import {
+  queryToken,
+  userProgressQuery,
+  nonTokenModifyUserQuery,
+} from "../queries/queries";
+import { useLazyQuery, useQuery } from "react-apollo";
 
-const AboutPage: React.FC = () => {
+interface Redux {
+  onInitialPostsSet: (posts: any) => void;
+  onInitialFollowerSet: (followers: any) => void;
+  onInitialFollowingSet: (following: any) => void;
+  onInitialNotificationsSet: (notifications: any) => void;
+  onWatchlistSet: (watchlist: any) => void;
+}
+
+const AboutPage: React.FC<Redux> = (props) => {
   const [loadingInUser, setLoadingInUser] = useState(false);
   const [userId, setUserId] = useState();
+  const [progress, setProgress] = useState([] as any);
   const [token, setToken] = useState();
   const { status, setStatus } = useContext(statusContext);
   const [passToken, { data, loading }] = useLazyQuery(queryToken);
+  const [getUser, { data: getUserData }] = useLazyQuery(
+    nonTokenModifyUserQuery,
+    {
+      pollInterval: 500,
+    }
+  );
 
   useEffect(() => {
-    console.log("homepage status: " + status);
     if (status === false) {
       let sessionToken = sessionStorage.getItem("Token");
       if (sessionToken) {
@@ -31,8 +49,29 @@ const AboutPage: React.FC = () => {
       } else {
         browserHist.push("/login");
       }
+    } else {
+      let sessionToken = sessionStorage.getItem("Token");
+      if (sessionToken) {
+        getUser({
+          variables: {
+            token: sessionToken,
+          },
+        });
+      }
     }
   }, []);
+
+  useEffect(() => {
+    if (getUserData) {
+      console.log(getUserData.noTokenMod);
+      props.onInitialPostsSet(getUserData.noTokenMod.posts);
+      props.onInitialFollowerSet(getUserData.noTokenMod.followers);
+      props.onInitialFollowingSet(getUserData.noTokenMod.following);
+      props.onInitialNotificationsSet(getUserData.noTokenMod.notifications);
+      props.onWatchlistSet(getUserData.noTokenMod.watchlist);
+      setProgress(getUserData.noTokenMod.progress);
+    }
+  }, [getUserData]);
 
   useEffect(() => {
     console.log("homepage status: " + status);
@@ -53,12 +92,12 @@ const AboutPage: React.FC = () => {
   }
 
   function renderLoading() {
-    if (status === true) {
+    if (status === true && progress.length > 0) {
       return (
         <div>
           <NavBar />
           <AboutUs />
-          <Learn />
+          <Learn progress={progress} />
         </div>
       );
     }
@@ -82,4 +121,4 @@ const AboutPage: React.FC = () => {
   return <div>{returnLoadingInUser()}</div>;
 };
 
-export default connect(mapStateToProps)(AboutPage);
+export default connect(mapStateToProps, mapDispatchToProps)(AboutPage);

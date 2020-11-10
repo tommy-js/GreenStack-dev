@@ -1,8 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import LearnComponent from "./LearnComponent";
 import LearnHeader from "./LearnHeader";
-import { connect } from "react-redux";
-import { mapStateToProps } from "../actions/actions";
+import LearnSidebar from "./LearnSidebar";
 
 interface Props {
   progress: any;
@@ -54,8 +53,7 @@ const Learn: React.FC<Props> = (props) => {
   function renderState() {
     if (loaded === true) {
       return (
-        <div className="learn_state">
-          <LearnHeader header="Basics" />
+        <div id="learn_state">
           {learn.map((el) => (
             <LearnComponent
               key={el.title}
@@ -72,7 +70,15 @@ const Learn: React.FC<Props> = (props) => {
     }
   }
 
-  return <div id="learn_component">{renderState()}</div>;
+  return (
+    <div id="learn_component">
+      <LearnHeader header="Basics" />
+      <div id="learn_sidebar_container">
+        <LearnSidebar />
+      </div>
+      {renderState()}
+    </div>
+  );
 };
 
-export default connect(mapStateToProps)(Learn);
+export default Learn;

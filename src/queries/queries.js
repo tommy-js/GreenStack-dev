@@ -639,6 +639,22 @@ const nonTokenModifyUserQuery = gql`
   }
 `;
 
+const userProgressQuery = gql`
+  query($token: String!) {
+    user(token: $token) {
+      progress {
+        title
+        id
+        percent
+        progressElements {
+          id
+          passed
+        }
+      }
+    }
+  }
+`;
+
 const userQuery = gql`
   query($token: String!) {
     user(token: $token) {
@@ -950,6 +966,7 @@ export {
   dislikePostMutation,
   distinctUserQuery,
   userQuery,
+  userProgressQuery,
   nonTokenModifyUserQuery,
   stockQuery,
   getStocksQuery,

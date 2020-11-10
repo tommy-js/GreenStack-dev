@@ -11,6 +11,7 @@
 .about_paragraph {
   position: relative;
   font-family: $standard_font;
+  color: $raisin_black;
   width: 50%;
   margin-top: 15px;
   font-size: 18px;
@@ -22,6 +23,7 @@
 .learn_page_header {
   position: relative;
   font-family: $standard_font;
+  color: $raisin_black;
   margin-top: 25px;
   font-size: 22px;
   line-height: 165%;
@@ -75,14 +77,12 @@
   margin-top: 5px;
   font-size: 18px;
   margin-bottom: 0;
-  @include testing;
 }
 
 .option {
   position: relative;
   display: block;
   height: 45px;
-  @include testing;
 }
 
 .select_container {
@@ -121,7 +121,6 @@
   position: relative;
   width: 100%;
   height: 375px;
-  @include testing;
 }
 
 .learn_component_link {
@@ -142,7 +141,6 @@
 #learn_link {
   position: relative;
   display: inline-block;
-  @include testing;
 }
 
 #learn_individual_progress_div {
@@ -152,7 +150,6 @@
   display: inline-block;
   height: 100%;
   width: 200px;
-  @include testing;
 }
 
 .blank_input_block {
@@ -163,7 +160,6 @@
   margin-top: 5px;
   margin-left: 10px;
   display: inline-block;
-  @include testing;
 }
 
 .indicator_icon {
@@ -172,7 +168,6 @@
   margin: 10px;
   width: 40px;
   height: 40px;
-  @include testing;
 }
 
 .blank_question {
@@ -196,7 +191,6 @@
 .inline {
   position: relative;
   vertical-align: top;
-  @include testing;
   display: inline-block;
 }
 
@@ -214,25 +208,81 @@
   position: relative;
   width: 100%;
   text-align: center;
+  height: 75px;
   margin-bottom: 15px;
   margin-top: 15px;
-  border-bottom: 1px solid $soft_grey;
+  // @include testing;
 }
 
 .learn_header_span {
+  position: relative;
   font-size: 24px;
+  width: 67%;
+  float: right;
   margin-bottom: 5px;
   font-family: $standard_font;
-  color: $island_green;
+  color: $forest_green;
+  border-bottom: 1px solid $soft_grey;
 }
 
-.learn_state {
-  position: relative;
+#learn_state {
+  width: 67%;
+  display: inline-block;
+  box-sizing: border-box;
+  float: right;
+  // @include testing;
+}
+
+#learn_sidebar_container {
+  width: 25%;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: top;
+  // @include testing;
+}
+
+#learn_sidebar {
+  width: 75%;
+  float: right;
+}
+
+#learn_sidebar_ul {
+  list-style-type: none;
+}
+
+.learn_sidebar_item {
+  margin-top: 15px;
+  color: #211a1e;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.learn_sidebar_item:hover {
+  color: #666465;
+  transition: 0.2s;
+}
+
+.learn_sidebar_button {
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: $forest_green;
 }
 
 #learn_component {
   position: relative;
   margin-bottom: 100px;
+  width: 75%;
+  // @include testing;
+}
+
+.learn_fit_container {
+  display: inline-block;
+}
+
+.learn_component_state {
+  // @include testing;
 }
 
 .emphasize {
@@ -248,7 +298,6 @@
   margin-bottom: 5px;
   padding: 10px;
   border-bottom: 1px dashed $soft_grey;
-  // @include testing;
 }
 
 .glossary_header {
@@ -284,7 +333,7 @@
 }
 
 #tutorial_comment {
-  border-bottom: 2px solid blue;
+  border-bottom: 2px solid $light_blue;
 }
 
 #footer {
@@ -311,7 +360,6 @@
 }
 
 #comment_section_input {
-  @include testing;
 }
 
 #comment_section_textarea {
@@ -337,4 +385,22 @@
   position: relative;
   padding: 5px;
   left: 7.5%;
+}
+
+.progress_flare {
+  font-size: 14px;
+  color: $raisin_black;
+}
+
+.render_learn_flare {
+  text-align: right;
+  box-sizing: border-box;
+  margin: 0;
+  transition: 0.2s;
+}
+
+.progress_percent {
+  text-align: right;
+  box-sizing: border-box;
+  margin: 0;
 }
