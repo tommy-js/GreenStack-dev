@@ -54,7 +54,7 @@ const UserTrade: React.FC<Props> = (props) => {
     {
       user: "Tyler",
       comment: "Bad trade. Move on",
-      commentId: 2323,
+      commentId: "2323",
       timestamp: 2242423,
       likes: 3,
       dislikes: 63,
@@ -62,7 +62,7 @@ const UserTrade: React.FC<Props> = (props) => {
     {
       user: "John",
       comment: "Good trade. Good man. Big gainz.",
-      commentId: 394943,
+      commentId: "394943",
       timestamp: 3553523,
       likes: 22322,
       dislikes: 1,

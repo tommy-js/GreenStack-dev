@@ -343,7 +343,7 @@ const postMutation = gql`
 const dislikeStockMutation = gql`
   mutation($commentId: ID!, $dislikes: Int!) {
     dislikeStock(commentId: $commentId, dislikes: $dislikes) {
-      dislikes
+      stockId
     }
   }
 `;
@@ -351,7 +351,7 @@ const dislikeStockMutation = gql`
 const likeStockMutation = gql`
   mutation($commentId: ID!, $likes: Int!) {
     likeStock(commentId: $commentId, likes: $likes) {
-      likes
+      stockId
     }
   }
 `;
@@ -744,6 +744,7 @@ const stockQuery = gql`
       sector
       comments {
         userId
+        commentId
         username
         timestamp
         text

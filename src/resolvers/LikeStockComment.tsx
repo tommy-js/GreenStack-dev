@@ -4,19 +4,26 @@ import { flowRight as compose } from "lodash";
 import { likeStockMutation } from "../queries/queries.js";
 
 interface Props {
-  commentId: number;
+  commentId: string;
   likes: number;
-  likeStockMutation: (variables: object) => void;
+  likeStockMutation: (variables: object) => any;
 }
 
 const LikeStock: React.FC<Props> = (props) => {
   function like() {
-    props.likeStockMutation({
-      variables: {
-        commentId: props.commentId,
-        likes: props.likes,
-      },
-    });
+    props
+      .likeStockMutation({
+        variables: {
+          commentId: props.commentId,
+          likes: 1,
+        },
+      })
+      .catch((err: any) => {
+        console.log(err);
+      })
+      .then((res: any) => {
+        console.log(res);
+      });
   }
 
   return <button onClick={() => like()}>Like</button>;

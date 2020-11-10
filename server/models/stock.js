@@ -11,6 +11,7 @@ const stockSchema = new Schema({
   comments: [
     {
       userId: String,
+      commentId: String,
       username: String,
       timestamp: Number,
       text: String,

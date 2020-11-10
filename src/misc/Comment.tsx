@@ -7,7 +7,7 @@ interface Props {
   timestamp: number;
   likes: number;
   dislikes: number;
-  commentId: number;
+  commentId: string;
 }
 
 const Comment: React.FC<Props> = (props) => {

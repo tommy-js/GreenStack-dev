@@ -5,17 +5,15 @@ import DislikeStockComment from "../resolvers/DislikeStockComment";
 interface Props {
   likes: number;
   dislikes: number;
-  commentId: number;
+  commentId: string;
 }
 
 const LikeComponent: React.FC<Props> = (props) => {
-  const [likeRatio, setLikeRatio] = useState(props.likes);
-  const [dislikeRatio, setDislikeRatio] = useState(props.dislikes);
-
+  console.log(props.commentId);
   return (
     <div>
       <p>
-        {likeRatio} / {dislikeRatio}
+        {props.likes} / {props.dislikes}
       </p>
       <LikeStockComment commentId={props.commentId} likes={props.likes} />
       <DislikeStockComment

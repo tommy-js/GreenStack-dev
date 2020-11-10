@@ -8,7 +8,7 @@ interface Props {
   timestamp: number;
   predictedPrice?: number;
   recommendation?: string;
-  commentId: number;
+  commentId: string;
   likes: number;
   dislikes: number;
 }
