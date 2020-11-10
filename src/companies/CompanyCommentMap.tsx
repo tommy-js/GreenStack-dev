@@ -5,15 +5,15 @@ interface Props {
   comments: any;
 }
 
-const CompanyStockListing: React.FC<Props> = (props) => {
+const CompanyCommentMap: React.FC<Props> = (props) => {
   function returnComments() {
     if (props.comments) {
       return (
         <div>
           {props.comments.map((el: any) => (
             <StockComment
-              user={el.user}
-              comment={el.comment}
+              username={el.username}
+              text={el.text}
               commentId={el.commentId}
               predictedPrice={el.predictedPrice}
               recommendation={el.recommendation}
@@ -36,4 +36,4 @@ const CompanyStockListing: React.FC<Props> = (props) => {
   return <div>{returnComments()}</div>;
 };
 
-export default CompanyStockListing;
+export default CompanyCommentMap;

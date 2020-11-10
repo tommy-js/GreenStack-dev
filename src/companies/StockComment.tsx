@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import timestampFunction from "../timestampFunction";
+import { returnDate } from "../notifications/notificationsTimestamp";
 import LikeComponent from "./LikeComponent";
 
 interface Props {
-  user: string;
-  comment: string;
+  username: string;
+  text: string;
   timestamp: number;
   predictedPrice?: number;
   recommendation?: string;
@@ -16,28 +16,15 @@ interface Props {
 const StockComment: React.FC<Props> = (props) => {
   const [time, setTime] = useState();
 
-  function bottomContainer() {
-    if (props.predictedPrice) {
-      return (
-        <div id="stock_comment_bottom_container">
-          <p className="inline_text">Expected Price: {props.predictedPrice}</p>
-          <p className="inline_text">Recommendation: {props.recommendation}</p>
-        </div>
-      );
-    } else return null;
-  }
-
   useEffect(() => {
-    setTime(timestampFunction(props.timestamp));
+    setTime(returnDate(props.timestamp));
   }, []);
 
   return (
     <div id="stock_comment">
-      <h4>{props.user}</h4>
-      <p>{props.comment}</p>
-      <p>posted {props.timestamp}</p>
-      <p>Time: {time}</p>
-      {bottomContainer()}
+      <h4>{props.username}</h4>
+      <p>{props.text}</p>
+      <p>Posted {time}</p>
       <LikeComponent
         commentId={props.commentId}
         likes={props.likes}

@@ -5,24 +5,11 @@ import { addCommentStockMutation } from "../queries/queries.js";
 
 interface Props {
   addCommentStockMutation: (variables: object) => any;
-  passFunc: boolean;
-  stockId: number;
-  text: string;
-  userId: string;
-  username: string;
+  stockId: string;
 }
 
 const AddCommentToStock: React.FC<Props> = (props) => {
-  const [passFunc, setPassFunc] = useState(props.passFunc);
-
-  useEffect(() => {
-    setPassFunc(true);
-    if (passFunc === true) {
-      setPassFunc(false);
-      console.log("addCommentStockMutation");
-      pushData();
-    }
-  }, [props.passFunc]);
+  const [text, setText] = useState("");
 
   function pushData() {
     let token = sessionStorage.getItem("Token");
@@ -31,15 +18,26 @@ const AddCommentToStock: React.FC<Props> = (props) => {
         variables: {
           stockId: props.stockId,
           token: token,
-          username: props.username,
-          text: props.text,
+          text: text,
         },
       })
-      .then((res: any) => console.log(res))
+      .then((res: any) => {
+        console.log(res);
+        setText("");
+      })
       .catch((err: any) => console.log(err));
   }
 
-  return null;
+  return (
+    <div id="comment_input">
+      <textarea
+        id="comment_textarea"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      <button onClick={() => pushData()}>Submit</button>
+    </div>
+  );
 };
 
 export default compose(

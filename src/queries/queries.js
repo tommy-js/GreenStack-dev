@@ -384,7 +384,7 @@ const addCommentTradeMutation = gql`
 const addCommentStockMutation = gql`
   mutation($stockId: ID!, $token: String!, $text: String!) {
     addCommentStock(stockId: $stockId, token: $token, text: $text) {
-      text
+      title
     }
   }
 `;
