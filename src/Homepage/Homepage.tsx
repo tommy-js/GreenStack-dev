@@ -24,7 +24,6 @@ import StockPage from "../companies/StockPage";
 import { useLazyQuery, useQuery } from "react-apollo";
 import { statusContext } from "../AppMain/App";
 import { browserHist } from "../AppMain/history";
-import companyProfiles from "../companies/companyProfiles";
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "../actions/actions";
 import {
@@ -54,6 +53,9 @@ const Homepage: React.FC<Props> = (props) => {
   const [tradeRoutePaths, setTradeRoutePaths] = useState([] as any);
   const [loadingInUser, setLoadingInUser] = useState(false);
   const [companies, setCompanies] = useState([] as any);
+  const [technology, setTechnology] = useState([] as any);
+  const [manufacturing, setManufacturing] = useState([] as any);
+  const [energy, setEnergy] = useState([] as any);
   const [userId, setUserId] = useState();
   const [token, setToken] = useState();
   const [results, setResults] = useState({ username: "", userId: "", bio: "" });
@@ -71,7 +73,23 @@ const Homepage: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (companyData) {
-      setCompanies(companyData.getStocks);
+      let tech = [];
+      let manu = [];
+      let energ = [];
+      let companies = companyData.getStocks;
+      setCompanies(companies);
+      for (let i = 0; i < companies.length; i++) {
+        if (companies[i].sector === "Technology") {
+          tech.push(companies[i]);
+        } else if (companies[i].sector === "Manufacturing") {
+          manu.push(companies[i]);
+        } else if (companies[i].sector === "Energy") {
+          energ.push(companies[i]);
+        }
+      }
+      setTechnology(tech);
+      setManufacturing(manu);
+      setEnergy(energ);
     }
   }, [companyData]);
 
@@ -176,7 +194,14 @@ const Homepage: React.FC<Props> = (props) => {
             <Route exact path="/home/profile">
               <Profile username={props.username} />
             </Route>
-            <Route exact path="/home/explore" component={Explore} />
+            <Route exact path="/home/explore">
+              <Explore
+                companies={companies}
+                technology={technology}
+                manufacturing={manufacturing}
+                energy={energy}
+              />
+            </Route>
             <Route exact path="/home/posts">
               <UserPosts modRoutes={modPosts} />
             </Route>

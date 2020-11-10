@@ -7,8 +7,6 @@ interface Props {
   title: string;
   ticker: string;
   description: string;
-  price: number;
-  marketcap: number;
 }
 
 const ExploreCompany: React.FC<Props> = (props) => {
@@ -19,8 +17,6 @@ const ExploreCompany: React.FC<Props> = (props) => {
           {props.title} #{props.ticker}
         </p>
         <p>{props.description}</p>
-        <p>cost: ${props.price}</p>
-        <p>marketcap: {props.marketcap}</p>
       </Link>
     </div>
   );

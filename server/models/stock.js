@@ -7,6 +7,7 @@ const stockSchema = new Schema({
   title: String,
   description: String,
   country: String,
+  sector: String,
   comments: [
     {
       userId: String,

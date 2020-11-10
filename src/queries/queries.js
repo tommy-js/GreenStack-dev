@@ -741,6 +741,7 @@ const stockQuery = gql`
       title
       description
       country
+      sector
       comments {
         userId
         username
@@ -761,6 +762,7 @@ const getStocksQuery = gql`
       title
       description
       country
+      sector
       comments {
         userId
         username
