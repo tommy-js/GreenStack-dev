@@ -1,32 +1,32 @@
 import React from "react";
 import WatchListing from "./WatchListing";
-
-interface Props {
-  stocks: Keys[];
-}
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
 
 interface Keys {
   keyId: number;
   stockId: number;
   title: string;
   ticker: string;
-  price: number;
 }
 
-const WatchStocks: React.FC<Props> = (props) => {
+interface Redux {
+  watchlist: Keys[];
+}
+
+const WatchStocks: React.FC<Redux> = (props) => {
   return (
     <div>
-      {props.stocks.map((el: Keys) => (
+      {props.watchlist.map((el: Keys) => (
         <WatchListing
           stockId={el.stockId}
           key={el.keyId}
           title={el.title}
           ticker={el.ticker}
-          price={el.price}
         />
       ))}
     </div>
   );
 };
 
-export default WatchStocks;
+export default connect(mapStateToProps)(WatchStocks);

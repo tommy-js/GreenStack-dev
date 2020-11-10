@@ -41,6 +41,7 @@ interface Redux {
   onInitialFollowerSet: (followers: any) => void;
   onInitialFollowingSet: (following: any) => void;
   onInitialNotificationsSet: (notifications: any) => void;
+  onWatchlistSet: (watchlist: any) => void;
 }
 
 interface Props extends Redux {
@@ -125,6 +126,7 @@ const Homepage: React.FC<Props> = (props) => {
       props.onInitialFollowerSet(getUserData.noTokenMod.followers);
       props.onInitialFollowingSet(getUserData.noTokenMod.following);
       props.onInitialNotificationsSet(getUserData.noTokenMod.notifications);
+      props.onWatchlistSet(getUserData.noTokenMod.watchlist);
     }
   }, [getUserData]);
 

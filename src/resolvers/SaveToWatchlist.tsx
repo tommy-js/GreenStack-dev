@@ -3,7 +3,11 @@ import { flowRight as compose } from "lodash";
 import { graphql } from "react-apollo";
 import { pushStockToWatchlistMutation } from "../queries/queries.js";
 
-interface Props {
+interface Redux {
+  userId: string;
+}
+
+interface Props extends Redux {
   stockId: number;
   title: string;
   ticker: string;
@@ -11,8 +15,6 @@ interface Props {
   pushStockToWatchlistMutation: (variables: object) => any;
   saveToWatchlist: () => void;
   modWatchlist: (isThere: boolean) => void;
-  // Redux
-  userId: string;
 }
 
 const SaveToWatchlist: React.FC<Props> = (props) => {

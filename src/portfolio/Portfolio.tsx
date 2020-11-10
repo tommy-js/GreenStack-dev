@@ -100,7 +100,7 @@ const Portfolio: React.FC<Redux> = (props) => {
               <Assets />
               <OwnedStocks owned={userStocks} />
               <Header text="Watch-list" />
-              <WatchStocks stocks={userWatch} />
+              <WatchStocks />
               <PortfolioData />
             </Route>
           </div>

@@ -6,7 +6,6 @@ interface Props {
   stockId: number;
   title: string;
   ticker: string;
-  price: number;
 }
 
 const WatchListing: React.FC<Props> = (props) => {
