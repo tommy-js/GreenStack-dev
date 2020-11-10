@@ -27,7 +27,11 @@ import { browserHist } from "../AppMain/history";
 import companyProfiles from "../companies/companyProfiles";
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "../actions/actions";
-import { userQuery, nonTokenModifyUserQuery } from "../queries/queries";
+import {
+  userQuery,
+  nonTokenModifyUserQuery,
+  getStocksQuery,
+} from "../queries/queries";
 
 interface Redux {
   userId: any;
@@ -49,10 +53,12 @@ const Homepage: React.FC<Props> = (props) => {
   const [userRoutePaths, setUserRoutePaths] = useState([] as any);
   const [tradeRoutePaths, setTradeRoutePaths] = useState([] as any);
   const [loadingInUser, setLoadingInUser] = useState(false);
+  const [companies, setCompanies] = useState([] as any);
   const [userId, setUserId] = useState();
   const [token, setToken] = useState();
   const [results, setResults] = useState({ username: "", userId: "", bio: "" });
 
+  const { data: companyData } = useQuery(getStocksQuery);
   const [passToken, { data, loading }] = useLazyQuery(userQuery);
   const [getUser, { data: getUserData }] = useLazyQuery(
     nonTokenModifyUserQuery,
@@ -62,6 +68,12 @@ const Homepage: React.FC<Props> = (props) => {
   );
 
   const { status, setStatus } = useContext(statusContext);
+
+  useEffect(() => {
+    if (companyData) {
+      setCompanies(companyData.getStocks);
+    }
+  }, [companyData]);
 
   useEffect(() => {
     console.log("homepage status: " + status);
@@ -194,7 +206,7 @@ const Homepage: React.FC<Props> = (props) => {
                 <UserTrade tradeId={tradeId} />
               </Route>
             ))}
-            {companyProfiles.map((el: any) => (
+            {companies.map((el: any) => (
               <div>
                 <Route
                   exact

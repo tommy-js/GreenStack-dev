@@ -738,10 +738,29 @@ const stockQuery = gql`
     stock(stockId: $stockId) {
       stockId
       ticker
-      name
-      about
-      creation
-      prediction
+      title
+      description
+      country
+      comments {
+        userId
+        username
+        timestamp
+        text
+        likes
+        dislikes
+      }
+    }
+  }
+`;
+
+const getStocksQuery = gql`
+  query {
+    getStocks {
+      stockId
+      ticker
+      title
+      description
+      country
       comments {
         userId
         username
@@ -930,6 +949,7 @@ export {
   userQuery,
   nonTokenModifyUserQuery,
   stockQuery,
+  getStocksQuery,
   userLoginQuery,
   queryTradeQuery,
   queryPosts,
