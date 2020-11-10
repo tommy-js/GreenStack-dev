@@ -26,6 +26,7 @@ interface Redux {
   onInitialCommentsSet: (comments: any) => void;
   onInitialProgressSet: (progress: any) => void;
   onInitialProgressElementsSet: (progressElements: any) => void;
+  onHistorySet: (history: any) => void;
 }
 
 interface Props extends Redux {
@@ -115,6 +116,7 @@ const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
       props.onInitialCommentsSet(user.comments);
       props.onInitialProgressSet(progress);
       props.onInitialProgressElementsSet(progs);
+      props.onHistorySet(user.history);
       sessionStorage.setItem("Token", user.token);
     }
     setStatus(true);

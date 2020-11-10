@@ -487,6 +487,12 @@ const otherUserQuery = gql`
       money
       membership
       profileImage
+      history {
+        text
+        id
+        type
+        timestamp
+      }
       following {
         userId
         username
@@ -559,6 +565,12 @@ const nonTokenModifyUserQuery = gql`
       allowCommentsOnTrades
       profileImage
       token
+      history {
+        text
+        id
+        type
+        timestamp
+      }
       following {
         userId
         username
@@ -669,6 +681,12 @@ const userQuery = gql`
       allowCommentsOnTrades
       profileImage
       token
+      history {
+        text
+        id
+        type
+        timestamp
+      }
       following {
         userId
         username

@@ -78,6 +78,9 @@ const userReducer = (state: any, action: any) => {
   if (action.type == "SET_FEED") {
     newState.feed = action.payload;
   }
+  if (action.type == "SET_HISTORY") {
+    newState.feed = action.payload;
+  }
   return newState;
 };
 

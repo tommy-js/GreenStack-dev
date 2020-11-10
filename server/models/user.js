@@ -19,6 +19,14 @@ const userSchema = new Schema({
   commentary: Number,
   allowCommentsOnTrades: Boolean,
   profileImage: String,
+  history: [
+    {
+      text: String,
+      id: String,
+      type: String,
+      timestamp: Number,
+    },
+  ],
   posts: [
     {
       userId: String,

@@ -21,6 +21,7 @@ export const mapStateToProps = (state: any) => {
     oneyear: state.oneyear,
     currentPrices: state.currentPrices,
     feed: state.feed,
+    history: state.history,
   };
 };
 
@@ -77,5 +78,7 @@ export const mapDispatchToProps = (dispatch: any) => {
     onCurrentPricesSet: (currentPrices: any) =>
       dispatch({ type: "SET_CURRENT_PRICES", payload: currentPrices }),
     onFeedSet: (feed: any) => dispatch({ type: "SET_FEED", payload: feed }),
+    onHistorySet: (history: any) =>
+      dispatch({ type: "SET_HISTORY", payload: history }),
   };
 };
