@@ -1,15 +1,15 @@
 import React from "react";
-import { returnDate } from "../notifications/notificationsTimestamp";
+import { returnDate } from "../../notifications/notificationsTimestamp";
 
-interface Hist {
+interface Props {
   style: string;
   text: string;
   timestamp: number;
 }
 
-const HistoryElement: React.FC<Hist> = (props) => {
+const HistoryElement: React.FC<Props> = (props) => {
   return (
-    <div className="notifications_link">
+    <div className="profile_trade">
       <p>{props.text}</p>
       <p>{returnDate(props.timestamp)}</p>
     </div>

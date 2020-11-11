@@ -1,7 +1,7 @@
 import React from "react";
 import ProfileHeader from "./ProfileHeader";
 import Settings from "./Settings";
-import TradeHistory from "./TradeHistory";
+import PersonalHistory from "./PersonalHistory";
 
 interface Props {
   username: string;
@@ -12,7 +12,7 @@ const Profile: React.FC<Props> = (props) => {
     <div className="feed">
       <ProfileHeader />
       <Settings />
-      <TradeHistory />
+      <PersonalHistory />
     </div>
   );
 };
