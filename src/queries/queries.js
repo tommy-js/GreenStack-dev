@@ -331,6 +331,8 @@ const postMutation = gql`
     $token: String!
     $title: String!
     $text: String!
+    $style: String!
+    $historyText: String!
     $accompaniedURL: String!
     $allowComments: Boolean!
     $allowLikes: Boolean!
@@ -343,6 +345,9 @@ const postMutation = gql`
       allowComments: $allowComments
       allowLikes: $allowLikes
     ) {
+      username
+    }
+    pushToHistory(token: $token, text: $historyText, style: $style) {
       username
     }
   }

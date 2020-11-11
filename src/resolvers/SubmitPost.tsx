@@ -25,6 +25,8 @@ const SubmitPost: React.FC<Props> = (props) => {
             token: token,
             title: props.title,
             text: props.text,
+            historyText: "Posted",
+            style: "Post",
             accompaniedURL: props.accompaniedURL,
             allowComments: props.allowComments,
             allowLikes: props.allowLikes,

@@ -6,8 +6,8 @@
   position: relative;
   @include noselect;
   width: 100%;
-  height: 100%;
-  padding: 15px;
+  height: 80px;
+  padding-left: 15px;
   box-sizing: border-box;
   cursor: pointer;
   display: inline-block;
@@ -24,6 +24,8 @@
   background-color: white;
   border: 1px solid $darkGrey;
   box-shadow: 1px 2px 2px $grey;
+  height: 400px;
+  overflow: scroll;
 }
 
 #trigger_icon {
@@ -119,4 +121,32 @@
 #history_void_img {
   width: 100%;
   height: 100%;
+}
+
+.link_style {
+  text-decoration: none;
+  color: black;
+}
+
+.history_text_block {
+  height: 80px;
+  display: inline-block;
+  @include testing;
+}
+
+.history_icon {
+  width: 25px;
+  height: 80px;
+  margin: 0;
+  box-sizing: border-box;
+  vertical-align: top;
+  display: inline-block;
+  @include testing;
+}
+
+.history_img {
+  position: relative;
+  top: 10px;
+  width: 100%;
+  @include testing;
 }
