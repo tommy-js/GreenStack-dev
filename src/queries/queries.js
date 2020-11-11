@@ -21,6 +21,14 @@ const updateNewAccountMutation = gql`
   }
 `;
 
+const updateHistoryMutation = gql`
+  mutation($token: String!, $text: String!, $type: String!) {
+    pushToHistory(token: $token, text: $text, type: $type) {
+      username
+    }
+  }
+`;
+
 const updateUserProgressMutation = gql`
   mutation($id: ID!, $specId: ID!, $increment: Int!) {
     updateUserProgress(id: $id, specId: $specId, increment: $increment) {
@@ -341,17 +349,35 @@ const postMutation = gql`
 `;
 
 const dislikeStockMutation = gql`
-  mutation($commentId: ID!, $dislikes: Int!) {
+  mutation(
+    $token: String!
+    $text: String!
+    $style: String!
+    $commentId: ID!
+    $dislikes: Int!
+  ) {
     dislikeStock(commentId: $commentId, dislikes: $dislikes) {
       stockId
+    }
+    pushToHistory(token: $token, text: $text, style: $style) {
+      username
     }
   }
 `;
 
 const likeStockMutation = gql`
-  mutation($commentId: ID!, $likes: Int!) {
+  mutation(
+    $token: String!
+    $text: String!
+    $style: String!
+    $commentId: ID!
+    $likes: Int!
+  ) {
     likeStock(commentId: $commentId, likes: $likes) {
       stockId
+    }
+    pushToHistory(token: $token, text: $text, style: $style) {
+      username
     }
   }
 `;
@@ -490,7 +516,7 @@ const otherUserQuery = gql`
       history {
         text
         id
-        type
+        style
         timestamp
       }
       following {
@@ -568,7 +594,7 @@ const nonTokenModifyUserQuery = gql`
       history {
         text
         id
-        type
+        style
         timestamp
       }
       following {
@@ -684,7 +710,7 @@ const userQuery = gql`
       history {
         text
         id
-        type
+        style
         timestamp
       }
       following {
@@ -943,6 +969,7 @@ const tutorialQuery = gql`
 
 export {
   createUserMutation,
+  updateHistoryMutation,
   updateDarkModeMutation,
   updateAllowCommentsMutation,
   updateInvisibleMutation,

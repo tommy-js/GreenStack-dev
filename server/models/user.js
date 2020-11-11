@@ -23,7 +23,7 @@ const userSchema = new Schema({
     {
       text: String,
       id: String,
-      type: String,
+      style: String,
       timestamp: Number,
     },
   ],

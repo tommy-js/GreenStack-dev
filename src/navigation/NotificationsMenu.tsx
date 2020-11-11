@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import {
   NotificationsLinkContainer,
-  NotificationsDataContainer,
+  NotifData,
 } from "./NotificationsContainer";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../actions/actions";
@@ -45,11 +45,8 @@ const NotificationsMenu: React.FC<Props> = (props) => {
     } else {
       return (
         <div>
-          <NotificationsDataContainer
+          <NotifData
             tab={tab}
-            userId={props.userId}
-            notifications={notifications}
-            history={history}
             settings={settings}
             changeTab={changeTab}
             modNotificationColor={props.modNotificationColor}

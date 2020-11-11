@@ -11,9 +11,13 @@ interface Props {
 
 const LikeStock: React.FC<Props> = (props) => {
   function like() {
+    let token = sessionStorage.getItem("Token");
     props
       .likeStockMutation({
         variables: {
+          token: token,
+          text: "Liked stock comment",
+          style: "Like",
           commentId: props.commentId,
           likes: 1,
         },

@@ -11,9 +11,13 @@ interface Props {
 
 const DislikeStock: React.FC<Props> = (props) => {
   function dislike() {
+    let token = sessionStorage.getItem("Token");
     props
       .dislikeStockMutation({
         variables: {
+          token: token,
+          text: "Disliked stock comment",
+          style: "Dislike",
           commentId: props.commentId,
           dislikes: 1,
         },

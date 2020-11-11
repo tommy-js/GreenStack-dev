@@ -79,7 +79,7 @@ const userReducer = (state: any, action: any) => {
     newState.feed = action.payload;
   }
   if (action.type == "SET_HISTORY") {
-    newState.feed = action.payload;
+    newState.history = action.payload;
   }
   return newState;
 };

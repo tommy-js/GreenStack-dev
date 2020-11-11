@@ -4,22 +4,21 @@ import NotificationsElement from "./NotificationsElement";
 import HistoryElement from "./HistoryElement";
 import SettingsElement from "./SettingsElement";
 import VoidAlert from "./VoidAlert";
-import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
+
+interface Redux {
+  history: any;
+  userId: number;
+  notifications: any;
+}
 
 interface LocalLink {
   changeTab: (tab: number) => void;
 }
 
-interface Data {
+interface Data extends Redux {
   tab: number;
-  userId: number;
-  notifications: {
-    content: string;
-    id: number;
-    timestamp: number;
-    viewed: boolean;
-  }[];
-  history: object[];
   settings: object[];
   changeTab: (tab: number) => void;
   modNotificationColor: (notifArr: object[]) => void;
@@ -39,9 +38,9 @@ export const NotificationsLinkContainer: React.FC<LocalLink> = (props) => {
   );
 };
 
-export const NotificationsDataContainer: React.FC<Data> = (props) => {
+const NotificationsDataContainer: React.FC<Data> = (props) => {
   const [notifications, setNotifications] = useState(props.notifications);
-  const [history, setHistory] = useState(props.history);
+  // const [history, setHistory] = useState(props.history);
   const [settings, setSettings] = useState(props.settings);
 
   function modNotifs(id: number) {
@@ -83,7 +82,7 @@ export const NotificationsDataContainer: React.FC<Data> = (props) => {
   }
 
   function returnEmptyHistory() {
-    if (history.length < 1) {
+    if (props.history.length < 1) {
       return (
         <div>
           <button onClick={() => props.changeTab(0)}>back</button>
@@ -94,10 +93,10 @@ export const NotificationsDataContainer: React.FC<Data> = (props) => {
       return (
         <div>
           <button onClick={() => props.changeTab(0)}>back</button>
-          {history.map((el: any) => (
+          {props.history.map((el: any) => (
             <HistoryElement
-              title={el.title}
-              ticker={el.ticker}
+              text={el.text}
+              style={el.style}
               timestamp={el.timestamp}
             />
           ))}
@@ -129,3 +128,5 @@ export const NotificationsDataContainer: React.FC<Data> = (props) => {
 
   return <div>{checkTab()}</div>;
 };
+
+export const NotifData = connect(mapStateToProps)(NotificationsDataContainer);
