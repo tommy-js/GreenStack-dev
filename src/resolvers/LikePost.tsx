@@ -5,6 +5,7 @@ import { likePostMutation } from "../queries/queries";
 import like from "../images/like.png";
 
 interface Props {
+  userId: string;
   postId: string;
   likePostMutation: (variables: object) => any;
 }
@@ -14,7 +15,9 @@ const LikePost: React.FC<Props> = (props) => {
     props
       .likePostMutation({
         variables: {
+          userId: props.userId,
           postId: props.postId,
+          content: "A user liked your post",
         },
       })
       .then((res: any) => {

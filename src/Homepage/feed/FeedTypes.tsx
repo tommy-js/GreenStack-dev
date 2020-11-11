@@ -8,7 +8,7 @@ import { returnDate } from "../../notifications/notificationsTimestamp";
 
 interface Props {
   title: string;
-  userId: number;
+  userId: string;
   user: string;
   text: string;
   timestamp: number;
@@ -32,11 +32,11 @@ export const RenderModal: React.FC<Props> = (props) => {
             <div className="post_values">
               <span className="post_value_inner">{props.likes}</span>
             </div>
-            <LikePost postId={props.postId} />
+            <LikePost userId={props.userId} postId={props.postId} />
             <div className="post_values">
               <span className="post_value_inner">{props.dislikes}</span>
             </div>
-            <DislikePost postId={props.postId} />
+            <DislikePost userId={props.userId} postId={props.postId} />
             <div className="post_values">
               <span className="post_value_inner">{props.comments.length}</span>
             </div>

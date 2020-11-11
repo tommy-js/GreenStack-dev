@@ -5,6 +5,7 @@ import { dislikePostMutation } from "../queries/queries";
 import dislike from "../images/dislike.png";
 
 interface Props {
+  userId: string;
   postId: string;
   dislikePostMutation: (variables: object) => any;
 }
@@ -15,7 +16,9 @@ const DislikePost: React.FC<Props> = (props) => {
     props
       .dislikePostMutation({
         variables: {
+          userId: props.userId,
           postId: props.postId,
+          content: "A user disliked your post",
         },
       })
       .then((res: any) => {

@@ -243,6 +243,14 @@ const pushCommentTradeMutation = gql`
   }
 `;
 
+const pushUserNotificationsMutation = gql`
+  mutation($content: String!, $userId: String!) {
+    pushUserNotifications(content: $content, userId: $userId) {
+      username
+    }
+  }
+`;
+
 const dropNotificationMutation = gql`
   mutation($token: String!, $id: ID!) {
     dropNotification(token: $token, id: $id) {
@@ -467,16 +475,22 @@ const dislikeCommentMutation = gql`
 `;
 
 const likePostMutation = gql`
-  mutation($postId: String!) {
+  mutation($userId: ID!, $content: String!, $postId: String!) {
     likePost(postId: $postId) {
+      username
+    }
+    pushUserNotifications(userId: $userId, content: $content) {
       username
     }
   }
 `;
 
 const dislikePostMutation = gql`
-  mutation($postId: String!) {
+  mutation($userId: ID!, $content: String!, $postId: String!) {
     dislikePost(postId: $postId) {
+      username
+    }
+    pushUserNotifications(userId: $userId, content: $content) {
       username
     }
   }
@@ -985,6 +999,7 @@ export {
   updateDislikesMutation,
   updateUserProgressMutation,
   deleteCommentUserMutation,
+  pushUserNotificationsMutation,
   dropNotificationMutation,
   pushCommentPostMutation,
   pushCommentTutorialMutation,
