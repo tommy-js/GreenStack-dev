@@ -8,7 +8,6 @@ import Following from "./Following";
 import Followers from "./Followers";
 import UserProfile from "../User/UserProfile";
 import Profile from "./profile/Profile";
-import UserTrade from "./UserTrade";
 import { LoadingUser } from "../login/LoadingUser";
 import SearchResults from "./SearchResults";
 import PostPage from "./post/PostPage";
@@ -228,11 +227,6 @@ const Homepage: React.FC<Props> = (props) => {
                   inspectBio={el.bio}
                   modRoutes={modPosts}
                 />
-              </Route>
-            ))}
-            {tradeRoutePaths.map((tradeId: number) => (
-              <Route key={tradeId} path={`/home/post/${tradeId}`}>
-                <UserTrade tradeId={tradeId} />
               </Route>
             ))}
             {companies.map((el: any) => (

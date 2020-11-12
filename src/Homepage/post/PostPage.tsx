@@ -11,6 +11,7 @@ interface Props {
 interface Data {
   title: string;
   text: string;
+  userId: string;
   likes: number;
   dislikes: number;
   timestamp: number;
@@ -43,6 +44,7 @@ const PostPage: React.FC<Props> = (props) => {
       setInfo({
         text: data.post.text,
         title: data.post.title,
+        userId: data.post.userId,
         likes: data.post.likes,
         dislikes: data.post.dislikes,
         timestamp: data.post.timestamp,

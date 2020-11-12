@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import DropNotification from "../resolvers/DropNotification";
 import NotificationsMenu from "./NotificationsMenu";
 
 interface Props {

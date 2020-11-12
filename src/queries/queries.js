@@ -206,9 +206,18 @@ const deleteCommentUserMutation = gql`
 `;
 
 const pushCommentPostMutation = gql`
-  mutation($token: String!, $text: String!, $postId: ID!) {
+  mutation(
+    $userId: ID!
+    $content: String!
+    $token: String!
+    $text: String!
+    $postId: ID!
+  ) {
     pushCommentPost(token: $token, text: $text, postId: $postId) {
-      text
+      username
+    }
+    pushUserNotifications(userId: $userId, content: $content) {
+      username
     }
   }
 `;

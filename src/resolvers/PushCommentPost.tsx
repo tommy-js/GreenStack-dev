@@ -18,6 +18,8 @@ const PushCommentPost: React.FC<Props> = (props) => {
         .pushCommentPostMutation({
           variables: {
             token: token,
+            userId: props.userId,
+            content: "A user commented on your post",
             postId: props.postId,
             text: props.text,
           },

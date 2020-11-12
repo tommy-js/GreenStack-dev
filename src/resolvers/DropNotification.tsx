@@ -4,8 +4,9 @@ import { flowRight as compose } from "lodash";
 import { dropNotificationMutation } from "../queries/queries";
 
 interface Props {
-  id: number;
+  id: string;
   dropNotificationMutation: (variables: object) => any;
+  successfulDrop: (id: string) => void;
   modDisp: () => void;
 }
 
@@ -18,6 +19,9 @@ const DropNotification: React.FC<Props> = (props) => {
           token: token,
           id: props.id,
         },
+      })
+      .then((res: any) => {
+        props.successfulDrop(props.id);
       })
       .catch((res: any) => console.log("err"));
   }

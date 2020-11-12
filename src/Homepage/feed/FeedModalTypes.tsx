@@ -8,7 +8,7 @@ import comment from "../../images/comment.png";
 
 interface Props {
   title: string;
-  userId: number;
+  userId: string;
   postId: string;
   user: string;
   text: string;
@@ -62,7 +62,11 @@ export const RenderModal: React.FC<Props> = (props) => {
       </h4>
       {returnAllowed()}
       <p>{props.text}</p>
-      <InputPost postId={props.postId} allowComments={props.allowComments} />
+      <InputPost
+        userId={props.userId}
+        postId={props.postId}
+        allowComments={props.allowComments}
+      />
       <CommentSection postId={props.postId} comments={props.comments} />
     </div>
   );
