@@ -23,11 +23,11 @@
   width: 85%;
   margin-left: auto;
   margin-right: auto;
-  @include testing;
+  // @include testing;
 }
 
 #profile_header_container {
-  @include testing;
+  // @include testing;
   position: relative;
   height: 45px;
 }
@@ -41,7 +41,7 @@
   overflow: hidden;
   box-sizing: border-box;
   cursor: pointer;
-  @include testing;
+  // @include testing;
 }
 
 #img_id {
@@ -64,14 +64,14 @@
   height: 25px;
   position: relative;
   margin-top: 10px;
-  @include testing;
+  // @include testing;
 }
 
 #profile_header_bio {
   top: -20px;
   display: inline-block;
   font-size: 18px;
-  @include testing;
+  // @include testing;
 }
 
 #bio_image {
@@ -79,7 +79,7 @@
   top: 0;
   height: 25px;
   width: 25px;
-  @include testing;
+  // @include testing;
 }
 
 #left_container {
@@ -89,7 +89,7 @@
   left: 0;
   top: -20px;
   width: 80%;
-  @include testing;
+  // @include testing;
 }
 
 #right_container {
@@ -120,4 +120,39 @@
 #personal_history_header {
   text-align: center;
   color: $forest_green;
+}
+
+#profile_image_dropzone {
+  margin-top: 15px;
+  width: 100%;
+  border: 1px solid $soft_grey;
+}
+
+#dropzone {
+  text-align: center;
+  margin: 15px;
+  box-sizing: border-box;
+  font-family: $standard_font;
+  background-color: $softer_grey;
+  border: 2px dashed grey;
+}
+
+#dropzone_text {
+  @include noselect;
+  color: $dark_grey;
+}
+
+#selected_profile_image_block {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  @include testing;
+}
+
+#selected_profile_image {
+  height: 100%;
+  width: 100%;
 }

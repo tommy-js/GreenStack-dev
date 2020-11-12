@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SetBio from "../../resolvers/SetBio";
-import money from "../../images/money.png";
+import { ProfileDropzone } from "./ProfileDropzone";
+import generic from "../../images/generic_icon.png";
 import edit from "../../images/edit.png";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../../actions/actions";
@@ -11,8 +12,10 @@ interface Redux {
 }
 
 const ProfileHeader: React.FC<Redux> = (props) => {
+  const [profileImage, setProfileImage] = useState(generic);
   const [editing, setEditing] = useState(false);
   const [bio, setBio] = useState(props.bio);
+  const [editingProfileImage, setEditingProfileImage] = useState(false);
 
   function modEditing(isEdit: boolean) {
     setEditing(isEdit);
@@ -44,15 +47,29 @@ const ProfileHeader: React.FC<Redux> = (props) => {
     }
   }
 
+  function modifyImg(imgData: any) {
+    setProfileImage(imgData);
+  }
+
+  function renderDropzone() {
+    if (editingProfileImage === true) {
+      return <ProfileDropzone modifyImg={modifyImg} />;
+    } else return null;
+  }
+
   return (
     <div id="profile_header">
       <div id="profile_header_container">
-        <div id="profile_image_container">
-          <img id="img_id" src={money} />
+        <div
+          id="profile_image_container"
+          onClick={() => setEditingProfileImage(!editingProfileImage)}
+        >
+          <img id="img_id" src={profileImage} />
         </div>
         <h2 id="profile_header_username">{props.username}</h2>
       </div>
       <div id="profile_bio_container">{returnEditing()}</div>
+      {renderDropzone()}
     </div>
   );
 };
