@@ -2,29 +2,36 @@ import React, { useState, useEffect } from "react";
 import NotificationsLink from "./NotificationsLink";
 import NotificationsElement from "./NotificationsElement";
 import HistoryElement from "./HistoryElement";
-import SettingsElement from "./SettingsElement";
+import DarkMode from "../resolvers/DarkMode";
+import Private from "../resolvers/Private";
+import AllowComments from "../resolvers/AllowComments";
 import VoidAlert from "./VoidAlert";
 import { connect } from "react-redux";
-import { mapStateToProps } from "../actions/actions";
+import { mapStateToProps, mapDispatchToProps } from "../actions/actions";
 
 interface Redux {
   history: any;
-  userId: number;
+  userId: string;
+  invisible: any;
+  allowCommentsOnPosts: any;
+  darkmode: any;
   notifications: any;
+  onDarkmodeSet: (darkmode: any) => void;
+  onInvisibleSet: (invisible: any) => void;
+  onAllowCommentsSet: (allowCommentsOnPosts: any) => void;
+}
+
+interface Data extends Redux {
+  tab: number;
+  changeTab: (tab: number) => void;
+  modNotificationColor: (notifArr: object[]) => void;
 }
 
 interface LocalLink {
   changeTab: (tab: number) => void;
 }
 
-interface Data extends Redux {
-  tab: number;
-  settings: object[];
-  changeTab: (tab: number) => void;
-  modNotificationColor: (notifArr: object[]) => void;
-}
-
-export const NotificationsLinkContainer: React.FC<LocalLink> = (props) => {
+const NotificationsLinkContainer: React.FC<LocalLink> = (props) => {
   return (
     <div>
       <NotificationsLink
@@ -41,7 +48,6 @@ export const NotificationsLinkContainer: React.FC<LocalLink> = (props) => {
 const NotificationsDataContainer: React.FC<Data> = (props) => {
   const [notifications, setNotifications] = useState(props.notifications);
   // const [history, setHistory] = useState(props.history);
-  const [settings, setSettings] = useState(props.settings);
 
   function modNotifs(id: number) {
     let notifArr = props.notifications;
@@ -52,6 +58,18 @@ const NotificationsDataContainer: React.FC<Data> = (props) => {
       setNotifications(notifArr);
       props.modNotificationColor(notifArr);
     }
+  }
+
+  function modDarkMode(darkmode: boolean) {
+    props.onDarkmodeSet(darkmode);
+  }
+
+  function modPrivate(invisible: boolean) {
+    props.onInvisibleSet(invisible);
+  }
+
+  function modAllowComments(allowCommentsOnPosts: boolean) {
+    props.onAllowCommentsSet(allowCommentsOnPosts);
   }
 
   function returnEmptyNotifications() {
@@ -118,9 +136,12 @@ const NotificationsDataContainer: React.FC<Data> = (props) => {
       return (
         <div>
           <button onClick={() => props.changeTab(0)}>back</button>
-          {settings.map((el: any) => (
-            <SettingsElement title={el.title} />
-          ))}
+          <DarkMode modDarkMode={modDarkMode} darkmode={props.darkmode} />
+          <Private modPrivate={modPrivate} invisible={props.invisible} />
+          <AllowComments
+            modAllowComments={modAllowComments}
+            allowCommentsOnPosts={props.allowCommentsOnPosts}
+          />
         </div>
       );
     }
@@ -129,4 +150,8 @@ const NotificationsDataContainer: React.FC<Data> = (props) => {
   return <div>{checkTab()}</div>;
 };
 
-export const NotifData = connect(mapStateToProps)(NotificationsDataContainer);
+export const NotifLink = connect(mapStateToProps)(NotificationsLinkContainer);
+export const NotifData = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NotificationsDataContainer);

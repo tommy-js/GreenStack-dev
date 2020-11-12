@@ -51,8 +51,8 @@ const userReducer = (state: any, action: any) => {
   if (action.type == "SET_INVISIBLE") {
     newState.invisible = action.payload;
   }
-  if (action.type == "SET_ALLOW_COMMENTS_ON_TRADES") {
-    newState.allowCommentsOnTrades = action.payload;
+  if (action.type == "SET_ALLOW_COMMENTS_ON_POSTS") {
+    newState.allowCommentsOnPosts = action.payload;
   }
   if (action.type == "SET_STOCKS") {
     newState.stocks = action.payload;

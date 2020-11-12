@@ -15,6 +15,8 @@ export const mapStateToProps = (state: any) => {
     following: state.following,
     notifications: state.notifications,
     darkmode: state.darkmode,
+    allowCommentsOnPosts: state.allowCommentsOnPosts,
+    invisible: state.invisible,
     oneday: state.oneday,
     oneweek: state.oneweek,
     onemonth: state.onemonth,
@@ -61,10 +63,10 @@ export const mapDispatchToProps = (dispatch: any) => {
       dispatch({ type: "SET_DARKMODE", payload: darkmode }),
     onInvisibleSet: (invisible: boolean) =>
       dispatch({ type: "SET_INVISIBLE", payload: invisible }),
-    onAllowCommentsSet: (allowCommentsOnTrades: boolean) =>
+    onAllowCommentsSet: (allowCommentsOnPosts: boolean) =>
       dispatch({
-        type: "SET_ALLOW_COMMENTS_ON_TRADES",
-        payload: allowCommentsOnTrades,
+        type: "SET_ALLOW_COMMENTS_ON_POSTS",
+        payload: allowCommentsOnPosts,
       }),
     onStocksSet: (stocks: any) =>
       dispatch({ type: "SET_STOCKS", payload: stocks }),

@@ -15,7 +15,7 @@ interface Redux {
   onNewAccountSet: (newaccount: boolean) => void;
   onDarkmodeSet: (darkmode: boolean) => void;
   onInvisibleSet: (invisible: boolean) => void;
-  onAllowCommentsSet: (allowCommentsOnTrades: boolean) => void;
+  onAllowCommentsSet: (allowCommentsOnPosts: boolean) => void;
   onInitialFollowerSet: (followers: any) => void;
   onInitialFollowingSet: (following: any) => void;
   onStocksSet: (stocks: any) => void;
@@ -105,7 +105,7 @@ const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
       props.onNewAccountSet(user.newaccount);
       props.onDarkmodeSet(user.darkmode);
       props.onInvisibleSet(user.invisible);
-      props.onAllowCommentsSet(user.allowCommentsOnTrades);
+      props.onAllowCommentsSet(user.allowCommentsOnPosts);
       props.onInitialFollowerSet(user.followers);
       props.onInitialFollowingSet(user.following);
       props.onStocksSet(user.stocks);

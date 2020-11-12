@@ -17,7 +17,7 @@ const userSchema = new Schema({
   education: Number,
   motivations: Number,
   commentary: Number,
-  allowCommentsOnTrades: Boolean,
+  allowCommentsOnPosts: Boolean,
   profileImage: String,
   history: [
     {

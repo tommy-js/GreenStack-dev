@@ -282,17 +282,17 @@ const updateUserSettingsMutation = gql`
     $userId: ID!
     $darkmode: Boolean!
     $invisible: Boolean!
-    $allowCommentsOnTrades: Boolean!
+    $allowCommentsOnPosts: Boolean!
   ) {
     updateUserSettings(
       userId: $userId
       darkmode: $darkmode
       invisible: $invisible
-      allowCommentsOnTrades: $allowCommentsOnTrades
+      allowCommentsOnPosts: $allowCommentsOnPosts
     ) {
       darkmode
       invisible
-      allowCommentsOnTrades
+      allowCommentsOnPosts
     }
   }
 `;
@@ -616,7 +616,7 @@ const nonTokenModifyUserQuery = gql`
       darkmode
       membership
       invisible
-      allowCommentsOnTrades
+      allowCommentsOnPosts
       profileImage
       token
       history {
@@ -732,7 +732,7 @@ const userQuery = gql`
       darkmode
       membership
       invisible
-      allowCommentsOnTrades
+      allowCommentsOnPosts
       profileImage
       token
       history {

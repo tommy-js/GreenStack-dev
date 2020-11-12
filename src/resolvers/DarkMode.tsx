@@ -1,15 +1,20 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { updateDarkModeMutation } from "../queries/queries.js";
 
 interface Props {
   darkmode: boolean;
+  modDarkMode: (darkmode: boolean) => void;
   updateDarkModeMutation: (variables: object) => any;
 }
 
 const DarkMode: React.FC<Props> = (props) => {
   const [checked, setChecked] = useState(props.darkmode);
+
+  useEffect(() => {
+    setChecked(props.darkmode);
+  }, [props.darkmode]);
 
   function updateDarkMode() {
     let token = sessionStorage.getItem("Token");
@@ -22,6 +27,7 @@ const DarkMode: React.FC<Props> = (props) => {
       .catch((err: any) => console.log(err))
       .then((res: any) => {
         setChecked(!checked);
+        props.modDarkMode(!checked);
       });
   }
 
