@@ -4,6 +4,7 @@ import QueryResult from "./QueryResult";
 interface Props {
   results: {
     username: string;
+    profileImage: string;
     userId: string;
     bio: string;
   };
@@ -16,6 +17,7 @@ const SearchResults: React.FC<Props> = (props) => {
         <div>
           <QueryResult
             username={props.results.username}
+            profileImage={props.results.profileImage}
             userId={props.results.userId}
             bio={props.results.bio}
           />

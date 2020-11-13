@@ -575,6 +575,7 @@ const otherUserQuery = gql`
       }
       posts {
         userId
+        profileImage
         postId
         username
         timestamp
@@ -661,6 +662,7 @@ const nonTokenModifyUserQuery = gql`
       posts {
         userId
         postId
+        profileImage
         username
         timestamp
         likes
@@ -777,6 +779,7 @@ const userQuery = gql`
       posts {
         userId
         postId
+        profileImage
         username
         timestamp
         likes
@@ -876,6 +879,7 @@ const queryPosts = gql`
   query($userId: ID!) {
     getPosts(userId: $userId) {
       userId
+      profileImage
       postId
       likes
       dislikes
@@ -892,6 +896,7 @@ const individualPostQuery = gql`
     post(postId: $postId) {
       userId
       timestamp
+      profileImage
       postId
       likes
       dislikes
@@ -917,11 +922,12 @@ const searchQuery = gql`
   query($argument: String!) {
     searchUser(argument: $argument) {
       username
+      profileImage
       userId
       bio
     }
     searchStock(argument: $argument) {
-      name
+      title
       ticker
     }
   }
@@ -933,6 +939,7 @@ const returnFeedQuery = gql`
       posts {
         userId
         postId
+        profileImage
         username
         timestamp
         likes

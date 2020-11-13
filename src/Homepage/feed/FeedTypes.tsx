@@ -9,6 +9,7 @@ import { returnDate } from "../../notifications/notificationsTimestamp";
 interface Props {
   title: string;
   userId: string;
+  profileImage: string;
   user: string;
   text: string;
   timestamp: number;
@@ -28,22 +29,20 @@ export const RenderModal: React.FC<Props> = (props) => {
     if (props.allowLikes === true) {
       return (
         <div>
-          <p>
-            <div className="post_values">
-              <span className="post_value_inner">{props.likes}</span>
-            </div>
-            <LikePost userId={props.userId} postId={props.postId} />
-            <div className="post_values">
-              <span className="post_value_inner">{props.dislikes}</span>
-            </div>
-            <DislikePost userId={props.userId} postId={props.postId} />
-            <div className="post_values">
-              <span className="post_value_inner">{props.comments.length}</span>
-            </div>
-            <div className="like_button_block">
-              <img className="like_button_image" src={comment} />
-            </div>
-          </p>
+          <div className="post_values">
+            <span className="post_value_inner">{props.likes}</span>
+          </div>
+          <LikePost userId={props.userId} postId={props.postId} />
+          <div className="post_values">
+            <span className="post_value_inner">{props.dislikes}</span>
+          </div>
+          <DislikePost userId={props.userId} postId={props.postId} />
+          <div className="post_values">
+            <span className="post_value_inner">{props.comments.length}</span>
+          </div>
+          <div className="like_button_block">
+            <img className="like_button_image" src={comment} />
+          </div>
         </div>
       );
     } else return null;
@@ -57,6 +56,7 @@ export const RenderModal: React.FC<Props> = (props) => {
 
   return (
     <div>
+      <img src={props.profileImage} />
       <div
         className="feed_link_header"
         onMouseOver={() => setOver(true)}

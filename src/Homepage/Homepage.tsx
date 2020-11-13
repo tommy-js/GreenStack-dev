@@ -59,7 +59,7 @@ const Homepage: React.FC<Props> = (props) => {
   const [energy, setEnergy] = useState([] as any);
   const [userId, setUserId] = useState();
   const [token, setToken] = useState();
-  const [results, setResults] = useState({ username: "", userId: "", bio: "" });
+  const [results, setResults] = useState({} as any);
 
   const { data: companyData } = useQuery(getStocksQuery);
   const [passToken, { data, loading }] = useLazyQuery(userQuery);
@@ -154,11 +154,21 @@ const Homepage: React.FC<Props> = (props) => {
     setLoadingInUser(false);
   }
 
-  function modRes(username: string, userId: string, bio: string) {
+  function modRes(
+    username: string,
+    userId: string,
+    profileImage: string,
+    bio: string
+  ) {
     let arr: any[] = userRoutePaths;
-    let index = { userId };
-    arr.push(index);
-    setResults({ username: username, userId: userId, bio: bio });
+    let obj = {
+      username: username,
+      userId: userId,
+      profileImage: profileImage,
+      bio: bio,
+    };
+    arr.push(obj);
+    setResults(obj);
     setUserRoutePaths(arr);
     browserHist.push("/home/search");
   }
@@ -223,6 +233,7 @@ const Homepage: React.FC<Props> = (props) => {
               <Route key={el.userId} path={`/home/user/${el.userId}`}>
                 <UserProfile
                   inspectUsername={el.username}
+                  inspectProfileImage={el.profileImage}
                   inspectUserId={el.userId}
                   inspectBio={el.bio}
                   modRoutes={modPosts}

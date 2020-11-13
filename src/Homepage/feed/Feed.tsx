@@ -67,6 +67,7 @@ const Feed: React.FC<Props> = (props) => {
               <RenderModal
                 title={el.title}
                 text={el.text}
+                profileImage={el.profileImage}
                 userId={el.userId}
                 user={el.username}
                 timestamp={el.timestamp}

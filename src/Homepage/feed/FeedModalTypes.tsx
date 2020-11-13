@@ -9,6 +9,7 @@ import comment from "../../images/comment.png";
 interface Props {
   title: string;
   userId: string;
+  profileImage: string;
   postId: string;
   user: string;
   text: string;
@@ -55,6 +56,7 @@ export const RenderModal: React.FC<Props> = (props) => {
 
   return (
     <div>
+      <img src={props.profileImage} />
       <h2>{props.title}</h2>
       <h4>
         Posted by <Link to={`/home/user/${props.userId}`}>{props.user}</Link> at{" "}

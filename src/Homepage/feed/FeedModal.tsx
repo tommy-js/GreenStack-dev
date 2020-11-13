@@ -15,6 +15,7 @@ const FeedModal: React.FC<Props> = (props) => {
         <RenderModal
           title={props.data.title}
           postId={props.data.postId}
+          profileImage={props.data.profileImage}
           userId={props.data.userId}
           user={props.data.username}
           text={props.data.text}

@@ -6,7 +6,12 @@ import { searchQuery } from "../../queries/queries.js";
 import { useLazyQuery } from "react-apollo";
 
 interface Props {
-  modRes: (username: string, userId: string, bio: string) => void;
+  modRes: (
+    username: string,
+    userId: string,
+    profileImage: string,
+    bio: string
+  ) => void;
 }
 
 const FeedSidebar: React.FC<Props> = (props) => {
@@ -20,8 +25,9 @@ const FeedSidebar: React.FC<Props> = (props) => {
       console.log(data);
       let username = data.searchUser.username;
       let userId = data.searchUser.userId;
+      let profileImage = data.searchUser.profileImage;
       let bio = data.searchUser.bio;
-      props.modRes(username, userId, bio);
+      props.modRes(username, userId, profileImage, bio);
     }
   }, [data]);
 
