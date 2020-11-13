@@ -51,7 +51,6 @@ interface Props extends Redux {
 const Homepage: React.FC<Props> = (props) => {
   const [posts, setPosts] = useState([] as any);
   const [userRoutePaths, setUserRoutePaths] = useState([] as any);
-  const [tradeRoutePaths, setTradeRoutePaths] = useState([] as any);
   const [loadingInUser, setLoadingInUser] = useState(false);
   const [companies, setCompanies] = useState([] as any);
   const [technology, setTechnology] = useState([] as any);
@@ -154,19 +153,27 @@ const Homepage: React.FC<Props> = (props) => {
     setLoadingInUser(false);
   }
 
-  function modRes(
-    username: string,
-    userId: string,
-    profileImage: string,
-    bio: string
-  ) {
+  function modRes(searchData: any, dataType: number) {
     let arr: any[] = userRoutePaths;
-    let obj = {
-      username: username,
-      userId: userId,
-      profileImage: profileImage,
-      bio: bio,
-    };
+    let obj;
+    if (dataType === 0) {
+      obj = {
+        username: searchData.username,
+        userId: searchData.userId,
+        profileImage: searchData.profileImage,
+        bio: searchData.bio,
+        dataType: dataType,
+      };
+    } else if (dataType === 1) {
+      obj = {
+        title: searchData.title,
+        ticker: searchData.ticker,
+        description: searchData.description,
+        country: searchData.country,
+        stockId: searchData.stockId,
+        dataType: dataType,
+      };
+    }
     arr.push(obj);
     setResults(obj);
     setUserRoutePaths(arr);

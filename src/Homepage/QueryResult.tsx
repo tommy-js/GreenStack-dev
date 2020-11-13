@@ -1,14 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-interface Props {
+interface User {
   username: string;
   profileImage: string;
   userId: string;
   bio: string;
 }
 
-const QueryResult: React.FC<Props> = (props) => {
+interface Stock {
+  title: string;
+  ticker: string;
+  stockId: string;
+  description: string;
+  country: string;
+}
+
+export const QueryUserResult: React.FC<User> = (props) => {
   return (
     <Link to={`/home/user/${props.userId}`}>
       <div>
@@ -20,4 +28,14 @@ const QueryResult: React.FC<Props> = (props) => {
   );
 };
 
-export default QueryResult;
+export const QueryStockResult: React.FC<Stock> = (props) => {
+  return (
+    <div>
+      <p>
+        {props.title} #{props.ticker}
+      </p>
+      <p>{props.country}</p>
+      <p>{props.description}</p>
+    </div>
+  );
+};

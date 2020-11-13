@@ -10,6 +10,7 @@ interface Props {
   buttonTitle: string;
   allowComments: boolean;
   allowLikes: boolean;
+  image: string;
   postMutation: (variables: object) => any;
   unsuccessfulEvent: () => void;
   successfulEvent: () => void;
@@ -27,6 +28,7 @@ const SubmitPost: React.FC<Props> = (props) => {
             text: props.text,
             historyText: "Posted",
             style: "Post",
+            postImage: props.image,
             accompaniedURL: props.accompaniedURL,
             allowComments: props.allowComments,
             allowLikes: props.allowLikes,

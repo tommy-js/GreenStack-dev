@@ -356,6 +356,7 @@ const postMutation = gql`
     $token: String!
     $title: String!
     $text: String!
+    $postImage: String!
     $style: String!
     $historyText: String!
     $accompaniedURL: String!
@@ -365,6 +366,7 @@ const postMutation = gql`
     post(
       token: $token
       title: $title
+      postImage: $postImage
       text: $text
       accompaniedURL: $accompaniedURL
       allowComments: $allowComments
@@ -929,6 +931,9 @@ const searchQuery = gql`
     searchStock(argument: $argument) {
       title
       ticker
+      stockId
+      description
+      country
     }
   }
 `;
@@ -940,6 +945,7 @@ const returnFeedQuery = gql`
         userId
         postId
         profileImage
+        postImage
         username
         timestamp
         likes

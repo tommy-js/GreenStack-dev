@@ -10,6 +10,7 @@ interface Props {
   title: string;
   userId: string;
   profileImage: string;
+  postImage: string;
   postId: string;
   user: string;
   text: string;

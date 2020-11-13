@@ -6,9 +6,6 @@ interface Props {
 }
 
 export function ProfileDropzone(props: any) {
-  const [imgConverted, setImgConverted] = useState(false);
-  const [binaryData, setBinaryData] = useState();
-
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.forEach((file: any) => {
       const reader = new FileReader();
@@ -22,7 +19,6 @@ export function ProfileDropzone(props: any) {
         console.log(binaryStr);
       };
       reader.readAsDataURL(file);
-      setImgConverted(true);
     });
   }, []);
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({

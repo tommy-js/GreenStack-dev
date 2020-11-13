@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import SubmitPost from "../resolvers/SubmitPost";
 import PostNotifIcon from "./PostNotifIcon";
 import PostOptions from "./post/PostOptions";
+import { ProfileDropzone } from "./profile/ProfileDropzone";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../actions/actions";
 
@@ -23,6 +24,8 @@ const Post: React.FC<Redux> = (props) => {
   const [posted, setPosted] = useState(false);
   const [allowComments, setAllowComments] = useState(true);
   const [allowLikes, setAllowLikes] = useState(true);
+
+  const [image, setImage] = useState();
 
   function successfulEvent() {
     setTitle("");
@@ -60,6 +63,10 @@ const Post: React.FC<Redux> = (props) => {
     } else return null;
   }
 
+  function modifyImg(imgData: any) {
+    setImage(imgData);
+  }
+
   return (
     <div id="post" className="feed">
       <input
@@ -74,6 +81,7 @@ const Post: React.FC<Redux> = (props) => {
         className="post_textarea"
         placeholder="text..."
       />
+      <ProfileDropzone modifyImg={modifyImg} />
       <div className="post_button">
         <SubmitPost
           username={props.username}
@@ -85,6 +93,7 @@ const Post: React.FC<Redux> = (props) => {
           allowComments={allowComments}
           allowLikes={allowLikes}
           accompaniedURL=""
+          image={image}
         />
         <PostOptions
           allowComments={allowComments}

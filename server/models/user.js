@@ -32,6 +32,7 @@ const userSchema = new Schema({
       userId: String,
       postId: String,
       profileImage: String,
+      postImage: String,
       username: String,
       timestamp: Number,
       likes: Number,

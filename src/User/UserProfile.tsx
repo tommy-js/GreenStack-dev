@@ -59,18 +59,20 @@ const UserProfile: React.FC<Props> = (props) => {
   }
 
   function returnFollow() {
-    if (alreadyAdded === true) {
-      return null;
-    } else {
-      return (
-        <div>
-          <Follow
-            followId={props.inspectUserId}
-            followName={userProfile.username}
-            modAlreadyAdded={modAlreadyAdded}
-          />
-        </div>
-      );
+    if (props.inspectUserId !== props.userId) {
+      if (alreadyAdded === true) {
+        return null;
+      } else {
+        return (
+          <div>
+            <Follow
+              followId={props.inspectUserId}
+              followName={userProfile.username}
+              modAlreadyAdded={modAlreadyAdded}
+            />
+          </div>
+        );
+      }
     }
   }
 

@@ -10,6 +10,7 @@ interface Props {
   title: string;
   userId: string;
   profileImage: string;
+  postImage: string;
   user: string;
   text: string;
   timestamp: number;
@@ -57,6 +58,7 @@ export const RenderModal: React.FC<Props> = (props) => {
   return (
     <div>
       <img src={props.profileImage} />
+      <img src={props.postImage} />
       <div
         className="feed_link_header"
         onMouseOver={() => setOver(true)}
