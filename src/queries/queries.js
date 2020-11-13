@@ -61,6 +61,14 @@ const updateAllowCommentsMutation = gql`
   }
 `;
 
+const updateUserProfileImageMutation = gql`
+  mutation($token: String!, $image: String!) {
+    updateUserProfileImage(token: $token, image: $image) {
+      username
+    }
+  }
+`;
+
 const updateInvisibleMutation = gql`
   mutation($token: String!) {
     updateInvisible(token: $token) {
@@ -1000,6 +1008,7 @@ export {
   updateHistoryMutation,
   updateDarkModeMutation,
   updateAllowCommentsMutation,
+  updateUserProfileImageMutation,
   updateInvisibleMutation,
   addCommentTradeMutation,
   updateUserNotificationsViewedMutation,

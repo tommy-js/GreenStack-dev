@@ -19,6 +19,7 @@ export function ProfileDropzone(props: any) {
         // Do whatever you want with the file contents
         const binaryStr = reader.result;
         props.modifyImg(binaryStr);
+        console.log(binaryStr);
       };
       reader.readAsDataURL(file);
       setImgConverted(true);

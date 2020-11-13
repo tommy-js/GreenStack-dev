@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SetBio from "../../resolvers/SetBio";
+import SaveProfileImage from "../../resolvers/SaveProfileImage";
 import { ProfileDropzone } from "./ProfileDropzone";
-import generic from "../../images/generic_icon.png";
 import edit from "../../images/edit.png";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../../actions/actions";
 
 interface Redux {
+  profileImage: any;
   username: any;
   bio: any;
 }
 
-const ProfileHeader: React.FC<Redux> = (props) => {
-  const [profileImage, setProfileImage] = useState(generic);
+interface Props extends Redux {}
+
+const ProfileHeader: React.FC<Props> = (props) => {
+  const [profileImage, setProfileImage] = useState(props.profileImage);
   const [editing, setEditing] = useState(false);
   const [bio, setBio] = useState(props.bio);
   const [editingProfileImage, setEditingProfileImage] = useState(false);
@@ -51,9 +54,18 @@ const ProfileHeader: React.FC<Redux> = (props) => {
     setProfileImage(imgData);
   }
 
+  useEffect(() => {
+    console.log(profileImage);
+  }, [profileImage]);
+
   function renderDropzone() {
     if (editingProfileImage === true) {
-      return <ProfileDropzone modifyImg={modifyImg} />;
+      return (
+        <div>
+          <ProfileDropzone modifyImg={modifyImg} />
+          <SaveProfileImage image={profileImage} />
+        </div>
+      );
     } else return null;
   }
 

@@ -5,6 +5,7 @@ export const mapStateToProps = (state: any) => {
     bio: state.bio,
     money: state.money,
     progress: state.progress,
+    profileImage: state.profileImage,
     newaccount: state.newaccount,
     watchlist: state.watchlist,
     stocks: state.stocks,
