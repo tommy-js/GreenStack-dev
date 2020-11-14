@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import LikePostComment from "../../resolvers/LikePostComment";
 import DislikePostComment from "../../resolvers/DislikePostComment";
 import { returnDate } from "../../notifications/notificationsTimestamp";
@@ -15,6 +15,9 @@ interface Props {
 }
 
 const IndividualPostComment: React.FC<Props> = (props) => {
+  const [likes, setLikes] = useState(props.likes);
+  const [dislikes, setDislikes] = useState(props.dislikes);
+
   return (
     <div className="individual_post_comment">
       <p className="individual_post_comment_username">{props.username}</p>
@@ -23,10 +26,18 @@ const IndividualPostComment: React.FC<Props> = (props) => {
         Posted {returnDate(props.timestamp)}
       </p>
       <div className="individual_post_comment_option_block">
-        <p className="individual_post_comment_likes">{props.likes}</p>
-        <LikePostComment postId={props.postId} commentId={props.commentId} />
-        <p className="individual_post_comment_likes">{props.dislikes}</p>
-        <DislikePostComment postId={props.postId} commentId={props.commentId} />
+        <p className="individual_post_comment_likes">likes{likes}</p>
+        <LikePostComment
+          postId={props.postId}
+          commentId={props.commentId}
+          modLikes={() => setLikes(likes + 1)}
+        />
+        <p className="individual_post_comment_likes">{dislikes}</p>
+        <DislikePostComment
+          postId={props.postId}
+          commentId={props.commentId}
+          modDislikes={() => setDislikes(dislikes + 1)}
+        />
       </div>
     </div>
   );

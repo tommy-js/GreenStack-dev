@@ -1,10 +1,11 @@
-import React from "react";
-import { InputPost, InputStock } from "../CommentInput";
+import React, { useState } from "react";
+import { InputPost } from "../CommentInput";
 import CommentSection from "../CommentSection";
 import LikePost from "../../resolvers/LikePost";
 import DislikePost from "../../resolvers/DislikePost";
 import { Link } from "react-router-dom";
 import comment from "../../images/comment.png";
+import { returnDate } from "../../notifications/notificationsTimestamp";
 
 interface Props {
   title: string;
@@ -30,6 +31,10 @@ interface Props {
 }
 
 export const RenderModal: React.FC<Props> = (props) => {
+  const [likes, setLikes] = useState(props.likes);
+  const [dislikes, setDislikes] = useState(props.dislikes);
+  const [comments, setComments] = useState(props.comments.length);
+
   function returnImage() {
     if (props.postImage == "null") {
       return null;
@@ -38,21 +43,41 @@ export const RenderModal: React.FC<Props> = (props) => {
     }
   }
 
+  function modLikes() {
+    setLikes(likes + 1);
+  }
+
+  function modDislikes() {
+    setDislikes(dislikes + 1);
+  }
+
+  function modComments() {
+    setComments(comments + 1);
+  }
+
   function returnAllowed() {
     if (props.allowLikes === true) {
       return (
         <div>
           <p>
             <div className="post_values">
-              <span className="post_value_inner">{props.likes}</span>
+              <span className="post_value_inner">{likes}</span>
             </div>
-            <LikePost userId={props.userId} postId={props.postId} />
+            <LikePost
+              userId={props.userId}
+              postId={props.postId}
+              modLikes={modLikes}
+            />
             <div className="post_values">
-              <span className="post_value_inner">{props.dislikes}</span>
+              <span className="post_value_inner">{dislikes}</span>
             </div>
-            <DislikePost userId={props.userId} postId={props.postId} />
+            <DislikePost
+              userId={props.userId}
+              postId={props.postId}
+              modDislikes={modDislikes}
+            />
             <div className="post_values">
-              <span className="post_value_inner">{props.comments.length}</span>
+              <span className="post_value_inner">{comments}</span>
             </div>
             <div className="like_button_block">
               <img className="like_button_image" src={comment} />
@@ -65,18 +90,22 @@ export const RenderModal: React.FC<Props> = (props) => {
 
   return (
     <div>
-      <img src={props.profileImage} />
       <h2>{props.title}</h2>
-      <h4>
-        Posted by <Link to={`/home/user/${props.userId}`}>{props.user}</Link> at{" "}
-        {props.timestamp}
-      </h4>
+      <Link to={`/home/user/${props.userId}`}>
+        <div className="feed_profile_image_block">
+          <img className="feed_profile_image" src={props.profileImage} />
+        </div>
+        <h3 className="feed_link_name">{props.user}</h3>
+      </Link>
+      <p className="post_return_date">Posted {returnDate(props.timestamp)}</p>
+
       {returnAllowed()}
       {returnImage()}
       <p>{props.text}</p>
       <InputPost
         userId={props.userId}
         postId={props.postId}
+        modComments={modComments}
         allowComments={props.allowComments}
       />
       <CommentSection postId={props.postId} comments={props.comments} />

@@ -10,7 +10,6 @@ import UserProfile from "../User/UserProfile";
 import Profile from "./profile/Profile";
 import { LoadingUser } from "../login/LoadingUser";
 import SearchResults from "./SearchResults";
-import PostPage from "./post/PostPage";
 import UserLoginAuthSubresolver from "../resolvers/UserLoginAuthSubresolver";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import {
@@ -152,6 +151,10 @@ const Homepage: React.FC<Props> = (props) => {
     setLoadingInUser(false);
   }
 
+  function modPosts(routes: any) {
+    setPosts(routes);
+  }
+
   function modRes(searchData: any, dataType: number) {
     let arr: any[] = userRoutePaths;
     let obj;
@@ -177,10 +180,6 @@ const Homepage: React.FC<Props> = (props) => {
     setResults(obj);
     setUserRoutePaths(arr);
     browserHist.push("/home/search");
-  }
-
-  function modPosts(routes: any) {
-    setPosts(routes);
   }
 
   function returnLoadingIcon() {
@@ -210,11 +209,6 @@ const Homepage: React.FC<Props> = (props) => {
             <Route exact path="/home/posts">
               <UserPosts modRoutes={modPosts} />
             </Route>
-            {posts.map((el: any) => (
-              <Route key={el.postId} path={`/home/post/${el.postId}`}>
-                <PostPage postId={el.postId} />
-              </Route>
-            ))}
             <Route exact path="/home/followers">
               <Followers modRoutes={modRoutes} />
             </Route>

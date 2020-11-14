@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import IndividualUserPost from "./IndividualUserPost";
+import FeedModal from "../feed/FeedModal";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../../actions/actions";
-import PostPage from "./PostPage";
-import { useLazyQuery } from "react-apollo";
-import { queryPosts } from "../../queries/queries";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 interface Redux {
   posts: any;
+  feed: any;
 }
 
 interface Props extends Redux {
@@ -26,6 +26,8 @@ interface Posts {
 
 const UserPosts: React.FC<Props> = (props) => {
   const [sortedArr, setSortedArr] = useState(props.posts);
+  const [postRendered, setPostRendered] = useState(false);
+  const [postInfo, setPostInfo] = useState();
 
   useEffect(() => {
     let arr = props.posts.sort(function (a: any, b: any) {
@@ -37,8 +39,34 @@ const UserPosts: React.FC<Props> = (props) => {
     props.modRoutes(arr);
   }, []);
 
+  function modPostLoad(postId: string) {
+    const feed = document.getElementById("feed")!;
+    if (postRendered === true) {
+      setPostRendered(false);
+      enableBodyScroll(feed);
+    } else {
+      setPostRendered(true);
+      disableBodyScroll(feed);
+    }
+    triggerPostLoad(postId);
+  }
+
+  function triggerPostLoad(postId: string) {
+    let foundId = props.feed.find((el: any) => postId === el.postId);
+    if (foundId) {
+      let foundIndex = props.feed.indexOf(foundId);
+      setPostInfo(props.feed[foundIndex]);
+    }
+  }
+
+  function conditionalPostRendering() {
+    if (postRendered === true) {
+      return <FeedModal data={postInfo} modPostLoad={modPostLoad} />;
+    } else return null;
+  }
+
   return (
-    <div className="feed">
+    <div id="feed">
       <h2 className="list_header">Your Posts</h2>
       <div>
         {sortedArr.map((el: Posts) => (
@@ -50,8 +78,10 @@ const UserPosts: React.FC<Props> = (props) => {
             timestamp={el.timestamp}
             likes={el.likes}
             dislikes={el.dislikes}
+            modPostLoad={modPostLoad}
           />
         ))}
+        {conditionalPostRendering()}
       </div>
     </div>
   );

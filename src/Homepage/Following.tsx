@@ -30,7 +30,7 @@ const Following: React.FC<Props> = (props) => {
   }, []);
 
   return (
-    <div className="feed">
+    <div id="feed">
       <h2 className="list_header">Following({data.length})</h2>
       <div>
         {data.map((el: any) => (

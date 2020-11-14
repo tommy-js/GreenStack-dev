@@ -7,6 +7,7 @@ interface Post {
   userId: string;
   postId: string;
   allowComments: boolean;
+  modComments: () => void;
 }
 
 interface Stock {
@@ -52,6 +53,7 @@ export const InputPost: React.FC<Post> = (props) => {
             userId={props.userId}
             postId={props.postId}
             text={text}
+            modComments={props.modComments}
           />
         </div>
       );

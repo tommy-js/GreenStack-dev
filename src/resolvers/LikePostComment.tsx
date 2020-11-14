@@ -7,6 +7,7 @@ import like from "../images/like.png";
 interface Props {
   postId: string;
   commentId: string;
+  modLikes: () => void;
   likeCommentMutation: (variables: object) => any;
 }
 
@@ -21,6 +22,7 @@ const LikePostComment: React.FC<Props> = (props) => {
       })
       .then((res: any) => {
         console.log(res);
+        props.modLikes();
       })
       .catch((err: any) => {
         console.log(err);

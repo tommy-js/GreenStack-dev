@@ -9,7 +9,7 @@ interface Props {
 
 const Profile: React.FC<Props> = (props) => {
   return (
-    <div className="feed">
+    <div id="feed">
       <ProfileHeader />
       <Settings />
       <PersonalHistory />

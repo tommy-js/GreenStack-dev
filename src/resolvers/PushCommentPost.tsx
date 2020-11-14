@@ -7,6 +7,7 @@ interface Props {
   userId: string;
   postId: string;
   text: string;
+  modComments: () => void;
   pushCommentPostMutation: (variables: object) => any;
 }
 
@@ -29,6 +30,7 @@ const PushCommentPost: React.FC<Props> = (props) => {
         })
         .then((res: any) => {
           console.log(res);
+          props.modComments();
         });
     }
   }

@@ -32,6 +32,7 @@ interface Props {
 }
 
 const PostRender: React.FC<Props> = ({ info }: Props) => {
+  function modComments() {}
   return (
     <div className="feed">
       <PostTitle title={info.title} />
@@ -44,6 +45,7 @@ const PostRender: React.FC<Props> = ({ info }: Props) => {
       <InputPost
         userId={info.userId}
         postId={info.postId}
+        modComments={modComments}
         allowComments={info.allowComments}
       />
       <PostComments postId={info.postId} comments={info.comments} />

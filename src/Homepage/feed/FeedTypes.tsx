@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import LikePost from "../../resolvers/LikePost";
 import DislikePost from "../../resolvers/DislikePost";
 import InlineUnfollow from "../../resolvers/InlineUnfollow";
+import { Link } from "react-router-dom";
 import comment from "../../images/comment.png";
 import { returnDate } from "../../notifications/notificationsTimestamp";
 
@@ -59,32 +60,36 @@ export const RenderModal: React.FC<Props> = (props) => {
     if (props.postImage == "null") {
       return null;
     } else {
-      return <img src={props.postImage} />;
+      return (
+        <div className="feed_post_image_block">
+          <img className="feed_post_image" src={props.postImage} />
+        </div>
+      );
     }
   }
 
   return (
     <div>
-      <img src={props.profileImage} />
-      {returnImage()}
       <div
         className="feed_link_header"
+        onClick={() => props.modPostLoad(props.postId)}
         onMouseOver={() => setOver(true)}
         onMouseOut={() => setOver(false)}
       >
-        <h3 className="feed_link_name">{props.user}</h3>
+        <Link to={`/home/user/${props.userId}`}>
+          <div className="feed_profile_image_block">
+            <img className="feed_profile_image" src={props.profileImage} />
+          </div>
+          <h3 className="feed_link_name">{props.user}</h3>
+        </Link>
+        {returnImage()}
         <div style={{ opacity: styledOpac }} className="feed_link_unfollow">
           <InlineUnfollow followerId={props.userId} />
         </div>
-      </div>
-      <div
-        className="feed_link"
-        onClick={() => props.modPostLoad(props.postId)}
-      >
         <p>{props.text}</p>
-        {returnAllowed()}
-        <p>Posted {returnDate(props.timestamp)}</p>
+        <p className="post_return_date">Posted {returnDate(props.timestamp)}</p>
       </div>
+      <div className="feed_link">{returnAllowed()}</div>
     </div>
   );
 };

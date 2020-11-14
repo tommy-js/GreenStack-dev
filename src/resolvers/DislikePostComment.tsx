@@ -7,6 +7,7 @@ import dislike from "../images/dislike.png";
 interface Props {
   postId: string;
   commentId: string;
+  modDislikes: () => void;
   dislikeCommentMutation: (variables: object) => any;
 }
 
@@ -22,9 +23,7 @@ const DislikePostComment: React.FC<Props> = (props) => {
         },
       })
       .then((res: any) => {
-        console.log("passed");
-        console.log("postId: " + props.postId);
-        console.log("commentId: " + props.commentId);
+        props.modDislikes();
       })
       .catch((err: any) => {
         console.log("error");

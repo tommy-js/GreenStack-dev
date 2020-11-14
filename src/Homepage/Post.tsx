@@ -68,41 +68,43 @@ const Post: React.FC<Redux> = (props) => {
   }
 
   return (
-    <div id="post" className="feed">
-      <input
-        value={title}
-        placeholder="title..."
-        className="post_header"
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <textarea
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        className="post_textarea"
-        placeholder="text..."
-      />
-      <ProfileDropzone modifyImg={modifyImg} />
-      <div className="post_button">
-        <SubmitPost
-          username={props.username}
-          title={title}
-          text={text}
-          buttonTitle="Post"
-          successfulEvent={successfulEvent}
-          unsuccessfulEvent={unsuccessfulEvent}
-          allowComments={allowComments}
-          allowLikes={allowLikes}
-          accompaniedURL=""
-          image={image}
+    <div className="post_container">
+      <div id="post">
+        <input
+          value={title}
+          placeholder="title..."
+          className="post_header"
+          onChange={(e) => setTitle(e.target.value)}
         />
-        <PostOptions
-          allowComments={allowComments}
-          allowLikes={allowLikes}
-          modAllowComments={modAllowComments}
-          modAllowLikes={modAllowLikes}
+        <textarea
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          className="post_textarea"
+          placeholder="text..."
         />
+        <ProfileDropzone modifyImg={modifyImg} />
+        <div className="post_button">
+          <SubmitPost
+            username={props.username}
+            title={title}
+            text={text}
+            buttonTitle="Post"
+            successfulEvent={successfulEvent}
+            unsuccessfulEvent={unsuccessfulEvent}
+            allowComments={allowComments}
+            allowLikes={allowLikes}
+            accompaniedURL=""
+            image={image}
+          />
+          <PostOptions
+            allowComments={allowComments}
+            allowLikes={allowLikes}
+            modAllowComments={modAllowComments}
+            modAllowLikes={modAllowLikes}
+          />
+        </div>
+        {returnPass()}
       </div>
-      {returnPass()}
     </div>
   );
 };
