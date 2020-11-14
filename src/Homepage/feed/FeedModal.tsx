@@ -1,9 +1,9 @@
 import React from "react";
 import { RenderModal } from "./FeedModalTypes";
-import { Link } from "react-router-dom";
 
 interface Props {
   data: any;
+  modPostLoad: (postId: string) => void;
 }
 
 const FeedModal: React.FC<Props> = (props) => {
@@ -28,9 +28,10 @@ const FeedModal: React.FC<Props> = (props) => {
           allowLikes={props.data.allowLikes}
         />
       </div>
-      <Link to="/home">
-        <div id="feed_modal"></div>
-      </Link>
+      <div
+        id="feed_modal"
+        onClick={() => props.modPostLoad(props.data.postId)}
+      ></div>
     </div>
   );
 };

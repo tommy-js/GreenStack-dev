@@ -1,4 +1,4 @@
-.feed {
+#feed {
   position: relative;
   width: 50%;
   margin-left: auto;
@@ -43,8 +43,8 @@
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: white;
-  opacity: 0.8;
+  background-color: $soft_grey;
+  opacity: 0.4;
 }
 
 #central_modal {

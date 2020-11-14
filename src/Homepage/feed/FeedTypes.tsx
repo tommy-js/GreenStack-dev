@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import LikePost from "../../resolvers/LikePost";
 import DislikePost from "../../resolvers/DislikePost";
 import InlineUnfollow from "../../resolvers/InlineUnfollow";
-import { Link } from "react-router-dom";
 import comment from "../../images/comment.png";
 import { returnDate } from "../../notifications/notificationsTimestamp";
 
@@ -20,6 +19,7 @@ interface Props {
   postId: string;
   allowComments: boolean;
   allowLikes: boolean;
+  modPostLoad: (postId: string) => void;
 }
 
 export const RenderModal: React.FC<Props> = (props) => {
@@ -55,10 +55,18 @@ export const RenderModal: React.FC<Props> = (props) => {
     } else setStyledOpac(0);
   }, [over]);
 
+  function returnImage() {
+    if (props.postImage == "null") {
+      return null;
+    } else {
+      return <img src={props.postImage} />;
+    }
+  }
+
   return (
     <div>
       <img src={props.profileImage} />
-      <img src={props.postImage} />
+      {returnImage()}
       <div
         className="feed_link_header"
         onMouseOver={() => setOver(true)}
@@ -69,11 +77,14 @@ export const RenderModal: React.FC<Props> = (props) => {
           <InlineUnfollow followerId={props.userId} />
         </div>
       </div>
-      <Link className="feed_link" to={`/home/post/${props.postId}`}>
+      <div
+        className="feed_link"
+        onClick={() => props.modPostLoad(props.postId)}
+      >
         <p>{props.text}</p>
         {returnAllowed()}
         <p>Posted {returnDate(props.timestamp)}</p>
-      </Link>
+      </div>
     </div>
   );
 };

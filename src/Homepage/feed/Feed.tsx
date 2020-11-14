@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { RenderModal } from "./FeedTypes";
+import FeedModal from "./FeedModal";
 import Suggested from "../Suggested";
 import Post from "../Post";
 import { LoadingGeneral } from "../../login/LoadingUser";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import { useQuery } from "react-apollo";
 import { returnFeedQuery } from "../../queries/queries";
 import { connect } from "react-redux";
@@ -16,6 +18,8 @@ interface Props {
 
 const Feed: React.FC<Props> = (props) => {
   let token = sessionStorage.getItem("Token");
+  const [postRendered, setPostRendered] = useState(false);
+  const [postInfo, setPostInfo] = useState();
   const { data } = useQuery(returnFeedQuery, {
     variables: { token: token },
     pollInterval: 200,
@@ -57,6 +61,32 @@ const Feed: React.FC<Props> = (props) => {
     setFeed(arr);
   }
 
+  function modPostLoad(postId: string) {
+    const feed = document.getElementById("feed")!;
+    if (postRendered === true) {
+      setPostRendered(false);
+      enableBodyScroll(feed);
+    } else {
+      setPostRendered(true);
+      disableBodyScroll(feed);
+    }
+    triggerPostLoad(postId);
+  }
+
+  function triggerPostLoad(postId: string) {
+    let foundId = feed.find((el: any) => postId === el.postId);
+    if (foundId) {
+      let foundIndex = feed.indexOf(foundId);
+      setPostInfo(feed[foundIndex]);
+    }
+  }
+
+  function conditionalPostRendering() {
+    if (postRendered === true) {
+      return <FeedModal data={postInfo} modPostLoad={modPostLoad} />;
+    } else return null;
+  }
+
   function renderFeed() {
     if (feed) {
       props.onFeedSet(feed);
@@ -78,6 +108,7 @@ const Feed: React.FC<Props> = (props) => {
                 postId={el.postId}
                 allowComments={el.allowComments}
                 allowLikes={el.allowLikes}
+                modPostLoad={modPostLoad}
               />
             </div>
           ))}
@@ -93,9 +124,10 @@ const Feed: React.FC<Props> = (props) => {
   }
 
   return (
-    <div className="feed">
+    <div id="feed">
       <Post setToFeed={setToFeed} />
       <Suggested />
+      {conditionalPostRendering()}
       {renderFeed()}
     </div>
   );

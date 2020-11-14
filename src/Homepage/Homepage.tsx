@@ -11,7 +11,6 @@ import Profile from "./profile/Profile";
 import { LoadingUser } from "../login/LoadingUser";
 import SearchResults from "./SearchResults";
 import PostPage from "./post/PostPage";
-import FeedModal from "./feed/FeedModal";
 import UserLoginAuthSubresolver from "../resolvers/UserLoginAuthSubresolver";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import {
@@ -184,20 +183,6 @@ const Homepage: React.FC<Props> = (props) => {
     setPosts(routes);
   }
 
-  function feedPathRender() {
-    if (props.feed) {
-      return (
-        <div>
-          {props.feed.map((el: any) => (
-            <Route path={`/home/post/${el.postId}`}>
-              <FeedModal data={el} />
-            </Route>
-          ))}
-        </div>
-      );
-    }
-  }
-
   function returnLoadingIcon() {
     if (status === true) {
       return (
@@ -298,7 +283,6 @@ const Homepage: React.FC<Props> = (props) => {
                     price={el.price}
                   />
                 </Route>
-                {feedPathRender()}
               </div>
             ))}
           </div>

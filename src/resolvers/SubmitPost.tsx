@@ -20,6 +20,12 @@ const SubmitPost: React.FC<Props> = (props) => {
   function submit() {
     if (props.text !== "") {
       let token = sessionStorage.getItem("Token");
+      console.log("Post image: ");
+      console.log(props.image);
+      let image = props.image;
+      if (props.image === undefined) {
+        image = "null";
+      }
       props
         .postMutation({
           variables: {
@@ -28,7 +34,7 @@ const SubmitPost: React.FC<Props> = (props) => {
             text: props.text,
             historyText: "Posted",
             style: "Post",
-            postImage: props.image,
+            postImage: image,
             accompaniedURL: props.accompaniedURL,
             allowComments: props.allowComments,
             allowLikes: props.allowLikes,

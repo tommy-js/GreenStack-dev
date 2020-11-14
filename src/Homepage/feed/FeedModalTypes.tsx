@@ -30,6 +30,14 @@ interface Props {
 }
 
 export const RenderModal: React.FC<Props> = (props) => {
+  function returnImage() {
+    if (props.postImage == "null") {
+      return null;
+    } else {
+      return <img src={props.postImage} />;
+    }
+  }
+
   function returnAllowed() {
     if (props.allowLikes === true) {
       return (
@@ -64,6 +72,7 @@ export const RenderModal: React.FC<Props> = (props) => {
         {props.timestamp}
       </h4>
       {returnAllowed()}
+      {returnImage()}
       <p>{props.text}</p>
       <InputPost
         userId={props.userId}
