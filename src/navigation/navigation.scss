@@ -19,6 +19,16 @@
   padding: 0;
 }
 
+#notification_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vw;
+  opacity: 0.5;
+  background-color: $soft_grey;
+}
+
 .notification {
   width: 225px;
   background-color: white;

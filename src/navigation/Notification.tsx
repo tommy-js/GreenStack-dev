@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import NotificationsMenu from "./NotificationsMenu";
 
 interface Props {

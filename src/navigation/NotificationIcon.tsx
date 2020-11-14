@@ -8,11 +8,14 @@ interface Redux {
   notifications: any;
 }
 
-const NotificationIcon: React.FC<Redux> = (props) => {
+interface Props extends Redux {
+  triggerDisplay: string;
+  modDisplay: () => void;
+}
+
+const NotificationIcon: React.FC<Props> = (props) => {
   const [notifyNew, setNotifyNew] = useState(false);
   const [opened, setOpened] = useState(false);
-  const [triggerDisplay, setTriggerDisplay] = useState(0);
-  const [notifs, setNotifs] = useState([] as any);
 
   // new code
 
@@ -35,19 +38,13 @@ const NotificationIcon: React.FC<Redux> = (props) => {
     }
   }
 
-  function modOpened() {
-    setOpened(!opened);
-    if (opened === true) {
-      setTriggerDisplay(0);
-    } else {
-      setTriggerDisplay(1);
-    }
-  }
-
   return (
     <div id="notification_icon">
-      <NotificationButton notifyNew={notifyNew} triggerDropdown={modOpened} />
-      <div style={{ opacity: triggerDisplay }}>
+      <NotificationButton
+        notifyNew={notifyNew}
+        triggerDropdown={props.modDisplay}
+      />
+      <div style={{ display: props.triggerDisplay }}>
         <Notification modNotificationColor={modNotificationColor} />
       </div>
     </div>

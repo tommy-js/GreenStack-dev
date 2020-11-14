@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import NotificationIcon from "../navigation/NotificationIcon";
 import home from "../images/main_icon.png";
@@ -6,6 +6,16 @@ import portfolio from "../images/portfolio_icon.png";
 import tutorial from "../images/tutorial_icon.png";
 
 const NavBar: React.FC = () => {
+  const [triggerDisplay, setTriggerDisplay] = useState("none");
+
+  function modDisplay() {
+    if (triggerDisplay === "none") {
+      setTriggerDisplay("block");
+    } else if (triggerDisplay === "block") {
+      setTriggerDisplay("none");
+    }
+  }
+
   function dropToken() {
     let token = sessionStorage.getItem("Token");
     if (token) {
@@ -27,7 +37,15 @@ const NavBar: React.FC = () => {
       <NavLink onClick={() => dropToken()} to="/login">
         Logout
       </NavLink>
-      <NotificationIcon />
+      <div
+        id="notification_container"
+        style={{ display: triggerDisplay }}
+        onClick={() => setTriggerDisplay("none")}
+      ></div>
+      <NotificationIcon
+        triggerDisplay={triggerDisplay}
+        modDisplay={modDisplay}
+      />
     </div>
   );
 };

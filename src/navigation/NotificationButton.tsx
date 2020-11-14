@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import notif from "../images/notification.png";
 import ProfileImage from "./ProfileImage";
 import NewNotification from "./NewNotification";
 
