@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NotifLink, NotifData } from "./NotificationsContainer";
 
 interface Props {
   modNotificationColor: (notifArr: object[]) => void;
+  zeroTabOut: boolean;
 }
 
 const NotificationsMenu: React.FC<Props> = (props) => {
   const [tab, setTab] = useState(0);
+
+  useEffect(() => {
+    setTab(0);
+  }, [props.zeroTabOut]);
 
   function changeTab(id: number) {
     setTab(id);

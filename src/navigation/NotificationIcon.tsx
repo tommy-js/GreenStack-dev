@@ -9,6 +9,7 @@ interface Redux {
 }
 
 interface Props extends Redux {
+  zeroTabOut: boolean;
   triggerDisplay: string;
   modDisplay: () => void;
 }
@@ -45,7 +46,10 @@ const NotificationIcon: React.FC<Props> = (props) => {
         triggerDropdown={props.modDisplay}
       />
       <div style={{ display: props.triggerDisplay }}>
-        <Notification modNotificationColor={modNotificationColor} />
+        <Notification
+          zeroTabOut={props.zeroTabOut}
+          modNotificationColor={modNotificationColor}
+        />
       </div>
     </div>
   );

@@ -7,12 +7,14 @@ import tutorial from "../images/tutorial_icon.png";
 
 const NavBar: React.FC = () => {
   const [triggerDisplay, setTriggerDisplay] = useState("none");
+  const [zeroTabOut, setZeroTabOut] = useState(false);
 
   function modDisplay() {
     if (triggerDisplay === "none") {
       setTriggerDisplay("block");
     } else if (triggerDisplay === "block") {
       setTriggerDisplay("none");
+      setZeroTabOut(!zeroTabOut);
     }
   }
 
@@ -40,9 +42,13 @@ const NavBar: React.FC = () => {
       <div
         id="notification_container"
         style={{ display: triggerDisplay }}
-        onClick={() => setTriggerDisplay("none")}
+        onClick={() => {
+          setZeroTabOut(!zeroTabOut);
+          setTriggerDisplay("none");
+        }}
       ></div>
       <NotificationIcon
+        zeroTabOut={zeroTabOut}
         triggerDisplay={triggerDisplay}
         modDisplay={modDisplay}
       />
