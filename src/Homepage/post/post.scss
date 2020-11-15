@@ -1,0 +1,21 @@
+#post_options {
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  font-family: $standard_font;
+  transition: 0.2s;
+  @include testing;
+}
+
+#post_settings_icon {
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  @include testing;
+}
+
+#post_settings_img {
+  height: 100%;
+  width: 100%;
+}

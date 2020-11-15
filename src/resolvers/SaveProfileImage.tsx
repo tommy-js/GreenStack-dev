@@ -5,6 +5,7 @@ import { updateUserProfileImageMutation } from "../queries/queries.js";
 
 interface Props {
   image: string;
+  saveImage: (img: string) => void;
   updateUserProfileImageMutation: (variables: object) => any;
 }
 
@@ -20,6 +21,7 @@ const SaveProfileImage: React.FC<Props> = (props) => {
       })
       .then((res: any) => {
         console.log(res);
+        props.saveImage(props.image);
       })
       .catch((err: any) => console.log(err));
   }

@@ -41,7 +41,7 @@ const SearchResults: React.FC<Props> = (props) => {
     }
   }
 
-  return <div className="feed">{returnQuery()}</div>;
+  return <div id="feed">{returnQuery()}</div>;
 };
 
 export default SearchResults;

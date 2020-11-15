@@ -91,7 +91,7 @@ export const RenderModal: React.FC<Props> = (props) => {
   return (
     <div>
       <h2>{props.title}</h2>
-      <Link to={`/home/user/${props.userId}`}>
+      <Link className="feed_link" to={`/home/user/${props.userId}`}>
         <div className="feed_profile_image_block">
           <img className="feed_profile_image" src={props.profileImage} />
         </div>

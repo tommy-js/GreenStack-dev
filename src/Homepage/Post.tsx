@@ -5,6 +5,7 @@ import PostOptions from "./post/PostOptions";
 import { ProfileDropzone } from "./profile/ProfileDropzone";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../actions/actions";
+import settings from "../images/settings.png";
 
 interface Redux {
   userId: any;
@@ -24,6 +25,8 @@ const Post: React.FC<Redux> = (props) => {
   const [posted, setPosted] = useState(false);
   const [allowComments, setAllowComments] = useState(true);
   const [allowLikes, setAllowLikes] = useState(true);
+  const [optionHeight, setOptionHeight] = useState("0");
+  const [maxHeightOptions, setMaxHeightOptions] = useState(false);
 
   const [image, setImage] = useState();
 
@@ -67,6 +70,16 @@ const Post: React.FC<Redux> = (props) => {
     setImage(imgData);
   }
 
+  function modSettingsHeight() {
+    if (maxHeightOptions === true) {
+      setOptionHeight("0");
+      setMaxHeightOptions(false);
+    } else {
+      setOptionHeight("25px");
+      setMaxHeightOptions(true);
+    }
+  }
+
   return (
     <div className="post_container">
       <div id="post">
@@ -82,6 +95,16 @@ const Post: React.FC<Redux> = (props) => {
           className="post_textarea"
           placeholder="text..."
         />
+        <div id="post_settings_icon" onClick={() => modSettingsHeight()}>
+          <img id="post_settings_img" src={settings} />
+        </div>
+        <PostOptions
+          allowComments={allowComments}
+          allowLikes={allowLikes}
+          optionHeight={optionHeight}
+          modAllowComments={modAllowComments}
+          modAllowLikes={modAllowLikes}
+        />
         <ProfileDropzone modifyImg={modifyImg} />
         <div className="post_button">
           <SubmitPost
@@ -95,12 +118,6 @@ const Post: React.FC<Redux> = (props) => {
             allowLikes={allowLikes}
             accompaniedURL=""
             image={image}
-          />
-          <PostOptions
-            allowComments={allowComments}
-            allowLikes={allowLikes}
-            modAllowComments={modAllowComments}
-            modAllowLikes={modAllowLikes}
           />
         </div>
         {returnPass()}

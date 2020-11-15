@@ -21,15 +21,9 @@ export function ProfileDropzone(props: any) {
       reader.readAsDataURL(file);
     });
   }, []);
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+  const { getRootProps, getInputProps } = useDropzone({
     onDrop,
   });
-
-  const files = acceptedFiles.map((file: any) => (
-    <li key={file.path}>
-      {file.path} - {file.size} bytes
-    </li>
-  ));
 
   return (
     <section id="profile_image_dropzone">
@@ -37,10 +31,6 @@ export function ProfileDropzone(props: any) {
         <input {...getInputProps()} />
         <p id="dropzone_text">Drag and drop here, or click to select files</p>
       </div>
-      <aside>
-        <h4>Files</h4>
-        <ul>{files}</ul>
-      </aside>
     </section>
   );
 }

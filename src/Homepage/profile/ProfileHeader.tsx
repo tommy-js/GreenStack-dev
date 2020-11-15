@@ -4,12 +4,13 @@ import SaveProfileImage from "../../resolvers/SaveProfileImage";
 import { ProfileDropzone } from "./ProfileDropzone";
 import edit from "../../images/edit.png";
 import { connect } from "react-redux";
-import { mapStateToProps } from "../../actions/actions";
+import { mapStateToProps, mapDispatchToProps } from "../../actions/actions";
 
 interface Redux {
   profileImage: any;
   username: any;
   bio: any;
+  onProfileImageSet: (profileImage: string) => void;
 }
 
 interface Props extends Redux {}
@@ -58,12 +59,16 @@ const ProfileHeader: React.FC<Props> = (props) => {
     console.log(profileImage);
   }, [profileImage]);
 
+  function saveImage(img: string) {
+    props.onProfileImageSet(img);
+  }
+
   function renderDropzone() {
     if (editingProfileImage === true) {
       return (
         <div>
           <ProfileDropzone modifyImg={modifyImg} />
-          <SaveProfileImage image={profileImage} />
+          <SaveProfileImage image={profileImage} saveImage={saveImage} />
         </div>
       );
     } else return null;
@@ -86,4 +91,4 @@ const ProfileHeader: React.FC<Props> = (props) => {
   );
 };
 
-export default connect(mapStateToProps)(ProfileHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileHeader);

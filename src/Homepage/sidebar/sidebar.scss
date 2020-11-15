@@ -82,12 +82,16 @@
   transition: 0.2s;
 }
 
+#sidebar_username {
+  border-bottom: 1px solid black;
+}
+
 #sidebar_username_link {
   position: relative;
+  display: inline-block;
   margin: 10px;
   padding-left: 10px;
   padding-right: 10px;
-  border-bottom: 1px solid black;
 }
 
 #sidebar_username_link_spec:hover {

@@ -72,22 +72,25 @@ export const RenderModal: React.FC<Props> = (props) => {
     <div>
       <div
         className="feed_link_header"
-        onClick={() => props.modPostLoad(props.postId)}
         onMouseOver={() => setOver(true)}
         onMouseOut={() => setOver(false)}
       >
-        <Link to={`/home/user/${props.userId}`}>
+        <Link className="feed_link" to={`/home/user/${props.userId}`}>
           <div className="feed_profile_image_block">
             <img className="feed_profile_image" src={props.profileImage} />
           </div>
           <h3 className="feed_link_name">{props.user}</h3>
         </Link>
-        {returnImage()}
         <div style={{ opacity: styledOpac }} className="feed_link_unfollow">
           <InlineUnfollow followerId={props.userId} />
         </div>
-        <p>{props.text}</p>
-        <p className="post_return_date">Posted {returnDate(props.timestamp)}</p>
+        <div onClick={() => props.modPostLoad(props.postId)}>
+          {returnImage()}
+          <p>{props.text}</p>
+          <p className="post_return_date">
+            Posted {returnDate(props.timestamp)}
+          </p>
+        </div>
       </div>
       <div className="feed_link">{returnAllowed()}</div>
     </div>
