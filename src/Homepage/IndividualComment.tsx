@@ -29,11 +29,11 @@ const IndividualComment: React.FC<Props> = (props) => {
   }
 
   return (
-    <div id="comment">
-      <p id="comment_name">{props.username}</p>
-      <p id="comment_time">posted at {props.timestamp}</p>
-      <p id="comment_text">{props.text}</p>
-      <p id="comment_information">
+    <div className="comment">
+      <p className="comment_name">{props.username}</p>
+      <p className="comment_time">posted at {props.timestamp}</p>
+      <p className="comment_text">{props.text}</p>
+      <p className="comment_information">
         {likes}
         <LikePostComment
           postId={props.postId}

@@ -89,26 +89,30 @@ export const RenderModal: React.FC<Props> = (props) => {
   }
 
   return (
-    <div>
-      <h2>{props.title}</h2>
-      <Link className="feed_link" to={`/home/user/${props.userId}`}>
-        <div className="feed_profile_image_block">
-          <img className="feed_profile_image" src={props.profileImage} />
-        </div>
-        <h3 className="feed_link_name">{props.user}</h3>
-      </Link>
-      <p className="post_return_date">Posted {returnDate(props.timestamp)}</p>
+    <div id="render_modal">
+      <div className="post_upper_block">
+        <h2>{props.title}</h2>
+        <Link className="feed_link" to={`/home/user/${props.userId}`}>
+          <div className="feed_profile_image_block">
+            <img className="feed_profile_image" src={props.profileImage} />
+          </div>
+          <h3 className="feed_link_name">{props.user}</h3>
+        </Link>
 
-      {returnAllowed()}
-      {returnImage()}
-      <p>{props.text}</p>
-      <InputPost
-        userId={props.userId}
-        postId={props.postId}
-        modComments={modComments}
-        allowComments={props.allowComments}
-      />
-      <CommentSection postId={props.postId} comments={props.comments} />
+        {returnImage()}
+        <p className="post_text">{props.text}</p>
+      </div>
+      <div className="post_lower_block">
+        <p className="post_return_date">Posted {returnDate(props.timestamp)}</p>
+        {returnAllowed()}
+        <InputPost
+          userId={props.userId}
+          postId={props.postId}
+          modComments={modComments}
+          allowComments={props.allowComments}
+        />
+        <CommentSection postId={props.postId} comments={props.comments} />
+      </div>
     </div>
   );
 };

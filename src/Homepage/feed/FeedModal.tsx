@@ -1,5 +1,5 @@
 import React from "react";
-import { RenderModal } from "./FeedModalTypes";
+import { RenderModal } from "./RenderModal";
 
 interface Props {
   data: any;

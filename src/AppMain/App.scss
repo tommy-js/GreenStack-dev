@@ -252,10 +252,6 @@ body {
   border: 1px solid red;
 }
 
-#comment {
-  border-bottom: 1px dashed grey;
-}
-
 .ticker_header_text {
   font-size: 22px;
   font-weight: bold;
@@ -492,42 +488,6 @@ body {
   border-radius: 5px;
   padding: 10px;
   box-sizing: border-box;
-}
-
-#comment {
-  position: relative;
-  border-bottom: 1px solid lightgray;
-}
-
-#comment_text {
-  color: grey;
-}
-
-#comment_input_div {
-  position: relative;
-  width: 85%;
-  margin-left: auto;
-  margin-right: auto;
-  height: 125px;
-  padding: 5px;
-}
-
-#comment_input {
-  outline: none;
-  resize: none;
-  box-sizing: border-box;
-  padding: 5px;
-  font-size: 16px;
-  font-family: $standard_font;
-  line-height: 150%;
-  border-radius: 5px;
-  height: 100px;
-  transition: 0.2s;
-}
-
-#comment_section {
-  position: relative;
-  top: 50px;
 }
 
 .noclass {
