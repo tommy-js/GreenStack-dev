@@ -31,15 +31,25 @@ const SubmitPost: React.FC<Props> = (props) => {
       if (props.text.includes("@")) {
         let indexArr = [];
         for (let i = 0; i < props.text.length; i++) {
-          if (props.text[i] === "@") indexArr.push(i);
+          if (props.text[i] === "@") indexArr.push(i + 1);
         }
+        console.log("indexArr");
+        console.log(indexArr);
+        const regex = /\s/;
         for (let j = 0; j < indexArr.length; j++) {
-          let lastInd = props.text.indexOf(" ", indexArr[j]);
-          let splicedArr = props.text.substring(j, lastInd);
-          taggedArr.push(splicedArr);
+          let splitStr = props.text.slice(indexArr[j]);
+          let lastInd = splitStr.search(regex);
+          if (lastInd > 0) {
+            let splicedArr = splitStr.substring(0, lastInd);
+            taggedArr.push(splicedArr);
+          } else {
+            let splicedArr = splitStr.substring(0, splitStr.length);
+            taggedArr.push(splicedArr);
+          }
         }
-        console.log(taggedArr);
       }
+      console.log("taggedArr");
+      console.log(taggedArr);
 
       props
         .postMutation({
