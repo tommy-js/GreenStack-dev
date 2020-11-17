@@ -362,6 +362,7 @@ const postMutation = gql`
     $accompaniedURL: String!
     $allowComments: Boolean!
     $allowLikes: Boolean!
+    $taggedUsers: [String!]!
   ) {
     post(
       token: $token
@@ -375,6 +376,9 @@ const postMutation = gql`
       username
     }
     pushToHistory(token: $token, text: $historyText, style: $style) {
+      username
+    }
+    pushMultiUserNotifications(taggedUsers: $taggedUsers) {
       username
     }
   }

@@ -28,6 +28,7 @@ interface Props {
     likes: number;
     dislikes: number;
   }[];
+  modPostLoad: (postId: string) => void;
 }
 
 export const RenderModal: React.FC<Props> = (props) => {
@@ -39,7 +40,11 @@ export const RenderModal: React.FC<Props> = (props) => {
     if (props.postImage == "null") {
       return null;
     } else {
-      return <img src={props.postImage} />;
+      return (
+        <div className="post_image_block">
+          <img className="post_image" src={props.postImage} />
+        </div>
+      );
     }
   }
 
@@ -92,7 +97,11 @@ export const RenderModal: React.FC<Props> = (props) => {
     <div id="render_modal">
       <div className="post_upper_block">
         <h2>{props.title}</h2>
-        <Link className="feed_link" to={`/home/user/${props.userId}`}>
+        <Link
+          className="feed_link"
+          onClick={() => props.modPostLoad(props.postId)}
+          to={`/home/user/${props.userId}`}
+        >
           <div className="feed_profile_image_block">
             <img className="feed_profile_image" src={props.profileImage} />
           </div>

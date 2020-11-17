@@ -25,6 +25,7 @@ const userSchema = new Schema({
       id: String,
       style: String,
       timestamp: Number,
+      postId: String,
     },
   ],
   posts: [

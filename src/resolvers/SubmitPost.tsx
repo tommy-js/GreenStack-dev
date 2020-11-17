@@ -26,6 +26,21 @@ const SubmitPost: React.FC<Props> = (props) => {
       if (props.image === undefined) {
         image = "null";
       }
+
+      let taggedArr = [];
+      if (props.text.includes("@")) {
+        let indexArr = [];
+        for (let i = 0; i < props.text.length; i++) {
+          if (props.text[i] === "@") indexArr.push(i);
+        }
+        for (let j = 0; j < indexArr.length; j++) {
+          let lastInd = props.text.indexOf(" ", indexArr[j]);
+          let splicedArr = props.text.substring(j, lastInd);
+          taggedArr.push(splicedArr);
+        }
+        console.log(taggedArr);
+      }
+
       props
         .postMutation({
           variables: {
@@ -38,6 +53,7 @@ const SubmitPost: React.FC<Props> = (props) => {
             accompaniedURL: props.accompaniedURL,
             allowComments: props.allowComments,
             allowLikes: props.allowLikes,
+            taggedUsers: taggedArr,
           },
         })
         .catch((err: any) => {

@@ -8,7 +8,7 @@ import dislikeFilled from "../images/dislike_filled.png";
 interface Props {
   userId: string;
   postId: string;
-  modDislikes: () => void;
+  modDislikes?: () => void;
   dislikePostMutation: (variables: object) => any;
 }
 
@@ -26,7 +26,7 @@ const DislikePost: React.FC<Props> = (props) => {
       })
       .then((res: any) => {
         console.log("passed");
-        props.modDislikes();
+        if (props.modDislikes) props.modDislikes();
         setImgColor(dislikeFilled);
       })
       .catch((err: any) => {

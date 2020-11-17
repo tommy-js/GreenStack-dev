@@ -8,7 +8,7 @@ import likeFilled from "../images/like_filled.png";
 interface Props {
   userId: string;
   postId: string;
-  modLikes: () => void;
+  modLikes?: () => void;
   likePostMutation: (variables: object) => any;
 }
 
@@ -26,8 +26,9 @@ const LikePost: React.FC<Props> = (props) => {
       })
       .then((res: any) => {
         console.log(res);
-        props.modLikes();
+        if (props.modLikes) props.modLikes();
         setImgColor(likeFilled);
+        console.log("logging from LikePost");
       })
       .catch((err: any) => {
         console.log(err);

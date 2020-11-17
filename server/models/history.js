@@ -6,6 +6,7 @@ const historySchema = new Schema({
   id: String,
   type: String,
   timestamp: Number,
+  postId: String,
 });
 
 module.exports = mongoose.model("History", historySchema);

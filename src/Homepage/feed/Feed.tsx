@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { RenderModal } from "./FeedTypes";
+import { FeedPost } from "./FeedPost";
 import FeedModal from "./FeedModal";
 import Suggested from "../Suggested";
 import Post from "../Post";
@@ -94,7 +94,7 @@ const Feed: React.FC<Props> = (props) => {
         <div>
           {feed.map((el: any) => (
             <div className="feed_component">
-              <RenderModal
+              <FeedPost
                 title={el.title}
                 text={el.text}
                 profileImage={el.profileImage}

@@ -8,6 +8,8 @@ interface Props {
   style: string;
   text: string;
   timestamp: number;
+  postId: string;
+  modPostLoad: (postId: string) => void;
 }
 
 const HistoryElement: React.FC<Props> = (props) => {
@@ -25,7 +27,10 @@ const HistoryElement: React.FC<Props> = (props) => {
     <div className="profile_trade">
       <div className="notifications_link">
         <div className="history_icon">{returnImg()}</div>
-        <div className="history_text_block">
+        <div
+          className="history_text_block"
+          onClick={() => props.modPostLoad(props.postId)}
+        >
           <p className="history_text">{props.text}</p>
           <p className="history_text">{returnDate(props.timestamp)}</p>
         </div>

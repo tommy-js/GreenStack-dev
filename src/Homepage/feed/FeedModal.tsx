@@ -26,6 +26,7 @@ const FeedModal: React.FC<Props> = (props) => {
           comments={props.data.comments}
           allowComments={props.data.allowComments}
           allowLikes={props.data.allowLikes}
+          modPostLoad={props.modPostLoad}
         />
       </div>
       <div

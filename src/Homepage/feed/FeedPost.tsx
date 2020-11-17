@@ -23,7 +23,7 @@ interface Props {
   modPostLoad: (postId: string) => void;
 }
 
-export const RenderModal: React.FC<Props> = (props) => {
+export const FeedPost: React.FC<Props> = (props) => {
   const [over, setOver] = useState(false);
   const [styledOpac, setStyledOpac] = useState(0);
 
@@ -61,8 +61,8 @@ export const RenderModal: React.FC<Props> = (props) => {
       return null;
     } else {
       return (
-        <div className="feed_post_image_block">
-          <img className="feed_post_image" src={props.postImage} />
+        <div className="post_image_block">
+          <img className="post_image" src={props.postImage} />
         </div>
       );
     }
