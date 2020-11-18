@@ -407,9 +407,11 @@
 }
 
 .user_index_hover_block {
-  background-color: white;
+  background-color: $cream_white;
+  font-family: $standard_font;
   border: 1px solid black;
   padding: 5px;
+  border-radius: 5px;
 }
 
 .transparent_outer {
@@ -426,6 +428,7 @@
   display: inline-block;
   overflow: visible;
   padding-bottom: 5px;
+  cursor: pointer;
   @include testing;
 }
 
@@ -459,7 +462,6 @@
 }
 
 .username_tag {
-  cursor: pointer;
   color: $forest_green;
 }
 
@@ -473,4 +475,6 @@
 .hover_comp {
   display: inline-block;
   vertical-align: baseline;
+  color: $text_black;
+  text-decoration: none;
 }

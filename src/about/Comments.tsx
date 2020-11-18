@@ -24,7 +24,8 @@ const Comments: React.FC<Props> = (props) => {
         <div id="tutorial_comments">
           {comments.map((el: any) => (
             <IndividualComment
-              username={el.username}
+              commentUsername={el.username}
+              commentUserId={el.userId}
               text={el.text}
               timestamp={el.timestamp}
             />
