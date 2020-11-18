@@ -1,8 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LikePostComment from "../resolvers/LikePostComment";
 import DislikePostComment from "../resolvers/DislikePostComment";
+import UserIndex from "../about/CommentHover/UserIndex";
+import { returnTaggedString } from "../globals/functions/returnTagged";
+import { useLazyQuery } from "react-apollo";
+import { userCommentLookup } from "../queries/queries";
+import { connect } from "react-redux";
+import { mapStateToProps, mapDispatchToProps } from "../actions/actions";
 
-interface Props {
+type Routes = {
+  username: string;
+  userId: string;
+  bio: string;
+  profileImage: string;
+};
+
+interface Mapper {
+  tag: string;
+}
+
+interface Redux {
+  userRoutes: any;
+  onUserRouteSet: (userRoutes: any) => void;
+}
+
+interface Props extends Redux {
   postId: string;
   commentId: string;
   username: string;
@@ -10,11 +32,40 @@ interface Props {
   timestamp: number;
   likes: number;
   dislikes: number;
+  commentUsername: string;
+  commentUserId: string;
 }
 
 const IndividualComment: React.FC<Props> = (props) => {
   const [likes, setLikes] = useState(props.likes);
   const [dislikes, setDislikes] = useState(props.dislikes);
+
+  useEffect(() => {
+    let foundInd = props.userRoutes.find(
+      (el: Routes) => el.userId === props.commentUserId
+    );
+    if (!foundInd) {
+      let obj = {
+        username: props.commentUsername,
+        userId: props.commentUserId,
+        bio: "",
+        profileImage: "",
+      };
+      let arr = [...props.userRoutes, obj];
+      props.onUserRouteSet(arr);
+    }
+  }, []);
+
+  function returnText() {
+    let tag = returnTaggedString(props.text);
+    return (
+      <div>
+        {tag.map((el: any) => (
+          <IndMapper tag={el} />
+        ))}
+      </div>
+    );
+  }
 
   function likeIncrement() {
     let like = Number(likes);
@@ -32,7 +83,7 @@ const IndividualComment: React.FC<Props> = (props) => {
     <div className="comment">
       <p className="comment_name">{props.username}</p>
       <p className="comment_time">posted at {props.timestamp}</p>
-      <p className="comment_text">{props.text}</p>
+      <p className="comment_text">{returnText()}</p>
       <p className="comment_information">
         {likes}
         <LikePostComment
@@ -52,4 +103,47 @@ const IndividualComment: React.FC<Props> = (props) => {
   );
 };
 
-export default IndividualComment;
+const IndMapper: React.FC<Mapper> = (props) => {
+  const [callUser, { data }] = useLazyQuery(userCommentLookup);
+  const [userData, setUserData] = useState();
+
+  useEffect(() => {
+    if (props.tag.includes("@")) {
+      callUser({
+        variables: {
+          username: getUsername(),
+        },
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      setUserData(data.specUser);
+    }
+  }, [data]);
+
+  function getUsername() {
+    let username = props.tag.slice(1, props.tag.length);
+    return username;
+  }
+
+  function renderFunc() {
+    if (data && userData && data.specUser != null) {
+      return (
+        <UserIndex
+          highlightUsername={userData.username}
+          highlightUserId={userData.userId}
+          highlightBio={userData.bio}
+          highlightProfileImage={userData.profileImage}
+        />
+      );
+    } else {
+      return <span className="tag_span"> {props.tag} </span>;
+    }
+  }
+
+  return renderFunc();
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(IndividualComment);

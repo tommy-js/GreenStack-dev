@@ -25,10 +25,6 @@ const CommentSection: React.FC<Props> = (props) => {
     setComments(props.comments);
   }, []);
 
-  useEffect(() => {
-    console.log(comments);
-  }, [comments]);
-
   function returnRender() {
     if (comments) {
       return (
@@ -37,8 +33,9 @@ const CommentSection: React.FC<Props> = (props) => {
             <IndividualComment
               postId={props.postId}
               commentId={el.commentId}
+              commentUserId={el.userId}
               key={el.timestamp}
-              username={el.username}
+              commentUsername={el.username}
               text={el.text}
               timestamp={el.timestamp}
               likes={el.likes}

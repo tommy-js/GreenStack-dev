@@ -1,5 +1,5 @@
 import React from "react";
-import { RenderModal } from "./RenderModal";
+import RenderModal from "./RenderModal";
 
 interface Props {
   data: any;
@@ -15,10 +15,10 @@ const FeedModal: React.FC<Props> = (props) => {
         <RenderModal
           title={props.data.title}
           postId={props.data.postId}
-          profileImage={props.data.profileImage}
+          userProfileImage={props.data.profileImage}
           postImage={props.data.postImage}
-          userId={props.data.userId}
-          user={props.data.username}
+          postUserId={props.data.userId}
+          postUsername={props.data.username}
           text={props.data.text}
           timestamp={props.data.timestamp}
           likes={props.data.likes}

@@ -2,16 +2,39 @@ import React, { useState, useEffect } from "react";
 import LikePost from "../../resolvers/LikePost";
 import DislikePost from "../../resolvers/DislikePost";
 import InlineUnfollow from "../../resolvers/InlineUnfollow";
+import UserIndex from "../../about/CommentHover/UserIndex";
 import { Link } from "react-router-dom";
 import comment from "../../images/comment.png";
 import { returnDate } from "../../notifications/notificationsTimestamp";
+import { returnTaggedString } from "../../globals/functions/returnTagged";
+import { useLazyQuery } from "react-apollo";
+import { userCommentLookup } from "../../queries/queries";
+import { connect } from "react-redux";
+import { mapStateToProps, mapDispatchToProps } from "../../actions/actions";
+import { enableBodyScroll } from "body-scroll-lock";
 
-interface Props {
-  title: string;
+type Routes = {
+  username: string;
   userId: string;
+  bio: string;
   profileImage: string;
+};
+
+interface Mapper {
+  tag: string;
+}
+
+interface Redux {
+  userRoutes: any;
+  onUserRouteSet: (userRoutes: any) => void;
+}
+
+interface Props extends Redux {
+  title: string;
+  postUserId: string;
+  postProfileImage: string;
   postImage: string;
-  user: string;
+  postUsername: string;
   text: string;
   timestamp: number;
   likes: number;
@@ -23,7 +46,7 @@ interface Props {
   modPostLoad: (postId: string) => void;
 }
 
-export const FeedPost: React.FC<Props> = (props) => {
+const FeedPost: React.FC<Props> = (props) => {
   const [over, setOver] = useState(false);
   const [styledOpac, setStyledOpac] = useState(0);
 
@@ -34,11 +57,11 @@ export const FeedPost: React.FC<Props> = (props) => {
           <div className="post_values">
             <span className="post_value_inner">{props.likes}</span>
           </div>
-          <LikePost userId={props.userId} postId={props.postId} />
+          <LikePost userId={props.postUserId} postId={props.postId} />
           <div className="post_values">
             <span className="post_value_inner">{props.dislikes}</span>
           </div>
-          <DislikePost userId={props.userId} postId={props.postId} />
+          <DislikePost userId={props.postUserId} postId={props.postId} />
           <div className="post_values">
             <span className="post_value_inner">{props.comments.length}</span>
           </div>
@@ -55,6 +78,38 @@ export const FeedPost: React.FC<Props> = (props) => {
       setStyledOpac(1);
     } else setStyledOpac(0);
   }, [over]);
+
+  useEffect(() => {
+    let foundInd = props.userRoutes.find(
+      (el: Routes) => el.userId === props.postUserId
+    );
+    if (!foundInd) {
+      let obj = {
+        username: props.postUsername,
+        userId: props.postUserId,
+        bio: "",
+        profileImage: "",
+      };
+      let arr = [...props.userRoutes, obj];
+      props.onUserRouteSet(arr);
+    }
+  }, []);
+
+  function returnText() {
+    let tag = returnTaggedString(props.text);
+    return (
+      <div>
+        {tag.map((el: any) => (
+          <IndMapper tag={el} />
+        ))}
+      </div>
+    );
+  }
+
+  function unlockScrollState() {
+    const feed = document.getElementById("feed")!;
+    if (feed) enableBodyScroll(feed);
+  }
 
   function returnImage() {
     if (props.postImage == "null") {
@@ -75,24 +130,76 @@ export const FeedPost: React.FC<Props> = (props) => {
         onMouseOver={() => setOver(true)}
         onMouseOut={() => setOver(false)}
       >
-        <Link className="feed_link" to={`/home/user/${props.userId}`}>
+        <Link
+          onClick={() => unlockScrollState()}
+          className="feed_link"
+          to={`/home/user/${props.postUserId}`}
+        >
           <div className="feed_profile_image_block">
-            <img className="feed_profile_image" src={props.profileImage} />
+            <img className="feed_profile_image" src={props.postProfileImage} />
           </div>
-          <h3 className="feed_link_name">{props.user}</h3>
+          <h3 className="feed_link_name">{props.postUsername}</h3>
         </Link>
         <div style={{ opacity: styledOpac }} className="feed_link_unfollow">
-          <InlineUnfollow followerId={props.userId} />
+          <InlineUnfollow followerId={props.postUserId} />
         </div>
         <div onClick={() => props.modPostLoad(props.postId)}>
           {returnImage()}
-          <p>{props.text}</p>
-          <p className="post_return_date">
-            Posted {returnDate(props.timestamp)}
-          </p>
         </div>
+        <p>{returnText()}</p>
+        <p
+          onClick={() => props.modPostLoad(props.postId)}
+          className="post_return_date"
+        >
+          Posted {returnDate(props.timestamp)}
+        </p>
       </div>
       <div className="feed_link">{returnAllowed()}</div>
     </div>
   );
 };
+
+const IndMapper: React.FC<Mapper> = (props) => {
+  const [callUser, { data }] = useLazyQuery(userCommentLookup);
+  const [userData, setUserData] = useState();
+
+  useEffect(() => {
+    if (props.tag.includes("@")) {
+      callUser({
+        variables: {
+          username: getUsername(),
+        },
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      setUserData(data.specUser);
+    }
+  }, [data]);
+
+  function getUsername() {
+    let username = props.tag.slice(1, props.tag.length);
+    return username;
+  }
+
+  function renderFunc() {
+    if (data && userData && data.specUser != null) {
+      return (
+        <UserIndex
+          highlightUsername={userData.username}
+          highlightUserId={userData.userId}
+          highlightBio={userData.bio}
+          highlightProfileImage={userData.profileImage}
+        />
+      );
+    } else {
+      return <span className="tag_span"> {props.tag} </span>;
+    }
+  }
+
+  return renderFunc();
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FeedPost);

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "../../actions/actions";
+import { enableBodyScroll } from "body-scroll-lock";
 
 type Routes = {
   username: string;
@@ -41,6 +42,11 @@ const UserIndex: React.FC<Props> = (props) => {
     }
   }, []);
 
+  function unlockScrollState() {
+    const feed = document.getElementById("feed");
+    if (feed) enableBodyScroll(feed);
+  }
+
   function returnHoverOver() {
     if (hovered === true) {
       return (
@@ -68,7 +74,10 @@ const UserIndex: React.FC<Props> = (props) => {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <Link to={`/home/user/${props.highlightUserId}`}>
+      <Link
+        onClick={() => unlockScrollState()}
+        to={`/home/user/${props.highlightUserId}`}
+      >
         <div className="username_tag_block">
           <span className="username_tag">@{props.highlightUsername}</span>
         </div>

@@ -1,19 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { InputPost } from "../CommentInput";
 import CommentSection from "../CommentSection";
 import LikePost from "../../resolvers/LikePost";
 import DislikePost from "../../resolvers/DislikePost";
+import UserIndex from "../../about/CommentHover/UserIndex";
 import { Link } from "react-router-dom";
 import comment from "../../images/comment.png";
 import { returnDate } from "../../notifications/notificationsTimestamp";
+import { returnTaggedString } from "../../globals/functions/returnTagged";
+import { useLazyQuery } from "react-apollo";
+import { userCommentLookup } from "../../queries/queries";
+import { connect } from "react-redux";
+import { mapStateToProps, mapDispatchToProps } from "../../actions/actions";
+import { enableBodyScroll } from "body-scroll-lock";
 
-interface Props {
-  title: string;
+type Routes = {
+  username: string;
   userId: string;
+  bio: string;
   profileImage: string;
+};
+
+interface Mapper {
+  tag: string;
+}
+
+interface Redux {
+  userRoutes: any;
+  onUserRouteSet: (userRoutes: any) => void;
+}
+
+interface Props extends Redux {
+  title: string;
+  postUserId: string;
+  userProfileImage: string;
   postImage: string;
   postId: string;
-  user: string;
+  postUsername: string;
   text: string;
   timestamp: number;
   likes: number;
@@ -31,7 +54,7 @@ interface Props {
   modPostLoad: (postId: string) => void;
 }
 
-export const RenderModal: React.FC<Props> = (props) => {
+const RenderModal: React.FC<Props> = (props) => {
   const [likes, setLikes] = useState(props.likes);
   const [dislikes, setDislikes] = useState(props.dislikes);
   const [comments, setComments] = useState(props.comments.length);
@@ -60,6 +83,33 @@ export const RenderModal: React.FC<Props> = (props) => {
     setComments(comments + 1);
   }
 
+  useEffect(() => {
+    let foundInd = props.userRoutes.find(
+      (el: Routes) => el.userId === props.postUserId
+    );
+    if (!foundInd) {
+      let obj = {
+        username: props.postUsername,
+        userId: props.postUserId,
+        bio: "",
+        profileImage: "",
+      };
+      let arr = [...props.userRoutes, obj];
+      props.onUserRouteSet(arr);
+    }
+  }, []);
+
+  function returnText() {
+    let tag = returnTaggedString(props.text);
+    return (
+      <div>
+        {tag.map((el: any) => (
+          <IndMapper tag={el} />
+        ))}
+      </div>
+    );
+  }
+
   function returnAllowed() {
     if (props.allowLikes === true) {
       return (
@@ -69,7 +119,7 @@ export const RenderModal: React.FC<Props> = (props) => {
               <span className="post_value_inner">{likes}</span>
             </div>
             <LikePost
-              userId={props.userId}
+              userId={props.postUserId}
               postId={props.postId}
               modLikes={modLikes}
             />
@@ -77,7 +127,7 @@ export const RenderModal: React.FC<Props> = (props) => {
               <span className="post_value_inner">{dislikes}</span>
             </div>
             <DislikePost
-              userId={props.userId}
+              userId={props.postUserId}
               postId={props.postId}
               modDislikes={modDislikes}
             />
@@ -93,29 +143,36 @@ export const RenderModal: React.FC<Props> = (props) => {
     } else return null;
   }
 
+  function unlockScrollState() {
+    const feed = document.getElementById("feed")!;
+    if (feed) {
+      enableBodyScroll(feed);
+    }
+  }
+
   return (
     <div id="render_modal">
       <div className="post_upper_block">
         <h2>{props.title}</h2>
         <Link
           className="feed_link"
-          onClick={() => props.modPostLoad(props.postId)}
-          to={`/home/user/${props.userId}`}
+          onClick={() => unlockScrollState()}
+          to={`/home/user/${props.postUserId}`}
         >
           <div className="feed_profile_image_block">
-            <img className="feed_profile_image" src={props.profileImage} />
+            <img className="feed_profile_image" src={props.userProfileImage} />
           </div>
-          <h3 className="feed_link_name">{props.user}</h3>
+          <h3 className="feed_link_name">{props.postUsername}</h3>
         </Link>
 
         {returnImage()}
-        <p className="post_text">{props.text}</p>
+        <p className="post_text">{returnText()}</p>
       </div>
       <div className="post_lower_block">
         <p className="post_return_date">Posted {returnDate(props.timestamp)}</p>
         {returnAllowed()}
         <InputPost
-          userId={props.userId}
+          userId={props.postUserId}
           postId={props.postId}
           modComments={modComments}
           allowComments={props.allowComments}
@@ -125,3 +182,48 @@ export const RenderModal: React.FC<Props> = (props) => {
     </div>
   );
 };
+
+const IndMapper: React.FC<Mapper> = (props) => {
+  const [callUser, { data }] = useLazyQuery(userCommentLookup);
+  const [userData, setUserData] = useState();
+
+  useEffect(() => {
+    if (props.tag.includes("@")) {
+      callUser({
+        variables: {
+          username: getUsername(),
+        },
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      setUserData(data.specUser);
+    }
+  }, [data]);
+
+  function getUsername() {
+    let username = props.tag.slice(1, props.tag.length);
+    return username;
+  }
+
+  function renderFunc() {
+    if (data && userData && data.specUser != null) {
+      return (
+        <UserIndex
+          highlightUsername={userData.username}
+          highlightUserId={userData.userId}
+          highlightBio={userData.bio}
+          highlightProfileImage={userData.profileImage}
+        />
+      );
+    } else {
+      return <span className="tag_span"> {props.tag} </span>;
+    }
+  }
+
+  return renderFunc();
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RenderModal);

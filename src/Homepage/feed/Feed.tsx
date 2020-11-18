@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FeedPost } from "./FeedPost";
+import FeedPost from "./FeedPost";
 import FeedModal from "./FeedModal";
 import Suggested from "../Suggested";
 import Post from "../Post";
@@ -97,10 +97,10 @@ const Feed: React.FC<Props> = (props) => {
               <FeedPost
                 title={el.title}
                 text={el.text}
-                profileImage={el.profileImage}
+                postProfileImage={el.profileImage}
                 postImage={el.postImage}
-                userId={el.userId}
-                user={el.username}
+                postUserId={el.userId}
+                postUsername={el.username}
                 timestamp={el.timestamp}
                 likes={el.likes}
                 dislikes={el.dislikes}
