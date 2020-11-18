@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import SubmitPost from "../resolvers/SubmitPost";
 import PostNotifIcon from "./PostNotifIcon";
 import PostOptions from "./post/PostOptions";
+import PostTextInput from "./PostTextInput";
 import { ProfileDropzone } from "./profile/ProfileDropzone";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../actions/actions";
@@ -80,6 +81,12 @@ const Post: React.FC<Redux> = (props) => {
     }
   }
 
+  function updateText(input: string) {
+    console.log("updateText: ");
+    console.log(input);
+    setText(input);
+  }
+
   return (
     <div className="post_container">
       <div id="post">
@@ -89,12 +96,7 @@ const Post: React.FC<Redux> = (props) => {
           className="post_header"
           onChange={(e) => setTitle(e.target.value)}
         />
-        <textarea
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          className="post_textarea"
-          placeholder="text..."
-        />
+        <PostTextInput text={text} updateText={updateText} />
         <div id="post_settings_icon" onClick={() => modSettingsHeight()}>
           <img id="post_settings_img" src={settings} />
         </div>
