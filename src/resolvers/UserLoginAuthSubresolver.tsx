@@ -27,6 +27,7 @@ interface Redux {
   onInitialProgressSet: (progress: any) => void;
   onInitialProgressElementsSet: (progressElements: any) => void;
   onHistorySet: (history: any) => void;
+  onUserRouteSet: (userRoutes: any) => void;
 }
 
 interface Props extends Redux {
@@ -117,10 +118,22 @@ const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
       props.onInitialProgressSet(progress);
       props.onInitialProgressElementsSet(progs);
       props.onHistorySet(user.history);
+      props.onUserRouteSet(returnUserRoutes(user));
       sessionStorage.setItem("Token", user.token);
     }
     setStatus(true);
     browserHist.push("/home");
+  }
+
+  function returnUserRoutes(user: any) {
+    let obj = {
+      userId: user.userId,
+      username: user.username,
+      bio: user.bio,
+      profileImage: user.profileImage,
+    };
+    let arr = [obj];
+    return arr;
   }
 
   return null;

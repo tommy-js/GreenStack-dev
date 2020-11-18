@@ -34,12 +34,14 @@ interface Redux {
   username: string;
   posts: any;
   feed: any;
+  userRoutes: any;
   onInitialPostsSet: (posts: any) => void;
   onInitialFollowerSet: (followers: any) => void;
   onInitialFollowingSet: (following: any) => void;
   onInitialNotificationsSet: (notifications: any) => void;
   onWatchlistSet: (watchlist: any) => void;
   onHistorySet: (history: any) => void;
+  onUserRouteSet: (userRoutes: any) => void;
 }
 
 interface Props extends Redux {
@@ -48,7 +50,6 @@ interface Props extends Redux {
 
 const Homepage: React.FC<Props> = (props) => {
   const [posts, setPosts] = useState([] as any);
-  const [userRoutePaths, setUserRoutePaths] = useState([] as any);
   const [loadingInUser, setLoadingInUser] = useState(false);
   const [companies, setCompanies] = useState([] as any);
   const [technology, setTechnology] = useState([] as any);
@@ -68,6 +69,11 @@ const Homepage: React.FC<Props> = (props) => {
   );
 
   const { status, setStatus } = useContext(statusContext);
+
+  useEffect(() => {
+    console.log("props.userRoutes");
+    console.log(props.userRoutes);
+  }, [props.userRoutes]);
 
   useEffect(() => {
     if (companyData) {
@@ -141,9 +147,10 @@ const Homepage: React.FC<Props> = (props) => {
   }, data);
 
   function modRoutes(route: any) {
-    let findEl = userRoutePaths.find((el: any) => el.userId === route.userId);
+    let findEl = props.userRoutes.find((el: any) => el.userId === route.userId);
     if (!findEl) {
-      setUserRoutePaths(route);
+      let routes = [...props.userRoutes, route];
+      props.onUserRouteSet(routes);
     }
   }
 
@@ -156,7 +163,7 @@ const Homepage: React.FC<Props> = (props) => {
   }
 
   function modRes(searchData: any, dataType: number) {
-    let arr: any[] = userRoutePaths;
+    let arr: any[] = props.userRoutes;
     let obj;
     if (dataType === 0) {
       obj = {
@@ -178,7 +185,8 @@ const Homepage: React.FC<Props> = (props) => {
     }
     arr.push(obj);
     setResults(obj);
-    setUserRoutePaths(arr);
+    let routes = [...props.userRoutes, obj];
+    props.onUserRouteSet(routes);
     browserHist.push("/home/search");
   }
 
@@ -215,7 +223,7 @@ const Homepage: React.FC<Props> = (props) => {
             <Route exact path="/home/following">
               <Following modRoutes={modRoutes} />
             </Route>
-            {userRoutePaths.map((el: any) => (
+            {props.userRoutes.map((el: any) => (
               <Route key={el.userId} path={`/home/user/${el.userId}`}>
                 <UserProfile
                   inspectUsername={el.username}

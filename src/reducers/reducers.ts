@@ -81,6 +81,9 @@ const userReducer = (state: any, action: any) => {
   if (action.type == "SET_HISTORY") {
     newState.history = action.payload;
   }
+  if (action.type == "SET_USER_ROUTES") {
+    newState.userRoutes = action.payload;
+  }
   return newState;
 };
 

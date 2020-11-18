@@ -69,10 +69,10 @@ const IndMapper: React.FC<Mapper> = (props) => {
     if (data && userData && data.specUser != null) {
       return (
         <UserIndex
-          username={userData.username}
-          userId={userData.userId}
-          bio={userData.bio}
-          profileImage={userData.profileImage}
+          highlightUsername={userData.username}
+          highlightUserId={userData.userId}
+          highlightBio={userData.bio}
+          highlightProfileImage={userData.profileImage}
         />
       );
     } else {
