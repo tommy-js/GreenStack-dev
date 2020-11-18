@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import UserIndex from "./CommentHover/UserIndex";
 import { returnDate } from "../notifications/notificationsTimestamp";
 import { returnTaggedString } from "../globals/functions/returnTagged";
-import { Link } from "react-router-dom";
 import { useLazyQuery } from "react-apollo";
 import { userCommentLookup } from "../queries/queries";
 
@@ -76,7 +75,7 @@ const IndMapper: React.FC<Mapper> = (props) => {
         />
       );
     } else {
-      return <span>{props.tag}</span>;
+      return <span className="tag_span">{props.tag}</span>;
     }
   }
 

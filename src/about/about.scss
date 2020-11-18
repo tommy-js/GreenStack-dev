@@ -333,6 +333,7 @@
 }
 
 #tutorial_comment {
+  overflow: visible;
   border-bottom: 2px solid $light_blue;
 }
 
@@ -406,10 +407,68 @@
 }
 
 .user_index_hover_block {
-  display: absolute;
+  background-color: white;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.transparent_outer {
+  position: absolute;
+  z-index: 9;
+  width: 200px;
+  top: 0;
+  padding: 10px;
+  background-color: transparent;
 }
 
 .user_comment_index {
+  position: relative;
   display: inline-block;
+  overflow: visible;
+  padding-bottom: 5px;
   @include testing;
+}
+
+.user_index_hover_img_block {
+  width: 25px;
+  height: 25px;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.user_index_hover_img {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.user_index_hover_username {
+  position: relative;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.user_index_hover_bio {
+  margin: 0;
+  font-size: 14px;
+}
+
+.username_tag_block {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.username_tag {
+  cursor: pointer;
+  color: $forest_green;
+}
+
+.tag_span {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.hover_comp {
+  display: inline-block;
+  vertical-align: baseline;
 }
