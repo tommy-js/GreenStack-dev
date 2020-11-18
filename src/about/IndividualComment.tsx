@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
+import UserIndex from "./CommentHover/UserIndex";
 import { returnDate } from "../notifications/notificationsTimestamp";
 import { returnTaggedString } from "../globals/functions/returnTagged";
+import { Link } from "react-router-dom";
+import { useLazyQuery } from "react-apollo";
+import { userCommentLookup } from "../queries/queries";
 
 interface Props {
   username: string;
@@ -8,22 +12,75 @@ interface Props {
   timestamp: number;
 }
 
-const IndividualComment: React.FC<Props> = (props) => {
-  const [text, setText] = useState(props.text);
+interface Mapper {
+  tag: string;
+}
 
-  useEffect(() => {
-    console.log(returnTaggedString(props.text));
-  }, []);
+const IndividualComment: React.FC<Props> = (props) => {
+  function returnText() {
+    let tag = returnTaggedString(props.text);
+    return (
+      <div>
+        {tag.map((el: any) => (
+          <IndMapper tag={el} />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div id="tutorial_comment">
       <h3 id="tutorial_comment_username">{props.username}</h3>
-      <p id="tutorial_comment_text">{text}</p>
+      <p id="tutorial_comment_text">{returnText()}</p>
       <h4 id="tutorial_comment_timestamp">
         Posted at {returnDate(props.timestamp)}
       </h4>
     </div>
   );
+};
+
+const IndMapper: React.FC<Mapper> = (props) => {
+  const [callUser, { data }] = useLazyQuery(userCommentLookup);
+  const [userData, setUserData] = useState();
+
+  useEffect(() => {
+    if (props.tag.includes("@")) {
+      callUser({
+        variables: {
+          username: getUsername(),
+        },
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      setUserData(data.specUser);
+    }
+  }, [data]);
+
+  function getUsername() {
+    let username = props.tag.slice(1, props.tag.length);
+    console.log(username);
+    return username;
+  }
+
+  function renderFunc() {
+    if (data && userData && data.specUser != null) {
+      return (
+        <UserIndex
+          username={userData.username}
+          userId={userData.userId}
+          bio={userData.bio}
+          profileImage={userData.profileImage}
+        />
+      );
+    } else {
+      return <span>{props.tag}</span>;
+    }
+  }
+
+  return renderFunc();
 };
 
 export default IndividualComment;

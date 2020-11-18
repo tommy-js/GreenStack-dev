@@ -562,6 +562,17 @@ const distinctUserQuery = gql`
   }
 `;
 
+const userCommentLookup = gql`
+  query($username: String!) {
+    specUser(username: $username) {
+      username
+      userId
+      bio
+      profileImage
+    }
+  }
+`;
+
 const otherUserQuery = gql`
   query($userId: ID!) {
     altUser(userId: $userId) {
@@ -1080,6 +1091,7 @@ export {
   likePostMutation,
   dislikePostMutation,
   distinctUserQuery,
+  userCommentLookup,
   userQuery,
   userProgressQuery,
   nonTokenModifyUserQuery,
