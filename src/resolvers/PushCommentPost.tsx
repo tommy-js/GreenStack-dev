@@ -2,6 +2,7 @@ import React from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { pushCommentPostMutation } from "../queries/queries.js";
+import { taggedUsers } from "../globals/functions/returnTaggedUsers";
 
 interface Props {
   userId: string;
@@ -15,6 +16,9 @@ const PushCommentPost: React.FC<Props> = (props) => {
   function submitComment() {
     if (props.text.length < 180 && props.text.length > 0) {
       let token = sessionStorage.getItem("Token");
+
+      let taggedArr = taggedUsers(props.text);
+
       props
         .pushCommentPostMutation({
           variables: {
@@ -23,6 +27,7 @@ const PushCommentPost: React.FC<Props> = (props) => {
             content: "A user commented on your post",
             postId: props.postId,
             text: props.text,
+            taggedUsers: taggedArr,
           },
         })
         .catch((err: any) => {

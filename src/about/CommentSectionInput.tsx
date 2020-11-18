@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { pushCommentTutorialMutation } from "../queries/queries";
+import { taggedUsers } from "../globals/functions/returnTaggedUsers";
 
 interface Props {
   id: string;
@@ -18,6 +19,9 @@ const CommentSectionInput: React.FC<Props> = (props) => {
 
   function passData() {
     let token = sessionStorage.getItem("Token");
+
+    let taggedArr = taggedUsers(text);
+
     if (text.length > 0) {
       props
         .pushCommentTutorialMutation({
@@ -25,6 +29,7 @@ const CommentSectionInput: React.FC<Props> = (props) => {
             token: token,
             text: text,
             id: props.id,
+            taggedUsers: taggedArr,
           },
         })
         .catch((err: any) => {

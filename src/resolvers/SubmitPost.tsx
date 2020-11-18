@@ -2,6 +2,7 @@ import React from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { postMutation } from "../queries/queries.js";
+import { taggedUsers } from "../globals/functions/returnTaggedUsers";
 
 interface Props {
   title: string;
@@ -27,29 +28,7 @@ const SubmitPost: React.FC<Props> = (props) => {
         image = "null";
       }
 
-      let taggedArr = [];
-      if (props.text.includes("@")) {
-        let indexArr = [];
-        for (let i = 0; i < props.text.length; i++) {
-          if (props.text[i] === "@") indexArr.push(i + 1);
-        }
-        console.log("indexArr");
-        console.log(indexArr);
-        const regex = /\s/;
-        for (let j = 0; j < indexArr.length; j++) {
-          let splitStr = props.text.slice(indexArr[j]);
-          let lastInd = splitStr.search(regex);
-          if (lastInd > 0) {
-            let splicedArr = splitStr.substring(0, lastInd);
-            taggedArr.push(splicedArr);
-          } else {
-            let splicedArr = splitStr.substring(0, splitStr.length);
-            taggedArr.push(splicedArr);
-          }
-        }
-      }
-      console.log("taggedArr");
-      console.log(taggedArr);
+      let taggedArr = taggedUsers(props.text);
 
       props
         .postMutation({

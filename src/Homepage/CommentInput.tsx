@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PushCommentStock from "../resolvers/PushCommentStock";
 import PushCommentPost from "../resolvers/PushCommentPost";
-import PushCommentTrade from "../resolvers/PushCommentTrade";
 
 interface Post {
   userId: string;
@@ -13,11 +12,6 @@ interface Post {
 interface Stock {
   userId: string;
   stockId: string;
-}
-
-interface Trade {
-  userId: string;
-  tradeId: string;
 }
 
 export const InputPost: React.FC<Post> = (props) => {
@@ -72,21 +66,6 @@ export const InputStock: React.FC<Stock> = (props) => {
       <PushCommentStock
         userId={props.userId}
         stockId={props.stockId}
-        text={text}
-      />
-    </div>
-  );
-};
-
-export const InputTrade: React.FC<Trade> = (props) => {
-  const [text, setText] = useState("");
-
-  return (
-    <div id="comment_input_div">
-      <textarea id="comment_input" />
-      <PushCommentTrade
-        userId={props.userId}
-        tradeId={props.tradeId}
         text={text}
       />
     </div>

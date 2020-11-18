@@ -228,7 +228,7 @@ const pushCommentPostMutation = gql`
     pushUserNotifications(userId: $userId, content: $content) {
       username
     }
-    pushMultiUserNotifications(taggedUsers: $taggedUsers) {
+    pushMultiUserNotifications(taggedUsers: $taggedUsers, text: $text) {
       username
     }
   }
@@ -239,19 +239,27 @@ const pushCommentTutorialMutation = gql`
     pushCommentTutorial(id: $id, text: $text, token: $token) {
       id
     }
-    pushMultiUserNotifications(taggedUsers: $taggedUsers) {
+    pushMultiUserNotifications(taggedUsers: $taggedUsers, text: $text) {
       username
     }
   }
 `;
 
 const pushCommentStockMutation = gql`
-  mutation($token: String!, $text: String!, $stockId: ID!) {
+  mutation(
+    $token: String!
+    $text: String!
+    $stockId: ID!
+    $taggedUsers: [String]!
+  ) {
     pushCommentStock(token: $token, text: $text, stockId: $stockId) {
       text
     }
     pushCommentUser(token: $token, text: $text) {
       text
+    }
+    pushMultiUserNotifications(taggedUsers: $taggedUsers, text: $text) {
+      username
     }
   }
 `;
