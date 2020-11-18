@@ -78,8 +78,6 @@ const IndMapper: React.FC<Mapper> = (props) => {
   const [callUser, { data }] = useLazyQuery(userCommentLookup);
   const [userData, setUserData] = useState();
 
-  console.log(props.tag);
-
   useEffect(() => {
     if (props.tag.includes("@")) {
       callUser({

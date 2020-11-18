@@ -33,9 +33,7 @@ const CompanyNewsBlock = (props) => {
     }
   }
 
-  useEffect(() => {
-    console.log(loggedNews);
-  }, [loggedNews]);
+  useEffect(() => {}, [loggedNews]);
 
   function passData() {
     if (shortLoggedNews) {

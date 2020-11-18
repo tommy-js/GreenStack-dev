@@ -18,7 +18,6 @@ const CompanyComments: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (data) {
-      console.log(data);
       let coms = [...data.stock.comments];
       coms.sort(function (a: any, b: any) {
         return b.timestamp - a.timestamp;

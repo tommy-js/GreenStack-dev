@@ -16,13 +16,10 @@ interface Stock {
 
 export const InputPost: React.FC<Post> = (props) => {
   const [text, setText] = useState("");
-  console.log("comment_input textarea: ");
-  console.log(props.allowComments);
 
   function modText(input: string) {
     if (input.length < 180) {
       setText(input);
-      console.log(input.length);
     }
   }
 

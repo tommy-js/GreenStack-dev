@@ -13,18 +13,14 @@ const CompanyGraph = ({ title, ticker }) => {
   const { data, loading } = useQuery(requestDataSetQuery, {
     variables: { tickers: arr },
   });
-  console.log(arr);
 
   useEffect(() => {
     if (data) {
       setPoints(data.requestData[0].elements);
-      console.log("data:");
-      console.log(data.requestData[0].elements);
     }
   }, [data]);
 
   useEffect(() => {
-    console.log(points);
     if (points && points.length > 0) {
       renderEl();
     }

@@ -9,7 +9,6 @@ interface Props {
 }
 
 const LikeComponent: React.FC<Props> = (props) => {
-  console.log(props.commentId);
   return (
     <div>
       <p>

@@ -78,7 +78,6 @@ const BasicsPage: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (data && data.tutorial) {
-      console.log(data);
       setComments(data.tutorial.comments);
     }
   }, [data]);

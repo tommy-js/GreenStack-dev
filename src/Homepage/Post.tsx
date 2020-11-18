@@ -39,7 +39,6 @@ const Post: React.FC<Redux> = (props) => {
   }
 
   function unsuccessfulEvent() {
-    console.log("unsuccessful");
     setSuccess(false);
     setPosted(true);
   }
@@ -82,8 +81,6 @@ const Post: React.FC<Redux> = (props) => {
   }
 
   function updateText(input: string) {
-    console.log("updateText: ");
-    console.log(input);
     setText(input);
   }
 

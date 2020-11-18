@@ -16,8 +16,6 @@ const FeedSidebar: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (data) {
-      console.log("data from FeedSidebar");
-      console.log(data);
       if (data.searchUser) {
         let searchData = {
           username: data.searchUser.username,

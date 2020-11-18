@@ -13,10 +13,6 @@ interface Props {
 const CommentSectionInput: React.FC<Props> = (props) => {
   const [text, setText] = useState("");
 
-  console.log("CommentSectionInput:");
-  console.log(text);
-  console.log(props.id);
-
   function passData() {
     let token = sessionStorage.getItem("Token");
 
@@ -32,11 +28,8 @@ const CommentSectionInput: React.FC<Props> = (props) => {
             taggedUsers: taggedArr,
           },
         })
-        .catch((err: any) => {
-          console.log(err);
-        })
+        .catch((err: any) => {})
         .then((res: any) => {
-          console.log(res);
           setText("");
         });
     }

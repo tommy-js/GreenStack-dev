@@ -8,13 +8,9 @@ interface Props {
 }
 
 const NewsCompOptions: React.FC<Props> = (props) => {
-  function unsuccessfulEvent() {
-    console.log("post not successful");
-  }
+  function unsuccessfulEvent() {}
 
-  function successfulEvent() {
-    console.log("post successful");
-  }
+  function successfulEvent() {}
 
   return (
     <div className="news_comp_options">

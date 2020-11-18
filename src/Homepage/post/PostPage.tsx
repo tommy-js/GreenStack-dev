@@ -40,7 +40,6 @@ const PostPage: React.FC<Props> = (props) => {
   useEffect(() => {
     if (data && data.post) {
       setDataLoaded(true);
-      console.log(data);
       setInfo({
         text: data.post.text,
         title: data.post.title,

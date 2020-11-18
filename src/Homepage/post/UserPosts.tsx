@@ -33,7 +33,6 @@ const UserPosts: React.FC<Props> = (props) => {
     let arr = props.posts.sort(function (a: any, b: any) {
       return b.timestamp - a.timestamp;
     });
-    console.log(arr);
     setSortedArr(arr);
 
     props.modRoutes(arr);

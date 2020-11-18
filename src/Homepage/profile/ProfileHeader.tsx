@@ -55,9 +55,7 @@ const ProfileHeader: React.FC<Props> = (props) => {
     setProfileImage(imgData);
   }
 
-  useEffect(() => {
-    console.log(profileImage);
-  }, [profileImage]);
+  useEffect(() => {}, [profileImage]);
 
   function saveImage(img: string) {
     props.onProfileImageSet(img);

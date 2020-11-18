@@ -23,6 +23,11 @@ const PostTextInput: React.FC<Props> = (props) => {
     let splitText = props.text.slice(0, start);
     let text = splitText + username;
     props.updateText(text);
+    setSearchUp(false);
+  }
+
+  function dropRender() {
+    setSearchUp(false);
   }
 
   function returnUserSearchup() {
@@ -32,6 +37,7 @@ const PostTextInput: React.FC<Props> = (props) => {
           splice={userSplice}
           userList={userList}
           injectUsername={injectUsername}
+          dropRender={dropRender}
         />
       );
     } else return null;
@@ -44,7 +50,7 @@ const PostTextInput: React.FC<Props> = (props) => {
 
   useEffect(() => {
     let prevChar = props.text[props.text.length - 1];
-    console.log(prevChar);
+    if (props.text.length === 0) setSearchUp(false);
     if (prevChar === "@") {
       let initial = props.text.length;
       setStart(initial);

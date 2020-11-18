@@ -15,8 +15,6 @@ interface Props {
 
 const CommentSection: React.FC<Props> = (props) => {
   const [comments, setComments] = useState();
-  console.log("props CommentSection: ");
-  console.log(props);
 
   useEffect(() => {
     props.comments.sort(function (a, b) {

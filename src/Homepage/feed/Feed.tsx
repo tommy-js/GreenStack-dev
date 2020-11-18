@@ -30,9 +30,7 @@ const Feed: React.FC<Props> = (props) => {
   useEffect(() => {
     if (data) {
       setLoaded(true);
-      console.log(data);
       setFeed(data.returnFollowerFeed.posts);
-      console.log(data.returnFollowerFeed);
       let arr = [...data.returnFollowerFeed.posts];
       arr.sort(function (a, b) {
         return b.timestamp - a.timestamp;

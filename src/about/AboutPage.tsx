@@ -63,7 +63,6 @@ const AboutPage: React.FC<Redux> = (props) => {
 
   useEffect(() => {
     if (getUserData) {
-      console.log(getUserData.noTokenMod);
       props.onInitialPostsSet(getUserData.noTokenMod.posts);
       props.onInitialFollowerSet(getUserData.noTokenMod.followers);
       props.onInitialFollowingSet(getUserData.noTokenMod.following);
@@ -74,11 +73,8 @@ const AboutPage: React.FC<Redux> = (props) => {
   }, [getUserData]);
 
   useEffect(() => {
-    console.log("homepage status: " + status);
     if (status === false) {
       if (data && data.token) {
-        console.log(data);
-        console.log("session token same as data token");
         setUserId(data.token.userId);
         setToken(data.token.token);
         setLoadingInUser(true);

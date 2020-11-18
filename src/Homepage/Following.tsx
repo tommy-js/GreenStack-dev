@@ -25,7 +25,6 @@ const Following: React.FC<Props> = (props) => {
     for (let i = 0; i < data.length; i++) {
       arr.push({ userId: data[i].userId });
     }
-    console.log(arr);
     props.modRoutes(arr);
   }, []);
 

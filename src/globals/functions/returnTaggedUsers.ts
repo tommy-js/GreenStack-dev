@@ -5,8 +5,6 @@ export function taggedUsers(text: string) {
     for (let i = 0; i < text.length; i++) {
       if (text[i] === "@") indexArr.push(i + 1);
     }
-    console.log("indexArr");
-    console.log(indexArr);
     const regex = /\s/;
     for (let j = 0; j < indexArr.length; j++) {
       let splitStr = text.slice(indexArr[j]);

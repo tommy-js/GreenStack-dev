@@ -98,7 +98,6 @@ const Homepage: React.FC<Props> = (props) => {
   }, [companyData]);
 
   useEffect(() => {
-    console.log("homepage status: " + status);
     if (status === false) {
       let sessionToken = sessionStorage.getItem("Token");
       if (sessionToken) {
@@ -124,7 +123,6 @@ const Homepage: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (getUserData) {
-      console.log(getUserData.noTokenMod);
       props.onInitialPostsSet(getUserData.noTokenMod.posts);
       props.onInitialFollowerSet(getUserData.noTokenMod.followers);
       props.onInitialFollowingSet(getUserData.noTokenMod.following);
@@ -135,11 +133,8 @@ const Homepage: React.FC<Props> = (props) => {
   }, [getUserData]);
 
   useEffect(() => {
-    console.log("homepage status: " + status);
     if (status === false) {
       if (data && data.token) {
-        console.log(data);
-        console.log("session token same as data token");
         setUserId(data.token.userId);
         setLoadingInUser(true);
       }
@@ -173,6 +168,14 @@ const Homepage: React.FC<Props> = (props) => {
         bio: searchData.bio,
         dataType: dataType,
       };
+      let findEl = props.userRoutes.find(
+        (el: any) => el.userId === searchData.userId
+      );
+      if (!findEl) {
+        arr.push(obj);
+        let routes = [...props.userRoutes, obj];
+        props.onUserRouteSet(routes);
+      }
     } else if (dataType === 1) {
       obj = {
         title: searchData.title,
@@ -182,11 +185,17 @@ const Homepage: React.FC<Props> = (props) => {
         stockId: searchData.stockId,
         dataType: dataType,
       };
+      let findEl = props.userRoutes.find(
+        (el: any) => el.userId === searchData.stockId
+      );
+      if (!findEl) {
+        arr.push(obj);
+        let routes = [...props.userRoutes, obj];
+        props.onUserRouteSet(routes);
+      }
     }
-    arr.push(obj);
+
     setResults(obj);
-    let routes = [...props.userRoutes, obj];
-    props.onUserRouteSet(routes);
     browserHist.push("/home/search");
   }
 

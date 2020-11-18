@@ -47,6 +47,17 @@
   top: 0;
   left: 0;
   height: 100px;
+  max-width: 120px;
   overflow: scroll;
+  word-wrap: break-word;
   border: 1px solid green;
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.user_text_search_return_el {
+  margin: 2px;
+  font-family: $standard_font;
+  cursor: pointer;
 }

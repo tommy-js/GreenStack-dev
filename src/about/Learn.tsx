@@ -8,8 +8,6 @@ interface Props {
 }
 
 const Learn: React.FC<Props> = (props) => {
-  console.log("Learn progress: ");
-  console.log(props.progress);
   const [loaded, setLoaded] = useState(false);
   const [learn, setLearn] = useState([
     {
@@ -33,8 +31,6 @@ const Learn: React.FC<Props> = (props) => {
   ]);
 
   useEffect(() => {
-    console.log("calling useffect on Learn comp");
-    console.log(props.progress);
     let obj;
     let arr = [...learn];
     for (let i = 0; i < learn.length; i++) {

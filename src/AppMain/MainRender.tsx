@@ -70,11 +70,6 @@ const MainRender: React.FC<Props> = (props) => {
     setConstantActivity(passInActivity);
   }
 
-  function passInTradeId(id: number) {
-    setTradeId(id);
-    console.log(id);
-  }
-
   function returnTradePath() {
     if (tradeMap && userMap) {
       return (

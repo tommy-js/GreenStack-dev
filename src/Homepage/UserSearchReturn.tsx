@@ -5,6 +5,7 @@ interface Props {
   splice: string;
   userList: any;
   injectUsername: (username: string) => void;
+  dropRender: () => void;
 }
 
 export const UserSearchReturn: React.FC<Props> = (props) => {
@@ -14,10 +15,19 @@ export const UserSearchReturn: React.FC<Props> = (props) => {
     setUsersRender(returnUserList(props.userList, props.splice));
   }, [props.splice]);
 
+  useEffect(() => {
+    if (usersRender.length === 0) props.dropRender();
+  }, [usersRender]);
+
   return (
     <div className="user_text_search_return">
       {usersRender.map((el: any) => (
-        <p onClick={() => props.injectUsername(el.username)}>{el.username}</p>
+        <p
+          className="user_text_search_return_el"
+          onClick={() => props.injectUsername(el.username)}
+        >
+          {el.username}
+        </p>
       ))}
     </div>
   );

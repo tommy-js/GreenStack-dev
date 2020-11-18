@@ -25,19 +25,20 @@ export function tagged(text: string) {
       }
     }
   }
-  console.log(taggedArr);
   return taggedArr;
 }
 
 export function returnTaggedString(text: string) {
   let tags = tagged(text);
   let strSplit = [];
+  if (tags.length === 0) {
+    strSplit.push(text);
+  }
   for (let i = 0; i < tags.length; i++) {
     if (i === 0) {
-      if (tags[i].first > 0) {
+      if (tags[i].first > 1) {
         let firstString = text.slice(0, tags[i].first - 1);
         strSplit.push(firstString);
-        console.log(firstString);
       }
     }
 
@@ -56,6 +57,5 @@ export function returnTaggedString(text: string) {
       }
     }
   }
-  console.log(strSplit);
   return strSplit;
 }

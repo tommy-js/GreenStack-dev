@@ -27,9 +27,7 @@ const PostComments: React.FC<Props> = (props) => {
     }
   }, []);
 
-  useEffect(() => {
-    console.log(comments);
-  }, [comments]);
+  useEffect(() => {}, [comments]);
 
   function returnRender() {
     if (comments) {

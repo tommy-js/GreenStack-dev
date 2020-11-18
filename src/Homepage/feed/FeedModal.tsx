@@ -7,8 +7,6 @@ interface Props {
 }
 
 const FeedModal: React.FC<Props> = (props) => {
-  console.log("feed modal data: ");
-  console.log(props.data);
   return (
     <div id="modal">
       <div id="central_modal">
