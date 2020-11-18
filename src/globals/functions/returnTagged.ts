@@ -13,7 +13,7 @@ export function tagged(text: string) {
       if (spaceSearch > 0) {
         let obj = {
           first: indexArr[j] - 1,
-          last: lastInd,
+          last: lastInd - 1,
         };
         taggedArr.push(obj);
       } else {
@@ -35,8 +35,9 @@ export function returnTaggedString(text: string) {
   for (let i = 0; i < tags.length; i++) {
     if (i === 0) {
       if (tags[i].first > 0) {
-        let firstString = text.slice(0, tags[i].first);
+        let firstString = text.slice(0, tags[i].first - 1);
         strSplit.push(firstString);
+        console.log(firstString);
       }
     }
 
@@ -50,10 +51,11 @@ export function returnTaggedString(text: string) {
 
     if (i === tags.length - 1) {
       if (tags[i].last != tags.length) {
-        let lastString = text.slice(tags[i].last, text.length);
+        let lastString = text.slice(tags[i].last + 1, text.length);
         strSplit.push(lastString);
       }
     }
   }
+  console.log(strSplit);
   return strSplit;
 }

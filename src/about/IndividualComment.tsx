@@ -42,6 +42,8 @@ const IndMapper: React.FC<Mapper> = (props) => {
   const [callUser, { data }] = useLazyQuery(userCommentLookup);
   const [userData, setUserData] = useState();
 
+  console.log(props.tag);
+
   useEffect(() => {
     if (props.tag.includes("@")) {
       callUser({
@@ -60,7 +62,6 @@ const IndMapper: React.FC<Mapper> = (props) => {
 
   function getUsername() {
     let username = props.tag.slice(1, props.tag.length);
-    console.log(username);
     return username;
   }
 
@@ -75,7 +76,7 @@ const IndMapper: React.FC<Mapper> = (props) => {
         />
       );
     } else {
-      return <span className="tag_span">{props.tag}</span>;
+      return <span className="tag_span"> {props.tag} </span>;
     }
   }
 
