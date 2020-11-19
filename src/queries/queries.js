@@ -1003,6 +1003,12 @@ const returnFeedQuery = gql`
           dislikes
         }
       }
+      likes {
+        username
+      }
+      comments {
+        username
+      }
     }
   }
 `;
