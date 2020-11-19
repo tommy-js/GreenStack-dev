@@ -641,6 +641,8 @@ const otherUserQuery = gql`
         reference {
           postId
           text
+          username
+          profileImage
         }
       }
       likes {
@@ -653,6 +655,8 @@ const otherUserQuery = gql`
         reference {
           postId
           text
+          username
+          profileImage
         }
       }
       watchlist {
@@ -734,6 +738,8 @@ const nonTokenModifyUserQuery = gql`
         reference {
           postId
           text
+          username
+          profileImage
         }
       }
       likes {
@@ -746,6 +752,8 @@ const nonTokenModifyUserQuery = gql`
         reference {
           postId
           text
+          username
+          profileImage
         }
       }
       watchlist {
@@ -858,6 +866,8 @@ const userQuery = gql`
         reference {
           postId
           text
+          username
+          profileImage
         }
       }
       likes {
@@ -870,6 +880,8 @@ const userQuery = gql`
         reference {
           postId
           text
+          username
+          profileImage
         }
       }
       watchlist {
@@ -1035,6 +1047,8 @@ const returnFeedQuery = gql`
         reference {
           postId
           text
+          username
+          profileImage
         }
       }
       comments {
@@ -1045,6 +1059,8 @@ const returnFeedQuery = gql`
         reference {
           postId
           text
+          username
+          profileImage
         }
       }
     }

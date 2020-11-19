@@ -67,6 +67,8 @@ const userSchema = new Schema({
       reference: {
         postId: String,
         text: String,
+        username: String,
+        profileImage: String,
       },
     },
   ],
@@ -84,6 +86,8 @@ const userSchema = new Schema({
       reference: {
         postId: String,
         text: String,
+        username: String,
+        profileImage: String,
       },
     },
   ],
