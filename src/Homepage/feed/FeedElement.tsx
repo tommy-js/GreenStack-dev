@@ -50,6 +50,7 @@ const FeedElement: React.FC<Props> = (props) => {
           profileImage={props.postProfileImage}
           text={props.text}
           reference={props.reference}
+          modPostLoad={props.modPostLoad}
         />
       );
     } else if (props.type === "Like") {
@@ -59,6 +60,7 @@ const FeedElement: React.FC<Props> = (props) => {
           profileImage={props.postProfileImage}
           text={props.text}
           reference={props.reference}
+          modPostLoad={props.modPostLoad}
         />
       );
     }

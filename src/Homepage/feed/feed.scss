@@ -241,13 +241,23 @@
 .feed_comment_header {
   position: relative;
   display: inline-block;
+  margin: 0;
+  font-family: $standard_font;
 }
 
-.feed_comment_header_username,
-.feed_comment_header_text {
+.feed_comment_header_username {
   display: inline-block;
   margin-right: 5px;
   @include testing;
+}
+
+.feed_comment_header_text {
+  opacity: 0.75;
+}
+
+.feed_top_block {
+  margin-bottom: 0;
+  height: 40px;
 }
 
 .feed_comment_base {

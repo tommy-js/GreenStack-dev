@@ -10,19 +10,25 @@ interface Props {
   profileImage: string;
   text: string;
   reference: Reference;
+  modPostLoad: (postId: string) => void;
 }
 
 const FeedComment: React.FC<Props> = (props) => {
   return (
     <div>
       <div className="feed_comment_header">
-        <div className="feed_comment_image_block">
-          <img src={props.profileImage} className="feed_comment_image" />
+        <div className="feed_top_block">
+          <div className="feed_comment_image_block">
+            <img src={props.profileImage} className="feed_comment_image" />
+          </div>
+          <p className="feed_comment_header_username">{props.username}</p>
         </div>
-        <p className="feed_comment_header_username">{props.username}</p>
         <p className="feed_comment_header_text">{props.text}</p>
       </div>
-      <div className="feed_comment_base">
+      <div
+        className="feed_comment_base"
+        onClick={() => props.modPostLoad(props.reference.postId)}
+      >
         <span className="feed_comment_base_reference_text">
           {props.reference.text}
         </span>

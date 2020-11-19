@@ -10,6 +10,7 @@ interface Props {
   profileImage: string;
   text: string;
   reference: Reference;
+  modPostLoad: (postId: string) => void;
 }
 
 const FeedLike: React.FC<Props> = (props) => {
