@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import FeedPost from "./FeedPost";
+import FeedElement from "./FeedElement";
 import FeedModal from "./FeedModal";
 import Suggested from "../Suggested";
 import Post from "../Post";
@@ -27,10 +27,40 @@ const Feed: React.FC<Props> = (props) => {
   const [loaded, setLoaded] = useState(false);
   const [feed, setFeed] = useState();
 
+  // function returnFeed(feed: any) {
+  //   let feedArr = [];
+  //   for (let p = 0; p < feed.posts.length; p++) {
+  //     let obj = {
+  //       ...feed.posts[p],
+  //       type: "POST",
+  //     };
+  //     feedArr.push(obj);
+  //   }
+  //   for (let c = 0; c < feed.comments.length; c++) {
+  //     let obj = {
+  //       ...feed.comments[c],
+  //       type: "COMMENT",
+  //     };
+  //     feedArr.push(obj);
+  //   }
+  //   for (let l = 0; l < feed.likes.length; l++) {
+  //     let obj = {
+  //       ...feed.likes[l],
+  //       type: "LIKE",
+  //     };
+  //     feedArr.push(obj);
+  //   }
+  //   console.log("returned feed: ");
+  //   console.log(feedArr);
+  // }
+
   useEffect(() => {
     if (data) {
       setLoaded(true);
       setFeed(data.returnFollowerFeed.posts);
+
+      // let returnedFeed = returnFeed(data.returnFollowerFeed);
+
       let arr = [
         ...data.returnFollowerFeed.posts,
         ...data.returnFollowerFeed.likes,
@@ -97,7 +127,7 @@ const Feed: React.FC<Props> = (props) => {
         <div>
           {feed.map((el: any) => (
             <div className="feed_component">
-              <FeedPost
+              <FeedElement
                 title={el.title}
                 text={el.text}
                 postProfileImage={el.profileImage}
@@ -112,6 +142,8 @@ const Feed: React.FC<Props> = (props) => {
                 allowComments={el.allowComments}
                 allowLikes={el.allowLikes}
                 modPostLoad={modPostLoad}
+                type={el.__typename}
+                reference={el.reference}
               />
             </div>
           ))}

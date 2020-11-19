@@ -64,6 +64,10 @@ const userSchema = new Schema({
       likeId: String,
       timestamp: Number,
       text: String,
+      reference: {
+        postId: String,
+        text: String,
+      },
     },
   ],
   comments: [
@@ -72,10 +76,15 @@ const userSchema = new Schema({
       username: String,
       timestamp: Number,
       commentId: String,
+      profileImage: String,
       text: String,
       likes: Number,
       dislikes: Number,
       referenceId: String,
+      reference: {
+        postId: String,
+        text: String,
+      },
     },
   ],
   following: [{ userId: String, username: String, bio: String }],

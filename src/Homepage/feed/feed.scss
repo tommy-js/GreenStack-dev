@@ -237,3 +237,42 @@
   margin-right: auto;
   @include testing;
 }
+
+.feed_comment_header {
+  position: relative;
+  display: inline-block;
+}
+
+.feed_comment_header_username,
+.feed_comment_header_text {
+  display: inline-block;
+  margin-right: 5px;
+  @include testing;
+}
+
+.feed_comment_base {
+  position: relative;
+  width: 95%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.feed_comment_image_block {
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+  overflow: hidden;
+  margin-right: 5px;
+  border-radius: 5px;
+  border: 1px solid green;
+  vertical-align: middle;
+}
+
+.feed_comment_image {
+  height: 100%;
+  width: 100%;
+}

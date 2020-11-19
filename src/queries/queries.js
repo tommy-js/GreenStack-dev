@@ -500,7 +500,7 @@ const sellStockMutation = gql`
 `;
 
 const likeCommentMutation = gql`
-  mutation($postId: String!, $commentId: String!) {
+  mutation($postId: ID!, $commentId: String!) {
     likeComment(postId: $postId, commentId: $commentId) {
       username
     }
@@ -521,7 +521,7 @@ const likePostMutation = gql`
     $token: String!
     $content: String!
     $likeText: String!
-    $postId: String!
+    $postId: ID!
   ) {
     likePost(postId: $postId) {
       username
@@ -529,7 +529,7 @@ const likePostMutation = gql`
     pushUserNotifications(userId: $userId, content: $content) {
       username
     }
-    postLike(token: $token, text: $likeText) {
+    postLike(token: $token, postId: $postId, text: $likeText) {
       username
     }
   }
@@ -638,6 +638,10 @@ const otherUserQuery = gql`
         text
         likes
         dislikes
+        reference {
+          postId
+          text
+        }
       }
       likes {
         userId
@@ -646,6 +650,10 @@ const otherUserQuery = gql`
         likeId
         timestamp
         text
+        reference {
+          postId
+          text
+        }
       }
       watchlist {
         stockId
@@ -723,6 +731,10 @@ const nonTokenModifyUserQuery = gql`
         text
         likes
         dislikes
+        reference {
+          postId
+          text
+        }
       }
       likes {
         userId
@@ -731,6 +743,10 @@ const nonTokenModifyUserQuery = gql`
         likeId
         timestamp
         text
+        reference {
+          postId
+          text
+        }
       }
       watchlist {
         stockId
@@ -839,6 +855,10 @@ const userQuery = gql`
         text
         likes
         dislikes
+        reference {
+          postId
+          text
+        }
       }
       likes {
         userId
@@ -847,6 +867,10 @@ const userQuery = gql`
         likeId
         timestamp
         text
+        reference {
+          postId
+          text
+        }
       }
       watchlist {
         stockId
@@ -1007,11 +1031,21 @@ const returnFeedQuery = gql`
         username
         timestamp
         text
+        profileImage
+        reference {
+          postId
+          text
+        }
       }
       comments {
         username
         timestamp
         text
+        profileImage
+        reference {
+          postId
+          text
+        }
       }
     }
   }
