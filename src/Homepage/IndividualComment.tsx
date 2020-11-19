@@ -7,6 +7,7 @@ import { useLazyQuery } from "react-apollo";
 import { userCommentLookup } from "../queries/queries";
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "../actions/actions";
+import { returnDate } from "../notifications/notificationsTimestamp";
 
 type Routes = {
   username: string;
@@ -82,7 +83,7 @@ const IndividualComment: React.FC<Props> = (props) => {
   return (
     <div className="comment">
       <p className="comment_name">{props.username}</p>
-      <p className="comment_time">posted at {props.timestamp}</p>
+      <p className="comment_time">posted at {returnDate(props.timestamp)}</p>
       <p className="comment_text">{returnText()}</p>
       <p className="comment_information">
         {likes}

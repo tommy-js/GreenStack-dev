@@ -1005,9 +1005,13 @@ const returnFeedQuery = gql`
       }
       likes {
         username
+        timestamp
+        text
       }
       comments {
         username
+        timestamp
+        text
       }
     }
   }

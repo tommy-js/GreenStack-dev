@@ -31,11 +31,16 @@ const Feed: React.FC<Props> = (props) => {
     if (data) {
       setLoaded(true);
       setFeed(data.returnFollowerFeed.posts);
-      let arr = [...data.returnFollowerFeed.posts];
+      let arr = [
+        ...data.returnFollowerFeed.posts,
+        ...data.returnFollowerFeed.likes,
+        ...data.returnFollowerFeed.comments,
+      ];
       arr.sort(function (a, b) {
         return b.timestamp - a.timestamp;
       });
       setFeed(arr);
+      console.log(arr);
     }
   }, [data]);
 
