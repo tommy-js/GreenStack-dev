@@ -9,6 +9,7 @@ const commentSchema = new Schema({
   text: String,
   likes: Number,
   dislikes: Number,
+  referenceId: String,
 });
 
 module.exports = mongoose.model("Comment", commentSchema);

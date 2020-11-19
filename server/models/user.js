@@ -56,44 +56,14 @@ const userSchema = new Schema({
       ],
     },
   ],
-  following: [{ userId: String, username: String, bio: String }],
-  followers: [{ followerId: String, followerName: String, blocked: Boolean }],
-  stocks: [
+  likes: [
     {
-      stockId: String,
-      stockTitle: String,
-      shares: Number,
-      color: String,
-      ticker: String,
-    },
-  ],
-  trades: [
-    {
-      tradeId: Number,
-      ticker: String,
-      title: String,
+      userId: String,
+      username: String,
+      profileImage: String,
+      likeId: String,
       timestamp: Number,
-      shares: Number,
-      gain: Number,
-      comments: [
-        {
-          userId: String,
-          username: String,
-          timestamp: Number,
-          commentId: String,
-          text: String,
-          likes: Number,
-          dislikes: Number,
-        },
-      ],
-    },
-  ],
-  watchlist: [
-    {
-      stockId: String,
-      title: String,
-      ticker: String,
-      timestamp: Number,
+      text: String,
     },
   ],
   comments: [
@@ -105,6 +75,26 @@ const userSchema = new Schema({
       text: String,
       likes: Number,
       dislikes: Number,
+      referenceId: String,
+    },
+  ],
+  following: [{ userId: String, username: String, bio: String }],
+  followers: [{ followerId: String, followerName: String, blocked: Boolean }],
+  stocks: [
+    {
+      stockId: String,
+      stockTitle: String,
+      shares: Number,
+      color: String,
+      ticker: String,
+    },
+  ],
+  watchlist: [
+    {
+      stockId: String,
+      title: String,
+      ticker: String,
+      timestamp: Number,
     },
   ],
   notifications: [

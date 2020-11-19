@@ -6,8 +6,9 @@ import like from "../images/like.png";
 import likeFilled from "../images/like_filled.png";
 
 interface Props {
-  userId: string;
   postId: string;
+  postUsername: string;
+  userId: string;
   modLikes?: () => void;
   likePostMutation: (variables: object) => any;
 }
@@ -16,12 +17,16 @@ const LikePost: React.FC<Props> = (props) => {
   const [imgColor, setImgColor] = useState(like);
 
   function passData() {
+    let token = sessionStorage.getItem("Token");
+
     props
       .likePostMutation({
         variables: {
+          token: token,
           userId: props.userId,
           postId: props.postId,
-          content: "A user liked your post",
+          content: `${props.postUsername} liked your post`,
+          likeText: `Liked a post submitted by ${props.postUsername}`,
         },
       })
       .then((res: any) => {

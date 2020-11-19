@@ -57,11 +57,19 @@ const FeedPost: React.FC<Props> = (props) => {
           <div className="post_values">
             <span className="post_value_inner">{props.likes}</span>
           </div>
-          <LikePost userId={props.postUserId} postId={props.postId} />
+          <LikePost
+            userId={props.postUserId}
+            postUsername={props.postUsername}
+            postId={props.postId}
+          />
           <div className="post_values">
             <span className="post_value_inner">{props.dislikes}</span>
           </div>
-          <DislikePost userId={props.postUserId} postId={props.postId} />
+          <DislikePost
+            userId={props.postUserId}
+            postUsername={props.postUsername}
+            postId={props.postId}
+          />
           <div className="post_values">
             <span className="post_value_inner">{props.comments.length}</span>
           </div>

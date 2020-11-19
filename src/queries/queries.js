@@ -231,6 +231,9 @@ const pushCommentPostMutation = gql`
     pushMultiUserNotifications(taggedUsers: $taggedUsers, text: $text) {
       username
     }
+    comment(token: $token, postId: $postId, text: $text) {
+      username
+    }
   }
 `;
 
@@ -513,11 +516,20 @@ const dislikeCommentMutation = gql`
 `;
 
 const likePostMutation = gql`
-  mutation($userId: ID!, $content: String!, $postId: String!) {
+  mutation(
+    $userId: ID!
+    $token: String!
+    $content: String!
+    $likeText: String!
+    $postId: String!
+  ) {
     likePost(postId: $postId) {
       username
     }
     pushUserNotifications(userId: $userId, content: $content) {
+      username
+    }
+    postLike(token: $token, text: $likeText) {
       username
     }
   }
@@ -596,15 +608,6 @@ const otherUserQuery = gql`
         followerName
         blocked
       }
-      trades {
-        price
-        tradeId
-        timestamp
-        title
-        ticker
-        shares
-        gain
-      }
       posts {
         userId
         profileImage
@@ -635,6 +638,14 @@ const otherUserQuery = gql`
         text
         likes
         dislikes
+      }
+      likes {
+        userId
+        username
+        profileImage
+        likeId
+        timestamp
+        text
       }
       watchlist {
         stockId
@@ -682,15 +693,6 @@ const nonTokenModifyUserQuery = gql`
         color
         ticker
       }
-      trades {
-        price
-        tradeId
-        timestamp
-        title
-        ticker
-        shares
-        gain
-      }
       posts {
         userId
         postId
@@ -721,6 +723,14 @@ const nonTokenModifyUserQuery = gql`
         text
         likes
         dislikes
+      }
+      likes {
+        userId
+        username
+        profileImage
+        likeId
+        timestamp
+        text
       }
       watchlist {
         stockId
@@ -799,15 +809,6 @@ const userQuery = gql`
         color
         ticker
       }
-      trades {
-        price
-        tradeId
-        timestamp
-        title
-        ticker
-        shares
-        gain
-      }
       posts {
         userId
         postId
@@ -838,6 +839,14 @@ const userQuery = gql`
         text
         likes
         dislikes
+      }
+      likes {
+        userId
+        username
+        profileImage
+        likeId
+        timestamp
+        text
       }
       watchlist {
         stockId
@@ -1065,7 +1074,6 @@ export {
   pushCommentPostMutation,
   pushCommentTutorialMutation,
   pushCommentStockMutation,
-  pushCommentTradeMutation,
   deleteCommentStockMutation,
   updateUserSettingsMutation,
   pushFollowerToUserMutation,
