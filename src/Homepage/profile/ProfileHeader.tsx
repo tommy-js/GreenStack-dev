@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SetBio from "../../resolvers/SetBio";
 import SaveProfileImage from "../../resolvers/SaveProfileImage";
+import BioCounter from "./BioCounter";
 import { ProfileDropzone } from "./ProfileDropzone";
 import edit from "../../images/edit.png";
 import { connect } from "react-redux";
@@ -35,13 +36,14 @@ const ProfileHeader: React.FC<Props> = (props) => {
             value={bio}
           />
           <SetBio bio={bio} modEditing={modEditing} />
+          <BioCounter bio={bio} />
         </div>
       );
     } else {
       return (
         <div onClick={() => setEditing(true)}>
           <div id="left_container">
-            <p id="profile_header_bio">{bio}</p>
+            <p id="bio_edit_textarea">{bio}</p>
           </div>
           <div id="right_container">
             <img id="bio_image" src={edit} />
@@ -54,8 +56,6 @@ const ProfileHeader: React.FC<Props> = (props) => {
   function modifyImg(imgData: any) {
     setProfileImage(imgData);
   }
-
-  useEffect(() => {}, [profileImage]);
 
   function saveImage(img: string) {
     props.onProfileImageSet(img);

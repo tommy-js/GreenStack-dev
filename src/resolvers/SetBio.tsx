@@ -13,20 +13,22 @@ interface Props {
 const SetBio: React.FC<Props> = (props) => {
   function modBio() {
     let token = sessionStorage.getItem("Token");
-    props
-      .setBioMutation({
-        variables: {
-          token: token,
-          bio: props.bio,
-        },
-      })
-      .catch((err: any) => {
-        console.log(err);
-      })
-      .then((res: any) => {
-        console.log(res);
-        props.modEditing(false);
-      });
+    if (props.bio.length <= 120) {
+      props
+        .setBioMutation({
+          variables: {
+            token: token,
+            bio: props.bio,
+          },
+        })
+        .catch((err: any) => {
+          console.log(err);
+        })
+        .then((res: any) => {
+          console.log(res);
+          props.modEditing(false);
+        });
+    }
   }
 
   return <img id="bio_image" onClick={() => modBio()} src={save} />;
