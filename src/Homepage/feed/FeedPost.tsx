@@ -55,7 +55,6 @@ const FeedPost: React.FC<Props> = (props) => {
 
   useEffect(() => {
     let postElement = document.getElementById(`id_${props.postId}`);
-    console.log(props.currentIndex);
     if (postElement) {
       const rect = postElement.getBoundingClientRect();
       if (

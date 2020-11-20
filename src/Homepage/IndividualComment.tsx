@@ -3,6 +3,7 @@ import LikePostComment from "../resolvers/LikePostComment";
 import DislikePostComment from "../resolvers/DislikePostComment";
 import UserIndex from "../about/CommentHover/UserIndex";
 import IndividualCommentSubComments from "./IndividualCommentSubComments";
+import IndividualCommentReply from "./IndividualCommentReply";
 import { returnTaggedString } from "../globals/functions/returnTagged";
 import { useLazyQuery } from "react-apollo";
 import { userCommentLookup } from "../queries/queries";
@@ -120,6 +121,7 @@ const IndividualComment: React.FC<Props> = (props) => {
         />
         ,
       </p>
+      <IndividualCommentReply />
       {renderSubComments()}
       <IndividualCommentSubComments subComments={props.subComments} />
     </div>

@@ -46,7 +46,6 @@ const Feed: React.FC<Props> = (props) => {
       setMaxFeed(arr);
       let shortenedFeed = arr.slice(0, 10);
       setFeed(shortenedFeed);
-      console.log(arr);
     }
   }, [data]);
 
