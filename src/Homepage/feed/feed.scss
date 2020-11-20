@@ -3,6 +3,7 @@
   width: 50%;
   margin-left: auto;
   margin-right: auto;
+  overflow-y: auto;
 }
 
 .feed_component {
@@ -10,7 +11,7 @@
   width: 90%;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   padding: 10px;
   box-sizing: border-box;
   border-bottom: 1px solid grey;

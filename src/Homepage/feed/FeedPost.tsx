@@ -43,12 +43,30 @@ interface Props extends Redux {
   postId: string;
   allowComments: boolean;
   allowLikes: boolean;
+  currentIndex: number;
+  view: number;
+  loadMore: (val: number) => void;
   modPostLoad: (postId: string) => void;
 }
 
 const FeedPost: React.FC<Props> = (props) => {
   const [over, setOver] = useState(false);
   const [styledOpac, setStyledOpac] = useState(0);
+
+  useEffect(() => {
+    console.log(props.currentIndex);
+    let postElement = document.getElementById(`id_${props.postId}`);
+    console.log(props.currentIndex);
+    if (postElement) {
+      const rect = postElement.getBoundingClientRect();
+      if (
+        rect.top >= 0 &&
+        rect.bottom <=
+          (window.innerHeight || document.documentElement.clientHeight)
+      )
+        props.loadMore(props.currentIndex);
+    }
+  }, [props.view]);
 
   function returnAllowed() {
     if (props.allowLikes === true) {
@@ -132,7 +150,7 @@ const FeedPost: React.FC<Props> = (props) => {
   }
 
   return (
-    <div>
+    <div id={`id_${props.postId}`}>
       <div
         className="feed_link_header"
         onMouseOver={() => setOver(true)}

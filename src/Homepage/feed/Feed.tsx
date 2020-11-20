@@ -26,40 +26,13 @@ const Feed: React.FC<Props> = (props) => {
   });
   const [loaded, setLoaded] = useState(false);
   const [feed, setFeed] = useState();
-
-  // function returnFeed(feed: any) {
-  //   let feedArr = [];
-  //   for (let p = 0; p < feed.posts.length; p++) {
-  //     let obj = {
-  //       ...feed.posts[p],
-  //       type: "POST",
-  //     };
-  //     feedArr.push(obj);
-  //   }
-  //   for (let c = 0; c < feed.comments.length; c++) {
-  //     let obj = {
-  //       ...feed.comments[c],
-  //       type: "COMMENT",
-  //     };
-  //     feedArr.push(obj);
-  //   }
-  //   for (let l = 0; l < feed.likes.length; l++) {
-  //     let obj = {
-  //       ...feed.likes[l],
-  //       type: "LIKE",
-  //     };
-  //     feedArr.push(obj);
-  //   }
-  //   console.log("returned feed: ");
-  //   console.log(feedArr);
-  // }
+  const [maxFeed, setMaxFeed] = useState();
+  const [view, setView] = useState(0);
 
   useEffect(() => {
     if (data) {
       setLoaded(true);
       setFeed(data.returnFollowerFeed.posts);
-
-      // let returnedFeed = returnFeed(data.returnFollowerFeed);
 
       let arr = [
         ...data.returnFollowerFeed.posts,
@@ -69,7 +42,9 @@ const Feed: React.FC<Props> = (props) => {
       arr.sort(function (a, b) {
         return b.timestamp - a.timestamp;
       });
-      setFeed(arr);
+      setMaxFeed(arr);
+      let shortenedFeed = arr.slice(0, 10);
+      setFeed(shortenedFeed);
       console.log(arr);
     }
   }, [data]);
@@ -91,7 +66,26 @@ const Feed: React.FC<Props> = (props) => {
     arr.sort(function (a, b) {
       return b.timestamp - a.timestamp;
     });
-    setFeed(arr);
+    setMaxFeed(arr);
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      setView(window.scrollY);
+    });
+  }, []);
+
+  function loadMore(index: number) {
+    console.log(index);
+    console.log("maxFeed.length + " + maxFeed.length);
+    console.log("feed.length + " + feed.length);
+    let maximumRendered = 5;
+    if (index > feed.length - maximumRendered) {
+      if (feed.length + maximumRendered < maxFeed.length) {
+        let shortenedFeed = maxFeed.slice(0, feed.length + maximumRendered + 5);
+        setFeed(shortenedFeed);
+      }
+    }
   }
 
   function modPostLoad(postId: string) {
@@ -144,6 +138,9 @@ const Feed: React.FC<Props> = (props) => {
                 modPostLoad={modPostLoad}
                 type={el.__typename}
                 reference={el.reference}
+                view={view}
+                currentIndex={feed.indexOf(el)}
+                loadMore={loadMore}
               />
             </div>
           ))}

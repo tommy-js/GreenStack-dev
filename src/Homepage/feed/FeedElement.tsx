@@ -19,6 +19,9 @@ interface Props {
   allowLikes: boolean;
   type: string;
   reference?: any;
+  currentIndex: number;
+  view: number;
+  loadMore: (val: number) => void;
   modPostLoad: (postId: string) => void;
 }
 
@@ -41,6 +44,9 @@ const FeedElement: React.FC<Props> = (props) => {
           allowComments={props.allowComments}
           allowLikes={props.allowLikes}
           modPostLoad={props.modPostLoad}
+          currentIndex={props.currentIndex}
+          loadMore={props.loadMore}
+          view={props.view}
         />
       );
     } else if (props.type === "UserComment") {
@@ -51,6 +57,9 @@ const FeedElement: React.FC<Props> = (props) => {
           text={props.text}
           reference={props.reference}
           modPostLoad={props.modPostLoad}
+          currentIndex={props.currentIndex}
+          loadMore={props.loadMore}
+          view={props.view}
         />
       );
     } else if (props.type === "Like") {
@@ -61,6 +70,9 @@ const FeedElement: React.FC<Props> = (props) => {
           text={props.text}
           reference={props.reference}
           modPostLoad={props.modPostLoad}
+          currentIndex={props.currentIndex}
+          loadMore={props.loadMore}
+          view={props.view}
         />
       );
     }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 type Reference = {
   postId: string;
@@ -10,10 +10,22 @@ interface Props {
   profileImage: string;
   text: string;
   reference: Reference;
+  currentIndex: number;
+  view: number;
+  loadMore: (val: number) => void;
   modPostLoad: (postId: string) => void;
 }
 
 const FeedComment: React.FC<Props> = (props) => {
+  useEffect(() => {
+    console.log(props.currentIndex);
+    let postElement = document.getElementById(`id_${props.reference.postId}`);
+    if (postElement) {
+      const rect = postElement.getBoundingClientRect();
+      if (rect.top >= 0) props.loadMore(props.currentIndex);
+    }
+  }, [props.view]);
+
   return (
     <div>
       <div className="feed_comment_header">
