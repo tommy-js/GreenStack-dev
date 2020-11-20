@@ -54,7 +54,6 @@ const FeedPost: React.FC<Props> = (props) => {
   const [styledOpac, setStyledOpac] = useState(0);
 
   useEffect(() => {
-    console.log(props.currentIndex);
     let postElement = document.getElementById(`id_${props.postId}`);
     console.log(props.currentIndex);
     if (postElement) {

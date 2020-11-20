@@ -3,6 +3,7 @@ import FeedElement from "./FeedElement";
 import FeedModal from "./FeedModal";
 import Suggested from "../Suggested";
 import Post from "../Post";
+import FeedScrolledBottom from "./FeedScrolledBottom";
 import { LoadingGeneral } from "../../login/LoadingUser";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import { useQuery } from "react-apollo";
@@ -76,9 +77,6 @@ const Feed: React.FC<Props> = (props) => {
   }, []);
 
   function loadMore(index: number) {
-    console.log(index);
-    console.log("maxFeed.length + " + maxFeed.length);
-    console.log("feed.length + " + feed.length);
     let maximumRendered = 5;
     if (index > feed.length - maximumRendered) {
       if (feed.length + maximumRendered < maxFeed.length) {
@@ -144,6 +142,7 @@ const Feed: React.FC<Props> = (props) => {
               />
             </div>
           ))}
+          <FeedScrolledBottom />
         </div>
       );
     } else {

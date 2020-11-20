@@ -3,7 +3,6 @@
   width: 50%;
   margin-left: auto;
   margin-right: auto;
-  overflow-y: auto;
 }
 
 .feed_component {
@@ -304,4 +303,29 @@
 .liked_image {
   height: 100%;
   width: 100%;
+}
+
+#feed_scrolled_bottom {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+@mixin feed_scrolled_text {
+  text-align: center;
+  font-family: $standard_font;
+  font-weight: bold;
+  color: $light_blue;
+}
+
+#feed_scrolled_bottom_text {
+  font-size: 22px;
+  margin-bottom: 0;
+  @include feed_scrolled_text;
+}
+
+#feed_scrolled_bottom_subtexdwadt {
+  position: relative;
+  top: 0;
+  font-size: 16px;
+  @include feed_scrolled_text;
 }

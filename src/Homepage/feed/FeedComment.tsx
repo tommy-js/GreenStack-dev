@@ -18,7 +18,6 @@ interface Props {
 
 const FeedComment: React.FC<Props> = (props) => {
   useEffect(() => {
-    console.log(props.currentIndex);
     let postElement = document.getElementById(`id_${props.reference.postId}`);
     if (postElement) {
       const rect = postElement.getBoundingClientRect();
