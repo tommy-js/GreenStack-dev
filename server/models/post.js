@@ -24,15 +24,17 @@ const postSchema = new Schema({
       text: String,
       likes: Number,
       dislikes: Number,
-      subComments: {
-        userId: String,
-        commentId: String,
-        username: String,
-        timestamp: Number,
-        text: String,
-        likes: Number,
-        dislikes: Number,
-      },
+      subComments: [
+        {
+          userId: String,
+          commentId: String,
+          username: String,
+          timestamp: Number,
+          text: String,
+          likes: Number,
+          dislikes: Number,
+        },
+      ],
     },
   ],
 });

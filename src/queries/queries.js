@@ -1059,6 +1059,15 @@ const returnFeedQuery = gql`
           text
           likes
           dislikes
+          subComments {
+            userId
+            commentId
+            username
+            timestamp
+            text
+            likes
+            dislikes
+          }
         }
       }
       likes {
@@ -1139,6 +1148,7 @@ const tutorialQuery = gql`
 
 export {
   createUserMutation,
+  pushCommentNestMutation,
   updateHistoryMutation,
   updateDarkModeMutation,
   updateAllowCommentsMutation,

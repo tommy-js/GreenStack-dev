@@ -121,7 +121,10 @@ const IndividualComment: React.FC<Props> = (props) => {
         />
         ,
       </p>
-      <IndividualCommentReply />
+      <IndividualCommentReply
+        postId={props.postId}
+        commentId={props.commentId}
+      />
       {renderSubComments()}
       <IndividualCommentSubComments subComments={props.subComments} />
     </div>
