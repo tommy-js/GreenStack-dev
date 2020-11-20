@@ -50,6 +50,14 @@ interface Props extends Redux {
     timestamp: number;
     likes: number;
     dislikes: number;
+    subComments: {
+      commentId: string;
+      username: string;
+      text: string;
+      timestamp: number;
+      likes: number;
+      dislikes: number;
+    }[];
   }[];
   modPostLoad: (postId: string) => void;
 }

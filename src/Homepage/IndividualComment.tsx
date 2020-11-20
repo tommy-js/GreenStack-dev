@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import LikePostComment from "../resolvers/LikePostComment";
 import DislikePostComment from "../resolvers/DislikePostComment";
 import UserIndex from "../about/CommentHover/UserIndex";
+import IndividualCommentSubComments from "./IndividualCommentSubComments";
 import { returnTaggedString } from "../globals/functions/returnTagged";
 import { useLazyQuery } from "react-apollo";
 import { userCommentLookup } from "../queries/queries";
@@ -14,6 +15,18 @@ type Routes = {
   userId: string;
   bio: string;
   profileImage: string;
+};
+
+type SubComments = {
+  postId: string;
+  commentId: string;
+  username: string;
+  text: string;
+  timestamp: number;
+  likes: number;
+  dislikes: number;
+  commentUsername: string;
+  commentUserId: string;
 };
 
 interface Mapper {
@@ -35,6 +48,7 @@ interface Props extends Redux {
   dislikes: number;
   commentUsername: string;
   commentUserId: string;
+  subComments: SubComments[];
 }
 
 const IndividualComment: React.FC<Props> = (props) => {
@@ -80,6 +94,12 @@ const IndividualComment: React.FC<Props> = (props) => {
     setDislikes(dislike);
   }
 
+  function renderSubComments() {
+    if (props.subComments) {
+      return <IndividualCommentSubComments subComments={props.subComments} />;
+    } else return null;
+  }
+
   return (
     <div className="comment">
       <p className="comment_name">{props.username}</p>
@@ -100,6 +120,8 @@ const IndividualComment: React.FC<Props> = (props) => {
         />
         ,
       </p>
+      {renderSubComments()}
+      <IndividualCommentSubComments subComments={props.subComments} />
     </div>
   );
 };

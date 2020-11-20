@@ -10,6 +10,14 @@ interface Props {
     timestamp: number;
     likes: number;
     dislikes: number;
+    subComments: {
+      commentId: string;
+      username: string;
+      text: string;
+      timestamp: number;
+      likes: number;
+      dislikes: number;
+    }[];
   }[];
 }
 
@@ -38,6 +46,7 @@ const CommentSection: React.FC<Props> = (props) => {
               timestamp={el.timestamp}
               likes={el.likes}
               dislikes={el.dislikes}
+              subComments={el.subComments}
             />
           ))}
         </div>
