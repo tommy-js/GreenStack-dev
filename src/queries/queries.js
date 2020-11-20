@@ -21,6 +21,19 @@ const updateNewAccountMutation = gql`
   }
 `;
 
+const pushCommentNestMutation = gql`
+  mutation($token: String!, $text: String!, $postId: ID!, $commentId: ID!) {
+    pushCommentNest(
+      token: $token
+      text: $text
+      postId: $postId
+      commentId: $commentId
+    ) {
+      username
+    }
+  }
+`;
+
 const updateHistoryMutation = gql`
   mutation($token: String!, $text: String!, $type: String!) {
     pushToHistory(token: $token, text: $text, type: $type) {
@@ -990,6 +1003,15 @@ const individualPostQuery = gql`
         text
         likes
         dislikes
+        subComments {
+          userId
+          commentId
+          username
+          timestamp
+          text
+          likes
+          dislikes
+        }
       }
     }
   }

@@ -315,6 +315,7 @@
   font-family: $standard_font;
   font-weight: bold;
   color: $light_blue;
+  @include noselect;
 }
 
 #feed_scrolled_bottom_text {
