@@ -5,14 +5,12 @@
   height: 500px;
   width: 250px;
   border-right: 1px dashed grey;
-  // @include testing;
 }
 
 #sidebar_search_container {
   position: relative;
   width: 95%;
   height: 40px;
-  // @include testing;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -97,4 +95,111 @@
 #sidebar_username_link_spec:hover {
   color: teal;
   transition: 0.2s;
+}
+
+#sidebar_element_hover {
+  opacity: 0;
+  transition: 0.3s;
+}
+
+#portfolio_value {
+  @include noselect;
+  cursor: default;
+}
+
+#portfolio_value:hover #sidebar_element_hover {
+  opacity: 1;
+  transition: 0.3s;
+}
+
+#sidebar_element_hover_text,
+#sidebar_element_hover_button {
+  display: inline-block;
+  margin: 0;
+}
+
+#posting_modal {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+#posting_portfolio_value_feed {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: $soft_grey;
+  opacity: 0.4;
+}
+
+#posting_portfolio_central_modal {
+  position: absolute;
+  vertical-align: middle;
+  width: 600px;
+  min-width: 35%;
+  max-width: 75%;
+  overflow: scroll;
+  opacity: 1;
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 30%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  padding: 15px;
+  box-sizing: border-box;
+  z-index: 1000;
+  box-shadow: 1px 1px 1px 1px grey;
+}
+
+#portfolio_value_post_modal_content {
+  @include testing;
+}
+
+#portfolio_value_post_modal_content_text {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 5px;
+  font-family: $standard_font;
+}
+
+#portfolio_value_post_modal_content_textarea_block {
+  position: relative;
+  width: 85%;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#portfolio_value_post_modal_content_textarea {
+  resize: none;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  font-size: 16px;
+  font-family: $standard_font;
+}
+
+.portfolio_value_post_modal_content_emoji_block {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.portfolio_value_post_modal_content_emoji {
+  width: 100%;
+  height: 100%;
 }

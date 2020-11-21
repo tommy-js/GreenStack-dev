@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import SidebarUsername from "./SidebarUsername";
 import SidebarSearch from "./SidebarSearch";
 import SidebarElement from "./SidebarElement";
+import SidebarPortfolioValue from "./SidebarPortfolioValue";
 import { searchQuery } from "../../queries/queries.js";
 import { useLazyQuery } from "react-apollo";
 
 interface Props {
   modRes: (searchData: any, dataType: number) => void;
+  setPostingToFeed: () => void;
 }
 
 const FeedSidebar: React.FC<Props> = (props) => {
@@ -59,6 +61,7 @@ const FeedSidebar: React.FC<Props> = (props) => {
         modSearch={modSearch}
         submitSearch={submitSearch}
       />
+      <SidebarPortfolioValue setPostingToFeed={props.setPostingToFeed} />
       <SidebarElement text="User Feed" path="/home" />
       <SidebarElement text="Explore" path="/home/explore" />
       <SidebarElement text="Your Posts" path="/home/posts" />

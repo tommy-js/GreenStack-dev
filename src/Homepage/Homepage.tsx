@@ -10,6 +10,7 @@ import UserProfile from "../User/UserProfile";
 import Profile from "./profile/Profile";
 import { LoadingUser } from "../login/LoadingUser";
 import SearchResults from "./SearchResults";
+import PortfolioValuePostModal from "./PortfolioValuePostModal";
 import UserLoginAuthSubresolver from "../resolvers/UserLoginAuthSubresolver";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import {
@@ -35,6 +36,7 @@ interface Redux {
   posts: any;
   feed: any;
   userRoutes: any;
+  money: any;
   onInitialPostsSet: (posts: any) => void;
   onInitialFollowerSet: (followers: any) => void;
   onInitialFollowingSet: (following: any) => void;
@@ -199,13 +201,29 @@ const Homepage: React.FC<Props> = (props) => {
     browserHist.push("/home/search");
   }
 
+  const [postingToFeed, setPostingToFeed] = useState(false);
+
+  function renderShowPostOptions() {
+    if (postingToFeed === true) {
+      return (
+        <PortfolioValuePostModal
+          setPostingToFeed={() => setPostingToFeed(false)}
+        />
+      );
+    } else return null;
+  }
+
   function returnLoadingIcon() {
     if (status === true) {
       return (
         <div>
           <NavBar />
           <div id="homepage">
-            <FeedSidebar modRes={modRes} />
+            {renderShowPostOptions()}
+            <FeedSidebar
+              modRes={modRes}
+              setPostingToFeed={() => setPostingToFeed(true)}
+            />
             <Route exact path="/home">
               <Feed modRoutes={modRoutes} />
             </Route>
