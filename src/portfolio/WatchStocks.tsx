@@ -1,5 +1,6 @@
 import React from "react";
 import WatchListing from "./WatchListing";
+import AddStockToWatchList from "./AddStockToWatchList";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../actions/actions";
 
@@ -25,6 +26,7 @@ const WatchStocks: React.FC<Redux> = (props) => {
           ticker={el.ticker}
         />
       ))}
+      <AddStockToWatchList />
     </div>
   );
 };

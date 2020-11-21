@@ -1,12 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import Header from "../User/Header";
-import OwnedStocks from "./OwnedStocks";
 import NavBar from "../navigation/NavBar";
-import Assets from "./Assets";
-import WatchStocks from "./WatchStocks";
-import PortfolioData from "./PortfolioData";
 import { LoadingUser } from "../login/LoadingUser";
 import UserLoginAuthSubresolver from "../resolvers/UserLoginAuthSubresolver";
+import PortfolioBody from "./PortfolioBody";
 import { Route } from "react-router-dom";
 import { browserHist } from "../AppMain/history";
 import { queryToken } from "../queries/queries";
@@ -96,12 +92,10 @@ const Portfolio: React.FC<Redux> = (props) => {
           <NavBar />
           <div id="portfolio">
             <Route exact path="/portfolio">
-              <Header text="Your Portfolio" />
-              <Assets />
-              <OwnedStocks owned={userStocks} />
-              <Header text="Watch-list" />
-              <WatchStocks />
-              <PortfolioData />
+              <PortfolioBody
+                stocks={props.stocks}
+                watchlist={props.watchlist}
+              />
             </Route>
           </div>
         </div>
