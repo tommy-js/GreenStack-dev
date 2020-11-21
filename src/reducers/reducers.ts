@@ -15,6 +15,9 @@ const userReducer = (state: any, action: any) => {
   if (action.type == "SET_NEW_ACCOUNT") {
     newState.newaccount = action.payload;
   }
+  if (action.type == "SET_NEW_PORTFOLIO") {
+    newState.newPortfolio = action.payload;
+  }
   if (action.type == "SET_INITIAL_WATCHLIST") {
     newState.watchlist = action.payload;
   }

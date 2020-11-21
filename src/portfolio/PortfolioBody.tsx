@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import InitialPortfolio from "./InitialPortfolio";
 import DefaultPortfolio from "./DefaultPortfolio";
+import { connect } from "react-redux";
+import { mapStateToProps } from "../actions/actions";
 
-interface Props {
+interface Redux {
   stocks: any;
   watchlist: any;
+  newPortfolio: boolean;
 }
 
-const PortfolioBody: React.FC<Props> = (props) => {
-  const [showInitial, setShowInitial] = useState(false);
-
+const PortfolioBody: React.FC<Redux> = (props) => {
   function returnInitial() {
-    if (showInitial === true) {
+    if (props.newPortfolio === true) {
       return <InitialPortfolio />;
     } else {
       return (
@@ -23,4 +24,4 @@ const PortfolioBody: React.FC<Props> = (props) => {
   return <div>{returnInitial()}</div>;
 };
 
-export default PortfolioBody;
+export default connect(mapStateToProps)(PortfolioBody);

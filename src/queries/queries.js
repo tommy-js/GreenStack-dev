@@ -713,7 +713,10 @@ const nonTokenModifyUserQuery = gql`
       username
       bio
       money
-      newaccount
+      newUser {
+        newLog
+        newPortfolio
+      }
       darkmode
       membership
       invisible
@@ -841,7 +844,10 @@ const userQuery = gql`
       username
       bio
       money
-      newaccount
+      newUser {
+        newLog
+        newPortfolio
+      }
       darkmode
       membership
       invisible

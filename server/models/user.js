@@ -12,7 +12,10 @@ const userSchema = new Schema({
   darkmode: Boolean,
   invisible: Boolean,
   membership: Boolean,
-  newaccount: Boolean,
+  newUser: {
+    newLog: Boolean,
+    newPortfolio: Boolean,
+  },
   experience: Number,
   education: Number,
   motivations: Number,

@@ -13,6 +13,7 @@ interface Redux {
   onWatchlistSet: (watchlist: any) => void;
   onMoneySet: (money: number) => void;
   onNewAccountSet: (newaccount: boolean) => void;
+  onNewPortfolioSet: (newPortfolio: boolean) => void;
   onDarkmodeSet: (darkmode: boolean) => void;
   onInvisibleSet: (invisible: boolean) => void;
   onAllowCommentsSet: (allowCommentsOnPosts: boolean) => void;
@@ -103,7 +104,8 @@ const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
       props.onBioSet(user.bio);
       props.onWatchlistSet(user.watchlist);
       props.onMoneySet(user.money);
-      props.onNewAccountSet(user.newaccount);
+      props.onNewAccountSet(user.newUser.newLog);
+      props.onNewPortfolioSet(user.newUser.newPortfolio);
       props.onDarkmodeSet(user.darkmode);
       props.onInvisibleSet(user.invisible);
       props.onAllowCommentsSet(user.allowCommentsOnPosts);

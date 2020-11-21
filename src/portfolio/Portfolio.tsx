@@ -14,7 +14,6 @@ import { mapStateToProps } from "../actions/actions";
 import { statusContext } from "../AppMain/App";
 
 interface Redux {
-  watchlist: any;
   stocks: any;
 }
 
@@ -24,7 +23,6 @@ const Portfolio: React.FC<Redux> = (props) => {
   const [currentPrice, setCurrentPrice] = useState([] as any);
   const [userId, setUserId] = useState();
   const [token, setToken] = useState();
-  const [userWatch, setUserWatch] = useState(props.watchlist);
   const [userStocks, setUserStocks] = useState([] as any);
 
   const [passToken, { data, loading }] = useLazyQuery(queryToken);
@@ -90,13 +88,9 @@ const Portfolio: React.FC<Redux> = (props) => {
       return (
         <div>
           <NavBar />
-          {}
           <div id="portfolio">
             <Route exact path="/portfolio">
-              <PortfolioBody
-                stocks={props.stocks}
-                watchlist={props.watchlist}
-              />
+              <PortfolioBody />
             </Route>
           </div>
         </div>

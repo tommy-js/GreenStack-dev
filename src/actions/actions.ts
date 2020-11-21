@@ -7,6 +7,7 @@ export const mapStateToProps = (state: any) => {
     progress: state.progress,
     profileImage: state.profileImage,
     newaccount: state.newaccount,
+    newPortfolio: state.newPortfolio,
     watchlist: state.watchlist,
     stocks: state.stocks,
     posts: state.posts,
@@ -40,6 +41,8 @@ export const mapDispatchToProps = (dispatch: any) => {
       dispatch({ type: "SET_MONEY", payload: money }),
     onNewAccountSet: (newacc: boolean) =>
       dispatch({ type: "SET_NEW_ACCOUNT", payload: newacc }),
+    onNewPortfolioSet: (newPortfolio: boolean) =>
+      dispatch({ type: "SET_NEW_PORTFOLIO", payload: newPortfolio }),
     onWatchlistSet: (watchlist: any) =>
       dispatch({ type: "SET_INITIAL_WATCHLIST", payload: watchlist }),
     onInitialPostsSet: (posts: any) =>
