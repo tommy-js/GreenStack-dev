@@ -11,6 +11,7 @@ type SubComments = {
   dislikes: number;
   commentUsername: string;
   commentUserId: string;
+  parentCommentId: string;
 };
 
 interface Props {
@@ -18,19 +19,21 @@ interface Props {
 }
 
 const IndividualCommentSubComments: React.FC<Props> = (props) => {
-  function renderSubComments() {
-    if (props.subComments) {
-      return (
-        <div>
-          {props.subComments.map((el: any) => (
-            <SubComment text={el.text} />
-          ))}
-        </div>
-      );
-    } else return null;
-  }
-
-  return <div>{renderSubComments()}</div>;
+  return (
+    <div>
+      {props.subComments.map((el: any) => (
+        <SubComment
+          username={el.username}
+          postId={el.postId}
+          commentId={el.commentId}
+          parentCommentId={el.parentCommentId}
+          text={el.text}
+          likes={el.likes}
+          dislikes={el.dislikes}
+        />
+      ))}
+    </div>
+  );
 };
 
 export default IndividualCommentSubComments;

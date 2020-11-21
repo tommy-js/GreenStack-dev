@@ -9,6 +9,7 @@ const commentNestSchema = new Schema({
   text: String,
   likes: Number,
   dislikes: Number,
+  parentCommentId: String,
 });
 
 module.exports = mongoose.model("CommentNest", commentNestSchema);

@@ -513,7 +513,7 @@ const sellStockMutation = gql`
 `;
 
 const likeCommentMutation = gql`
-  mutation($postId: ID!, $commentId: String!) {
+  mutation($postId: ID!, $commentId: ID!) {
     likeComment(postId: $postId, commentId: $commentId) {
       username
     }
@@ -521,8 +521,32 @@ const likeCommentMutation = gql`
 `;
 
 const dislikeCommentMutation = gql`
-  mutation($postId: String!, $commentId: String!) {
+  mutation($postId: ID!, $commentId: ID!) {
     dislikeComment(postId: $postId, commentId: $commentId) {
+      username
+    }
+  }
+`;
+
+const likeSubCommentMutation = gql`
+  mutation($postId: ID!, $commentId: ID!, $parentCommentId: ID!) {
+    likeSubComment(
+      postId: $postId
+      commentId: $commentId
+      parentCommentId: $parentCommentId
+    ) {
+      username
+    }
+  }
+`;
+
+const dislikeSubCommentMutation = gql`
+  mutation($postId: ID!, $commentId: ID!, $parentCommentId: ID!) {
+    dislikeSubComment(
+      postId: $postId
+      commentId: $commentId
+      parentCommentId: $parentCommentId
+    ) {
       username
     }
   }
@@ -1011,6 +1035,7 @@ const individualPostQuery = gql`
           text
           likes
           dislikes
+          parentCommentId
         }
       }
     }
@@ -1067,6 +1092,7 @@ const returnFeedQuery = gql`
             text
             likes
             dislikes
+            parentCommentId
           }
         }
       }
@@ -1175,6 +1201,8 @@ export {
   dislikeStockMutation,
   likeStockMutation,
   dislikeCommentMutation,
+  likeSubCommentMutation,
+  dislikeSubCommentMutation,
   postMutation,
   pushTradeMutation,
   blockUserMutation,

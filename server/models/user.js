@@ -61,6 +61,7 @@ const userSchema = new Schema({
               text: String,
               likes: Number,
               dislikes: Number,
+              parentCommentId: String,
             },
           ],
         },

@@ -18,6 +18,7 @@ const commentSchema = new Schema({
       text: String,
       likes: Number,
       dislikes: Number,
+      parentCommentId: String,
     },
   ],
 });

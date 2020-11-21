@@ -28,6 +28,7 @@ type SubComments = {
   dislikes: number;
   commentUsername: string;
   commentUserId: string;
+  parentCommentId: string;
 };
 
 interface Mapper {
@@ -95,15 +96,9 @@ const IndividualComment: React.FC<Props> = (props) => {
     setDislikes(dislike);
   }
 
-  function renderSubComments() {
-    if (props.subComments) {
-      return <IndividualCommentSubComments subComments={props.subComments} />;
-    } else return null;
-  }
-
   return (
     <div className="comment">
-      <p className="comment_name">{props.username}</p>
+      <p className="comment_name">{props.commentUsername}</p>
       <p className="comment_time">posted at {returnDate(props.timestamp)}</p>
       <p className="comment_text">{returnText()}</p>
       <p className="comment_information">
@@ -119,13 +114,11 @@ const IndividualComment: React.FC<Props> = (props) => {
           commentId={props.commentId}
           modDislikes={dislikeIncrement}
         />
-        ,
       </p>
       <IndividualCommentReply
         postId={props.postId}
         commentId={props.commentId}
       />
-      {renderSubComments()}
       <IndividualCommentSubComments subComments={props.subComments} />
     </div>
   );
