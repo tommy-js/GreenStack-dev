@@ -2,7 +2,6 @@ import React from "react";
 import SubComment from "./SubComment";
 
 type SubComments = {
-  postId: string;
   commentId: string;
   username: string;
   text: string;
@@ -15,6 +14,7 @@ type SubComments = {
 };
 
 interface Props {
+  postId: string;
   subComments: SubComments[];
 }
 
@@ -24,7 +24,7 @@ const IndividualCommentSubComments: React.FC<Props> = (props) => {
       {props.subComments.map((el: any) => (
         <SubComment
           username={el.username}
-          postId={el.postId}
+          postId={props.postId}
           commentId={el.commentId}
           parentCommentId={el.parentCommentId}
           text={el.text}

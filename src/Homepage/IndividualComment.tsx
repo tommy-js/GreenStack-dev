@@ -19,7 +19,6 @@ type Routes = {
 };
 
 type SubComments = {
-  postId: string;
   commentId: string;
   username: string;
   text: string;
@@ -119,7 +118,10 @@ const IndividualComment: React.FC<Props> = (props) => {
         postId={props.postId}
         commentId={props.commentId}
       />
-      <IndividualCommentSubComments subComments={props.subComments} />
+      <IndividualCommentSubComments
+        postId={props.postId}
+        subComments={props.subComments}
+      />
     </div>
   );
 };
