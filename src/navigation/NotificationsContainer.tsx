@@ -6,6 +6,8 @@ import DarkMode from "../resolvers/DarkMode";
 import Private from "../resolvers/Private";
 import AllowComments from "../resolvers/AllowComments";
 import VoidAlert from "./VoidAlert";
+import NotificationsHeader from "./NotificationsHeader";
+import NotificationsPortfolioValue from "./NotificationsPortfolioValue";
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "../actions/actions";
 
@@ -34,6 +36,8 @@ interface LocalLink {
 const NotificationsLinkContainer: React.FC<LocalLink> = (props) => {
   return (
     <div>
+      <NotificationsHeader />
+      <NotificationsPortfolioValue />
       <NotificationsLink
         title="Notifications"
         tab={1}
