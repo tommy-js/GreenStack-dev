@@ -67,18 +67,39 @@
 
 .watch_listing {
   position: relative;
-  display: inline-block;
+  display: block;
   box-sizing: border-box;
+  font-family: $standard_font;
   flex-wrap: wrap;
-  padding: 10px;
-  width: 33.333%;
-  height: 150px;
-  border: 1px solid grey;
+  padding: 5px;
+  margin: 5px;
+  background-color: $softer_grey;
+  width: 100%;
+  border-bottom: 1px solid $soft_grey;
 }
 
 .watch_listing_link {
   color: black;
   text-decoration: none;
+}
+
+.watch_listing_ticker_span {
+  color: grey;
+}
+
+.add_stock_watch_list_button_container {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.add_stock_watch_list_button {
+  width: 100%;
+  height: 100%;
 }
 
 #share_listing_text {
@@ -97,4 +118,30 @@
 
 .no_link {
   @include black_link;
+}
+
+#stock_search {
+}
+
+#stock_search_text {
+  font-size: 18px;
+  font-family: $standard_font;
+  font-weight: bold;
+  color: $light_blue;
+  text-align: center;
+}
+
+#stock_search_textarea_block {
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#stock_search_input {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  font-family: $standard_font;
+  padding: 4px;
+  font-size: 14px;
 }

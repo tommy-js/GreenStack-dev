@@ -90,6 +90,7 @@ const Portfolio: React.FC<Redux> = (props) => {
       return (
         <div>
           <NavBar />
+          {}
           <div id="portfolio">
             <Route exact path="/portfolio">
               <PortfolioBody

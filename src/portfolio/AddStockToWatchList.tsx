@@ -1,12 +1,10 @@
 import React from "react";
-import add from "../images/add.png";
+import StockSearch from "./StockSearch";
 
 const AddStockToWatchList: React.FC = () => {
   return (
     <div>
-      <div className="add_stock_watch_list_button">
-        <img src={add} />
-      </div>
+      <StockSearch />
     </div>
   );
 };

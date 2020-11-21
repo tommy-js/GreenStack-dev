@@ -10,13 +10,14 @@ interface Props {
 
 const WatchListing: React.FC<Props> = (props) => {
   return (
-    <div className="watch_listing" key={props.key}>
-      <Link className="watch_listing_link" to={`/home/stock/${props.stockId}`}>
+    <Link className="watch_listing_link" to={`/home/stock/${props.stockId}`}>
+      <div className="watch_listing" key={props.key}>
         <p>
-          {props.title} ${props.ticker}
+          {props.title}{" "}
+          <span className="watch_listing_ticker_span">#{props.ticker}</span>
         </p>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 
