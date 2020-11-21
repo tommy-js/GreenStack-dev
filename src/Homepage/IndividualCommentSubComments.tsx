@@ -15,12 +15,13 @@ type SubComments = {
 
 interface Props {
   postId: string;
+  transferedDisp: string;
   subComments: SubComments[];
 }
 
 const IndividualCommentSubComments: React.FC<Props> = (props) => {
   return (
-    <div>
+    <div style={{ display: props.transferedDisp }}>
       {props.subComments.map((el: any) => (
         <SubComment
           username={el.username}

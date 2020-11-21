@@ -4,6 +4,7 @@ import DislikePostComment from "../resolvers/DislikePostComment";
 import UserIndex from "../about/CommentHover/UserIndex";
 import IndividualCommentSubComments from "./IndividualCommentSubComments";
 import IndividualCommentReply from "./IndividualCommentReply";
+import comment from "../images/comment.png";
 import { returnTaggedString } from "../globals/functions/returnTagged";
 import { useLazyQuery } from "react-apollo";
 import { userCommentLookup } from "../queries/queries";
@@ -55,6 +56,8 @@ interface Props extends Redux {
 const IndividualComment: React.FC<Props> = (props) => {
   const [likes, setLikes] = useState(props.likes);
   const [dislikes, setDislikes] = useState(props.dislikes);
+  const [transferedDisp, setTransferedDisp] = useState("none");
+  const [disp, setDisp] = useState(false);
 
   useEffect(() => {
     let foundInd = props.userRoutes.find(
@@ -95,12 +98,18 @@ const IndividualComment: React.FC<Props> = (props) => {
     setDislikes(dislike);
   }
 
+  function modDisp() {
+    if (disp === true) setTransferedDisp("none");
+    else setTransferedDisp("block");
+    setDisp(!disp);
+  }
+
   return (
     <div className="comment">
       <p className="comment_name">{props.commentUsername}</p>
       <p className="comment_time">posted at {returnDate(props.timestamp)}</p>
       <p className="comment_text">{returnText()}</p>
-      <p className="comment_information">
+      <div className="comment_information">
         {likes}
         <LikePostComment
           postId={props.postId}
@@ -113,13 +122,20 @@ const IndividualComment: React.FC<Props> = (props) => {
           commentId={props.commentId}
           modDislikes={dislikeIncrement}
         />
-      </p>
+        <div className="post_values">
+          <span className="post_value_inner">{props.subComments.length}</span>
+        </div>
+        <div className="like_button_block" onClick={() => modDisp()}>
+          <img className="like_button_image" src={comment} />
+        </div>
+      </div>
       <IndividualCommentReply
         postId={props.postId}
         commentId={props.commentId}
       />
       <IndividualCommentSubComments
         postId={props.postId}
+        transferedDisp={transferedDisp}
         subComments={props.subComments}
       />
     </div>
