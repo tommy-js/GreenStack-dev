@@ -145,3 +145,29 @@
   padding: 4px;
   font-size: 14px;
 }
+
+#initial_portfolio_welcome_header {
+  text-align: center;
+  font-family: $standard_font;
+  color: $forest_green;
+  font-size: 28px;
+}
+
+#initial_portfolio_welcome_sub_header {
+  text-align: center;
+  font-family: $standard_font;
+  color: $forest_green;
+  font-size: 24px;
+}
+
+#portfolio_background_container {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  border-radius: 25px;
+}
+
+#portfolio_background {
+  width: 100%;
+}
