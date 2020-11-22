@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { returnStyles } from "./index";
 
-export const InitialPortfolioSubContainer: React.FC = () => {
+interface Props {
+  showSubContainer: boolean;
+}
+
+export const InitialPortfolioSubContainer: React.FC<Props> = (props) => {
+  const [styles, setStyles] = useState({ display: "block" });
+
+  useEffect(() => {
+    let updatedStyles = returnStyles(props.showSubContainer);
+    console.log(updatedStyles);
+    setStyles(updatedStyles);
+  }, [props.showSubContainer]);
+
   return (
-    <div id="initial_portfolio_sub_container">
+    <div style={styles} id="initial_portfolio_sub_container">
       <p id="initial_portfolio_sub_container_text">
         Add a stock to your portfolio to get started
       </p>

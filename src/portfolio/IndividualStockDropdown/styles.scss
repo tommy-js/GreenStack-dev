@@ -1,0 +1,20 @@
+.individual_stock_dropdown {
+  // @include testing;
+  margin: 0;
+}
+
+.individual_stock_dropdown_text {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-family: $standard_font;
+  border-bottom: 1px solid $light_blue;
+  cursor: pointer;
+  @include noselect;
+}
+
+.individual_stock_dropdown_text:hover {
+  border-bottom: 1px solid $forest_green;
+}

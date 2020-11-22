@@ -4,8 +4,12 @@ import { useQuery } from "react-apollo";
 import { getStocksQuery } from "../../queries/queries";
 import { returnStockSearch } from "./index";
 
-const StockSearchBox: React.FC = () => {
-  const { data, loading } = useQuery(getStocksQuery);
+interface Props {
+  parsingSearchResults: (argument: boolean) => void;
+}
+
+const StockSearchBox: React.FC<Props> = (props) => {
+  const { data } = useQuery(getStocksQuery);
   const [stocks, setStocks] = useState();
   const [results, setResults] = useState([] as any);
   const [search, setSearch] = useState("");
@@ -16,8 +20,19 @@ const StockSearchBox: React.FC = () => {
 
   function returnSearch(input: string) {
     setSearch(input);
-    let searchResults = returnStockSearch(input, stocks);
-    setResults(searchResults);
+    if (input.length === 0) {
+      setResults([]);
+      props.parsingSearchResults(false);
+    } else {
+      let searchResults = returnStockSearch(input, stocks);
+      if (searchResults.length > 4) {
+        let splicedResults = searchResults.slice(0, 4);
+        setResults(splicedResults);
+      } else {
+        setResults(searchResults);
+      }
+      props.parsingSearchResults(true);
+    }
   }
 
   return (

@@ -7,7 +7,7 @@ interface Props {
 export const IndividualStockDropdown: React.FC<Props> = (props) => {
   return (
     <div className="individual_stock_dropdown">
-      <p>{props.title}</p>
+      <p className="individual_stock_dropdown_text">{props.title}</p>
     </div>
   );
 };
