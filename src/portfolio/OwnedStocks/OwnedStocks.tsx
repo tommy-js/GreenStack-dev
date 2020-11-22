@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { OwnedElement } from "../OwnedElement/OwnedElement";
+import { StockSearchBox } from "./../StockSearchBox/StockSearchBox";
+import { StocksDropdown } from "../StocksDropdown/StocksDropdown";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../../actions/actions";
 
@@ -16,11 +18,15 @@ interface Redux {
 }
 
 const OwnedStocks: React.FC<Redux> = (props) => {
+  const [results, setResults] = useState([] as any);
+
   return (
     <div>
       {props.stocks.map((el: StockItem) => (
         <OwnedElement title={el.title} />
       ))}
+      <StockSearchBox modResults={(res) => setResults(res)} />
+      <StocksDropdown stocks={results} />
     </div>
   );
 };

@@ -1,6 +1,9 @@
 .individual_stock_dropdown {
-  // @include testing;
-  margin: 0;
+  position: relative;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
 }
 
 .individual_stock_dropdown_text {

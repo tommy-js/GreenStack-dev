@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import WatchlistElement from "../WatchlistElement/WatchlistElement";
-import StockSearchBox from "./../StockSearchBox/StockSearchBox";
+import { StockSearchBox } from "./../StockSearchBox/StockSearchBox";
+import { StocksDropdown } from "../StocksDropdown/StocksDropdown";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../../actions/actions";
 
@@ -16,7 +17,8 @@ interface Redux {
 }
 
 const WatchStocks: React.FC<Redux> = (props) => {
-  function parsingSearchResults() {}
+  const [results, setResults] = useState([] as any);
+
   return (
     <div>
       {props.watchlist.map((el: Keys) => (
@@ -27,7 +29,8 @@ const WatchStocks: React.FC<Redux> = (props) => {
           ticker={el.ticker}
         />
       ))}
-      <StockSearchBox parsingSearchResults={parsingSearchResults} />
+      <StockSearchBox modResults={(res) => setResults(res)} />
+      <StocksDropdown stocks={results} />
     </div>
   );
 };

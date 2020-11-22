@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { StocksDropdown } from "../StocksDropdown/StocksDropdown";
 import { useQuery } from "react-apollo";
 import { getStocksQuery } from "../../queries/queries";
 import { returnStockSearch } from "./index";
 
 interface Props {
-  parsingSearchResults: (argument: boolean) => void;
+  modResults: (res: any) => void;
+  parsingSearchResults?: (argument: boolean) => void;
 }
 
-const StockSearchBox: React.FC<Props> = (props) => {
+export const StockSearchBox: React.FC<Props> = (props) => {
   const { data } = useQuery(getStocksQuery);
   const [stocks, setStocks] = useState();
-  const [results, setResults] = useState([] as any);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -21,17 +20,17 @@ const StockSearchBox: React.FC<Props> = (props) => {
   function returnSearch(input: string) {
     setSearch(input);
     if (input.length === 0) {
-      setResults([]);
-      props.parsingSearchResults(false);
+      props.modResults([]);
+      if (props.parsingSearchResults) props.parsingSearchResults(false);
     } else {
       let searchResults = returnStockSearch(input, stocks);
       if (searchResults.length > 4) {
         let splicedResults = searchResults.slice(0, 4);
-        setResults(splicedResults);
+        props.modResults(splicedResults);
       } else {
-        setResults(searchResults);
+        props.modResults(searchResults);
       }
-      props.parsingSearchResults(true);
+      if (props.parsingSearchResults) props.parsingSearchResults(true);
     }
   }
 
@@ -43,9 +42,6 @@ const StockSearchBox: React.FC<Props> = (props) => {
         onChange={(e) => returnSearch(e.target.value)}
         placeholder="Apple, AMD, Etc..."
       />
-      <StocksDropdown stocks={results} />
     </div>
   );
 };
-
-export default StockSearchBox;
