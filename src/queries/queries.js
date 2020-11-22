@@ -167,8 +167,16 @@ const pushSharesToUserMutation = gql`
 `;
 
 const updateNewPortfolioMutation = gql`
-  mutation($token: String!) {
+  mutation($token: String!, $stockId: ID!, $title: String!, $ticker: String!) {
     updateNewPortfolio(token: $token) {
+      username
+    }
+    pushStockToWatchlist(
+      token: $token
+      stockId: $stockId
+      title: $title
+      ticker: $ticker
+    ) {
       username
     }
   }

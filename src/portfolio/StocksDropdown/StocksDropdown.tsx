@@ -20,7 +20,11 @@ export const StocksDropdown: React.FC<Props> = (props) => {
   return (
     <div>
       {props.stocks.map((el: Stocks) => (
-        <IndividualStockDropdownExp title={el.title} />
+        <IndividualStockDropdownExp
+          stockId={el.stockId}
+          title={el.title}
+          ticker={el.ticker}
+        />
       ))}
     </div>
   );
