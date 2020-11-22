@@ -166,6 +166,14 @@ const pushSharesToUserMutation = gql`
   }
 `;
 
+const updateNewPortfolioMutation = gql`
+  mutation($token: String!) {
+    updateNewPortfolio(token: $token) {
+      username
+    }
+  }
+`;
+
 const setBioMutation = gql`
   mutation($token: ID!, $bio: String!) {
     setBio(token: $token, bio: $bio) {
@@ -1215,6 +1223,7 @@ export {
   updateMoneyMutation,
   setProfileImageMutation,
   pushSharesToUserMutation,
+  updateNewPortfolioMutation,
   setBioMutation,
   pushStockToWatchlistMutation,
   removeStockFromWatchlistMutation,

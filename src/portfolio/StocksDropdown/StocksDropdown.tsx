@@ -1,5 +1,5 @@
 import React from "react";
-import { IndividualStockDropdown } from "../IndividualStockDropdown/IndividualStockDropdown";
+import { IndividualStockDropdownExp } from "../IndividualStockDropdown/IndividualStockDropdown";
 
 type Stocks = {
   country: string;
@@ -20,7 +20,7 @@ export const StocksDropdown: React.FC<Props> = (props) => {
   return (
     <div>
       {props.stocks.map((el: Stocks) => (
-        <IndividualStockDropdown title={el.title} />
+        <IndividualStockDropdownExp title={el.title} />
       ))}
     </div>
   );

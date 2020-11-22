@@ -287,17 +287,6 @@ body {
   @include testing;
 }
 
-.navbar {
-  position: fixed;
-  background-color: $background_white;
-  border-bottom: 1px solid $soft_grey;
-  height: 40px;
-  width: 100%;
-  margin: 0;
-  top: 0;
-  z-index: 97;
-}
-
 #app_information_page {
   position: relative;
   width: 50%;
