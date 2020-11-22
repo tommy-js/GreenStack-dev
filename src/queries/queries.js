@@ -149,13 +149,13 @@ const pushSharesToUserMutation = gql`
     $shareId: ID!
     $token: ID!
     $shares: Int!
-    $stockTitle: String!
+    $title: String!
     $stockId: ID!
   ) {
     pushSharesToUser(
       shareId: $shareId
       shares: $shares
-      stockTitle: $stockTitle
+      title: $title
       stockId: $stockId
       token: $token
     ) {
@@ -756,7 +756,7 @@ const nonTokenModifyUserQuery = gql`
       }
       stocks {
         stockId
-        stockTitle
+        title
         shares
         color
         ticker
@@ -887,7 +887,7 @@ const userQuery = gql`
       }
       stocks {
         stockId
-        stockTitle
+        title
         shares
         color
         ticker

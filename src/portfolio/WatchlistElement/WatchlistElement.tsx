@@ -8,7 +8,7 @@ interface Props {
   ticker: string;
 }
 
-const WatchListing: React.FC<Props> = (props) => {
+const WatchlistElement: React.FC<Props> = (props) => {
   return (
     <Link className="watch_listing_link" to={`/home/stock/${props.stockId}`}>
       <div className="watch_listing" key={props.key}>
@@ -21,4 +21,4 @@ const WatchListing: React.FC<Props> = (props) => {
   );
 };
 
-export default WatchListing;
+export default WatchlistElement;

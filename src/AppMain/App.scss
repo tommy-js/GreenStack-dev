@@ -14,6 +14,9 @@
 @import "../companies/companies.scss";
 @import "../notifications/notifications.scss";
 @import "../portfolio/IndividualStockDropdown/styles.scss";
+@import "../portfolio/MainPortfolioHeader/styles.scss";
+@import "../portfolio/PortfolioHeader/styles.scss";
+
 body {
   margin: 0;
   background-color: $background_white;

@@ -1,6 +1,6 @@
 import React from "react";
 import InitialPortfolio from "./InitialPortfolio";
-import DefaultPortfolio from "./DefaultPortfolio";
+import DefaultPortfolio from "./DefaultPortfolio/DefaultPortfolio";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../actions/actions";
 
@@ -15,9 +15,7 @@ const PortfolioBody: React.FC<Redux> = (props) => {
     if (props.newPortfolio === true) {
       return <InitialPortfolio />;
     } else {
-      return (
-        <DefaultPortfolio stocks={props.stocks} watchlist={props.watchlist} />
-      );
+      return <DefaultPortfolio />;
     }
   }
 

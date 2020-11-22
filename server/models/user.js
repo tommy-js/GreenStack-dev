@@ -111,7 +111,7 @@ const userSchema = new Schema({
   stocks: [
     {
       stockId: String,
-      stockTitle: String,
+      title: String,
       shares: Number,
       color: String,
       ticker: String,

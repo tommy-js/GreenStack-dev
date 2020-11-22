@@ -1,13 +1,22 @@
 import React from "react";
+import { watchlistArray } from "./index";
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "../../actions/actions";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { updateNewPortfolioMutation } from "../../queries/queries";
 
+type WatchListItem = {
+  stockId: string;
+  title: string;
+  ticker: string;
+  timestamp: number;
+};
+
 interface Redux {
+  watchlist: WatchListItem[];
   onNewPortfolioSet: (newPortfolio: boolean) => void;
-  onWatchlistSet: (watchlist: any) => void;
+  onWatchlistSet: (watchlist: WatchListItem[]) => void;
 }
 
 interface Props extends Redux {
@@ -19,16 +28,14 @@ interface Props extends Redux {
 
 const IndividualStockDropdown: React.FC<Props> = (props) => {
   function resolve() {
-    let token = sessionStorage.getItem("Token");
-    let watchlistItem = [
-      {
-        stockId: props.stockId,
-        title: props.title,
-        ticker: props.ticker,
-        timestamp: Math.floor(Date.now() / 1000),
-      },
-    ];
     props.onNewPortfolioSet(false);
+    let token = sessionStorage.getItem("Token");
+    let returnedWatchList = watchlistArray(
+      props.stockId,
+      props.title,
+      props.ticker,
+      props.watchlist
+    );
     props
       .updateNewPortfolioMutation({
         variables: {
@@ -40,7 +47,7 @@ const IndividualStockDropdown: React.FC<Props> = (props) => {
       })
       .catch((err: any) => console.log(err))
       .then(() => {
-        props.onWatchlistSet(watchlistItem);
+        props.onWatchlistSet(returnedWatchList);
       });
   }
 

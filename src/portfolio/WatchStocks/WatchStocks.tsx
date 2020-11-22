@@ -1,8 +1,8 @@
 import React from "react";
-import WatchListing from "./WatchListing";
-import AddStockToWatchList from "./AddStockToWatchList";
+import WatchlistElement from "../WatchlistElement/WatchlistElement";
+import StockSearchBox from "./../StockSearchBox/StockSearchBox";
 import { connect } from "react-redux";
-import { mapStateToProps } from "../actions/actions";
+import { mapStateToProps } from "../../actions/actions";
 
 interface Keys {
   keyId: number;
@@ -16,19 +16,20 @@ interface Redux {
 }
 
 const WatchStocks: React.FC<Redux> = (props) => {
+  function parsingSearchResults() {}
   return (
     <div>
       {props.watchlist.map((el: Keys) => (
-        <WatchListing
+        <WatchlistElement
           stockId={el.stockId}
           key={el.keyId}
           title={el.title}
           ticker={el.ticker}
         />
       ))}
-      <AddStockToWatchList />
+      <StockSearchBox parsingSearchResults={parsingSearchResults} />
     </div>
   );
 };
 
-export default connect(mapStateToProps)(WatchStocks);
+export const WatchStocksExp = connect(mapStateToProps)(WatchStocks);

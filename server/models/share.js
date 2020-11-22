@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const shareSchema = new Schema({
   stockId: String,
-  stockTitle: String,
+  title: String,
   shares: Number,
   color: String,
   ticker: String,

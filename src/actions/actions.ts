@@ -30,6 +30,39 @@ export const mapStateToProps = (state: any) => {
   };
 };
 
+type WatchListItem = {
+  stockId: string;
+  title: string;
+  ticker: string;
+  timestamp: number;
+};
+
+type StockItem = {
+  stockId: string;
+  title: string;
+  shares: number;
+  color: string;
+  ticker: string;
+};
+
+type UserComments = {
+  userId: string;
+  username: string;
+  timestamp: number;
+  commentId: string;
+  profileImage: string;
+  text: string;
+  likes: number;
+  dislikes: number;
+  referenceId: string;
+  reference: {
+    postId: string;
+    text: string;
+    username: string;
+    profileImage: string;
+  };
+};
+
 export const mapDispatchToProps = (dispatch: any) => {
   return {
     onUsernameSet: (username: string) =>
@@ -43,7 +76,7 @@ export const mapDispatchToProps = (dispatch: any) => {
       dispatch({ type: "SET_NEW_ACCOUNT", payload: newacc }),
     onNewPortfolioSet: (newPortfolio: boolean) =>
       dispatch({ type: "SET_NEW_PORTFOLIO", payload: newPortfolio }),
-    onWatchlistSet: (watchlist: any) =>
+    onWatchlistSet: (watchlist: WatchListItem[]) =>
       dispatch({ type: "SET_INITIAL_WATCHLIST", payload: watchlist }),
     onInitialPostsSet: (posts: any) =>
       dispatch({ type: "SET_INITIAL_POSTS", payload: posts }),
@@ -62,7 +95,7 @@ export const mapDispatchToProps = (dispatch: any) => {
         type: "SET_INITIAL_PROGRESS_ELEMENTS",
         payload: progressElements,
       }),
-    onInitialCommentsSet: (comments: any) =>
+    onInitialCommentsSet: (comments: UserComments) =>
       dispatch({ type: "SET_INITIAL_COMMENTS", payload: comments }),
     onDarkmodeSet: (darkmode: boolean) =>
       dispatch({ type: "SET_DARKMODE", payload: darkmode }),
@@ -73,7 +106,7 @@ export const mapDispatchToProps = (dispatch: any) => {
         type: "SET_ALLOW_COMMENTS_ON_POSTS",
         payload: allowCommentsOnPosts,
       }),
-    onStocksSet: (stocks: any) =>
+    onStocksSet: (stocks: StockItem[]) =>
       dispatch({ type: "SET_STOCKS", payload: stocks }),
     onProfileImageSet: (profileImage: any) =>
       dispatch({ type: "SET_PROFILE_IMAGE", payload: profileImage }),
