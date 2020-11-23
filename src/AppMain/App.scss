@@ -44,6 +44,15 @@
 @import "../companies/StockComment/styles.scss";
 @import "../companies/StockPage/styles.scss";
 @import "../companies/SuggestedCompany/styles.scss";
+@import "../login/AccountCreation/styles.scss";
+@import "../login/CreateAccountPage/styles.scss";
+@import "../login/HiddenVisual/styles.scss";
+@import "../login/Loading/styles.scss";
+@import "../login/Login/styles.scss";
+@import "../login/LoginHeader/styles.scss";
+@import "../login/LoginPageInfo/styles.scss";
+@import "../login/PasswordValidation/styles.scss";
+@import "../login/UserNameInput/styles.scss";
 
 body {
   margin: 0;
@@ -367,15 +376,6 @@ body {
 #trade_dropdown {
   position: relative;
   height: 200px;
-}
-
-.input_container {
-  position: relative;
-  margin: 5px;
-  padding: 5px;
-  font-size: 14px;
-  border-radius: 5px;
-  border: 1px solid grey;
 }
 
 @mixin noselect {

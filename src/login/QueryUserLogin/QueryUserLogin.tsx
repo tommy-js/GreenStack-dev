@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLazyQuery } from "react-apollo";
-import { userLoginQuery } from "../queries/queries";
-import { comparePass } from "../login/hashing.js";
+import { userLoginQuery } from "../../queries/queries";
+import { comparePass } from "./index";
 
 interface Props {
   username: string;
@@ -12,7 +12,7 @@ interface Props {
   passUserAuth: (id: number) => void;
 }
 
-const QueryUserLogin: React.FC<Props> = (props) => {
+export const QueryUserLogin: React.FC<Props> = (props) => {
   const [delay, setDelay] = useState(0);
   const [incorrectAnswers, setIncorrectAnswers] = useState(0);
   const [
@@ -67,5 +67,3 @@ const QueryUserLogin: React.FC<Props> = (props) => {
 
   return <button onClick={() => checkValid()}>Sign In</button>;
 };
-
-export default QueryUserLogin;

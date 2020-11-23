@@ -1,0 +1,38 @@
+#spinning_dial_container {
+  position: relative;
+  width: 75px;
+  height: 75px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin spinning_dial {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: 5px solid transparent;
+  animation: spinning_dial 1s linear infinite;
+}
+
+#spinning_dial:before {
+  @include spinning_dial;
+  border-top-color: white;
+}
+
+#spinning_dial_general:before {
+  @include spinning_dial;
+  border-top-color: black;
+}
+
+#loading_user {
+  @include loading_user;
+  color: white;
+}
+
+#loading_user_general {
+  @include loading_user;
+  color: black;
+}

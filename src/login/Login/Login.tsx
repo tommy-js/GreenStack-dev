@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
-import SigninPage from "./SigninPage";
-import CreateAccountPage from "./CreateAccountPage";
-import UserLoginAuthSubresolver from "../resolvers/UserLoginAuthSubresolver";
-import { LoadingUser } from "./LoadingUser";
-import RenderAccountLink from "./RenderAccountLink";
+import { SigninPage } from "../SigninPage/SigninPage";
+import { CreateAccountPage } from "../CreateAccountPage/CreateAccountPage";
+import UserLoginAuthSubresolver from "../../resolvers/UserLoginAuthSubresolver";
+import { LoadingUser } from "../LoadingUser/LoadingUser";
+import { RenderAccountLink } from "../RenderAccountLink/RenderAccountLink";
 import {
   LoginPageFeedInfo,
   LoginPageLearnInfo,
   LoginPageCommunityInfo,
-} from "./LoginPageInfo";
+} from "./../LoginPageInfo";
 import { Link } from "react-router-dom";
-import { statusContext } from "../AppMain/App";
-import { queryToken } from "../queries/queries";
+import { statusContext } from "../../AppMain/App";
+import { queryToken } from "../../queries/queries";
 import { useLazyQuery } from "react-apollo";
-import { browserHist } from "../AppMain/history";
+import { browserHist } from "../../AppMain/history";
 
-const Login: React.FC = () => {
+export const Login: React.FC = () => {
   const [userId, setUserId] = useState();
   const [token, setToken] = useState();
   const [newAccount, setNewAccount] = useState(false);
@@ -129,5 +129,3 @@ const Login: React.FC = () => {
     </div>
   );
 };
-
-export default Login;

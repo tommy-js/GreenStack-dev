@@ -1,0 +1,35 @@
+#login_forms {
+  position: relative;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  top: 200px;
+}
+
+#login_page {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: none;
+  margin-bottom: 0;
+}
+
+#centered_login_page {
+  position: fixed;
+  display: inline-block;
+  background-color: $island_green;
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#login_page_about {
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  margin-bottom: 0;
+  float: right;
+  box-sizing: border-box;
+  @include testing;
+}

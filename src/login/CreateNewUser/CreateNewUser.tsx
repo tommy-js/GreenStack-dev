@@ -1,7 +1,10 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { graphql, useLazyQuery } from "react-apollo";
 import { flowRight as compose } from "lodash";
-import { createUserMutation, distinctUserQuery } from "../queries/queries.js";
+import {
+  createUserMutation,
+  distinctUserQuery,
+} from "../../queries/queries.js";
 
 interface Props {
   username: string;
@@ -13,7 +16,7 @@ interface Props {
 
 const CreateNewUser: React.FC<Props> = (props) => {
   const [newUsername, setNewUsername] = useState(false);
-  const [callUser, { loading, data }] = useLazyQuery(distinctUserQuery, {
+  const [callUser, { data }] = useLazyQuery(distinctUserQuery, {
     variables: { username: props.username },
   });
 
@@ -128,6 +131,6 @@ const CreateNewUser: React.FC<Props> = (props) => {
   return <button onClick={() => checkValidity()}>Create Account</button>;
 };
 
-export default compose(
+export const CreateNewUserExp = compose(
   graphql(createUserMutation, { name: "createUserMutation" })
 )(CreateNewUser);

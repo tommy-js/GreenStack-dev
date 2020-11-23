@@ -5,7 +5,7 @@ interface Props {
   triggerNewAccount: () => void;
 }
 
-const RenderAccountLink: React.FC<Props> = (props) => {
+export const RenderAccountLink: React.FC<Props> = (props) => {
   function checkNewAccount() {
     if (props.newAccount === false) {
       return (
@@ -32,5 +32,3 @@ const RenderAccountLink: React.FC<Props> = (props) => {
 
   return <div>{checkNewAccount()}</div>;
 };
-
-export default RenderAccountLink;

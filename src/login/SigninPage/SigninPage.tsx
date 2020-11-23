@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import LoginHeader from "./LoginHeader";
-import UserNameInput from "./UserNameInput";
-import PasswordInput from "./PasswordInput";
-import QueryUserLogin from "../resolvers/QueryUserLogin";
-import HiddenVisual from "./HiddenVisual";
+import { LoginHeader } from "../LoginHeader/LoginHeader";
+import { UserNameInput } from "../UserNameInput/UserNameInput";
+import { PasswordInput } from "../PasswordInput/PasswordInput";
+import { QueryUserLogin } from "../QueryUserLogin/QueryUserLogin";
+import { HiddenVisual } from "../HiddenVisual/HiddenVisual";
 
 interface Props {
   loadingUser: () => void;
   passUserAuth: (id: number) => void;
 }
 
-const SigninPage: React.FC<Props> = (props) => {
+export const SigninPage: React.FC<Props> = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernameOpac, setUsernameOpac] = useState(0);
@@ -62,5 +62,3 @@ const SigninPage: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default SigninPage;

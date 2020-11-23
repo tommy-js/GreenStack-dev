@@ -6,7 +6,7 @@ interface Props {
   password: string;
 }
 
-const PasswordInput: React.FC<Props> = (props) => {
+export const PasswordInput: React.FC<Props> = (props) => {
   function showPassword() {
     let input = document.getElementById("login_access") as HTMLInputElement;
     if (input.type === "password") {
@@ -31,5 +31,3 @@ const PasswordInput: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default PasswordInput;

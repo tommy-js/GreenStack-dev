@@ -1,0 +1,17 @@
+.login_page_information {
+  position: relative;
+  width: 80%;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  @include testing;
+}
+
+.login_page_text {
+  position: relative;
+  height: 100%;
+  width: 60%;
+  margin: 0;
+  float: right;
+  @include testing;
+}

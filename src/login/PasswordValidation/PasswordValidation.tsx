@@ -9,7 +9,7 @@ interface Props {
   password: string;
 }
 
-const PasswordValidation: React.FC<Props> = (props) => {
+export const PasswordValidation: React.FC<Props> = (props) => {
   const [opac, setOpac] = useState(0);
 
   useEffect(() => {
@@ -41,5 +41,3 @@ const PasswordValidation: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default PasswordValidation;

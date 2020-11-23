@@ -6,7 +6,7 @@ interface Props {
   username: string;
 }
 
-const UserNameInput: React.FC<Props> = (props) => {
+export const UserNameInput: React.FC<Props> = (props) => {
   return (
     <input
       className="input_container"
@@ -17,5 +17,3 @@ const UserNameInput: React.FC<Props> = (props) => {
     />
   );
 };
-
-export default UserNameInput;

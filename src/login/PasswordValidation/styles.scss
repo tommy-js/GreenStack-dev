@@ -1,0 +1,16 @@
+#password_validation {
+  position: relative;
+  font-size: 14px;
+  top: 0;
+  width: 250px;
+  max-width: 30%;
+  float: left;
+  transition: 0.3s;
+  @include testing;
+}
+
+.password_validation_checkbox {
+  display: block;
+  margin: 5px;
+  box-sizing: border-box;
+}

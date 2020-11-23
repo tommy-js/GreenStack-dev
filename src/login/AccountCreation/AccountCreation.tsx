@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const AccountCreation: React.FC = () => {
+export const AccountCreation: React.FC = () => {
   const [newUser, setNewUser] = useState(true);
   const [createData, setCreateData] = useState({ username: "", password: "" });
   const [logData, setLogData] = useState({ username: "", password: "" });
@@ -79,5 +79,3 @@ const AccountCreation: React.FC = () => {
     );
   }
 };
-
-export default AccountCreation;

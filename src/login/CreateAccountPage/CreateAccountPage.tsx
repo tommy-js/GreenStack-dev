@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import LoginHeader from "./LoginHeader";
-import RenderAccountLink from "./RenderAccountLink";
-import UserNameInput from "./UserNameInput";
-import PasswordInput from "./PasswordInput";
-import PasswordValidation from "./PasswordValidation";
+import { LoginHeader } from "../LoginHeader/LoginHeader";
+import { RenderAccountLink } from "../RenderAccountLink/RenderAccountLink";
+import { UserNameInput } from "../UserNameInput/UserNameInput";
+import { PasswordInput } from "../PasswordInput/PasswordInput";
+import { PasswordValidation } from "../PasswordValidation/PasswordValidation";
 import CreateNewUser from "../resolvers/CreateNewUser";
-import UserAlreadyExists from "./UserAlreadyExists";
+import { UserAlreadyExists } from "../UserAlreadyExists/UserAlreadyExists";
 
 interface Props {
   newAccount: boolean;
   triggerNewAccount: () => void;
 }
 
-const CreateAccountPage: React.FC<Props> = (props) => {
+export const CreateAccountPage: React.FC<Props> = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernameAlreadyExists, setUsernameAlreadyExists] = useState(false);
@@ -82,5 +82,3 @@ const CreateAccountPage: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default CreateAccountPage;
