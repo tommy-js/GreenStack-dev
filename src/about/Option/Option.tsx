@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { SelectContainer } from "./SelectContainer";
-import { SelectSubheader } from "./SelectSubheader";
+import { SelectContainer } from "../SelectContainer/SelectSubheader";
+import { SelectSubheader } from "../SelectSubheader/SelectSubheader";
 
 interface Props {
   title: string;
@@ -9,15 +9,12 @@ interface Props {
   selectOption: (id: number) => void;
 }
 
-const Option: React.FC<Props> = (props) => {
+export const Option: React.FC<Props> = (props) => {
   const [bcc, setBcc] = useState("white");
 
   useEffect(() => {
-    if (props.id === props.selectedOption) {
-      setBcc("#2bae66ff");
-    } else {
-      setBcc("white");
-    }
+    if (props.id === props.selectedOption) setBcc("#2bae66ff");
+    else setBcc("white");
   }, [props.selectedOption]);
 
   return (
@@ -31,5 +28,3 @@ const Option: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default Option;

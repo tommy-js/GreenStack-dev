@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { renderFull } from "stock-graphics";
 
-const LearnGraphs = (props) => {
+export const LearnGraphs = (props) => {
   useEffect(() => {
     renderFull(props.points, props.graphicalEffects);
   }, []);
@@ -13,5 +13,3 @@ const LearnGraphs = (props) => {
     ></div>
   );
 };
-
-export default LearnGraphs;

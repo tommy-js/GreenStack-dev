@@ -1,6 +1,6 @@
 import React from "react";
 
-const LearnSidebar: React.FC = () => {
+export const LearnSidebar: React.FC = () => {
   return (
     <div id="learn_sidebar">
       <ul id="learn_sidebar_ul">
@@ -17,5 +17,3 @@ const LearnSidebar: React.FC = () => {
     </div>
   );
 };
-
-export default LearnSidebar;

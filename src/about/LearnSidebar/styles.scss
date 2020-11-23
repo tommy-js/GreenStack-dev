@@ -1,0 +1,28 @@
+#learn_sidebar {
+  width: 75%;
+  float: right;
+}
+
+#learn_sidebar_ul {
+  list-style-type: none;
+}
+
+.learn_sidebar_item {
+  margin-top: 15px;
+  color: #211a1e;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.learn_sidebar_item:hover {
+  color: #666465;
+  transition: 0.2s;
+}
+
+.learn_sidebar_button {
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: $forest_green;
+}

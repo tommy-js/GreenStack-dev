@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { CorrectIcon, IncorrectIcon } from "./Icons";
+import { CorrectIcon } from "../CorrectIcon/CorrectIcon";
+import { IncorrectIcon } from "../IncorrectIcon/IncorrectIcon";
 
 interface Props {
   submitted: boolean;
@@ -7,7 +8,11 @@ interface Props {
   correct: any;
 }
 
-const OnSubmitBlankModifyer: React.FC<Props> = ({ submitted, id, correct }) => {
+export const OnSubmitBlankModifyer: React.FC<Props> = ({
+  submitted,
+  id,
+  correct,
+}) => {
   const [isCorrect, setIsCorrect] = useState(false);
 
   useEffect(() => {
@@ -30,5 +35,3 @@ const OnSubmitBlankModifyer: React.FC<Props> = ({ submitted, id, correct }) => {
 
   return <div className="inline">{returnRender()}</div>;
 };
-
-export default OnSubmitBlankModifyer;

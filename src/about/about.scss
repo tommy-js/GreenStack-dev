@@ -48,6 +48,13 @@
   margin-bottom: 15px;
 }
 
+#knowledge_check_headline {
+  margin-left: 15px;
+  margin-top: 5px;
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
 .option {
   position: relative;
   display: block;
@@ -73,6 +80,15 @@
   font-weight: bold;
 }
 
+.render_ans {
+  font-size: 22px;
+  margin-left: 15px;
+}
+
+.correct_ans {
+  color: green;
+}
+
 .incorrect_ans {
   color: red;
 }
@@ -81,6 +97,71 @@
   position: relative;
   width: 100%;
   height: 375px;
+}
+
+.learn_component_link {
+  color: black;
+}
+
+#learn_individual_div {
+  border-bottom: 1px dashed transparent;
+  font-family: $standard_font;
+  transition: 0.3s;
+}
+
+#learn_individual_div:hover {
+  border-bottom: 1px dashed grey;
+  transition: 0.3s;
+}
+
+#learn_link {
+  position: relative;
+  display: inline-block;
+}
+
+#learn_individual_progress_div {
+  position: relative;
+  top: 0;
+  float: right;
+  display: inline-block;
+  height: 100%;
+  width: 200px;
+}
+
+.blank_input_block {
+  position: relative;
+  width: 50%;
+  min-width: 250px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.indicator_icon {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+  width: 40px;
+  height: 40px;
+}
+
+.blank_question {
+  margin: 5px;
+  font-size: 16px;
+}
+
+.blank_input {
+  margin: 5px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: 16px;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.blank_input:focus {
+  outline: none;
 }
 
 .inline {
@@ -92,6 +173,48 @@
 .blanks_title {
   position: relative;
   margin: 10px;
+}
+
+.blank_submit {
+  position: relative;
+  margin-left: 10px;
+}
+
+.learn_header {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  height: 75px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  // @include testing;
+}
+
+.learn_header_span {
+  position: relative;
+  font-size: 24px;
+  width: 67%;
+  float: right;
+  margin-bottom: 5px;
+  font-family: $standard_font;
+  color: $forest_green;
+  border-bottom: 1px solid $soft_grey;
+}
+
+#learn_state {
+  width: 67%;
+  display: inline-block;
+  box-sizing: border-box;
+  float: right;
+  // @include testing;
+}
+
+#learn_sidebar_container {
+  width: 25%;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: top;
+  // @include testing;
 }
 
 #learn_sidebar {
@@ -123,6 +246,13 @@
   background-color: $forest_green;
 }
 
+#learn_component {
+  position: relative;
+  margin-bottom: 100px;
+  width: 75%;
+  // @include testing;
+}
+
 .learn_fit_container {
   display: inline-block;
 }
@@ -151,9 +281,105 @@
   font-family: $standard_font;
 }
 
+.select_boxes {
+  margin: 10px;
+  cursor: pointer;
+}
+
+.box_checkbox {
+  display: inline-block;
+}
+
+.box_title {
+  display: inline-block;
+  margin: 0;
+  font-size: 18px;
+}
+
+#comment_section {
+  position: relative;
+  margin-top: 50px;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#comment_section_header {
+  text-align: center;
+}
+
+#tutorial_comment {
+  overflow: visible;
+  border-bottom: 2px solid $light_blue;
+}
+
+#footer {
+  width: 100%;
+  height: 25px;
+  margin-top: 50px;
+  background-color: teal;
+  margin-bottom: 0;
+}
+
+.footer_text {
+  text-align: center;
+  margin: 0;
+}
+
+#tutorial_comment_username {
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+#tutorial_comment_timestamp {
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+#comment_section_input {
+}
+
+#comment_section_textarea {
+  width: 85%;
+  height: 125px;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 5px;
+  font-size: 18px;
+  line-height: 125%;
+  font-family: $standard_font;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  resize: none;
+}
+
+#comment_section_textarea:focus {
+  outline: none;
+}
+
+#comment_section_button {
+  position: relative;
+  padding: 5px;
+  left: 7.5%;
+}
+
 .progress_flare {
   font-size: 14px;
   color: $raisin_black;
+}
+
+.render_learn_flare {
+  text-align: right;
+  box-sizing: border-box;
+  margin: 0;
+  transition: 0.2s;
+}
+
+.progress_percent {
+  text-align: right;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 .user_index_hover_block {
@@ -213,6 +439,13 @@
 
 .username_tag {
   color: $forest_green;
+}
+
+.tag_span {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 .hover_comp {
