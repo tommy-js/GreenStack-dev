@@ -1,7 +1,6 @@
 import React from "react";
-import AssetChart from "./AssetChart";
-import IndustryInvolvementChart from "./IndustryInvolvementChart";
-import AssetBreakdown from "./AssetBreakdown";
+import AssetChart from "../AssetChart/AssetChart";
+import AssetBreakdown from "../AssetBreakdown/AssetBreakdown";
 
 const PortfolioData: React.FC = () => {
   return (

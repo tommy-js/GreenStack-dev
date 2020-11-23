@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { WatchlistStocksDropdown } from "./StocksDropdown/StocksDropdown";
-import { InitialPortfolioWelcome } from "./InitialPortfolioWelcome/InitialPortfolioWelcome";
-import { InitialPortfolioBackground } from "./InitialPortfolioBackground/InitialPortfolioBackground";
-import { InitialPortfolioSubHeader } from "./InitialPortfolioSubHeader/InitialPortfolioSubHeader";
-import { InitialPortfolioSubContainer } from "./InitialPortfolioSubContainer/InitialPortfolioSubContainer";
-import { StockSearchBox } from "./StockSearchBox/StockSearchBox";
+import { WatchlistStocksDropdown } from "../StocksDropdown/StocksDropdown";
+import { InitialPortfolioWelcome } from "../InitialPortfolioWelcome/InitialPortfolioWelcome";
+import { InitialPortfolioBackground } from "../InitialPortfolioBackground/InitialPortfolioBackground";
+import { InitialPortfolioSubHeader } from "../InitialPortfolioSubHeader/InitialPortfolioSubHeader";
+import { InitialPortfolioSubContainer } from "../InitialPortfolioSubContainer/InitialPortfolioSubContainer";
+import { StockSearchBox } from "../StockSearchBox/StockSearchBox";
 
 const InitialPortfolio: React.FC = () => {
   const [showSubContainer, setShowSubContainer] = useState(true);

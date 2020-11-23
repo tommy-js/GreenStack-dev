@@ -1,16 +1,24 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
-import { mapStateToProps } from "../actions/actions";
+import { mapStateToProps } from "../../actions/actions";
 import { connect } from "react-redux";
 
+type StockItem = {
+  stockId: string;
+  title: string;
+  shares: number;
+  color: string;
+  ticker: string;
+};
+
 interface Redux {
-  stocks: any;
+  stocks: StockItem[];
 }
 
 const AssetChart: React.FC<Redux> = (props) => {
-  const stockTitles = props.stocks.map((el: any) => el.stockTitle);
-  const stockData = props.stocks.map((el: any) => el.shares);
-  const stockColor = props.stocks.map((el: any) => el.color);
+  const stockTitles = props.stocks.map((el: StockItem) => el.title);
+  const stockData = props.stocks.map((el: StockItem) => el.shares);
+  const stockColor = props.stocks.map((el: StockItem) => el.color);
   const pieData = {
     labels: stockTitles,
     datasets: [

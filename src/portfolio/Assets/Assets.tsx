@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { connect } from "react-redux";
-import { mapStateToProps } from "../actions/actions";
-import PortfolioGraph from "./PortfolioGraph";
-import LiquidCapital from "./LiquidCapital";
+import { mapStateToProps } from "../../actions/actions";
+import PortfolioGraph from "../PortfolioGraph";
+import LiquidCapital from "../LiquidCapital";
 
 interface Redux {
-  money: any;
+  money: number;
 }
 
 const Assets: React.FC<Redux> = (props) => {

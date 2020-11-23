@@ -1,20 +1,28 @@
 import React, { useState, useEffect, useContext } from "react";
-import NavBar from "../navigation/NavBar";
-import { LoadingUser } from "../login/LoadingUser";
-import UserLoginAuthSubresolver from "../resolvers/UserLoginAuthSubresolver";
-import PortfolioBody from "./PortfolioBody";
+import NavBar from "../../navigation/NavBar";
+import { LoadingUser } from "../../login/LoadingUser";
+import UserLoginAuthSubresolver from "../../resolvers/UserLoginAuthSubresolver";
+import PortfolioBody from "../PortfolioBody";
 import { Route } from "react-router-dom";
-import { browserHist } from "../AppMain/history";
-import { queryToken } from "../queries/queries";
+import { browserHist } from "../../AppMain/history";
+import { queryToken } from "../../queries/queries";
 import { useLazyQuery } from "react-apollo";
-import companyProfiles from "../companies/companyProfiles";
 import { connect } from "react-redux";
-import { mapStateToProps } from "../actions/actions";
+import { mapStateToProps } from "../../actions/actions";
+import { returnStocks } from "./index";
 
-import { statusContext } from "../AppMain/App";
+import { statusContext } from "../../AppMain/App";
+
+type StockItem = {
+  stockId: string;
+  title: string;
+  shares: number;
+  color: string;
+  ticker: string;
+};
 
 interface Redux {
-  stocks: any;
+  stocks: StockItem[];
 }
 
 const Portfolio: React.FC<Redux> = (props) => {
@@ -29,17 +37,7 @@ const Portfolio: React.FC<Redux> = (props) => {
 
   useEffect(() => {
     if (status) {
-      let stocks = props.stocks;
-      let arr = [];
-      for (let i = 0; i < stocks.length; i++) {
-        let found = companyProfiles.find(
-          (el: any) => el.stockId === stocks[i].stockId
-        );
-        if (found) {
-          let obj = { ...found, shares: stocks[i].shares };
-          arr.push(obj);
-        }
-      }
+      let arr = returnStocks(props.stocks);
       setUserStocks(arr);
     }
   }, []);
@@ -69,8 +67,6 @@ const Portfolio: React.FC<Redux> = (props) => {
     console.log("homepage status: " + status);
     if (status === false) {
       if (data && data.token) {
-        console.log(data);
-        console.log("session token same as data token");
         setUserId(data.token.userId);
         setToken(data.token.token);
         setLoadingInUser(true);

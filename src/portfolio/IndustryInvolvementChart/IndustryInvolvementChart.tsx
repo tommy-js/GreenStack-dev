@@ -1,7 +1,5 @@
 import React from "react";
 import { Radar } from "react-chartjs-2";
-import { mapStateToProps } from "../actions/actions";
-import { connect } from "react-redux";
 
 const IndustryInvolvementChart: React.FC = () => {
   const data = {
