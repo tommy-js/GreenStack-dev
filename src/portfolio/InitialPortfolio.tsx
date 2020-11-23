@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StocksDropdown } from "./StocksDropdown/StocksDropdown";
+import { WatchlistStocksDropdown } from "./StocksDropdown/StocksDropdown";
 import { InitialPortfolioWelcome } from "./InitialPortfolioWelcome/InitialPortfolioWelcome";
 import { InitialPortfolioBackground } from "./InitialPortfolioBackground/InitialPortfolioBackground";
 import { InitialPortfolioSubHeader } from "./InitialPortfolioSubHeader/InitialPortfolioSubHeader";
@@ -24,7 +24,7 @@ const InitialPortfolio: React.FC = () => {
         modResults={(res) => setResults(res)}
         parsingSearchResults={parsingSearchResults}
       />
-      <StocksDropdown stocks={results} />
+      <WatchlistStocksDropdown stocks={results} />
       <InitialPortfolioSubContainer showSubContainer={showSubContainer} />
     </div>
   );

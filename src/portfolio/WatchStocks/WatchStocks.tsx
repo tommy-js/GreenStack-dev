@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import WatchlistElement from "../WatchlistElement/WatchlistElement";
 import { StockSearchBox } from "./../StockSearchBox/StockSearchBox";
-import { StocksDropdown } from "../StocksDropdown/StocksDropdown";
+import { WatchlistStocksDropdown } from "../StocksDropdown/StocksDropdown";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../../actions/actions";
 
@@ -30,7 +30,7 @@ const WatchStocks: React.FC<Redux> = (props) => {
         />
       ))}
       <StockSearchBox modResults={(res) => setResults(res)} />
-      <StocksDropdown stocks={results} />
+      <WatchlistStocksDropdown stocks={results} />
     </div>
   );
 };

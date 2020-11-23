@@ -13,10 +13,11 @@
 @import "../about/about.scss";
 @import "../companies/companies.scss";
 @import "../notifications/notifications.scss";
-@import "../portfolio/IndividualStockDropdown/styles.scss";
+@import "../portfolio/IndividualWatchlistStockDropdown/styles.scss";
 @import "../portfolio/MainPortfolioHeader/styles.scss";
 @import "../portfolio/PortfolioHeader/styles.scss";
 @import "../portfolio/InitialPortfolioSubContainer/styles.scss";
+@import "../portfolio/OwnedStockSpec/styles.scss";
 
 body {
   margin: 0;

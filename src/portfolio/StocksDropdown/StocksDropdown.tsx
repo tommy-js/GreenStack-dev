@@ -1,5 +1,6 @@
 import React from "react";
-import { IndividualStockDropdownExp } from "../IndividualStockDropdown/IndividualStockDropdown";
+import { IndividualWatchlistStockDropdownExp } from "../IndividualWatchlistStockDropdown/IndividualWatchlistStockDropdown";
+import { IndividualOwnedStockDropdown } from "../IndividualOwnedStockDropdown/IndividualOwnedStockDropdown";
 
 type Stocks = {
   country: string;
@@ -16,11 +17,25 @@ interface Props {
   stocks: Stocks[];
 }
 
-export const StocksDropdown: React.FC<Props> = (props) => {
+export const WatchlistStocksDropdown: React.FC<Props> = (props) => {
   return (
     <div>
       {props.stocks.map((el: Stocks) => (
-        <IndividualStockDropdownExp
+        <IndividualWatchlistStockDropdownExp
+          stockId={el.stockId}
+          title={el.title}
+          ticker={el.ticker}
+        />
+      ))}
+    </div>
+  );
+};
+
+export const OwnedStocksDropdown: React.FC<Props> = (props) => {
+  return (
+    <div>
+      {props.stocks.map((el: Stocks) => (
+        <IndividualOwnedStockDropdown
           stockId={el.stockId}
           title={el.title}
           ticker={el.ticker}

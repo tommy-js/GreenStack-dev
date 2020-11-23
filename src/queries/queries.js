@@ -296,6 +296,14 @@ const pushCommentStockMutation = gql`
   }
 `;
 
+const pushStockToUserMutation = gql`
+  mutation($token: String!, $stockId: ID!, $shares: Int!) {
+    pushStockToUser(token: $token, stockId: $stockId, shares: $shares) {
+      username
+    }
+  }
+`;
+
 const pushCommentTradeMutation = gql`
   mutation($token: String!, $text: String!, $stockId: ID!) {
     pushCommentTrade(token: $token, text: $text, stockId: $stockId) {
@@ -1214,6 +1222,7 @@ export {
   pushCommentPostMutation,
   pushCommentTutorialMutation,
   pushCommentStockMutation,
+  pushStockToUserMutation,
   deleteCommentStockMutation,
   updateUserSettingsMutation,
   pushFollowerToUserMutation,
