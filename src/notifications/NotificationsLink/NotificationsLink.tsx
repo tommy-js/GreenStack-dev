@@ -6,7 +6,7 @@ interface Props {
   changeTab: (tab: number) => void;
 }
 
-const NotificationsLink: React.FC<Props> = (props) => {
+export const NotificationsLink: React.FC<Props> = (props) => {
   return (
     <div
       className="notifications_link"
@@ -16,5 +16,3 @@ const NotificationsLink: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default NotificationsLink;

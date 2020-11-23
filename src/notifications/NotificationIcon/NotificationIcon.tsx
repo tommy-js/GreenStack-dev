@@ -1,8 +1,8 @@
 import React, { useEffect, useContext, useState } from "react";
-import NotificationButton from "./NotificationButton";
-import Notification from "./Notification";
+import { NotificationButton } from "../NotificationButton/NotificationButton";
+import { Notification } from "../Notification/Notification";
 import { connect } from "react-redux";
-import { mapStateToProps } from "../actions/actions";
+import { mapStateToProps } from "../../actions/actions";
 
 interface Redux {
   notifications: any;
@@ -14,9 +14,8 @@ interface Props extends Redux {
   modDisplay: () => void;
 }
 
-const NotificationIcon: React.FC<Props> = (props) => {
+const NotifIcon: React.FC<Props> = (props) => {
   const [notifyNew, setNotifyNew] = useState(false);
-  const [opened, setOpened] = useState(false);
 
   // new code
 
@@ -55,4 +54,4 @@ const NotificationIcon: React.FC<Props> = (props) => {
   );
 };
 
-export default connect(mapStateToProps)(NotificationIcon);
+export const NotificationIcon = connect(mapStateToProps)(NotifIcon);

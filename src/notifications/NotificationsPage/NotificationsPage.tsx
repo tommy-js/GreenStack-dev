@@ -1,14 +1,15 @@
 import React from "react";
-import Notif from "./Notif";
-import NavBar from "../navigation/NavBar";
-import { mapStateToProps } from "../actions/actions";
+import { Notif } from "../Notif/Notif";
+import { NavBar } from "../../navigation/NavBar";
+import { mapStateToProps } from "../../actions/actions";
 import { connect } from "react-redux";
+import { NotificationItem } from "../../types/types";
 
 interface Redux {
-  notifications: any;
+  notifications: NotificationItem[];
 }
 
-const NotificationsPage: React.FC<Redux> = ({ notifications }) => {
+const NotifPage: React.FC<Redux> = ({ notifications }) => {
   return (
     <div>
       <NavBar />
@@ -22,4 +23,4 @@ const NotificationsPage: React.FC<Redux> = ({ notifications }) => {
   );
 };
 
-export default connect(mapStateToProps)(NotificationsPage);
+export const NotificationsPage = connect(mapStateToProps)(NotifPage);

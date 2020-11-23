@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
-import ProfileImage from "./ProfileImage";
-import NewNotification from "./NewNotification";
+import { ProfileImage } from "../ProfileImage/ProfileImage";
+import { NewNotification } from "../NewNotification/NewNotification";
 
 interface Props {
   notifyNew: boolean;
   triggerDropdown: () => void;
 }
 
-const NotificationButton: React.FC<Props> = (props) => {
-  const [bcc, setBcc] = useState("orange");
-
+export const NotificationButton: React.FC<Props> = (props) => {
   return (
     <div id="trigger_icon" onClick={() => props.triggerDropdown()}>
       <ProfileImage />
@@ -17,5 +15,3 @@ const NotificationButton: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default NotificationButton;

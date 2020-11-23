@@ -1,7 +1,7 @@
 import React from "react";
 import history from "../images/nothing_found.png";
 
-const VoidAlert: React.FC = () => {
+export const VoidAlert: React.FC = () => {
   return (
     <div>
       <h3 id="void_text">Nothing found!</h3>
@@ -11,5 +11,3 @@ const VoidAlert: React.FC = () => {
     </div>
   );
 };
-
-export default VoidAlert;

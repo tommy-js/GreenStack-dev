@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { NotifLink, NotifData } from "./NotificationsContainer";
+import { NotifLink } from "../NotificationsLink/NotificationsLink";
+import { NotifData } from "../NotificationsData/NotificationsData";
 
 interface Props {
   modNotificationColor: (notifArr: object[]) => void;
   zeroTabOut: boolean;
 }
 
-const NotificationsMenu: React.FC<Props> = (props) => {
+export const NotificationsMenu: React.FC<Props> = (props) => {
   const [tab, setTab] = useState(0);
 
   useEffect(() => {
@@ -38,5 +39,3 @@ const NotificationsMenu: React.FC<Props> = (props) => {
   }
   return <div>{tabDisplay()}</div>;
 };
-
-export default NotificationsMenu;

@@ -1,12 +1,12 @@
 import React from "react";
-import NotificationsMenu from "./NotificationsMenu";
+import { NotificationsMenu } from "../NotificationsMenu/NotificationsMenu";
 
 interface Props {
   zeroTabOut: boolean;
   modNotificationColor: (notifArr: object[]) => void;
 }
 
-const Notification: React.FC<Props> = (props) => {
+export const Notification: React.FC<Props> = (props) => {
   return (
     <div className="notification">
       <NotificationsMenu
@@ -16,5 +16,3 @@ const Notification: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default Notification;

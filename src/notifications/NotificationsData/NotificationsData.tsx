@@ -1,57 +1,30 @@
 import React, { useState, useEffect } from "react";
-import NotificationsLink from "./NotificationsLink";
-import NotificationsElement from "./NotificationsElement";
-import HistoryElement from "./HistoryElement";
-import DarkMode from "../resolvers/DarkMode";
-import Private from "../resolvers/Private";
-import AllowComments from "../resolvers/AllowComments";
-import VoidAlert from "./VoidAlert";
-import NotificationsHeader from "./NotificationsHeader";
-import NotificationsPortfolioValue from "./NotificationsPortfolioValue";
+import { NotificationsElement } from "../NotificationsElement/NotificationsElement";
+import { MutateUserSettings } from "../MutateUserSettings/MutateUserSettings";
+import VoidAlert from "../VoidAlert/VoidAlert";
 import { connect } from "react-redux";
-import { mapStateToProps, mapDispatchToProps } from "../actions/actions";
+import { mapStateToProps, mapDispatchToProps } from "../../actions/actions";
+import { NotificationItem } from "../../types/types";
 
 interface Redux {
-  history: any;
   userId: string;
-  invisible: any;
-  allowCommentsOnPosts: any;
-  darkmode: any;
-  notifications: any;
-  onDarkmodeSet: (darkmode: any) => void;
-  onInvisibleSet: (invisible: any) => void;
-  onAllowCommentsSet: (allowCommentsOnPosts: any) => void;
+  invisible: boolean;
+  allowCommentsOnPosts: boolean;
+  darkmode: boolean;
+  notifications: NotificationItem[];
+  onDarkmodeSet: (darkmode: boolean) => void;
+  onInvisibleSet: (invisible: boolean) => void;
+  onAllowCommentsSet: (allowCommentsOnPosts: boolean) => void;
 }
 
-interface Data extends Redux {
+interface Props extends Redux {
   tab: number;
   changeTab: (tab: number) => void;
   modNotificationColor: (notifArr: object[]) => void;
 }
 
-interface LocalLink {
-  changeTab: (tab: number) => void;
-}
-
-const NotificationsLinkContainer: React.FC<LocalLink> = (props) => {
-  return (
-    <div>
-      <NotificationsHeader />
-      <NotificationsPortfolioValue />
-      <NotificationsLink
-        title="Notifications"
-        tab={1}
-        changeTab={props.changeTab}
-      />
-      <NotificationsLink title="History" tab={2} changeTab={props.changeTab} />
-      <NotificationsLink title="Settings" tab={3} changeTab={props.changeTab} />
-    </div>
-  );
-};
-
-const NotificationsDataContainer: React.FC<Data> = (props) => {
+const NotificationsDataContainer: React.FC<Props> = (props) => {
   const [notifications, setNotifications] = useState(props.notifications);
-  // const [history, setHistory] = useState(props.history);
 
   function modNotifs(id: number) {
     let notifArr = props.notifications;
@@ -104,27 +77,28 @@ const NotificationsDataContainer: React.FC<Data> = (props) => {
   }
 
   function returnEmptyHistory() {
-    if (props.history.length < 1) {
-      return (
-        <div>
-          <button onClick={() => props.changeTab(0)}>back</button>
-          <VoidAlert />
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <button onClick={() => props.changeTab(0)}>back</button>
-          {props.history.map((el: any) => (
-            <HistoryElement
-              text={el.text}
-              style={el.style}
-              timestamp={el.timestamp}
-            />
-          ))}
-        </div>
-      );
-    }
+    // if (props.history.length < 1) {
+    //   return (
+    //     <div>
+    //       <button onClick={() => props.changeTab(0)}>back</button>
+    //       <VoidAlert />
+    //     </div>
+    //   );
+    // } else {
+    //   return (
+    //     <div>
+    //       <button onClick={() => props.changeTab(0)}>back</button>
+    //       {props.history.map((el: any) => (
+    //         <HistoryElement
+    //           text={el.text}
+    //           style={el.style}
+    //           timestamp={el.timestamp}
+    //         />
+    //       ))}
+    //     </div>
+    //   );
+    // }
+    return null;
   }
 
   useEffect(() => {
@@ -140,9 +114,11 @@ const NotificationsDataContainer: React.FC<Data> = (props) => {
       return (
         <div>
           <button onClick={() => props.changeTab(0)}>back</button>
-          <DarkMode modDarkMode={modDarkMode} darkmode={props.darkmode} />
-          <Private modPrivate={modPrivate} invisible={props.invisible} />
-          <AllowComments
+          <MutateUserSettings
+            modDarkMode={modDarkMode}
+            darkmode={props.darkmode}
+            modPrivate={modPrivate}
+            invisible={props.invisible}
             modAllowComments={modAllowComments}
             allowCommentsOnPosts={props.allowCommentsOnPosts}
           />
@@ -154,7 +130,6 @@ const NotificationsDataContainer: React.FC<Data> = (props) => {
   return <div>{checkTab()}</div>;
 };
 
-export const NotifLink = connect(mapStateToProps)(NotificationsLinkContainer);
 export const NotifData = connect(
   mapStateToProps,
   mapDispatchToProps

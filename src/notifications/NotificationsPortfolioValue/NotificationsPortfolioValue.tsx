@@ -7,7 +7,7 @@ interface Redux {
   money: number;
 }
 
-const NotificationsPortfolioValue: React.FC<Redux> = (props) => {
+const NotifPortfolioValue: React.FC<Redux> = (props) => {
   return (
     <div className="notifications_link">
       <Link className="no_style" to="/portfolio">
@@ -17,4 +17,6 @@ const NotificationsPortfolioValue: React.FC<Redux> = (props) => {
   );
 };
 
-export default connect(mapStateToProps)(NotificationsPortfolioValue);
+export const NotificationsPortfolioValue = connect(mapStateToProps)(
+  NotifPortfolioValue
+);

@@ -1,13 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { mapStateToProps } from "../actions/actions";
+import { mapStateToProps } from "../../actions/actions";
 import { Link } from "react-router-dom";
 
 interface Redux {
   username: string;
 }
 
-const NotificationsHeader: React.FC<Redux> = (props) => {
+const NotificationsHead: React.FC<Redux> = (props) => {
   return (
     <div className="notifications_link">
       <Link className="no_style" to="/home/profile">
@@ -17,4 +17,4 @@ const NotificationsHeader: React.FC<Redux> = (props) => {
   );
 };
 
-export default connect(mapStateToProps)(NotificationsHeader);
+export const NotificationsHeader = connect(mapStateToProps)(NotificationsHead);
