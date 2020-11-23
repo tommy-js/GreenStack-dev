@@ -1,0 +1,27 @@
+.blank_input_block {
+  position: relative;
+  width: 50%;
+  min-width: 250px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.blank_question {
+  margin: 5px;
+  font-size: 16px;
+}
+
+.blank_input {
+  margin: 5px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: 16px;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.blank_input:focus {
+  outline: none;
+}

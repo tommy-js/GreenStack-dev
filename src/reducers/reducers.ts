@@ -24,9 +24,6 @@ const userReducer = (state: any, action: any) => {
   if (action.type == "SET_INITIAL_POSTS") {
     newState.posts = action.payload;
   }
-  if (action.type == "SET_INITIAL_TRADES") {
-    newState.trades = action.payload;
-  }
   if (action.type == "SET_INITIAL_COMMENTS") {
     newState.comments = action.payload;
   }

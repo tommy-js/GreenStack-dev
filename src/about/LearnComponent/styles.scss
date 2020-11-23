@@ -1,0 +1,41 @@
+.learn_component_link {
+  color: black;
+}
+
+#learn_individual_div {
+  border-bottom: 1px dashed transparent;
+  font-family: $standard_font;
+  transition: 0.3s;
+}
+
+#learn_individual_div:hover {
+  border-bottom: 1px dashed grey;
+  transition: 0.3s;
+}
+
+#learn_link {
+  position: relative;
+  display: inline-block;
+}
+
+#learn_individual_progress_div {
+  position: relative;
+  top: 0;
+  float: right;
+  display: inline-block;
+  height: 100%;
+  width: 200px;
+}
+
+.progress_percent {
+  text-align: right;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.render_learn_flare {
+  text-align: right;
+  box-sizing: border-box;
+  margin: 0;
+  transition: 0.2s;
+}

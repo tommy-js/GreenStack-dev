@@ -168,3 +168,32 @@ export type FeedItem = {
     }
   ];
 };
+
+export type UserRoute = {
+  username: string;
+  userId: string;
+  bio: string;
+  profileImage: string;
+};
+
+export type CommentItem = {
+  userId: string;
+  commentId: string;
+  username: string;
+  timestamp: number;
+  text: string;
+  likes: number;
+  dislikes: number;
+  subComments: [
+    {
+      userId: string;
+      commentId: string;
+      username: string;
+      timestamp: number;
+      text: string;
+      likes: number;
+      dislikes: number;
+      parentCommentId: string;
+    }
+  ];
+};

@@ -1,0 +1,22 @@
+#learn_state {
+  width: 67%;
+  display: inline-block;
+  box-sizing: border-box;
+  float: right;
+  // @include testing;
+}
+
+#learn_component {
+  position: relative;
+  margin-bottom: 100px;
+  width: 75%;
+  // @include testing;
+}
+
+#learn_sidebar_container {
+  width: 25%;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: top;
+  // @include testing;
+}

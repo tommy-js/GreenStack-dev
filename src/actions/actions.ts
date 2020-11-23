@@ -1,3 +1,15 @@
+import {
+  WatchListItem,
+  StockItem,
+  UserCommentItem,
+  PostItem,
+  FollowerItem,
+  FollowingItem,
+  NotificationItem,
+  ProgressItem,
+  FeedItem,
+} from "../types/types";
+
 export const mapStateToProps = (state: any) => {
   return {
     username: state.username,
@@ -12,7 +24,6 @@ export const mapStateToProps = (state: any) => {
     stocks: state.stocks,
     posts: state.posts,
     progressElements: state.progressElements,
-    trades: state.trades,
     followers: state.followers,
     following: state.following,
     notifications: state.notifications,
@@ -27,39 +38,6 @@ export const mapStateToProps = (state: any) => {
     feed: state.feed,
     history: state.history,
     userRoutes: state.userRoutes,
-  };
-};
-
-type WatchListItem = {
-  stockId: string;
-  title: string;
-  ticker: string;
-  timestamp: number;
-};
-
-type StockItem = {
-  stockId: string;
-  title: string;
-  shares: number;
-  color: string;
-  ticker: string;
-};
-
-type UserComments = {
-  userId: string;
-  username: string;
-  timestamp: number;
-  commentId: string;
-  profileImage: string;
-  text: string;
-  likes: number;
-  dislikes: number;
-  referenceId: string;
-  reference: {
-    postId: string;
-    text: string;
-    username: string;
-    profileImage: string;
   };
 };
 
@@ -78,24 +56,22 @@ export const mapDispatchToProps = (dispatch: any) => {
       dispatch({ type: "SET_NEW_PORTFOLIO", payload: newPortfolio }),
     onWatchlistSet: (watchlist: WatchListItem[]) =>
       dispatch({ type: "SET_INITIAL_WATCHLIST", payload: watchlist }),
-    onInitialPostsSet: (posts: any) =>
+    onInitialPostsSet: (posts: PostItem[]) =>
       dispatch({ type: "SET_INITIAL_POSTS", payload: posts }),
-    onInitialTradeSet: (trades: any) =>
-      dispatch({ type: "SET_INITIAL_TRADES", payload: trades }),
-    onInitialFollowerSet: (followers: any) =>
+    onInitialFollowerSet: (followers: FollowerItem[]) =>
       dispatch({ type: "SET_INITIAL_FOLLOWERS", payload: followers }),
-    onInitialFollowingSet: (following: any) =>
+    onInitialFollowingSet: (following: FollowingItem[]) =>
       dispatch({ type: "SET_INITIAL_FOLLOWING", payload: following }),
-    onInitialNotificationsSet: (notifications: any) =>
+    onInitialNotificationsSet: (notifications: NotificationItem[]) =>
       dispatch({ type: "SET_INITIAL_NOTIFICATIONS", payload: notifications }),
-    onInitialProgressSet: (progress: any) =>
+    onInitialProgressSet: (progress: ProgressItem[]) =>
       dispatch({ type: "SET_INITIAL_PROGRESS", payload: progress }),
     onInitialProgressElementsSet: (progressElements: any) =>
       dispatch({
         type: "SET_INITIAL_PROGRESS_ELEMENTS",
         payload: progressElements,
       }),
-    onInitialCommentsSet: (comments: UserComments) =>
+    onInitialCommentsSet: (comments: UserCommentItem[]) =>
       dispatch({ type: "SET_INITIAL_COMMENTS", payload: comments }),
     onDarkmodeSet: (darkmode: boolean) =>
       dispatch({ type: "SET_DARKMODE", payload: darkmode }),
@@ -108,7 +84,7 @@ export const mapDispatchToProps = (dispatch: any) => {
       }),
     onStocksSet: (stocks: StockItem[]) =>
       dispatch({ type: "SET_STOCKS", payload: stocks }),
-    onProfileImageSet: (profileImage: any) =>
+    onProfileImageSet: (profileImage: string) =>
       dispatch({ type: "SET_PROFILE_IMAGE", payload: profileImage }),
     oneOneDaySet: (day: any) => dispatch({ type: "SET_DAY", payload: day }),
     onOneWeekSet: (week: any) => dispatch({ type: "SET_WEEK", payload: week }),
@@ -117,9 +93,8 @@ export const mapDispatchToProps = (dispatch: any) => {
     onOneYearSet: (year: any) => dispatch({ type: "SET_YEAR", payload: year }),
     onCurrentPricesSet: (currentPrices: any) =>
       dispatch({ type: "SET_CURRENT_PRICES", payload: currentPrices }),
-    onFeedSet: (feed: any) => dispatch({ type: "SET_FEED", payload: feed }),
-    onHistorySet: (history: any) =>
-      dispatch({ type: "SET_HISTORY", payload: history }),
+    onFeedSet: (feed: FeedItem[]) =>
+      dispatch({ type: "SET_FEED", payload: feed }),
     onUserRouteSet: (userRoutes: any) =>
       dispatch({ type: "SET_USER_ROUTES", payload: userRoutes }),
   };

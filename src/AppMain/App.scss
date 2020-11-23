@@ -18,6 +18,19 @@
 @import "../portfolio/PortfolioHeader/styles.scss";
 @import "../portfolio/InitialPortfolioSubContainer/styles.scss";
 @import "../portfolio/OwnedStockSpec/styles.scss";
+@import "../about/AboutPage/styles.scss";
+@import "../about/AboutUs/styles.scss";
+@import "../about/BlanksInput/styles.scss";
+@import "../about/Box/styles.scss";
+@import "../about/CommentSection/styles.scss";
+@import "../about/CommentSectionInput/styles.scss";
+@import "../about/Footer/styles.scss";
+@import "../about/IndividualComment/styles.scss";
+@import "../about/CorrectIcon/styles.scss";
+@import "../about/IncorrectIcon/styles.scss";
+@import "../about/Blanks/styles.scss";
+@import "../about/Learn/styles.scss";
+@import "../about/LearnComponent/styles.scss";
 
 body {
   margin: 0;
@@ -548,20 +561,6 @@ body {
 .element_username:hover {
   color: teal;
   transition: 0.3s;
-}
-
-.render_loading {
-  position: absolute;
-  top: -50px;
-  height: 100vh;
-  width: 100vw;
-  background-color: green;
-}
-
-.drop_loading_block {
-  position: relative;
-  width: 100%;
-  top: 20%;
 }
 
 #trade_overlay {
