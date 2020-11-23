@@ -22,15 +22,6 @@ const userSchema = new Schema({
   commentary: Number,
   allowCommentsOnPosts: Boolean,
   profileImage: String,
-  history: [
-    {
-      text: String,
-      id: String,
-      style: String,
-      timestamp: Number,
-      postId: String,
-    },
-  ],
   posts: [
     {
       userId: String,

@@ -34,14 +34,6 @@ const pushCommentNestMutation = gql`
   }
 `;
 
-const updateHistoryMutation = gql`
-  mutation($token: String!, $text: String!, $type: String!) {
-    pushToHistory(token: $token, text: $text, type: $type) {
-      username
-    }
-  }
-`;
-
 const updateUserProgressMutation = gql`
   mutation($id: ID!, $specId: ID!, $increment: Int!) {
     updateUserProgress(id: $id, specId: $specId, increment: $increment) {
@@ -413,7 +405,6 @@ const postMutation = gql`
     $text: String!
     $postImage: String!
     $style: String!
-    $historyText: String!
     $accompaniedURL: String!
     $allowComments: Boolean!
     $allowLikes: Boolean!
@@ -428,9 +419,6 @@ const postMutation = gql`
       allowComments: $allowComments
       allowLikes: $allowLikes
     ) {
-      username
-    }
-    pushToHistory(token: $token, text: $historyText, style: $style) {
       username
     }
     pushMultiUserNotifications(taggedUsers: $taggedUsers, text: $text) {
@@ -450,9 +438,6 @@ const dislikeStockMutation = gql`
     dislikeStock(commentId: $commentId, dislikes: $dislikes) {
       stockId
     }
-    pushToHistory(token: $token, text: $text, style: $style) {
-      username
-    }
   }
 `;
 
@@ -466,9 +451,6 @@ const likeStockMutation = gql`
   ) {
     likeStock(commentId: $commentId, likes: $likes) {
       stockId
-    }
-    pushToHistory(token: $token, text: $text, style: $style) {
-      username
     }
   }
 `;
@@ -654,12 +636,6 @@ const otherUserQuery = gql`
       money
       membership
       profileImage
-      history {
-        text
-        id
-        style
-        timestamp
-      }
       following {
         userId
         username
@@ -747,12 +723,6 @@ const nonTokenModifyUserQuery = gql`
       allowCommentsOnPosts
       profileImage
       token
-      history {
-        text
-        id
-        style
-        timestamp
-      }
       following {
         userId
         username
@@ -878,12 +848,6 @@ const userQuery = gql`
       allowCommentsOnPosts
       profileImage
       token
-      history {
-        text
-        id
-        style
-        timestamp
-      }
       following {
         userId
         username
@@ -1205,7 +1169,6 @@ const tutorialQuery = gql`
 export {
   createUserMutation,
   pushCommentNestMutation,
-  updateHistoryMutation,
   updateDarkModeMutation,
   updateAllowCommentsMutation,
   updateUserProfileImageMutation,
