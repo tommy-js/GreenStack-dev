@@ -6,8 +6,6 @@ interface Props {
   username: string;
   text: string;
   timestamp: number;
-  predictedPrice?: number;
-  recommendation?: string;
   commentId: string;
   likes: number;
   dislikes: number;

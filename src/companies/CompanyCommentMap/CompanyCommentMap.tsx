@@ -1,22 +1,21 @@
 import React from "react";
-import StockComment from "./StockComment";
+import { StockComment } from "../StockComment/StockComment";
+import { CommentItem } from "../../types/types";
 
 interface Props {
-  comments: any;
+  comments: CommentItem[];
 }
 
-const CompanyCommentMap: React.FC<Props> = (props) => {
+export const CompanyCommentMap: React.FC<Props> = (props) => {
   function returnComments() {
     if (props.comments) {
       return (
         <div>
-          {props.comments.map((el: any) => (
+          {props.comments.map((el: CommentItem) => (
             <StockComment
               username={el.username}
               text={el.text}
               commentId={el.commentId}
-              predictedPrice={el.predictedPrice}
-              recommendation={el.recommendation}
               timestamp={el.timestamp}
               likes={el.likes}
               dislikes={el.dislikes}
@@ -25,15 +24,9 @@ const CompanyCommentMap: React.FC<Props> = (props) => {
         </div>
       );
     } else {
-      return (
-        <div>
-          <h2>Nothing Here!</h2>
-        </div>
-      );
+      return <h2>Nothing Here!</h2>;
     }
   }
 
   return <div>{returnComments()}</div>;
 };
-
-export default CompanyCommentMap;

@@ -15,15 +15,11 @@ const CompanyGraph = ({ title, ticker }) => {
   });
 
   useEffect(() => {
-    if (data) {
-      setPoints(data.requestData[0].elements);
-    }
+    if (data) setPoints(data.requestData[0].elements);
   }, [data]);
 
   useEffect(() => {
-    if (points && points.length > 0) {
-      renderEl();
-    }
+    if (points && points.length > 0) renderEl();
   }, [points]);
 
   function renderEl() {

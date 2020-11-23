@@ -5,7 +5,7 @@ interface Props {
   description: string;
 }
 
-const CompanyDescription: React.FC<Props> = (props) => {
+export const CompanyDescription: React.FC<Props> = (props) => {
   return (
     <div id="company_description_block">
       <h2>About {props.title}</h2>
@@ -13,5 +13,3 @@ const CompanyDescription: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default CompanyDescription;
