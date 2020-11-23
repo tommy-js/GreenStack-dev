@@ -1,0 +1,70 @@
+.ticker_container {
+  position: relative;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  display: inline-block;
+  box-sizing: border-box;
+  height: 90px;
+  width: 90px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ticker_id {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  margin-bottom: 0;
+  text-align: center;
+  opacity: 0;
+  transition: 0.3s;
+  @include noselect;
+}
+
+.ticker_container:hover .ticker_id {
+  opacity: 1;
+  transition: 0.3s;
+}
+
+.small_image_container {
+  position: absolute;
+  top: 0;
+  width: 85%;
+  height: 85%;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+.ticker_container:hover .small_image_container {
+  width: 75%;
+  height: 75%;
+  transition: 0.3s;
+}
+
+.initial_login_image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.small_color_img {
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.initial_login_image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}

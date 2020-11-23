@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { PageOne, PageTwo, PageThree } from "./RenderPages";
+import { PageOne, PageTwo, PageThree } from "../RenderPages/RenderPages";
 
 interface Props {
   submit: () => void;
 }
 
-const NewAccountRender: React.FC<Props> = (props) => {
+export const NewAccountRender: React.FC<Props> = (props) => {
   const [currentPage, setCurrentPage] = useState(0);
 
   function nextPage(id: number) {
@@ -45,5 +45,3 @@ const NewAccountRender: React.FC<Props> = (props) => {
 
   return <div id="render_questions_page">{renderCurrentPage()}</div>;
 };
-
-export default NewAccountRender;

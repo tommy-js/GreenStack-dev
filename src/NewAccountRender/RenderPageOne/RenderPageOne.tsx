@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from "react";
-import TickerList from "./TickerList";
-import FollowerCheck from "./FollowerCheck";
-import UserQuestion from "./UserQuestion";
-import RenderPageButtonStateSave from "../resolvers/RenderPageButtonStateSave";
-import SubmitFinalNewRenderPage from "../resolvers/SubmitFinalNewRenderPage";
+import { UserQuestion } from "../UserQuestion/UserQuestion";
+import { graphql } from "react-apollo";
+import { flowRight as compose } from "lodash";
+import { saveSettingsMutation } from "../../queries/queries.js";
 
 interface Props {
   id: number;
   nextPage: (id: number) => void;
   backPage: (id: number) => void;
+  saveSettingsMutation: (variables: object) => any;
 }
 
-interface Submission extends Props {
-  submit: () => void;
-}
-
-export const PageOne: React.FC<Props> = (props) => {
+const RenderPageOne: React.FC<Props> = (props) => {
   const [selectedState, setSelectedState] = useState({
     experience: 0,
     education: 0,
@@ -70,8 +66,20 @@ export const PageOne: React.FC<Props> = (props) => {
     console.log(selectedState);
   }, [selectedState]);
 
-  function renderNextPage() {
-    props.nextPage(props.id);
+  function save() {
+    props
+      .saveSettingsMutation({
+        variables: {
+          token: sessionStorage.getItem("Token"),
+          experience: selectedState.experience,
+          education: selectedState.education,
+          motivations: selectedState.motivations,
+        },
+      })
+      .catch((err: any) => console.log(err))
+      .then((res: any) => {
+        console.log(res);
+      });
   }
 
   return (
@@ -98,32 +106,7 @@ export const PageOne: React.FC<Props> = (props) => {
         options={option3}
       />
       <div className="render_pages_button_container">
-        <RenderPageButtonStateSave
-          text="Next"
-          renderNextPage={renderNextPage}
-          selectedState={selectedState}
-        />
-      </div>
-    </div>
-  );
-};
-
-export const PageTwo: React.FC<Props> = (props) => {
-  return (
-    <div>
-      <p className="user_init_questions">Which stocks here interest you?</p>
-      <TickerList />
-      <div className="render_pages_button_container">
-        <button
-          className="render_button_left"
-          onClick={() => props.backPage(props.id)}
-        >
-          Back
-        </button>
-        <button
-          className="render_button_right"
-          onClick={() => props.nextPage(props.id)}
-        >
+        <button className="render_button_right" onClick={() => save()}>
           Next
         </button>
       </div>
@@ -131,32 +114,6 @@ export const PageTwo: React.FC<Props> = (props) => {
   );
 };
 
-export const PageThree: React.FC<Submission> = (props) => {
-  const [index, setIndex] = useState(0);
-
-  function setCurrentIndex(index: number) {
-    setIndex(index);
-  }
-
-  return (
-    <div>
-      <p className="user_init_questions">
-        What kind of commentary are you looking for from those you follow?
-      </p>
-      <FollowerCheck setCurrentIndex={setCurrentIndex} />
-      <div className="render_pages_button_container">
-        <button
-          className="render_button_left"
-          onClick={() => props.backPage(props.id)}
-        >
-          Back
-        </button>
-        <SubmitFinalNewRenderPage
-          text="Submit"
-          index={index}
-          submit={props.submit}
-        />
-      </div>
-    </div>
-  );
-};
+export const RenderPageOneExp = compose(
+  graphql(saveSettingsMutation, { name: "saveSettingsMutation" })
+)(RenderPageOne);

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { returnDate } from "../notifications/notificationsTimestamp";
+import { returnDate } from "./index";
 import page from "../images/post_img.png";
 import like from "../images/like.png";
 import dislike from "../images/dislike.png";
@@ -11,15 +11,15 @@ interface Hist {
   timestamp: number;
 }
 
-const HistoryElement: React.FC<Hist> = (props) => {
+export const HistoryElement: React.FC<Hist> = (props) => {
   function returnImg() {
-    if (props.style === "Post") {
+    if (props.style === "Post")
       return <img className="history_img" src={page} />;
-    } else if (props.style === "Like") {
+    else if (props.style === "Like")
       return <img className="history_img" src={like} />;
-    } else if (props.style === "Dislike") {
+    else if (props.style === "Dislike")
       return <img className="history_img" src={dislike} />;
-    } else return null;
+    else return null;
   }
 
   return (
@@ -34,5 +34,3 @@ const HistoryElement: React.FC<Hist> = (props) => {
     </Link>
   );
 };
-
-export default HistoryElement;

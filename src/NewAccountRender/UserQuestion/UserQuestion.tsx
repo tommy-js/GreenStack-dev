@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 interface Props {
   question: string;
@@ -10,7 +10,7 @@ interface Props {
   modSelected: (id: number, index: number) => void;
 }
 
-const UserQuestion: React.FC<Props> = (props) => {
+export const UserQuestion: React.FC<Props> = (props) => {
   const [val, setVal] = useState("");
 
   function changeSelected(e: any) {
@@ -30,5 +30,3 @@ const UserQuestion: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default UserQuestion;

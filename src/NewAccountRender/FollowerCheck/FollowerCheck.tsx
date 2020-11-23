@@ -1,11 +1,19 @@
 import React, { useState } from "react";
-import Check from "./Check";
+import { Check } from "../Check/Check";
+
+type FollowerCheckItem = {
+  name: string;
+  text: string;
+  classification: string;
+  selected: boolean;
+  index: number;
+};
 
 interface Props {
   setCurrentIndex: (index: number) => void;
 }
 
-const FollowerCheck: React.FC<Props> = (props) => {
+export const FollowerCheck: React.FC<Props> = (props) => {
   const [followers, setFollowers] = useState([
     {
       name: "Tommy",
@@ -35,7 +43,7 @@ const FollowerCheck: React.FC<Props> = (props) => {
   function modIndex(index: number) {
     let obj = followers[index];
     let follow = [...followers];
-    follow.map((el: any) => (el.selected = false));
+    follow.map((el: FollowerCheckItem) => (el.selected = false));
     obj = {
       ...followers[index],
       selected: true,
@@ -47,7 +55,7 @@ const FollowerCheck: React.FC<Props> = (props) => {
 
   return (
     <div>
-      {followers.map((el: any) => (
+      {followers.map((el: FollowerCheckItem) => (
         <Check
           key={el.index}
           name={el.name}
@@ -61,5 +69,3 @@ const FollowerCheck: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default FollowerCheck;

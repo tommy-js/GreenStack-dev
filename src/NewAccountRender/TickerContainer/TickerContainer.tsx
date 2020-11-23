@@ -2,11 +2,11 @@ import React from "react";
 
 interface Props {
   ticker: string;
-  image: any;
-  colorImg: any;
+  image: string;
+  colorImg: string;
 }
 
-const TickerContainer: React.FC<Props> = (props) => {
+export const TickerContainer: React.FC<Props> = (props) => {
   return (
     <div className="ticker_container">
       <p className="ticker_id">{props.ticker}</p>
@@ -20,5 +20,3 @@ const TickerContainer: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default TickerContainer;

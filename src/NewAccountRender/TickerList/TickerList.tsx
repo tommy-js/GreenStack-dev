@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TickerContainer from "./TickerContainer";
+import { TickerContainer } from "../TickerContainer/TickerContainer";
 import apple from "../images/apple_logo.png";
 import apple_color from "../images/apple_logo_color.png";
 import microsoft from "../images/windows_logo.png";
@@ -33,7 +33,7 @@ import netflix_color from "../images/netflix_logo_color.png";
 import dropbox from "../images/dropbox_logo.png";
 import dropbox_color from "../images/dropbox_logo_color.png";
 
-const TickerList: React.FC = () => {
+export const TickerList: React.FC = () => {
   const tickers = [
     {
       ticker: "AAPL",
@@ -129,5 +129,3 @@ const TickerList: React.FC = () => {
     </div>
   );
 };
-
-export default TickerList;

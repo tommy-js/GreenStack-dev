@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import NotificationIcon from "../navigation/NotificationIcon";
+import { NotificationIcon } from "../../notifications/NotificationIcon/NotificationIcon";
 import home from "../images/main_icon.png";
 import portfolio from "../images/portfolio_icon.png";
 import tutorial from "../images/tutorial_icon.png";
 
-const NavBar: React.FC = () => {
+export const NavBar: React.FC = () => {
   const [triggerDisplay, setTriggerDisplay] = useState("none");
   const [zeroTabOut, setZeroTabOut] = useState(false);
 
   function modDisplay() {
-    if (triggerDisplay === "none") {
-      setTriggerDisplay("block");
-    } else if (triggerDisplay === "block") {
+    if (triggerDisplay === "none") setTriggerDisplay("block");
+    else if (triggerDisplay === "block") {
       setTriggerDisplay("none");
       setZeroTabOut(!zeroTabOut);
     }
@@ -55,5 +54,3 @@ const NavBar: React.FC = () => {
     </div>
   );
 };
-
-export default NavBar;

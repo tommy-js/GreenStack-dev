@@ -9,16 +9,13 @@ interface Props {
   modIndex: (index: number) => void;
 }
 
-const Check: React.FC<Props> = (props) => {
+export const Check: React.FC<Props> = (props) => {
   const [selectedBcc, setSelectedBcc] = useState("transparent");
 
   useEffect(() => {
     console.log(props.selected);
-    if (props.selected === true) {
-      setSelectedBcc("teal");
-    } else {
-      setSelectedBcc("transparent");
-    }
+    if (props.selected === true) setSelectedBcc("teal");
+    else setSelectedBcc("transparent");
   }, [props.selected]);
 
   function selectedItem() {
@@ -43,5 +40,3 @@ const Check: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default Check;
