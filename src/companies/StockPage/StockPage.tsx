@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
-import CompanyInformationBlock from "./CompanyInformationBlock";
-import CompanyNewsBlock from "./CompanyNewsBlock.js";
-import CompanyComments from "./CompanyComments";
-import TradeBlock from "./TradeBlock";
-import CompanyGraph from "./CompanyGraph.jsx";
-import CompanyDescription from "./CompanyDescription";
-import { statusContext } from "../AppMain/App";
-import { browserHist } from "../AppMain/history";
+import { CompanyInformationBlock } from "../CompanyInformationBlock/CompanyInformationBlock";
+import { CompanyNewsBlock } from "../CompanyNewsBlock/CompanyNewsBlock.js";
+import { CompanyCommentsExp } from "../CompanyComments/CompanyComments";
+import { CompanyOptions } from "../CompanyOptions/CompanyOptions";
+import { CompanyGraph } from "../CompanyGraph/CompanyGraph.jsx";
+import { CompanyDescription } from "../CompanyDescription/CompanyDescription";
+import { statusContext } from "../../AppMain/App";
+import { browserHist } from "../../AppMain/history";
 
 interface Props {
   title: string;
@@ -16,8 +16,8 @@ interface Props {
   price: number;
 }
 
-const StockPage: React.FC<Props> = (props) => {
-  const { status, setStatus } = useContext(statusContext);
+export const StockPage: React.FC<Props> = (props) => {
+  const { status } = useContext(statusContext);
 
   useEffect(() => {
     if (status === false) {
@@ -31,12 +31,12 @@ const StockPage: React.FC<Props> = (props) => {
       <CompanyGraph title={props.title} ticker={props.ticker} />
       <CompanyDescription title={props.title} description={props.description} />
       <CompanyNewsBlock title={props.title} />
-      <TradeBlock
+      <CompanyOptions
         stockId={props.stockId}
         title={props.title}
         ticker={props.ticker}
       />
-      <CompanyComments
+      <CompanyCommentsExp
         title={props.title}
         ticker={props.ticker}
         stockId={props.stockId}
@@ -44,5 +44,3 @@ const StockPage: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default StockPage;

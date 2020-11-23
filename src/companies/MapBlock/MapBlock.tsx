@@ -1,9 +1,9 @@
 import React from "react";
 import companyProfiles from "./companyProfiles";
 import { Link } from "react-router-dom";
-import SuggestedCompany from "./SuggestedCompany";
+import { SuggestedCompany } from "../SuggestedCompany/SuggestedCompany";
 
-const MapBlock: React.FC = () => {
+export const MapBlock: React.FC = () => {
   return (
     <div id="map_block">
       {companyProfiles.map((el) => (
@@ -14,5 +14,3 @@ const MapBlock: React.FC = () => {
     </div>
   );
 };
-
-export default MapBlock;

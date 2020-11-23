@@ -36,6 +36,14 @@
 @import "../about/Option/styles.scss";
 @import "../about/SelectContainer/styles.scss";
 @import "../about/SelectSubheader/styles.scss";
+@import "../companies/CompanyDescription/styles.scss";
+@import "../companies/CompanyGraph/styles.scss";
+@import "../companies/CompanyNewsBlock/styles.scss";
+@import "../companies/CompanyOptions/styles.scss";
+@import "../companies/MapBlock/styles.scss";
+@import "../companies/StockComment/styles.scss";
+@import "../companies/StockPage/styles.scss";
+@import "../companies/SuggestedCompany/styles.scss";
 
 body {
   margin: 0;
@@ -49,13 +57,6 @@ body {
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px;
-}
-
-.company_information_block {
-  position: relative;
-  width: 60%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 #header {
@@ -102,52 +103,11 @@ body {
   float: right;
 }
 
-#company_mapper {
-  position: relative;
-  width: 400px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border: 1px solid grey;
-  border-radius: 5px;
-}
-
-#map_block {
-  position: relative;
-  width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.center_button {
-  position: relative;
-  display: block;
-  width: 100px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#news_component {
-  position: relative;
-  width: 500px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 #comment_component {
   position: relative;
   width: 500px;
   margin-left: auto;
   margin-right: auto;
-}
-
-#stock_comment {
-  border: 1px solid grey;
-  border-radius: 5px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  padding: 10px;
 }
 
 #stock_comment_bottom_container {
@@ -409,14 +369,6 @@ body {
   height: 200px;
 }
 
-.default_middle {
-  position: relative;
-  width: 50%;
-  min-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .input_container {
   position: relative;
   margin: 5px;
@@ -583,22 +535,6 @@ body {
   height: 100vh;
   width: 100vw;
   opacity: 0.8;
-  @include testing;
-}
-
-.stock_page {
-  position: relative;
-  width: 65%;
-  left: 25%;
-  @include testing;
-}
-
-#company_graph_block {
-  position: relative;
-  width: 100%;
-  height: 375px;
-  padding-bottom: 10px;
-  // box-sizing: border-box;
   @include testing;
 }
 

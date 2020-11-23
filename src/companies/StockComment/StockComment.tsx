@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { returnDate } from "../notifications/notificationsTimestamp";
-import LikeComponent from "./LikeComponent";
+import { returnDate } from "./index";
+import { LikeComponentExp } from "../LikeComponent/LikeComponent";
 
 interface Props {
   username: string;
@@ -11,7 +11,7 @@ interface Props {
   dislikes: number;
 }
 
-const StockComment: React.FC<Props> = (props) => {
+export const StockComment: React.FC<Props> = (props) => {
   const [time, setTime] = useState();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const StockComment: React.FC<Props> = (props) => {
       <h4>{props.username}</h4>
       <p>{props.text}</p>
       <p>Posted {time}</p>
-      <LikeComponent
+      <LikeComponentExp
         commentId={props.commentId}
         likes={props.likes}
         dislikes={props.dislikes}
@@ -31,5 +31,3 @@ const StockComment: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default StockComment;

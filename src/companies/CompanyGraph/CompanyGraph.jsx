@@ -4,7 +4,7 @@ import { renderFull } from "stock-graphics";
 import { useQuery } from "react-apollo";
 import { requestDataSetQuery } from "../queries/queries.js";
 
-const CompanyGraph = ({ title, ticker }) => {
+export const CompanyGraph = ({ title, ticker }) => {
   let arr = [];
   let tickers = arr.push(ticker);
   const reference = createRef();
@@ -66,5 +66,3 @@ const CompanyGraph = ({ title, ticker }) => {
 
   return <div id="company_graph_block">{returnInfo()}</div>;
 };
-
-export default CompanyGraph;

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import NewsComponent from "../Homepage/NewsComponent";
-import Header from "../User/Header";
+import NewsComponent from "../../Homepage/NewsComponent";
+import Header from "../../User/Header";
 import { useQuery } from "react-apollo";
-import { returnNewsQuery } from "../queries/queries";
+import { returnNewsQuery } from "../../queries/queries";
 
-const CompanyNewsBlock = (props) => {
+export const CompanyNewsBlock = (props: any) => {
   const [loggedNews, setLoggedNews] = useState();
   const [shortLoggedNews, setShortLoggedNews] = useState();
   const [maxLength, setMaxLength] = useState();
-  const { data, loading } = useQuery(returnNewsQuery, {
+  const { data } = useQuery(returnNewsQuery, {
     variables: { title: props.title },
   });
 
@@ -39,7 +39,7 @@ const CompanyNewsBlock = (props) => {
     if (shortLoggedNews) {
       return (
         <div>
-          {shortLoggedNews.map((el) => (
+          {shortLoggedNews.map((el: any) => (
             <div>
               <NewsComponent
                 title={el.title}
@@ -66,5 +66,3 @@ const CompanyNewsBlock = (props) => {
     </div>
   );
 };
-
-export default CompanyNewsBlock;
