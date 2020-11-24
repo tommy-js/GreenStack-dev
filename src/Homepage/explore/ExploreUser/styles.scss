@@ -1,0 +1,22 @@
+.explore_component {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  margin-bottom: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid grey;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.explore_component:hover {
+  box-shadow: 1px 1px 1px 1px grey;
+  transition: 0.2s;
+}
+
+.explore_component_link {
+  color: black;
+  text-decoration: none;
+}
