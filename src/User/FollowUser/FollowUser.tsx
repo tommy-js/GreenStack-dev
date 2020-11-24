@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
-import { pushFollowerToUserMutation } from "../queries/queries.js";
+import { pushFollowerToUserMutation } from "../../queries/queries.js";
 
 interface Props {
   followId: string;
@@ -22,7 +22,7 @@ const Follow: React.FC<Props> = (props) => {
         },
       })
       .catch((err: any) => console.log(err))
-      .then((res: any) => {
+      .then(() => {
         props.modAlreadyAdded();
       });
   }
@@ -30,6 +30,6 @@ const Follow: React.FC<Props> = (props) => {
   return <button onClick={() => follow()}>Follow</button>;
 };
 
-export default compose(
+export const FollowUser = compose(
   graphql(pushFollowerToUserMutation, { name: "pushFollowerToUserMutation" })
 )(Follow);

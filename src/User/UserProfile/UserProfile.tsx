@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Follow from "../resolvers/Follow";
+import FollowUser from "../Follow/Follow";
 import { UserProfilePosts } from "../UserProfilePosts/UserProfilePosts";
 import { LoadingGeneral } from "../../login/LoadingUser";
-import { otherUserQuery } from "../queries/queries.js";
+import { otherUserQuery } from "../../queries/queries.js";
 import { useQuery } from "react-apollo";
 import { connect } from "react-redux";
-import { mapStateToProps } from "../actions/actions";
-import { FollowingItem } from "../../types/types";
+import { mapStateToProps } from "../../actions/actions";
+import { FollowingItem, UserRoute } from "../../types/types";
+import { returnFoundUser } from "./index";
 
 interface Redux {
   userId: string;
@@ -19,7 +20,7 @@ interface Props extends Redux {
   inspectProfileImage: string;
   inspectUserId: string;
   inspectBio: string;
-  modRoutes: (route: any) => void;
+  modRoutes: (route: UserRoute) => void;
 }
 
 const UserProf: React.FC<Props> = (props) => {
@@ -32,10 +33,8 @@ const UserProf: React.FC<Props> = (props) => {
   });
 
   useEffect(() => {
-    let arr = props.following;
-    let filter = arr.filter((arr: any) => arr.userId === props.inspectUserId);
-    if (filter.length > 0) setAlreadyAdded(true);
-    else setAlreadyAdded(false);
+    let foundUser = returnFoundUser(props.inspectUserId, props.following);
+    setAlreadyAdded(foundUser);
   }, []);
 
   useEffect(() => {
