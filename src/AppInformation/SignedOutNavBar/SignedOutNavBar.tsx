@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const SignedOutNavBar: React.FC = () => {
+export const SignedOutNavBar: React.FC = () => {
   return (
     <div className="navbar">
       <NavLink className="nav_el" activeClassName="active_nav_el" to="/">
@@ -17,5 +17,3 @@ const SignedOutNavBar: React.FC = () => {
     </div>
   );
 };
-
-export default SignedOutNavBar;

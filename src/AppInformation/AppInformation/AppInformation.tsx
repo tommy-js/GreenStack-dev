@@ -1,7 +1,7 @@
 import React from "react";
-import SignedOutNavBar from "./SignedOutNavBar";
+import { SignedOutNavBar } from "../SignedOutNavBar/SignedOutNavBar";
 
-const AppInformation: React.FC = () => {
+export const AppInformation: React.FC = () => {
   return (
     <div>
       <SignedOutNavBar />
@@ -84,5 +84,3 @@ const AppInformation: React.FC = () => {
     </div>
   );
 };
-
-export default AppInformation;
