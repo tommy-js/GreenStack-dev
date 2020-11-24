@@ -1,12 +1,12 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 import ApolloClient from "apollo-boost";
-import Page404 from "./Page404";
+import Page404 from "../Page404";
 import { ApolloProvider } from "react-apollo";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
-import Login from "../login/Login";
-import { browserHist } from "./history.js";
-import MainRender from "./MainRender";
-import AppInformation from "../AppInformation/AppInformation";
+import { Login } from "../../login/Login/Login";
+import { browserHist } from "../history.js";
+import MainRender from "../MainRender";
+import { AppInformation } from "../../AppInformation/AppInformation/AppInformation";
 
 import "./App.scss";
 
@@ -16,7 +16,7 @@ const client = new ApolloClient({
 
 export const statusContext = createContext<any>(false);
 
-function App() {
+export function App() {
   const [status, setStatus] = useState(false);
 
   return (
@@ -37,5 +37,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

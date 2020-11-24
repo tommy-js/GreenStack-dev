@@ -20,7 +20,7 @@ interface Props {
   progressElements: any;
 }
 
-const LearnBasicsPage: React.FC<Props> = (props) => {
+const LearnBasicsPageRender: React.FC<Props> = (props) => {
   const { data } = useQuery(tutorialQuery, {
     variables: { id: 1 },
     pollInterval: 500,
@@ -217,4 +217,4 @@ const LearnBasicsPage: React.FC<Props> = (props) => {
   );
 };
 
-export const LearnBasicsPageExp = connect(mapStateToProps)(LearnBasicsPage);
+export const LearnBasicsPage = connect(mapStateToProps)(LearnBasicsPageRender);

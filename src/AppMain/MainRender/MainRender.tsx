@@ -1,16 +1,19 @@
 import React, { useEffect, useState, useContext } from "react";
-import { GlossaryPage, Basics, Options, Protection } from "../about/LearnPage";
-import Portfolio from "../portfolio/Portfolio";
-import AboutPage from "../about/AboutPage";
-import Homepage from "../Homepage/Homepage";
+import { LearnGlossaryPage } from "../../about/LearnGlossaryPage/LearnGlossaryPage";
+import { LearnBasicsPage } from "../../about/LearnBasicsPage/LearnBasicsPage";
+import { LearnOptionsPage } from "../../about/LearnOptionsPage/LearnOptionsPage";
+import { LearnProtectionPage } from "../../about/LearnProtectionPage/LearnProtectionPage";
+import { Portfolio } from "../../portfolio/Portfolio/Portfolio";
+import { AboutPage } from "../../about/AboutPage/AboutPage";
+import { Homepage } from "../../Homepage/Homepage";
 import NewAccountRender from "../NewAccountRender/NewAccountRender";
-import NotificationsPage from "../notifications/NotificationsPage";
+import { NotificationsPage } from "../../notifications/NotificationsPage/NotificationsPage";
 import { Route, Switch } from "react-router-dom";
-import User from "../User/User";
+import { User } from "../../User/User";
 import { statusContext } from "./App";
 import { browserHist } from "./history.js";
 import { connect } from "react-redux";
-import { mapStateToProps } from "../actions/actions";
+import { mapStateToProps } from "../../actions/actions";
 
 interface TradeData {
   user: string;
@@ -36,7 +39,7 @@ interface Props {
   newaccount: any;
 }
 
-const MainRender: React.FC<Props> = (props) => {
+const MRender: React.FC<Props> = (props) => {
   const { status, setStatus } = useContext(statusContext);
   const [tradeMap, setTradeMap] = useState();
   const [userMap, setUserMap] = useState();
@@ -137,4 +140,4 @@ const MainRender: React.FC<Props> = (props) => {
   return <div>{returnRenderPath()}</div>;
 };
 
-export default connect(mapStateToProps)(MainRender);
+export const MainRender = connect(mapStateToProps)(MRender);

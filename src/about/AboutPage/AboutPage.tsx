@@ -26,7 +26,7 @@ interface Redux {
   onWatchlistSet: (watchlist: WatchListItem[]) => void;
 }
 
-const AboutPage: React.FC<Redux> = (props) => {
+const AboutPageRender: React.FC<Redux> = (props) => {
   const [loadingInUser, setLoadingInUser] = useState(false);
   const [progress, setProgress] = useState([] as any);
   const [token, setToken] = useState();
@@ -118,4 +118,7 @@ const AboutPage: React.FC<Redux> = (props) => {
   return <div>{returnLoadingInUser()}</div>;
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AboutPage);
+export const AboutPage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AboutPageRender);

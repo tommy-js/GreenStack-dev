@@ -25,7 +25,7 @@ interface Redux {
   stocks: StockItem[];
 }
 
-const Portfolio: React.FC<Redux> = (props) => {
+const PortfolioRender: React.FC<Redux> = (props) => {
   const { status, setStatus } = useContext(statusContext);
   const [loadingInUser, setLoadingInUser] = useState(false);
   const [currentPrice, setCurrentPrice] = useState([] as any);
@@ -112,4 +112,4 @@ const Portfolio: React.FC<Redux> = (props) => {
   return <div>{returnLoadingInUser()}</div>;
 };
 
-export default connect(mapStateToProps)(Portfolio);
+export const Portfolio = connect(mapStateToProps)(PortfolioRender);
