@@ -1,0 +1,24 @@
+#feed {
+  position: relative;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.feed_component {
+  position: relative;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid grey;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.feed_component:hover {
+  box-shadow: 1px 1px 1px 1px grey;
+  transition: 0.2s;
+}

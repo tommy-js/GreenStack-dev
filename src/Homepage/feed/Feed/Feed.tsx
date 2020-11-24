@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from "react";
-import FeedElement from "./FeedElement";
-import FeedModal from "./FeedModal";
-import Suggested from "../Suggested";
-import Post from "../Post";
-import FeedScrolledBottom from "./FeedScrolledBottom";
+import { FeedElement } from "../FeedElement/FeedElement";
+import { FeedModal } from "../FeedModal/FeedModal";
+import { Suggested } from "../Suggested/Suggested";
+import { Post } from "../Post/Post";
+import { FeedScrolledBottom } from "../FeedScrolledBottom/FeedScrolledBottom";
 import { LoadingGeneral } from "../../login/LoadingUser";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import { useQuery } from "react-apollo";
 import { returnFeedQuery } from "../../queries/queries";
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "../../actions/actions";
+import { PostItem } from "../../types/types";
 
 interface Props {
-  posts: any;
+  posts: PostItem[];
   modRoutes: (arr: any) => void;
   onFeedSet: (feed: any) => void;
 }
 
-const Feed: React.FC<Props> = (props) => {
+const FeedRender: React.FC<Props> = (props) => {
   let token = sessionStorage.getItem("Token");
   const [postRendered, setPostRendered] = useState(false);
   const [postInfo, setPostInfo] = useState();
@@ -163,4 +164,4 @@ const Feed: React.FC<Props> = (props) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Feed);
+export const Feed = connect(mapStateToProps, mapDispatchToProps)(FeedRender);
