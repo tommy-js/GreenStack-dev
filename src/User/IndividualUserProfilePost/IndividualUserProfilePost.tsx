@@ -12,7 +12,7 @@ interface Props {
   commentCount: number;
 }
 
-const IndividualUserProfilePost: React.FC<Props> = (props) => {
+export const IndividualUserProfilePost: React.FC<Props> = (props) => {
   return (
     <div className="user_profile_post">
       <Link to={`/home/post/${props.postId}`}>
@@ -28,5 +28,3 @@ const IndividualUserProfilePost: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default IndividualUserProfilePost;

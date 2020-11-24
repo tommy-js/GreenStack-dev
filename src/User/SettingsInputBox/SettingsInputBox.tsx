@@ -6,7 +6,7 @@ interface Props {
   passInHide?: (checked: boolean) => void;
 }
 
-const SettingsInputBox: React.FC<Props> = (props) => {
+export const SettingsInputBox: React.FC<Props> = (props) => {
   const [checked, setChecked] = useState(props.isChecked);
 
   useEffect(() => {
@@ -26,5 +26,3 @@ const SettingsInputBox: React.FC<Props> = (props) => {
     </form>
   );
 };
-
-export default SettingsInputBox;

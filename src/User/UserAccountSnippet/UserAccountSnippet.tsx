@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
-import UserAccountSnippetInfo from "./UserAccountSnippetInfo";
-import UserAccountSnippetOptions from "./UserAccountSnippetOptions";
+import { UserAccountSnippetInfo } from "../UserAccountSnippetInfo/UserAccountSnippetInfo";
+import { UserAccountSnippetOptions } from "../UserAccountSnippetOptions/UserAccountSnippetOptions";
 
 interface Props {
   user: string;
-  userId: number;
-  listingId: number;
+  userId: string;
   blocked: boolean;
   stateHide?: boolean;
   updateBlocked: boolean;
-  // modBlock: (userId: number, blocked: boolean) => void;
 }
 
-const UserAccountSnippet: React.FC<Props> = (props) => {
+export const UserAccountSnippet: React.FC<Props> = (props) => {
   const [hideOrShow, setHideOrShow] = useState();
 
   useEffect(() => {
@@ -20,11 +18,9 @@ const UserAccountSnippet: React.FC<Props> = (props) => {
   }, [props.stateHide]);
 
   useEffect(() => {
-    if (props.stateHide === true && props.blocked === false) {
+    if (props.stateHide === true && props.blocked === false)
       setHideOrShow("none");
-    } else {
-      setHideOrShow("block");
-    }
+    else setHideOrShow("block");
   }, [props.stateHide, props.blocked]);
 
   return (
@@ -33,12 +29,8 @@ const UserAccountSnippet: React.FC<Props> = (props) => {
       <UserAccountSnippetOptions
         blocked={props.blocked}
         userId={props.userId}
-        // modBlock={props.modBlock}
-        listingId={props.listingId}
         updateBlocked={props.updateBlocked}
       />
     </div>
   );
 };
-
-export default UserAccountSnippet;

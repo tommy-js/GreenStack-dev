@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "./Header";
-import UserInformation from "./UserInformation";
-import UserActivityFeed from "./UserActivityFeed";
+import { Header } from "../Header/Header";
+import { UserInformation } from "../UserInformation/UserInformation";
+import { UserActivityFeed } from "../UserActivityFeed/UserActivityFeed";
 
 interface Props {
   user: string;
@@ -10,7 +10,7 @@ interface Props {
   timeInMarket: number;
 }
 
-const User: React.FC<Props> = (props) => {
+export const User: React.FC<Props> = (props) => {
   return (
     <div id="user">
       <Header text={props.user} />
@@ -23,5 +23,3 @@ const User: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default User;

@@ -7,11 +7,10 @@ interface Props {
   headerPassIn?: () => void;
 }
 
-const Header: React.FC<Props> = (props) => {
+export const Header: React.FC<Props> = (props) => {
   function headerPassIn() {
-    if (props.headerPassIn) {
-      props.headerPassIn();
-    } else return null;
+    if (props.headerPassIn) props.headerPassIn();
+    else return null;
   }
 
   if (props.hoverOver === true) {
@@ -29,5 +28,3 @@ const Header: React.FC<Props> = (props) => {
     );
   }
 };
-
-export default Header;

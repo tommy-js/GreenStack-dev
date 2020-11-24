@@ -60,6 +60,10 @@
 @import "../NewAccountRender/NewAccountRender/styles.scss";
 @import "../NewAccountRender/TickerContainer/styles.scss";
 @import "../notifications/NotificationsPage/styles.scss";
+@import "../User/IndividualUserProfilePost/styles.scss";
+@import "../User/PostStatus/styles.scss";
+@import "../User/SettingsInputBox/styles.scss";
+@import "../User/User/styles.scss";
 
 body {
   margin: 0;
@@ -269,14 +273,6 @@ body {
   border-bottom: 1px dashed grey;
 }
 
-#user {
-  position: relative;
-  width: 50%;
-  min-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 #homepage {
   position: relative;
   width: 80%;
@@ -336,17 +332,6 @@ body {
 
 #profile_body {
   position: relative;
-}
-
-#settings_input_box {
-  position: relative;
-  width: 60%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  font-size: 16px;
-  border: 1px solid red;
 }
 
 #settings_button {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 interface Props {
   following: boolean;
@@ -6,7 +6,7 @@ interface Props {
   setUnfollowed: (userId: number) => void;
 }
 
-const UserFollowButton: React.FC<Props> = (props) => {
+export const UserFollowButton: React.FC<Props> = (props) => {
   const [following, setFollowing] = useState(props.following);
   function returnFollowing() {
     props.setUnfollowed(props.userId);
@@ -15,5 +15,3 @@ const UserFollowButton: React.FC<Props> = (props) => {
 
   return <button onClick={() => returnFollowing()}>unfollow</button>;
 };
-
-export default UserFollowButton;
