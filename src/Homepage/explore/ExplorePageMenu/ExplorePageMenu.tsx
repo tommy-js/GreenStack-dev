@@ -1,7 +1,7 @@
 import React from "react";
-import MenuItem from "./MenuItem";
+import { MenuItem } from "../MenuItem/MenuItem";
 
-const ExplorePageMenu: React.FC = () => {
+export const ExplorePageMenu: React.FC = () => {
   const menuItems = [
     { text: "Your Follows", path: "/follows" },
     { text: "Highest Yield", path: "/highest_yield" },
@@ -14,5 +14,3 @@ const ExplorePageMenu: React.FC = () => {
     </div>
   );
 };
-
-export default ExplorePageMenu;
