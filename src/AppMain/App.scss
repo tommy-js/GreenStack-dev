@@ -64,6 +64,7 @@
 @import "../User/PostStatus/styles.scss";
 @import "../User/SettingsInputBox/styles.scss";
 @import "../User/User/styles.scss";
+@import "../User/UserMap/styles.scss";
 
 body {
   margin: 0;
@@ -173,10 +174,6 @@ body {
   min-width: 500px;
   margin-left: auto;
   margin-right: auto;
-}
-
-#user_map {
-  border-bottom: 1px dashed grey;
 }
 
 #recent_trades_span {

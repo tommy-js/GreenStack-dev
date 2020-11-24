@@ -6,7 +6,7 @@ interface Props {
   timeInMarket: number;
 }
 
-const UserInformation: React.FC<Props> = (props) => {
+export const UserInformation: React.FC<Props> = (props) => {
   return (
     <div>
       <p>{props.user}</p>
@@ -16,5 +16,3 @@ const UserInformation: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default UserInformation;

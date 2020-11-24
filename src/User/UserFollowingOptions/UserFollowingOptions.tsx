@@ -1,6 +1,6 @@
 import React from "react";
-import UserMuteButton from "./UserMuteButton";
-import UserFollowButton from "./UserFollowButton";
+import { UserMuteButton } from "../UserMuteButton/UserMuteButton";
+import { UserFollowButton } from "../UserFollowButton/UserFollowButton";
 
 interface Props {
   mute: boolean;
@@ -10,7 +10,7 @@ interface Props {
   setUnfollowed: (userId: number) => void;
 }
 
-const UserFollowingOptions: React.FC<Props> = (props) => {
+export const UserFollowingOptions: React.FC<Props> = (props) => {
   return (
     <div>
       <UserMuteButton changeMuted={props.changeMuted} mute={props.mute} />
@@ -22,5 +22,3 @@ const UserFollowingOptions: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default UserFollowingOptions;

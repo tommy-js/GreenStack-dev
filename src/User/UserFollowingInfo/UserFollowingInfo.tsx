@@ -1,28 +1,25 @@
-import React, { useEffect, useState } from "react";
-import UserAccountSnippetInfo from "./UserAccountSnippetInfo";
-import UserFollowingOptions from "./UserFollowingOptions";
+import React, { useState } from "react";
+import { UserAccountSnippetInfo } from "../UserAccountSnippetInfo/UserAccountSnippetInfo";
+import { UserFollowingOptions } from "../UserFollowingOptions/UserFollowingOptions";
 
 interface Props {
   user: string;
-  userId: number;
+  userId: string;
   mute: boolean;
   following: boolean;
-  unfollowFunct: (userId: number) => void;
+  unfollowFunct: (userId: string) => void;
 }
 
-const UserFollowingInfo: React.FC<Props> = (props) => {
+export const UserFollowingInfo: React.FC<Props> = (props) => {
   const [muteColor, setMuteColor] = useState("white");
   const [followedDisp, setFollowedDisp] = useState("block");
 
   function changeMuted(mute: boolean) {
-    if (mute === true) {
-      setMuteColor("yellow");
-    } else {
-      setMuteColor("white");
-    }
+    if (mute === true) setMuteColor("yellow");
+    else setMuteColor("white");
   }
 
-  function setUnfollowed(userId: number) {
+  function setUnfollowed() {
     props.unfollowFunct(props.userId);
     setFollowedDisp("none");
   }
@@ -40,5 +37,3 @@ const UserFollowingInfo: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default UserFollowingInfo;

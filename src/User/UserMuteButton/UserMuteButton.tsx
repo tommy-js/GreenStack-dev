@@ -5,16 +5,13 @@ interface Props {
   changeMuted: (mute: boolean) => void;
 }
 
-const UserMuteButton: React.FC<Props> = (props) => {
+export const UserMuteButton: React.FC<Props> = (props) => {
   const [mute, setMute] = useState(props.mute);
   const [propText, setPropText] = useState();
 
   useEffect(() => {
-    if (mute === true) {
-      setPropText("unmute");
-    } else {
-      setPropText("mute");
-    }
+    if (mute === true) setPropText("unmute");
+    else setPropText("mute");
   }, [mute]);
 
   function modMute() {
@@ -24,5 +21,3 @@ const UserMuteButton: React.FC<Props> = (props) => {
 
   return <button onClick={() => modMute()}>{propText}</button>;
 };
-
-export default UserMuteButton;

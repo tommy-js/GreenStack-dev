@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 interface RecentActivity {
@@ -20,14 +20,8 @@ interface Props {
   recentTrades: RecentActivity[];
 }
 
-const UserMap: React.FC<Props> = (props) => {
+export const UserMap: React.FC<Props> = (props) => {
   const [showRecent, setShowRecent] = useState(false);
-
-  function recentActivityFunct() {
-    if (showRecent === true) {
-      return <div></div>;
-    } else return null;
-  }
 
   function returnButtonLabel() {
     if (showRecent === true) {
@@ -58,7 +52,6 @@ const UserMap: React.FC<Props> = (props) => {
       </Link>
       <p>${props.netWorth}</p>
       <p>In market for {props.timeInMarket}</p>
-      {recentActivityFunct()}
       <div id="recent_trades">
         <p id="recent_trades_span">Recent Trades</p>
         {returnButtonLabel()}
@@ -66,5 +59,3 @@ const UserMap: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default UserMap;

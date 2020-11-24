@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Follow from "../resolvers/Follow";
-import UserProfilePosts from "./UserProfilePosts";
-import { LoadingGeneral } from "../login/LoadingUser";
+import { UserProfilePosts } from "../UserProfilePosts/UserProfilePosts";
+import { LoadingGeneral } from "../../login/LoadingUser";
 import { otherUserQuery } from "../queries/queries.js";
 import { useQuery } from "react-apollo";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../actions/actions";
+import { FollowingItem } from "../../types/types";
 
 interface Redux {
-  userId: any;
+  userId: string;
   username: string;
-  following: any;
+  following: FollowingItem[];
 }
 
 interface Props extends Redux {
@@ -21,33 +22,24 @@ interface Props extends Redux {
   modRoutes: (route: any) => void;
 }
 
-const UserProfile: React.FC<Props> = (props) => {
+const UserProf: React.FC<Props> = (props) => {
   const [userProfileState, setUserProfileState] = useState(false);
   const [alreadyAdded, setAlreadyAdded] = useState(false);
   const [userProfile, setUserProfile] = useState({} as any);
 
-  const { loading, data } = useQuery(otherUserQuery, {
+  const { data } = useQuery(otherUserQuery, {
     variables: { userId: props.inspectUserId },
   });
 
   useEffect(() => {
     let arr = props.following;
-    console.log("userval.following:");
-    console.log(arr);
-    console.log("props.userId: " + props.userId);
     let filter = arr.filter((arr: any) => arr.userId === props.inspectUserId);
-    console.log("filter:");
-    console.log(filter);
-    if (filter.length > 0) {
-      setAlreadyAdded(true);
-    } else {
-      setAlreadyAdded(false);
-    }
+    if (filter.length > 0) setAlreadyAdded(true);
+    else setAlreadyAdded(false);
   }, []);
 
   useEffect(() => {
     if (data) {
-      console.log(data);
       setUserProfile(data.altUser);
       setUserProfileState(true);
       props.modRoutes(data.altUser.posts);
@@ -105,4 +97,4 @@ const UserProfile: React.FC<Props> = (props) => {
   );
 };
 
-export default connect(mapStateToProps)(UserProfile);
+export const UserProfile = connect(mapStateToProps)(UserProf);
