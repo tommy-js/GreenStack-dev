@@ -1,47 +1,50 @@
 import React, { useContext, useState, useEffect } from "react";
-import FeedSidebar from "./sidebar/FeedSidebar";
-import NavBar from "../navigation/NavBar";
-import Feed from "./feed/Feed";
-import Explore from "./explore/Explore";
-import UserPosts from "./post/UserPosts";
-import Following from "./Following";
-import Followers from "./Followers";
-import UserProfile from "../User/UserProfile";
-import Profile from "./profile/Profile";
+import { FeedSidebar } from "../sidebar/FeedSidebar/FeedSidebar";
+import { NavBar } from "../navigation/NavBar/NavBar";
+import { Feed } from "../feed/Feed/Feed";
+import { Explore } from "../explore/Explore/Explore";
+import { UserPosts } from "../post/UserPosts/UserPosts";
+import { Following } from "../Following/Following";
+import { Followers } from "../Followers/Followers";
+import { UserProfile } from "../../User/UserProfile/UserProfile";
+import { Profile } from "../profile/Profile/Profile";
 import { LoadingUser } from "../login/LoadingUser";
-import SearchResults from "./SearchResults";
-import PortfolioValuePostModal from "./PortfolioValuePostModal";
+import { SearchResults } from "../SearchResults/SearchResults";
+import { PortfolioValuePostModal } from "../PortfolioValuePostModal/PortfolioValuePostModal";
 import UserLoginAuthSubresolver from "../resolvers/UserLoginAuthSubresolver";
-import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
-import {
-  BuyStockPage,
-  SellStockPage,
-  OptionStockPage,
-} from "../companies/BuyStock";
-import StockPage from "../companies/StockPage";
+import { Route } from "react-router-dom";
+import { StockPage } from "../../companies/StockPage/StockPage";
 import { useLazyQuery, useQuery } from "react-apollo";
-import { statusContext } from "../AppMain/App";
-import { browserHist } from "../AppMain/history";
+import { statusContext } from "../../AppMain/App";
+import { browserHist } from "../../AppMain/history";
 import { connect } from "react-redux";
-import { mapStateToProps, mapDispatchToProps } from "../actions/actions";
+import { mapStateToProps, mapDispatchToProps } from "../../actions/actions";
 import {
   userQuery,
   nonTokenModifyUserQuery,
   getStocksQuery,
-} from "../queries/queries";
+} from "../../queries/queries";
+import {
+  PostItem,
+  FeedItem,
+  FollowerItem,
+  FollowingItem,
+  WatchListItem,
+} from "../../types/types";
+import { companySort } from "./index";
 
 interface Redux {
-  userId: any;
+  userId: string;
   username: string;
-  posts: any;
-  feed: any;
+  posts: PostItem[];
+  feed: FeedItem[];
   userRoutes: any;
-  money: any;
+  money: number;
   onInitialPostsSet: (posts: any) => void;
-  onInitialFollowerSet: (followers: any) => void;
-  onInitialFollowingSet: (following: any) => void;
+  onInitialFollowerSet: (followers: FollowerItem[]) => void;
+  onInitialFollowingSet: (following: FollowingItem[]) => void;
   onInitialNotificationsSet: (notifications: any) => void;
-  onWatchlistSet: (watchlist: any) => void;
+  onWatchlistSet: (watchlist: WatchListItem[]) => void;
   onHistorySet: (history: any) => void;
   onUserRouteSet: (userRoutes: any) => void;
 }
@@ -50,19 +53,17 @@ interface Props extends Redux {
   updateConstantActivity: (passInActivity: any) => void;
 }
 
-const Homepage: React.FC<Props> = (props) => {
-  const [posts, setPosts] = useState([] as any);
+const HomepageRender: React.FC<Props> = (props) => {
   const [loadingInUser, setLoadingInUser] = useState(false);
   const [companies, setCompanies] = useState([] as any);
   const [technology, setTechnology] = useState([] as any);
   const [manufacturing, setManufacturing] = useState([] as any);
   const [energy, setEnergy] = useState([] as any);
-  const [userId, setUserId] = useState();
   const [token, setToken] = useState();
   const [results, setResults] = useState({} as any);
 
   const { data: companyData } = useQuery(getStocksQuery);
-  const [passToken, { data, loading }] = useLazyQuery(userQuery);
+  const [passToken, { data }] = useLazyQuery(userQuery);
   const [getUser, { data: getUserData }] = useLazyQuery(
     nonTokenModifyUserQuery,
     {
@@ -70,32 +71,16 @@ const Homepage: React.FC<Props> = (props) => {
     }
   );
 
-  const { status, setStatus } = useContext(statusContext);
-
-  useEffect(() => {
-    console.log("props.userRoutes");
-    console.log(props.userRoutes);
-  }, [props.userRoutes]);
+  const { status } = useContext(statusContext);
 
   useEffect(() => {
     if (companyData) {
-      let tech = [];
-      let manu = [];
-      let energ = [];
       let companies = companyData.getStocks;
       setCompanies(companies);
-      for (let i = 0; i < companies.length; i++) {
-        if (companies[i].sector === "Technology") {
-          tech.push(companies[i]);
-        } else if (companies[i].sector === "Manufacturing") {
-          manu.push(companies[i]);
-        } else if (companies[i].sector === "Energy") {
-          energ.push(companies[i]);
-        }
-      }
-      setTechnology(tech);
-      setManufacturing(manu);
-      setEnergy(energ);
+      let sortedCompanies = companySort(companyData.getStocks);
+      setTechnology(sortedCompanies.tech);
+      setManufacturing(sortedCompanies.manu);
+      setEnergy(sortedCompanies.energ);
     }
   }, [companyData]);
 
@@ -105,12 +90,10 @@ const Homepage: React.FC<Props> = (props) => {
       if (sessionToken) {
         passToken({
           variables: {
-            token: sessionToken,
+            token: sessionStorage.getItem("Token"),
           },
         });
-      } else {
-        browserHist.push("/login");
-      }
+      } else browserHist.push("/login");
     } else {
       let sessionToken = sessionStorage.getItem("Token");
       if (sessionToken) {
@@ -135,12 +118,7 @@ const Homepage: React.FC<Props> = (props) => {
   }, [getUserData]);
 
   useEffect(() => {
-    if (status === false) {
-      if (data && data.token) {
-        setUserId(data.token.userId);
-        setLoadingInUser(true);
-      }
-    }
+    if (status === false) if (data && data.token) setLoadingInUser(true);
   }, data);
 
   function modRoutes(route: any) {
@@ -153,10 +131,6 @@ const Homepage: React.FC<Props> = (props) => {
 
   function loggedIn() {
     setLoadingInUser(false);
-  }
-
-  function modPosts(routes: any) {
-    setPosts(routes);
   }
 
   function modRes(searchData: any, dataType: number) {
@@ -204,13 +178,13 @@ const Homepage: React.FC<Props> = (props) => {
   const [postingToFeed, setPostingToFeed] = useState(false);
 
   function renderShowPostOptions() {
-    if (postingToFeed === true) {
+    if (postingToFeed === true)
       return (
         <PortfolioValuePostModal
           setPostingToFeed={() => setPostingToFeed(false)}
         />
       );
-    } else return null;
+    else return null;
   }
 
   function returnLoadingIcon() {
@@ -242,7 +216,7 @@ const Homepage: React.FC<Props> = (props) => {
               />
             </Route>
             <Route exact path="/home/posts">
-              <UserPosts modRoutes={modPosts} />
+              <UserPosts />
             </Route>
             <Route exact path="/home/followers">
               <Followers modRoutes={modRoutes} />
@@ -257,7 +231,6 @@ const Homepage: React.FC<Props> = (props) => {
                   inspectProfileImage={el.profileImage}
                   inspectUserId={el.userId}
                   inspectBio={el.bio}
-                  modRoutes={modPosts}
                 />
               </Route>
             ))}
@@ -273,42 +246,6 @@ const Homepage: React.FC<Props> = (props) => {
                     title={el.title}
                     ticker={el.ticker}
                     description={el.description}
-                    price={el.price}
-                  />
-                </Route>
-                <Route
-                  key={el.stockId}
-                  exact
-                  path={`/home/stock/${el.stockId}/buy`}
-                >
-                  <BuyStockPage
-                    stockId={el.stockId}
-                    title={el.title}
-                    ticker={el.ticker}
-                    price={el.price}
-                  />
-                </Route>
-                <Route
-                  key={el.stockId}
-                  exact
-                  path={`/home/stock/${el.stockId}/sell`}
-                >
-                  <SellStockPage
-                    stockId={el.stockId}
-                    title={el.title}
-                    ticker={el.ticker}
-                    price={el.price}
-                  />
-                </Route>
-                <Route
-                  key={el.stockId}
-                  exact
-                  path={`/home/stock/${el.stockId}/options`}
-                >
-                  <OptionStockPage
-                    stockId={el.stockId}
-                    title={el.title}
-                    ticker={el.ticker}
                     price={el.price}
                   />
                 </Route>
@@ -338,4 +275,7 @@ const Homepage: React.FC<Props> = (props) => {
   return <div>{returnLoading()}</div>;
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Homepage);
+export const Homepage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomepageRender);
