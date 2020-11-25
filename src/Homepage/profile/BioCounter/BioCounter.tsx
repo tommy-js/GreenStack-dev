@@ -4,17 +4,14 @@ interface Props {
   bio: string;
 }
 
-const BioCounter: React.FC<Props> = (props) => {
+export const BioCounter: React.FC<Props> = (props) => {
   const [textColor, setTextColor] = useState("green");
 
   useEffect(() => {
-    if (props.bio.length <= 50) {
-      setTextColor("green");
-    } else if (props.bio.length > 50 && props.bio.length <= 100) {
+    if (props.bio.length <= 50) setTextColor("green");
+    else if (props.bio.length > 50 && props.bio.length <= 100)
       setTextColor("orange");
-    } else if (props.bio.length > 100) {
-      setTextColor("red");
-    }
+    else if (props.bio.length > 100) setTextColor("red");
   }, [props.bio]);
 
   return (
@@ -23,5 +20,3 @@ const BioCounter: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default BioCounter;
