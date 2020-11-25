@@ -1,0 +1,84 @@
+.post_values {
+  display: inline-block;
+  height: 18px;
+  vertical-align: top;
+  @include noselect;
+}
+
+.post_value_inner {
+  font-size: 18px;
+  line-height: 100%;
+  vertical-align: middle;
+}
+
+.like_button_block {
+  position: relative;
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  overflow: none;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.like_button_image {
+  height: 100%;
+  width: 100%;
+}
+
+.post_image_block {
+  position: relative;
+  width: 100%;
+  @include testing;
+}
+
+.post_image {
+  position: inherit;
+  width: 60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  @include testing;
+}
+
+.feed_link_header {
+}
+
+.feed_link_name {
+}
+
+.feed_link_unfollow {
+  margin-left: 10px;
+  transition: 0.3s;
+}
+
+.feed_link_name,
+.feed_link_unfollow {
+  display: inline-block;
+}
+
+.feed_link {
+  color: black;
+  text-decoration: none;
+}
+
+.feed_profile_image_block {
+  height: 25px;
+  width: 25px;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+
+.feed_profile_image {
+  height: 100%;
+  width: 100%;
+}
+
+.post_return_date {
+  font-family: $standard_font;
+  font-size: 14px;
+  color: $text_black;
+  opacity: 0.7;
+}

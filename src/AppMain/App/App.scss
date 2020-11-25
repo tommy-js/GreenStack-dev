@@ -66,6 +66,10 @@
 @import "../User/User/styles.scss";
 @import "../User/UserMap/styles.scss";
 @import "../AppInformation/AppInformation/styles.scss";
+@import "../../Homepage/explore/Explore/styles.scss";
+@import "../../Homepage/explore/ExploreCompany/styles.scss";
+@import "../../Homepage/explore/ExploreStock/styles.scss";
+@import "../../Homepage/explore/ExploreUser/styles.scss";
 
 body {
   margin: 0;
@@ -522,16 +526,6 @@ body {
 
 .explore_component {
   color: black;
-}
-
-.explore_component_link {
-  color: black;
-  text-decoration: none;
-}
-
-.explore_company_header {
-  font-size: 22px;
-  margin-left: 25px;
 }
 
 .individual_post_comment_option_block {

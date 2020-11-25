@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import LikePost from "../../resolvers/LikePost";
-import DislikePost from "../../resolvers/DislikePost";
-import InlineUnfollow from "../../resolvers/InlineUnfollow";
-import UserIndex from "../../about/CommentHover/UserIndex";
+import LikePost from "../../LikePost/LikePost";
+import DislikePost from "../../DislikePost/DislikePost";
+import InlineUnfollow from "../../InlineUnfollow/InlineUnfollow";
+import UserIndex from "../../../about/CommentHover/UserIndex";
 import { Link } from "react-router-dom";
 import comment from "../../images/comment.png";
-import { returnDate } from "../../notifications/notificationsTimestamp";
-import { returnTaggedString } from "../../globals/functions/returnTagged";
+import { returnDate } from "../../../notifications/notificationsTimestamp";
+import { returnTaggedString } from "../../../globals/functions/returnTagged";
 import { useLazyQuery } from "react-apollo";
-import { userCommentLookup } from "../../queries/queries";
+import { userCommentLookup } from "../../../queries/queries";
 import { connect } from "react-redux";
-import { mapStateToProps, mapDispatchToProps } from "../../actions/actions";
+import { mapStateToProps, mapDispatchToProps } from "../../../actions/actions";
 import { enableBodyScroll } from "body-scroll-lock";
 
 type Routes = {
@@ -49,7 +49,7 @@ interface Props extends Redux {
   modPostLoad: (postId: string) => void;
 }
 
-const FeedPost: React.FC<Props> = (props) => {
+const FeedPostRender: React.FC<Props> = (props) => {
   const [over, setOver] = useState(false);
   const [styledOpac, setStyledOpac] = useState(0);
 
@@ -98,9 +98,8 @@ const FeedPost: React.FC<Props> = (props) => {
   }
 
   useEffect(() => {
-    if (over === true) {
-      setStyledOpac(1);
-    } else setStyledOpac(0);
+    if (over === true) setStyledOpac(1);
+    else setStyledOpac(0);
   }, [over]);
 
   useEffect(() => {
@@ -226,4 +225,7 @@ const IndMapper: React.FC<Mapper> = (props) => {
   return renderFunc();
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FeedPost);
+export const FeedPost = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FeedPostRender);
