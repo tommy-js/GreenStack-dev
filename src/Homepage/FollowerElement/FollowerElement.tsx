@@ -1,5 +1,5 @@
 import React from "react";
-import BlockUser from "../resolvers/BlockUser";
+import { BlockUser } from "../BlockUser/BlockUser";
 import { Link } from "react-router-dom";
 
 interface Props {
@@ -7,16 +7,17 @@ interface Props {
   username: string;
 }
 
-const FollowerElement: React.FC<Props> = (props) => {
+export const FollowerElement: React.FC<Props> = (props) => {
   return (
     <div className="homepage_block_component">
-      <Link className="block_link" to={`/home/user/${props.userId}`}>
-        <p className="element_username">{props.username}</p>
+      <Link
+        className="block_link element_username"
+        to={`/home/user/${props.userId}`}
+      >
+        {props.username}
       </Link>
       <p className="follower_element_descriptor">props.descriptor</p>
       <BlockUser followerId={props.userId} />
     </div>
   );
 };
-
-export default FollowerElement;
