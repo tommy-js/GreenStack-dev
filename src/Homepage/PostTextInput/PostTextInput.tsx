@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { UserSearchReturn } from "./UserSearchReturn";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../actions/actions";
+import { FollowingItem, FollowerItem } from "../../types/types";
 
 interface Redux {
-  following: any;
-  followers: any;
+  following: FollowingItem[];
+  followers: FollowerItem[];
 }
 
 interface Props extends Redux {
@@ -13,7 +14,7 @@ interface Props extends Redux {
   updateText: (input: string) => void;
 }
 
-const PostTextInput: React.FC<Props> = (props) => {
+const PostTextInputRender: React.FC<Props> = (props) => {
   const [searchUp, setSearchUp] = useState(false);
   const [userSplice, setUserSplice] = useState("");
   const [start, setStart] = useState();
@@ -78,4 +79,4 @@ const PostTextInput: React.FC<Props> = (props) => {
   );
 };
 
-export default connect(mapStateToProps)(PostTextInput);
+export const PostTextInput = connect(mapStateToProps)(PostTextInputRender);
