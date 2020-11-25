@@ -1,0 +1,8 @@
+#post_options {
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  font-family: $standard_font;
+  transition: 0.2s;
+  @include testing;
+}

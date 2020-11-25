@@ -8,7 +8,7 @@ interface Props {
   modAllowLikes: () => void;
 }
 
-const PostOptions: React.FC<Props> = (props) => {
+export const PostOptions: React.FC<Props> = (props) => {
   return (
     <div id="post_options" style={{ height: props.optionHeight }}>
       <label>Allow Comments</label>
@@ -26,5 +26,3 @@ const PostOptions: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default PostOptions;
