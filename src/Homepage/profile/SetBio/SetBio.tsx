@@ -2,7 +2,7 @@ import React from "react";
 import save from "../images/save.png";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
-import { setBioMutation } from "../queries/queries";
+import { setBioMutation } from "../../../queries/queries";
 
 interface Props {
   bio: string;
@@ -10,14 +10,13 @@ interface Props {
   setBioMutation: (variables: object) => any;
 }
 
-const SetBio: React.FC<Props> = (props) => {
+const SetBioMutation: React.FC<Props> = (props) => {
   function modBio() {
-    let token = sessionStorage.getItem("Token");
     if (props.bio.length <= 120) {
       props
         .setBioMutation({
           variables: {
-            token: token,
+            token: sessionStorage.getItem("Token"),
             bio: props.bio,
           },
         })
@@ -34,6 +33,6 @@ const SetBio: React.FC<Props> = (props) => {
   return <img id="bio_image" onClick={() => modBio()} src={save} />;
 };
 
-export default compose(graphql(setBioMutation, { name: "setBioMutation" }))(
-  SetBio
-);
+export const SetBio = compose(
+  graphql(setBioMutation, { name: "setBioMutation" })
+)(SetBioMutation);
