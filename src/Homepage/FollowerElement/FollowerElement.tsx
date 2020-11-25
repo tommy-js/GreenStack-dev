@@ -3,7 +3,7 @@ import { BlockUser } from "../BlockUser/BlockUser";
 import { Link } from "react-router-dom";
 
 interface Props {
-  userId: number;
+  userId: string;
   username: string;
 }
 
