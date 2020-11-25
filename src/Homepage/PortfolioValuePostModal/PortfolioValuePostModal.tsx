@@ -1,11 +1,11 @@
 import React from "react";
-import PortfolioValuePostModalContent from "./PortfolioValuePostModalContent";
+import { PortfolioValuePostModalContent } from "../PortfolioValuePostModalContent/PortfolioValuePostModalContent";
 
 interface Props {
   setPostingToFeed: () => void;
 }
 
-const PortfolioValuePostModal: React.FC<Props> = (props) => {
+export const PortfolioValuePostModal: React.FC<Props> = (props) => {
   return (
     <div id="posting_modal">
       <div id="posting_portfolio_central_modal">
@@ -20,5 +20,3 @@ const PortfolioValuePostModal: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default PortfolioValuePostModal;
