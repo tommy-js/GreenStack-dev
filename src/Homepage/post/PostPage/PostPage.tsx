@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import PostRender from "./PostRender";
-import { LoadingGeneral } from "../../login/LoadingUser";
-import { individualPostQuery } from "../../queries/queries.js";
+import { LoadingGeneral } from "../../login/LoadingUser/LoadingUser";
+import { individualPostQuery } from "../../../queries/queries.js";
 import { useQuery } from "react-apollo";
+import { CommentItemRemSubComments } from "../../../types/types";
 
 interface Props {
   postId: string;
@@ -30,10 +31,10 @@ interface Data {
   }[];
 }
 
-const PostPage: React.FC<Props> = (props) => {
+export const PostPage: React.FC<Props> = (props) => {
   const [dataLoaded, setDataLoaded] = useState(false);
   const [info, setInfo] = useState({} as Data);
-  const { loading, data } = useQuery(individualPostQuery, {
+  const { data } = useQuery(individualPostQuery, {
     variables: { postId: props.postId },
   });
 
@@ -57,22 +58,9 @@ const PostPage: React.FC<Props> = (props) => {
   }, [data]);
 
   function returnLoading() {
-    if (dataLoaded === true) {
-      return (
-        <div>
-          <PostRender info={info} />
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <LoadingGeneral />
-        </div>
-      );
-    }
+    if (dataLoaded === true) return <PostRender info={info} />;
+    else return <LoadingGeneral />;
   }
 
   return <div>{returnLoading()}</div>;
 };
-
-export default PostPage;
