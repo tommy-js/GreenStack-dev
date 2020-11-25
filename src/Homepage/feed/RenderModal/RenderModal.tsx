@@ -1,33 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { InputPost } from "../CommentInput";
-import CommentSection from "../CommentSection";
-import LikePost from "../../resolvers/LikePost";
-import DislikePost from "../../resolvers/DislikePost";
-import UserIndex from "../../about/CommentHover/UserIndex";
+import { InputPost } from "../../CommentInput";
+import { CommentSection } from "../../CommentSection/CommentSection";
+import { LikePost } from "../LikePost/LikePost";
+import { DislikePost } from "../DislikePost/DislikePost";
+import { UserIndex } from "../../../about/UserIndex/UserIndex";
 import { Link } from "react-router-dom";
+import { UserRoute } from "../../../types/types";
 import comment from "../../images/comment.png";
-import { returnDate } from "../../notifications/notificationsTimestamp";
-import { returnTaggedString } from "../../globals/functions/returnTagged";
+import { returnDate, returnTaggedString, returnUserRoutes } from "./index";
 import { useLazyQuery } from "react-apollo";
-import { userCommentLookup } from "../../queries/queries";
+import { userCommentLookup } from "../../../queries/queries";
 import { connect } from "react-redux";
-import { mapStateToProps, mapDispatchToProps } from "../../actions/actions";
+import { mapStateToProps, mapDispatchToProps } from "../../../actions/actions";
 import { enableBodyScroll } from "body-scroll-lock";
-
-type Routes = {
-  username: string;
-  userId: string;
-  bio: string;
-  profileImage: string;
-};
 
 interface Mapper {
   tag: string;
 }
 
 interface Redux {
-  userRoutes: any;
-  onUserRouteSet: (userRoutes: any) => void;
+  userRoutes: UserRoute[];
+  onUserRouteSet: (userRoutes: UserRoute[]) => void;
 }
 
 interface Props extends Redux {
@@ -62,7 +55,7 @@ interface Props extends Redux {
   modPostLoad: (postId: string) => void;
 }
 
-const RenderModal: React.FC<Props> = (props) => {
+const RenderModalPre: React.FC<Props> = (props) => {
   const [likes, setLikes] = useState(props.likes);
   const [dislikes, setDislikes] = useState(props.dislikes);
   const [comments, setComments] = useState(props.comments.length);
@@ -92,29 +85,22 @@ const RenderModal: React.FC<Props> = (props) => {
   }
 
   useEffect(() => {
-    let foundInd = props.userRoutes.find(
-      (el: Routes) => el.userId === props.postUserId
+    let returned = returnUserRoutes(
+      props.postUsername,
+      props.postUserId,
+      props.userRoutes
     );
-    if (!foundInd) {
-      let obj = {
-        username: props.postUsername,
-        userId: props.postUserId,
-        bio: "",
-        profileImage: "",
-      };
-      let arr = [...props.userRoutes, obj];
-      props.onUserRouteSet(arr);
-    }
+    if (returned) props.onUserRouteSet(returned);
   }, []);
 
   function returnText() {
     let tag = returnTaggedString(props.text);
     return (
-      <div>
+      <React.Fragment>
         {tag.map((el: any) => (
           <IndMapper tag={el} />
         ))}
-      </div>
+      </React.Fragment>
     );
   }
 
@@ -153,9 +139,7 @@ const RenderModal: React.FC<Props> = (props) => {
 
   function unlockScrollState() {
     const feed = document.getElementById("feed")!;
-    if (feed) {
-      enableBodyScroll(feed);
-    }
+    if (feed) enableBodyScroll(feed);
   }
 
   return (
@@ -196,19 +180,16 @@ const IndMapper: React.FC<Mapper> = (props) => {
   const [userData, setUserData] = useState();
 
   useEffect(() => {
-    if (props.tag.includes("@")) {
+    if (props.tag.includes("@"))
       callUser({
         variables: {
           username: getUsername(),
         },
       });
-    }
   }, []);
 
   useEffect(() => {
-    if (data) {
-      setUserData(data.specUser);
-    }
+    if (data) setUserData(data.specUser);
   }, [data]);
 
   function getUsername() {
@@ -234,4 +215,7 @@ const IndMapper: React.FC<Mapper> = (props) => {
   return renderFunc();
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RenderModal);
+export const RenderModal = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RenderModalPre);
