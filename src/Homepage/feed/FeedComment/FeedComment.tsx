@@ -16,7 +16,7 @@ interface Props {
   modPostLoad: (postId: string) => void;
 }
 
-const FeedComment: React.FC<Props> = (props) => {
+export const FeedComment: React.FC<Props> = (props) => {
   useEffect(() => {
     let postElement = document.getElementById(`id_${props.reference.postId}`);
     if (postElement) {
@@ -47,5 +47,3 @@ const FeedComment: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default FeedComment;
