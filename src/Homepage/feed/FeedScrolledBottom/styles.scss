@@ -1,0 +1,25 @@
+#feed_scrolled_bottom {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+@mixin feed_scrolled_text {
+  text-align: center;
+  font-family: $standard_font;
+  font-weight: bold;
+  color: $light_blue;
+  @include noselect;
+}
+
+#feed_scrolled_bottom_text {
+  font-size: 22px;
+  margin-bottom: 0;
+  @include feed_scrolled_text;
+}
+
+#feed_scrolled_bottom_subtext {
+  position: relative;
+  top: 0;
+  font-size: 16px;
+  @include feed_scrolled_text;
+}
