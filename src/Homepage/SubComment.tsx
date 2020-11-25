@@ -12,7 +12,7 @@ interface Props {
   parentCommentId: string;
 }
 
-const SubComment: React.FC<Props> = (props) => {
+export const SubComment: React.FC<Props> = (props) => {
   return (
     <div className="sub_comment">
       <div className="sub_comment_head_class">
@@ -37,5 +37,3 @@ const SubComment: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default SubComment;
