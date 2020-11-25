@@ -1,19 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
-import NavBar from "../../navigation/NavBar";
-import CommentSection from "../CommentSection/CommentSection";
-import Footer from "../Footer/Footer";
+import { NavBar } from "../../navigation/NavBar/NavBar";
+import { CommentSection } from "../CommentSection/CommentSection";
 import { MultipleChoice } from "../MultipleChoice/MultipleChoice";
 import { Blanks } from "../Blanks/Blanks";
 import { SelectAll } from "../SelectAll/SelectAll";
 import { LearnGraphs } from "../LearnGraphs/LearnGraphs.jsx";
-import { statusContext } from "../../AppMain/App";
+import { statusContext } from "../../AppMain/App/App";
 import { browserHist } from "../../AppMain/history";
 import {
   APPLE2month,
   AMZN10Year,
   APPLEOptions,
   SP500HalfDecade,
-} from "./graphs/graphData.js";
+} from "../graphData.js";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../../actions/actions";
@@ -26,7 +25,7 @@ interface Props {
   progressElements: any;
 }
 
-export const LearnOptionsPage: React.FC<Props> = (props) => {
+export const LearnOptionsPageRender: React.FC<Props> = (props) => {
   const { data } = useQuery(tutorialQuery, {
     variables: { id: 2 },
     pollInterval: 500,
@@ -255,4 +254,6 @@ export const LearnOptionsPage: React.FC<Props> = (props) => {
   );
 };
 
-export const LearnOptionsPageExp = connect(mapStateToProps)(LearnOptionsPage);
+export const LearnOptionsPage = connect(mapStateToProps)(
+  LearnOptionsPageRender
+);
