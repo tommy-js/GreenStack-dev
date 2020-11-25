@@ -1,0 +1,12 @@
+.submit_sub_response_textarea_block {
+  @include testing;
+}
+
+.submit_sub_response_textarea {
+  position: relative;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 50px;
+  resize: none;
+}

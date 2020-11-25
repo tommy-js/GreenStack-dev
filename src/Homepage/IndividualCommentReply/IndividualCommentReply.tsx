@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import SubmitSubResponse from "../resolvers/SubmitSubResponse";
+import { SubmitSubResponse } from "../SubmitSubResponse/SubmitSubResponse";
 
 interface Props {
   postId: string;
   commentId: string;
 }
 
-const IndividualCommentReply: React.FC<Props> = (props) => {
+export const IndividualCommentReply: React.FC<Props> = (props) => {
   const [replying, setReplying] = useState(false);
   const [text, setText] = useState("");
 
@@ -30,11 +30,9 @@ const IndividualCommentReply: React.FC<Props> = (props) => {
   }
 
   return (
-    <div>
+    <React.Fragment>
       <button onClick={() => setReplying(!replying)}>Reply</button>
       {renderResponseBox()}
-    </div>
+    </React.Fragment>
   );
 };
-
-export default IndividualCommentReply;
