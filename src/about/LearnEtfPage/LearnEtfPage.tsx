@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import NavBar from "../../navigation/NavBar";
-import CommentSection from "../CommentSection/CommentSection";
+import { NavBar } from "../../navigation/NavBar/NavBar";
+import { CommentSection } from "../CommentSection/CommentSection";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../../actions/actions";
 import { useQuery } from "react-apollo";
@@ -11,7 +11,7 @@ interface Props {
   progressElements: any;
 }
 
-const LearnEtfPage: React.FC = () => {
+const LearnEtfPageRender: React.FC = () => {
   const { data } = useQuery(tutorialQuery, {
     variables: { id: 3 },
     pollInterval: 500,
@@ -29,4 +29,4 @@ const LearnEtfPage: React.FC = () => {
   );
 };
 
-export const LearnEtfPageExp = connect(mapStateToProps)(LearnEtfPage);
+export const LearnEtfPage = connect(mapStateToProps)(LearnEtfPageRender);
