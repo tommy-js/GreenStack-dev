@@ -17,7 +17,7 @@ export const KnowledgeCheckSelectBoxes: React.FC<SelectBoxes> = (props) => {
   const [selected, setSelected] = useState(props.options);
 
   function modSelected(id: number) {
-    let selectedArray = returnSelected(selected, id);
+    let selectedArray = returnSelected(selected, id)!;
     setSelected(selectedArray);
   }
 

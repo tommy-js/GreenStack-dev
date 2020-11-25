@@ -16,4 +16,5 @@ export function returnSelected(selected: Option[], id: number) {
     };
     arr[ind] = obj;
     return arr;
+  }
 }
