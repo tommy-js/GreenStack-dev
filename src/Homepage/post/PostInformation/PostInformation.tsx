@@ -6,7 +6,7 @@ interface Props {
   timestamp: number;
 }
 
-const PostInformation: React.FC<Props> = ({
+export const PostInformation: React.FC<Props> = ({
   likes,
   dislikes,
   timestamp,
@@ -19,5 +19,3 @@ const PostInformation: React.FC<Props> = ({
     </div>
   );
 };
-
-export default PostInformation;
