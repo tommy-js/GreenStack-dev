@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import HistoryElement from "./HistoryElement";
-import ProfileFeedRender from "./ProfileFeedRender";
+import { HistoryElement } from "../HistoryElement/HistoryElement";
+import { ProfileFeedRender } from "../ProfileFeedRender/ProfileFeedRender";
 import { connect } from "react-redux";
-import { mapStateToProps } from "../../actions/actions";
+import { mapStateToProps } from "../../../actions/actions";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 interface Redux {
   history: any;
 }
 
-const PersonalHistory: React.FC<Redux> = (props) => {
+const PersonalHistoryRender: React.FC<Redux> = (props) => {
   const [postRendered, setPostRendered] = useState(false);
   const [postInfo, setPostInfo] = useState();
 
@@ -26,17 +26,15 @@ const PersonalHistory: React.FC<Redux> = (props) => {
   }
 
   function triggerPostLoad(postId: string) {
-    let foundId = props.history.find((el: any) => postId === el.postId);
-    if (foundId) {
-      let foundIndex = props.history.indexOf(foundId);
-      setPostInfo(props.history[foundIndex].postId);
-    }
+    let foundId = props.history.find((el: any) => postId === el.postId)!;
+    let foundIndex = props.history.indexOf(foundId);
+    setPostInfo(props.history[foundIndex].postId);
   }
 
   function conditionalPostRendering() {
-    if (postRendered === true) {
+    if (postRendered === true)
       return <ProfileFeedRender postId={postInfo} modPostLoad={modPostLoad} />;
-    } else return null;
+    else return null;
   }
 
   return (
@@ -56,4 +54,4 @@ const PersonalHistory: React.FC<Redux> = (props) => {
   );
 };
 
-export default connect(mapStateToProps)(PersonalHistory);
+export const PersonalHistory = connect(mapStateToProps)(PersonalHistoryRender);
