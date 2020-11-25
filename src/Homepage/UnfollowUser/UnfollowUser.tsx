@@ -1,19 +1,18 @@
 import React from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
-import { unfollowUserMutation } from "../queries/queries.js";
+import { unfollowUserMutation } from "../../queries/queries.js";
 
 interface Props {
-  followerId: number;
+  followerId: string;
   unfollowUserMutation: (variables: object) => void;
 }
 
-const UnfollowUser: React.FC<Props> = (props) => {
+const UnfollowUserMutation: React.FC<Props> = (props) => {
   function unfollow() {
-    let token = sessionStorage.getItem("Token");
     props.unfollowUserMutation({
       variables: {
-        token: token,
+        token: sessionStorage.getItem("Token"),
         followerId: props.followerId,
       },
     });
@@ -22,6 +21,6 @@ const UnfollowUser: React.FC<Props> = (props) => {
   return <button onClick={() => unfollow()}>unfollow</button>;
 };
 
-export default compose(
+export const UnfollowUser = compose(
   graphql(unfollowUserMutation, { name: "unfollowUserMutation" })
-)(UnfollowUser);
+)(UnfollowUserMutation);
