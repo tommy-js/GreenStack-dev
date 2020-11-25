@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import IndividualComment from "../IndividualComment";
+import { IndividualComment } from "../IndividualComment/IndividualComment";
 import { CommentItem } from "../../types/types";
 import { returnOrder } from "./index";
 

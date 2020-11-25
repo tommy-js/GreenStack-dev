@@ -26,7 +26,7 @@ interface Mapper {
   tag: string;
 }
 
-const IndividualComment: React.FC<Props> = (props) => {
+const IndividualCommentRender: React.FC<Props> = (props) => {
   useEffect(() => {
     let foundInd = props.userRoutes.find(
       (el: UserRoute) => el.userId === props.commentUserId
@@ -112,4 +112,7 @@ const IndMapper: React.FC<Mapper> = (props) => {
   return renderFunc();
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(IndividualComment);
+export const IndividualComment = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(IndividualCommentRender);
