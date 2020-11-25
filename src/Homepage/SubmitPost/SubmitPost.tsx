@@ -1,8 +1,8 @@
 import React from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
-import { postMutation } from "../queries/queries.js";
-import { taggedUsers } from "../globals/functions/returnTaggedUsers";
+import { postMutation } from "../../queries/queries.js";
+import { taggedUsers } from "./index";
 
 interface Props {
   title: string;
@@ -17,7 +17,7 @@ interface Props {
   successfulEvent?: () => void;
 }
 
-const SubmitPost: React.FC<Props> = (props) => {
+const SubmitPostMutation: React.FC<Props> = (props) => {
   function submit() {
     if (props.text !== "") {
       let image = props.image;
@@ -56,6 +56,6 @@ const SubmitPost: React.FC<Props> = (props) => {
   return <button onClick={() => submit()}>{props.buttonTitle}</button>;
 };
 
-export default compose(graphql(postMutation, { name: "postMutation" }))(
-  SubmitPost
-);
+export const SubmitPost = compose(
+  graphql(postMutation, { name: "postMutation" })
+)(SubmitPostMutation);
