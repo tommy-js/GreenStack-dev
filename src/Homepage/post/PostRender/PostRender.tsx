@@ -1,9 +1,9 @@
 import React from "react";
-import PostTitle from "./PostTitle";
-import PostText from "./PostText";
-import PostInformation from "./PostInformation";
-import PostComments from "./PostComments";
-import { InputPost } from "../CommentInput";
+import { PostTitle } from "../PostTitle/PostTitle";
+import { PostText } from "../PostText/PostText";
+import { PostInformation } from "../PostInformation/PostInformation";
+import { PostComments } from "../PostComments/PostComments";
+import { InputPost } from "../../CommentInput";
 
 interface Data {
   title: string;
@@ -31,8 +31,7 @@ interface Props {
   info: Data;
 }
 
-const PostRender: React.FC<Props> = ({ info }: Props) => {
-  function modComments() {}
+export const PostRender: React.FC<Props> = ({ info }: Props) => {
   return (
     <div className="feed">
       <PostTitle title={info.title} />
@@ -52,5 +51,3 @@ const PostRender: React.FC<Props> = ({ info }: Props) => {
     </div>
   );
 };
-
-export default PostRender;
