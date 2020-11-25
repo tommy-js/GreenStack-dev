@@ -19,7 +19,7 @@ interface Props {
   updateUserProgressMutation: (variables: object) => any;
 }
 
-const Blanks: React.FC<Props> = (props) => {
+const BlanksMutation: React.FC<Props> = (props) => {
   const [correct, setCorrect] = useState([] as any);
   const [submitted, setSubmitted] = useState(false);
   const [increment, setIncrement] = useState(0);
@@ -89,6 +89,6 @@ const Blanks: React.FC<Props> = (props) => {
   );
 };
 
-export const BlanksExp = compose(
+export const Blanks = compose(
   graphql(updateUserProgressMutation, { name: "updateUserProgressMutation" })
-)(Blanks);
+)(BlanksMutation);

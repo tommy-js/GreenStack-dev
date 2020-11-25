@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
-import NavBar from "../../navigation/NavBar";
-import CommentSection from "../CommentSection/CommentSection";
-import Footer from "../Footer/Footer";
+import { NavBar } from "../../navigation/NavBar/NavBar";
+import { CommentSection } from "../CommentSection/CommentSection";
+import { Footer } from "../Footer/Footer";
 import { MultipleChoice } from "../MultipleChoice/MultipleChoice";
 import { Blanks } from "../Blanks/Blanks";
 import { LearnGraphs } from "../LearnGraphs/LearnGraphs.jsx";
-import { statusContext } from "../../AppMain/App";
+import { statusContext } from "../../AppMain/App/App";
 import { browserHist } from "../../AppMain/history";
-import { APPLE2month, AMZN10Year } from "../graphs/graphData.js";
+import { APPLE2month, AMZN10Year } from "../graphData.js";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../../actions/actions";
@@ -26,16 +26,12 @@ const LearnBasicsPageRender: React.FC<Props> = (props) => {
     pollInterval: 500,
   });
   const [comments, setComments] = useState([] as any);
-  const { status, setStatus } = useContext(statusContext);
-  const [id, setId] = useState(props.progress[0].id);
-  const [currentProgress, setCurrentProgress] = useState(
-    props.progress[0].percent
-  );
+  const { status } = useContext(statusContext);
+  const [id] = useState(props.progress[0].id);
+  const [currentProgress] = useState(props.progress[0].percent);
 
   useEffect(() => {
-    if (data && data.tutorial) {
-      setComments(data.tutorial.comments);
-    }
+    if (data && data.tutorial) setComments(data.tutorial.comments);
   }, [data]);
 
   const pieData = {
@@ -80,9 +76,7 @@ const LearnBasicsPageRender: React.FC<Props> = (props) => {
   };
 
   useEffect(() => {
-    if (status === false) {
-      browserHist.push("/login");
-    }
+    if (status === false) browserHist.push("/login");
   }, []);
 
   return (
