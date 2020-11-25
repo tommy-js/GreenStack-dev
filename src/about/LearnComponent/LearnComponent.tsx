@@ -8,7 +8,7 @@ interface Props {
   percent: number;
 }
 
-const LearnComponent: React.FC<Props> = (props) => {
+export const LearnComponent: React.FC<Props> = (props) => {
   const [renderOpac, setRenderOpac] = useState(0);
 
   function renderProgress() {
@@ -44,5 +44,3 @@ const LearnComponent: React.FC<Props> = (props) => {
     </Link>
   );
 };
-
-export default LearnComponent;

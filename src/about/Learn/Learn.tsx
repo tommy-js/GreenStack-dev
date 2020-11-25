@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { LearnComponent } from "../LearnComponent/LearnComponent";
 import { LearnHeader } from "../LearnHeader/LearnHeader";
 import { LearnSidebar } from "../LearnSidebar/LearnSidebar";
