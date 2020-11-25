@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
-import { likeCommentMutation } from "../queries/queries";
-import like from "../images/like.png";
-import likeFilled from "../images/like_filled.png";
+import { likeCommentMutation } from "../../../queries/queries";
+import like from "../../images/like.png";
+import likeFilled from "../../images/like_filled.png";
 
 interface Props {
   postId: string;
@@ -12,7 +12,7 @@ interface Props {
   likeCommentMutation: (variables: object) => any;
 }
 
-const LikePostComment: React.FC<Props> = (props) => {
+const LikePostCommentMutation: React.FC<Props> = (props) => {
   const [imgColor, setImgColor] = useState(like);
 
   function passData() {
@@ -24,7 +24,6 @@ const LikePostComment: React.FC<Props> = (props) => {
         },
       })
       .then((res: any) => {
-        console.log(res);
         props.modLikes();
         setImgColor(likeFilled);
       })
@@ -40,6 +39,6 @@ const LikePostComment: React.FC<Props> = (props) => {
   );
 };
 
-export default compose(
+export const LikePostComment = compose(
   graphql(likeCommentMutation, { name: "likeCommentMutation" })
-)(LikePostComment);
+)(LikePostCommentMutation);
