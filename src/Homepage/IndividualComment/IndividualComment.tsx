@@ -5,12 +5,11 @@ import UserIndex from "../about/CommentHover/UserIndex";
 import IndividualCommentSubComments from "./IndividualCommentSubComments";
 import IndividualCommentReply from "./IndividualCommentReply";
 import comment from "../images/comment.png";
-import { returnTaggedString } from "../globals/functions/returnTagged";
 import { useLazyQuery } from "react-apollo";
-import { userCommentLookup } from "../queries/queries";
+import { userCommentLookup } from "../../../queries/queries";
 import { connect } from "react-redux";
-import { mapStateToProps, mapDispatchToProps } from "../actions/actions";
-import { returnDate } from "../notifications/notificationsTimestamp";
+import { mapStateToProps, mapDispatchToProps } from "../../actions/actions";
+import { returnDate, returnTaggedString } from "./index";
 
 type Routes = {
   username: string;
@@ -53,7 +52,7 @@ interface Props extends Redux {
   subComments: SubComments[];
 }
 
-const IndividualComment: React.FC<Props> = (props) => {
+const IndividualCommentRender: React.FC<Props> = (props) => {
   const [likes, setLikes] = useState(props.likes);
   const [dislikes, setDislikes] = useState(props.dislikes);
   const [transferedDisp, setTransferedDisp] = useState("none");
@@ -157,9 +156,7 @@ const IndMapper: React.FC<Mapper> = (props) => {
   }, []);
 
   useEffect(() => {
-    if (data) {
-      setUserData(data.specUser);
-    }
+    if (data) setUserData(data.specUser);
   }, [data]);
 
   function getUsername() {
@@ -168,7 +165,7 @@ const IndMapper: React.FC<Mapper> = (props) => {
   }
 
   function renderFunc() {
-    if (data && userData && data.specUser != null) {
+    if (data && userData && data.specUser != null)
       return (
         <UserIndex
           highlightUsername={userData.username}
@@ -177,12 +174,13 @@ const IndMapper: React.FC<Mapper> = (props) => {
           highlightProfileImage={userData.profileImage}
         />
       );
-    } else {
-      return <span className="tag_span"> {props.tag} </span>;
-    }
+    else return <span className="tag_span"> {props.tag} </span>;
   }
 
   return renderFunc();
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(IndividualComment);
+export const IndividualComment = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(IndividualCommentRender);
