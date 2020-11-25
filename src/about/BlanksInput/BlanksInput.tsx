@@ -7,7 +7,7 @@ interface Props {
   modCorrect: (id: number, isCorrect: boolean) => void;
 }
 
-const BlanksInput: React.FC<Props> = ({
+export const BlanksInput: React.FC<Props> = ({
   text,
   id,
   correctAnswer,
@@ -33,5 +33,3 @@ const BlanksInput: React.FC<Props> = ({
     </div>
   );
 };
-
-export default BlanksInput;
