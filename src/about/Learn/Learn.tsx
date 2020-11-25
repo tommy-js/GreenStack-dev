@@ -9,7 +9,7 @@ interface Props {
   progress: ProgressItem[];
 }
 
-const Learn: React.FC<Props> = (props) => {
+export const Learn: React.FC<Props> = (props) => {
   const [loaded, setLoaded] = useState(false);
   const [learn, setLearn] = useState([
     {
@@ -68,5 +68,3 @@ const Learn: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default Learn;

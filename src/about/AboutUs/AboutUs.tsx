@@ -1,6 +1,6 @@
 import React from "react";
 
-const AboutUs: React.FC = () => {
+export const AboutUs: React.FC = () => {
   return (
     <div>
       <h2 className="learn_page_header">Tutorials</h2>
@@ -11,5 +11,3 @@ const AboutUs: React.FC = () => {
     </div>
   );
 };
-
-export default AboutUs;

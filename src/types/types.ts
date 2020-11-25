@@ -207,3 +207,14 @@ export type CommentItem = {
     }
   ];
 };
+
+export type SubCommentItem = {
+  userId: string;
+  commentId: string;
+  username: string;
+  timestamp: number;
+  text: string;
+  likes: number;
+  dislikes: number;
+  parentCommentId: string;
+};

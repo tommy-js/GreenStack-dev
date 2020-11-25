@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import AboutUs from "./../AboutUs";
-import Learn from "./../Learn";
-import NavBar from "../../navigation/NavBar";
-import { LoadingUser } from "../login/LoadingUser";
+import { AboutUs } from "../AboutUs/AboutUs";
+import { Learn } from "../Learn/Learn";
+import { NavBar } from "../../navigation/NavBar/NavBar";
+import { LoadingUser } from "../../login/Loading/Loading";
 import UserLoginAuthSubresolver from "../../resolvers/UserLoginAuthSubresolver";
 import {
   PostItem,
@@ -11,7 +11,7 @@ import {
   NotificationItem,
   WatchListItem,
 } from "../../types/types";
-import { statusContext } from "../../AppMain/App";
+import { statusContext } from "../../AppMain/App/App";
 import { browserHist } from "../../AppMain/history";
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "../../actions/actions";

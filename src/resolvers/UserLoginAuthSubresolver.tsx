@@ -22,24 +22,20 @@ interface Redux {
   onStocksSet: (stocks: any) => void;
   onInitialPostsSet: (posts: any) => void;
   onProfileImageSet: (profileImage: any) => void;
-  onInitialTradeSet: (trades: any) => void;
   onInitialNotificationsSet: (notifications: any) => void;
   onInitialCommentsSet: (comments: any) => void;
   onInitialProgressSet: (progress: any) => void;
   onInitialProgressElementsSet: (progressElements: any) => void;
-  onHistorySet: (history: any) => void;
   onUserRouteSet: (userRoutes: any) => void;
 }
 
 interface Props extends Redux {
   token: string;
-  username: string;
   loggedIn: () => void;
 }
 
 const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
-  const { status, setStatus } = useContext(statusContext);
-  const [progEl, setProgEl] = useState([]);
+  const { setStatus } = useContext(statusContext);
   const [
     logUserIn,
     { loading: loadingLogIn, data: dataLogIn, error: errorLogIn },
