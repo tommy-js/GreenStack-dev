@@ -1,7 +1,7 @@
 import React from "react";
 
 interface Props {
-  postId: number;
+  postId: string;
   title: string;
 }
 
