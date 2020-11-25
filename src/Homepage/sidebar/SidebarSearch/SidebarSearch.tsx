@@ -6,11 +6,9 @@ interface Props {
   submitSearch: () => void;
 }
 
-const SidebarSearch: React.FC<Props> = (props) => {
+export const SidebarSearch: React.FC<Props> = (props) => {
   function checkSubmit(key: any) {
-    if (key.keyCode === 13) {
-      props.submitSearch();
-    }
+    if (key.keyCode === 13) props.submitSearch();
   }
 
   return (
@@ -28,5 +26,3 @@ const SidebarSearch: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default SidebarSearch;
