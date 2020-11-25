@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
-import { updateUserProfileImageMutation } from "../queries/queries.js";
+import { updateUserProfileImageMutation } from "../../../queries/queries.js";
 
 interface Props {
   image: string;
@@ -9,7 +9,7 @@ interface Props {
   updateUserProfileImageMutation: (variables: object) => any;
 }
 
-const SaveProfileImage: React.FC<Props> = (props) => {
+const SaveProfileImageMutation: React.FC<Props> = (props) => {
   function submit() {
     let token = sessionStorage.getItem("Token");
     props
@@ -33,8 +33,8 @@ const SaveProfileImage: React.FC<Props> = (props) => {
   );
 };
 
-export default compose(
+export const SaveProfileImage = compose(
   graphql(updateUserProfileImageMutation, {
     name: "updateUserProfileImageMutation",
   })
-)(SaveProfileImage);
+)(SaveProfileImageMutation);
