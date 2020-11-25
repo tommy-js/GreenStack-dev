@@ -1,8 +1,8 @@
 import React from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
-import { pushCommentPostMutation } from "../queries/queries.js";
-import { taggedUsers } from "../globals/functions/returnTaggedUsers";
+import { pushCommentPostMutation } from "../../queries/queries.js";
+import { taggedUsers } from "./index";
 
 interface Props {
   userId: string;
@@ -12,17 +12,15 @@ interface Props {
   pushCommentPostMutation: (variables: object) => any;
 }
 
-const PushCommentPost: React.FC<Props> = (props) => {
+const PushCommentPostRender: React.FC<Props> = (props) => {
   function submitComment() {
     if (props.text.length < 180 && props.text.length > 0) {
-      let token = sessionStorage.getItem("Token");
-
       let taggedArr = taggedUsers(props.text);
 
       props
         .pushCommentPostMutation({
           variables: {
-            token: token,
+            token: sessionStorage.getItem("Token"),
             userId: props.userId,
             content: "A user commented on your post",
             postId: props.postId,
@@ -34,7 +32,6 @@ const PushCommentPost: React.FC<Props> = (props) => {
           console.log(err);
         })
         .then((res: any) => {
-          console.log(res);
           props.modComments();
         });
     }
@@ -43,6 +40,6 @@ const PushCommentPost: React.FC<Props> = (props) => {
   return <button onClick={() => submitComment()}>Submit</button>;
 };
 
-export default compose(
+export const PushCommentPost = compose(
   graphql(pushCommentPostMutation, { name: "pushCommentPostMutation" })
-)(PushCommentPost);
+)(PushCommentPostRender);
