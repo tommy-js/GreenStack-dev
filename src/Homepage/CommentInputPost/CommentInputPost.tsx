@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { PushCommentStock } from "../PushCommentStock/PushCommentStock";
 import { PushCommentPost } from "../PushCommentPost/PushCommentPost";
 
 interface Post {
@@ -9,12 +8,7 @@ interface Post {
   modComments?: () => void;
 }
 
-interface Stock {
-  userId: string;
-  stockId: string;
-}
-
-export const InputPost: React.FC<Post> = (props) => {
+export const CommentInputPost: React.FC<Post> = (props) => {
   const [text, setText] = useState("");
 
   function modText(input: string) {
@@ -50,19 +44,4 @@ export const InputPost: React.FC<Post> = (props) => {
   }
 
   return <div id="comment_input_div">{returnHiddenTextarea()}</div>;
-};
-
-export const InputStock: React.FC<Stock> = (props) => {
-  const [text, setText] = useState("");
-
-  return (
-    <div id="comment_input_div">
-      <textarea id="comment_input" />
-      <PushCommentStock
-        userId={props.userId}
-        stockId={props.stockId}
-        text={text}
-      />
-    </div>
-  );
 };
