@@ -4,7 +4,7 @@ import Private from "../../resolvers/Private";
 import DeleteAccount from "../../resolvers/DeleteAccount";
 import AllowComments from "../../resolvers/AllowComments";
 import { connect } from "react-redux";
-import { mapStateToProps, mapDispatchToProps } from "../../actions/actions";
+import { mapStateToProps, mapDispatchToProps } from "../../../actions/actions";
 
 interface Redux {
   darkmode: any;
@@ -15,7 +15,7 @@ interface Redux {
   onAllowCommentsSet: (allowCommentsOnPosts: any) => void;
 }
 
-const Settings: React.FC<Redux> = (props) => {
+const SettingsRender: React.FC<Redux> = (props) => {
   function modDarkMode(darkmode: boolean) {
     props.onDarkmodeSet(darkmode);
   }
@@ -42,4 +42,7 @@ const Settings: React.FC<Redux> = (props) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Settings);
+export const Settings = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SettingsRender);
