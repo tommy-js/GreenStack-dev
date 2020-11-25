@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from "react";
-import SetBio from "../../resolvers/SetBio";
-import SaveProfileImage from "../../resolvers/SaveProfileImage";
-import BioCounter from "./BioCounter";
-import { ProfileDropzone } from "./ProfileDropzone";
+import { SetBio } from "../SetBio/SetBio";
+import { SaveProfileImage } from "../SaveProfileImage/SaveProfileImage";
+import { BioCounter } from "../BioCounter/BioCounter";
+import { ProfileDropzone } from "../ProfileDropzone/ProfileDropzone";
 import edit from "../../images/edit.png";
 import { connect } from "react-redux";
-import { mapStateToProps, mapDispatchToProps } from "../../actions/actions";
+import { mapStateToProps, mapDispatchToProps } from "../../../actions/actions";
 
 interface Redux {
-  profileImage: any;
-  username: any;
-  bio: any;
+  profileImage: string;
+  username: string;
+  bio: string;
   onProfileImageSet: (profileImage: string) => void;
 }
 
-interface Props extends Redux {}
-
-const ProfileHeader: React.FC<Props> = (props) => {
+const ProfileHeaderRender: React.FC<Redux> = (props) => {
   const [profileImage, setProfileImage] = useState(props.profileImage);
   const [editing, setEditing] = useState(false);
   const [bio, setBio] = useState(props.bio);
@@ -29,7 +27,7 @@ const ProfileHeader: React.FC<Props> = (props) => {
   function returnEditing() {
     if (editing === true) {
       return (
-        <div>
+        <React.Fragment>
           <textarea
             id="bio_edit_textarea"
             onChange={(e) => setBio(e.target.value)}
@@ -37,7 +35,7 @@ const ProfileHeader: React.FC<Props> = (props) => {
           />
           <SetBio bio={bio} modEditing={modEditing} />
           <BioCounter bio={bio} />
-        </div>
+        </React.Fragment>
       );
     } else {
       return (
@@ -64,10 +62,10 @@ const ProfileHeader: React.FC<Props> = (props) => {
   function renderDropzone() {
     if (editingProfileImage === true) {
       return (
-        <div>
+        <React.Fragment>
           <ProfileDropzone modifyImg={modifyImg} />
           <SaveProfileImage image={profileImage} saveImage={saveImage} />
-        </div>
+        </React.Fragment>
       );
     } else return null;
   }
@@ -89,4 +87,7 @@ const ProfileHeader: React.FC<Props> = (props) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileHeader);
+export const ProfileHeader = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProfileHeaderRender);
