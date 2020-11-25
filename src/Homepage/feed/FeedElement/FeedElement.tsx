@@ -1,7 +1,7 @@
 import React from "react";
-import FeedPost from "./FeedPost";
-import FeedComment from "./FeedComment";
-import FeedLike from "./FeedLike";
+import { FeedPost } from "../FeedPost/FeedPost";
+import { FeedComment } from "../FeedComment/FeedComment";
+import { FeedLike } from "../FeedLike/FeedLike";
 
 interface Props {
   title: string;
@@ -25,7 +25,7 @@ interface Props {
   modPostLoad: (postId: string) => void;
 }
 
-const FeedElement: React.FC<Props> = (props) => {
+export const FeedElement: React.FC<Props> = (props) => {
   function path() {
     if (props.type === "Post") {
       return (
@@ -80,5 +80,3 @@ const FeedElement: React.FC<Props> = (props) => {
 
   return <div>{path()}</div>;
 };
-
-export default FeedElement;
