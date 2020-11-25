@@ -5,24 +5,19 @@ import { mapStateToProps } from "../actions/actions";
 import confetti from "../images/confetti.png";
 
 interface Redux {
-  money: any;
+  money: number;
 }
 
 interface Props extends Redux {
   setPostingToFeed: () => void;
 }
 
-const PortfolioValuePostModalContent: React.FC<Props> = (props) => {
+const PortfolioValuePostModalContentRender: React.FC<Props> = (props) => {
   const [text, setText] = useState("");
 
   function successfulEvent() {
-    console.log("success");
     setText("");
     props.setPostingToFeed();
-  }
-
-  function unsuccessfulEvent() {
-    console.log("failed");
   }
 
   return (
@@ -57,11 +52,12 @@ const PortfolioValuePostModalContent: React.FC<Props> = (props) => {
         allowComments={true}
         allowLikes={true}
         image=""
-        unsuccessfulEvent={unsuccessfulEvent}
         successfulEvent={successfulEvent}
       />
     </div>
   );
 };
 
-export default connect(mapStateToProps)(PortfolioValuePostModalContent);
+export const PortfolioValuePostModalContent = connect(mapStateToProps)(
+  PortfolioValuePostModalContentRender
+);
