@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import LikePostComment from "../../resolvers/LikePostComment";
-import DislikePostComment from "../../resolvers/DislikePostComment";
-import { returnDate } from "../../notifications/notificationsTimestamp";
+import { LikePostComment } from "../LikePostComment/LikePostComment";
+import { DislikePostComment } from "../DislikePostComment/DislikePostComment";
+import { returnDate } from "./index";
 
 interface Props {
   userId: string;
@@ -14,7 +14,7 @@ interface Props {
   postId: string;
 }
 
-const IndividualPostComment: React.FC<Props> = (props) => {
+export const IndividualPostComment: React.FC<Props> = (props) => {
   const [likes, setLikes] = useState(props.likes);
   const [dislikes, setDislikes] = useState(props.dislikes);
 
@@ -42,5 +42,3 @@ const IndividualPostComment: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default IndividualPostComment;
