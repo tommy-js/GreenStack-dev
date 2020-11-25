@@ -1,5 +1,5 @@
 import React from "react";
-import SubmitPost from "../resolvers/SubmitPost";
+import { SubmitPost } from "../SubmitPost/SubmitPost";
 
 interface Props {
   title: string;
@@ -7,11 +7,7 @@ interface Props {
   accompaniedURL: string;
 }
 
-const NewsCompOptions: React.FC<Props> = (props) => {
-  function unsuccessfulEvent() {}
-
-  function successfulEvent() {}
-
+export const NewsCompOptions: React.FC<Props> = (props) => {
   return (
     <div className="news_comp_options">
       <div className="news_comp_button">
@@ -20,12 +16,8 @@ const NewsCompOptions: React.FC<Props> = (props) => {
           text={props.text}
           accompaniedURL={props.accompaniedURL}
           buttonTitle="Post to timeline"
-          unsuccessfulEvent={unsuccessfulEvent}
-          successfulEvent={successfulEvent}
         />
       </div>
     </div>
   );
 };
-
-export default NewsCompOptions;
