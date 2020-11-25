@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { returnUserList } from "../globals/functions/userList";
+import { returnUserList } from "./index";
 
 interface Props {
   splice: string;
