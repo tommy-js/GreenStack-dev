@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import SidebarUsername from "./SidebarUsername";
-import SidebarSearch from "./SidebarSearch";
-import SidebarElement from "./SidebarElement";
-import SidebarPortfolioValue from "./SidebarPortfolioValue";
-import { searchQuery } from "../../queries/queries.js";
+import { SidebarUsername } from "../SidebarUsername/SidebarUsername";
+import { SidebarSearch } from "../SidebarSearch/SidebarSearch";
+import { SidebarElement } from "../SidebarElement/SidebarElement";
+import { SidebarPortfolioValue } from "../SidebarPortfolioValue/SidebarPortfolioValue";
+import { searchQuery } from "../../../queries/queries.js";
 import { useLazyQuery } from "react-apollo";
 
 interface Props {
@@ -11,10 +11,10 @@ interface Props {
   setPostingToFeed: () => void;
 }
 
-const FeedSidebar: React.FC<Props> = (props) => {
+export const FeedSidebar: React.FC<Props> = (props) => {
   const [search, setSearch] = useState("");
 
-  const [searchUser, { loading, data }] = useLazyQuery(searchQuery);
+  const [searchUser, { data }] = useLazyQuery(searchQuery);
 
   useEffect(() => {
     if (data) {
@@ -70,5 +70,3 @@ const FeedSidebar: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default FeedSidebar;
