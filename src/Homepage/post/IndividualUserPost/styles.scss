@@ -1,0 +1,22 @@
+.individual_user_post_title {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.individual_user_post_textblock {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.individual_user_post_infoblock {
+  position: relative;
+  width: 100%;
+  @include testing;
+}
+
+.individual_user_post_inline {
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 14px;
+}

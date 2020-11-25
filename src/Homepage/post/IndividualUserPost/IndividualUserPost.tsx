@@ -10,7 +10,7 @@ interface Props {
   modPostLoad: (postId: string) => void;
 }
 
-const IndividualUserPost: React.FC<Props> = (props) => {
+export const IndividualUserPost: React.FC<Props> = (props) => {
   return (
     <div
       className="standard_link"
@@ -30,5 +30,3 @@ const IndividualUserPost: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default IndividualUserPost;
