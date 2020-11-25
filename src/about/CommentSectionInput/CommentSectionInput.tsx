@@ -10,7 +10,7 @@ interface Props {
   pushCommentTutorialMutation: (variables: object) => any;
 }
 
-const CommentSectionInput: React.FC<Props> = (props) => {
+const CommentSectionInputMutation: React.FC<Props> = (props) => {
   const [text, setText] = useState("");
 
   function passData() {
@@ -51,6 +51,6 @@ const CommentSectionInput: React.FC<Props> = (props) => {
   );
 };
 
-export const CommentSectionInputExp = compose(
+export const CommentSectionInput = compose(
   graphql(pushCommentTutorialMutation, { name: "pushCommentTutorialMutation" })
-)(CommentSectionInput);
+)(CommentSectionInputMutation);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CommentSectionInput from "../CommentSectionInput";
+import { CommentSectionInput } from "../CommentSectionInput/CommentSectionInput";
 import { Comments } from "../Comments/Comments";
 import { CommentItem } from "../../types/types";
 
@@ -8,7 +8,7 @@ interface Props {
   comments: CommentItem[];
 }
 
-const CommentSection: React.FC<Props> = (props) => {
+export const CommentSection: React.FC<Props> = (props) => {
   const [comments, setComments] = useState([] as any);
 
   useEffect(() => {
@@ -23,5 +23,3 @@ const CommentSection: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default CommentSection;
