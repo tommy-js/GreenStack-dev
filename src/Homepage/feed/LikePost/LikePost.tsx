@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
-import { likePostMutation } from "../queries/queries";
+import { likePostMutation } from "../../../queries/queries";
 import like from "../images/like.png";
 import likeFilled from "../images/like_filled.png";
 
@@ -13,27 +13,23 @@ interface Props {
   likePostMutation: (variables: object) => any;
 }
 
-const LikePost: React.FC<Props> = (props) => {
+const LikePostRender: React.FC<Props> = (props) => {
   const [imgColor, setImgColor] = useState(like);
 
   function passData() {
-    let token = sessionStorage.getItem("Token");
-
     props
       .likePostMutation({
         variables: {
-          token: token,
+          token: sessionStorage.getItem("Token"),
           userId: props.userId,
           postId: props.postId,
           content: `${props.postUsername} liked your post`,
           likeText: `Liked a post submitted by ${props.postUsername}`,
         },
       })
-      .then((res: any) => {
-        console.log(res);
+      .then(() => {
         if (props.modLikes) props.modLikes();
         setImgColor(likeFilled);
-        console.log("logging from LikePost");
       })
       .catch((err: any) => {
         console.log(err);
@@ -47,6 +43,6 @@ const LikePost: React.FC<Props> = (props) => {
   );
 };
 
-export default compose(graphql(likePostMutation, { name: "likePostMutation" }))(
-  LikePost
-);
+export const LikePost = compose(
+  graphql(likePostMutation, { name: "likePostMutation" })
+)(LikePostRender);
