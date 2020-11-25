@@ -6,10 +6,9 @@ interface Props {
   path: string;
 }
 
-const SidebarElement: React.FC<Props> = (props) => {
+export const SidebarElement: React.FC<Props> = (props) => {
   return (
     <NavLink
-      exact
       activeClassName="active_sidebar_element"
       className="sidebar_element"
       to={props.path}
@@ -18,5 +17,3 @@ const SidebarElement: React.FC<Props> = (props) => {
     </NavLink>
   );
 };
-
-export default SidebarElement;
