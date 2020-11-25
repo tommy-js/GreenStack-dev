@@ -1,34 +1,19 @@
 import React, { useState, useEffect } from "react";
-import IndividualComment from "./IndividualComment";
+import { IndividualComment } from "../IndividualComment/IndividualComment";
+import { CommentItem } from "../../types/types";
+import { sortComments } from "./index";
 
 interface Props {
   postId: string;
-  comments: {
-    commentId: string;
-    username: string;
-    text: string;
-    timestamp: number;
-    likes: number;
-    dislikes: number;
-    subComments: {
-      commentId: string;
-      username: string;
-      text: string;
-      timestamp: number;
-      likes: number;
-      dislikes: number;
-    }[];
-  }[];
+  comments: CommentItem[];
 }
 
-const CommentSection: React.FC<Props> = (props) => {
+export const CommentSection: React.FC<Props> = (props) => {
   const [comments, setComments] = useState();
 
   useEffect(() => {
-    props.comments.sort(function (a, b) {
-      return b.timestamp - a.timestamp;
-    });
-    setComments(props.comments);
+    let sortedComments = sortComments(props.comments);
+    setComments(sortedComments);
   }, []);
 
   function returnRender() {
@@ -54,7 +39,5 @@ const CommentSection: React.FC<Props> = (props) => {
     } else return null;
   }
 
-  return <div>{returnRender()}</div>;
+  return <React.Fragment>{returnRender()}</React.Fragment>;
 };
-
-export default CommentSection;
