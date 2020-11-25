@@ -1,0 +1,15 @@
+#sidebar_username_link_spec {
+  font-size: 22px;
+  text-decoration: none;
+  color: black;
+  transition: 0.2s;
+}
+
+#sidebar_username_link_spec:hover {
+  color: teal;
+  transition: 0.2s;
+}
+
+#sidebar_username {
+  border-bottom: 1px solid black;
+}
