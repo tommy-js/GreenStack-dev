@@ -1,15 +1,15 @@
 import React, { useState, useContext } from "react";
-import SubmitPost from "../resolvers/SubmitPost";
-import PostNotifIcon from "./PostNotifIcon";
-import PostOptions from "./post/PostOptions";
-import PostTextInput from "./PostTextInput";
-import { ProfileDropzone } from "./profile/ProfileDropzone";
+import { SubmitPost } from "../SubmitPost/SubmitPost";
+import { PostNotifIcon } from "../PostNotifIcon/PostNotifIcon";
+import { PostOptions } from "../post/PostOptions/PostOptions";
+import { PostTextInput } from "../PostTextInput/PostTextInput";
+import { ProfileDropzone } from "../profile/ProfileDropzone";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../actions/actions";
 import settings from "../images/settings.png";
 
 interface Redux {
-  userId: any;
+  userId: string;
   username: string;
   setToFeed: (
     title: string,
@@ -19,7 +19,7 @@ interface Redux {
   ) => void;
 }
 
-const Post: React.FC<Redux> = (props) => {
+const PostRenderPre: React.FC<Redux> = (props) => {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [success, setSuccess] = useState(false);
@@ -125,4 +125,4 @@ const Post: React.FC<Redux> = (props) => {
   );
 };
 
-export default connect(mapStateToProps)(Post);
+export const PostRender = connect(mapStateToProps)(PostRenderPre);
