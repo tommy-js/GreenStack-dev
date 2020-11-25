@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
-import IndividualUserPost from "./IndividualUserPost";
-import FeedModal from "../feed/FeedModal";
+import { IndividualUserPost } from "../IndividualUserPost/IndividualUserPost";
+import { FeedModal } from "../../feed/FeedModal/FeedModal";
 import { connect } from "react-redux";
-import { mapStateToProps } from "../../actions/actions";
+import { mapStateToProps } from "../../../actions/actions";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import { PostItem, FeedItem } from "../../../types/types";
 
 interface Redux {
-  posts: any;
-  feed: any;
-}
-
-interface Props extends Redux {
-  modRoutes: (arr: Posts[]) => void;
+  posts: Posts[];
+  feed: FeedItem[];
 }
 
 interface Posts {
@@ -24,7 +21,11 @@ interface Posts {
   dislikes: number;
 }
 
-const UserPosts: React.FC<Props> = (props) => {
+interface Props extends Redux {
+  modRoutes: (arr: Posts[]) => void;
+}
+
+const UserPostsRender: React.FC<Props> = (props) => {
   const [sortedArr, setSortedArr] = useState(props.posts);
   const [postRendered, setPostRendered] = useState(false);
   const [postInfo, setPostInfo] = useState();
@@ -51,7 +52,7 @@ const UserPosts: React.FC<Props> = (props) => {
   }
 
   function triggerPostLoad(postId: string) {
-    let foundId = props.feed.find((el: any) => postId === el.postId);
+    let foundId = props.feed.find((el: FeedItem) => postId === el.posts.postId);
     if (foundId) {
       let foundIndex = props.feed.indexOf(foundId);
       setPostInfo(props.feed[foundIndex]);
@@ -59,9 +60,9 @@ const UserPosts: React.FC<Props> = (props) => {
   }
 
   function conditionalPostRendering() {
-    if (postRendered === true) {
+    if (postRendered === true)
       return <FeedModal data={postInfo} modPostLoad={modPostLoad} />;
-    } else return null;
+    else return null;
   }
 
   return (
@@ -86,4 +87,4 @@ const UserPosts: React.FC<Props> = (props) => {
   );
 };
 
-export default connect(mapStateToProps)(UserPosts);
+export const UserPosts = connect(mapStateToProps)(UserPostsRender);
