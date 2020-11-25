@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
-import { dislikePostMutation } from "../queries/queries";
+import { dislikePostMutation } from "../../../queries/queries";
 import dislike from "../images/dislike.png";
 import dislikeFilled from "../images/dislike_filled.png";
 
@@ -12,7 +12,7 @@ interface Props {
   dislikePostMutation: (variables: object) => any;
 }
 
-const DislikePost: React.FC<Props> = (props) => {
+const DislikePostRender: React.FC<Props> = (props) => {
   const [imgColor, setImgColor] = useState(dislike);
 
   function passData() {
@@ -24,13 +24,12 @@ const DislikePost: React.FC<Props> = (props) => {
           content: "A user disliked your post",
         },
       })
-      .then((res: any) => {
-        console.log("passed");
+      .then(() => {
         if (props.modDislikes) props.modDislikes();
         setImgColor(dislikeFilled);
       })
       .catch((err: any) => {
-        console.log("error");
+        console.log(err);
       });
   }
 
@@ -41,6 +40,6 @@ const DislikePost: React.FC<Props> = (props) => {
   );
 };
 
-export default compose(
+export const DislikePost = compose(
   graphql(dislikePostMutation, { name: "dislikePostMutation" })
-)(DislikePost);
+)(DislikePostRender);

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import LikePost from "../../LikePost/LikePost";
-import DislikePost from "../../DislikePost/DislikePost";
-import InlineUnfollow from "../../InlineUnfollow/InlineUnfollow";
-import UserIndex from "../../../about/CommentHover/UserIndex";
+import { LikePost } from "../../LikePost/LikePost";
+import { DislikePost } from "../../DislikePost/DislikePost";
+import { InlineUnfollow } from "../../InlineUnfollow/InlineUnfollow";
+import { UserIndex } from "../../../about/CommentHover/UserIndex";
 import { Link } from "react-router-dom";
 import comment from "../../images/comment.png";
 import { returnDate } from "../../../notifications/notificationsTimestamp";
