@@ -1,39 +1,38 @@
 import React, { useState, useEffect } from "react";
-import IndividualPostComment from "./IndividualPostComment";
-import { LoadingGeneral } from "../../login/LoadingUser";
+import { IndividualPostComment } from "../IndividualPostComment/IndividualPostComment";
+import { LoadingGeneral } from "../../../login/LoadingUser";
+import { returnOrderedComments } from "./index";
+
+type Comment = {
+  userId: string;
+  username: string;
+  commentId: string;
+  timestamp: number;
+  text: string;
+  likes: number;
+  dislikes: number;
+};
 
 interface Props {
   postId: string;
-  comments: {
-    userId: string;
-    username: string;
-    commentId: string;
-    timestamp: number;
-    text: string;
-    likes: number;
-    dislikes: number;
-  }[];
+  comments: Comment[];
 }
 
-const PostComments: React.FC<Props> = (props) => {
+export const PostComments: React.FC<Props> = (props) => {
   const [comments, setComments] = useState();
 
   useEffect(() => {
     if (props.comments) {
-      props.comments.sort(function (a, b) {
-        return b.timestamp - a.timestamp;
-      });
-      setComments(props.comments);
+      let orderedComments = returnOrderedComments(props.comments);
+      setComments(orderedComments);
     }
   }, []);
-
-  useEffect(() => {}, [comments]);
 
   function returnRender() {
     if (comments) {
       return (
-        <div>
-          {comments.map((el: any) => (
+        <React.Fragment>
+          {comments.map((el: Comment) => (
             <IndividualPostComment
               userId={el.userId}
               username={el.username}
@@ -45,12 +44,10 @@ const PostComments: React.FC<Props> = (props) => {
               postId={props.postId}
             />
           ))}
-        </div>
+        </React.Fragment>
       );
     } else return <LoadingGeneral />;
   }
 
   return <div>{returnRender()}</div>;
 };
-
-export default PostComments;
