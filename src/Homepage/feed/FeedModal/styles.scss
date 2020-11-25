@@ -1,0 +1,38 @@
+#modal {
+  @include modal_backdrop;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+#feed_modal {
+  @include modal_backdrop;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: $soft_grey;
+  opacity: 0.4;
+}
+
+#central_modal {
+  position: absolute;
+  vertical-align: middle;
+  width: 55vw;
+  height: 85vh;
+  overflow: scroll;
+  opacity: 1;
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  padding: 15px;
+  box-sizing: border-box;
+  z-index: 999;
+  box-shadow: 1px 1px 1px 1px grey;
+}

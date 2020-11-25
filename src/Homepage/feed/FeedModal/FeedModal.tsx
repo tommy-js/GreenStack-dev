@@ -1,12 +1,12 @@
 import React from "react";
-import RenderModal from "./RenderModal";
+import { RenderModal } from "../RenderModal/RenderModal";
 
 interface Props {
   data: any;
   modPostLoad: (postId: string) => void;
 }
 
-const FeedModal: React.FC<Props> = (props) => {
+export const FeedModal: React.FC<Props> = (props) => {
   return (
     <div id="modal">
       <div id="central_modal">
@@ -34,5 +34,3 @@ const FeedModal: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default FeedModal;
