@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
-import { pushCommentNestMutation } from "../queries/queries";
+import { pushCommentNestMutation } from "../../queries/queries";
 
 interface Props {
   postId: string;
@@ -10,13 +10,12 @@ interface Props {
   pushCommentNestMutation: (variables: object) => any;
 }
 
-const SubmitSubResponse: React.FC<Props> = (props) => {
+const SubmitSubResponseMutation: React.FC<Props> = (props) => {
   function submit() {
-    let token = sessionStorage.getItem("Token");
     props
       .pushCommentNestMutation({
         variables: {
-          token: token,
+          token: sessionStorage.getItem("Token"),
           postId: props.postId,
           commentId: props.commentId,
           text: props.text,
@@ -26,13 +25,9 @@ const SubmitSubResponse: React.FC<Props> = (props) => {
       .then((res: any) => console.log(res));
   }
 
-  return (
-    <div>
-      <button onClick={() => submit()}>submit</button>
-    </div>
-  );
+  return <button onClick={() => submit()}>submit</button>;
 };
 
-export default compose(
+export const SubmitSubResponse = compose(
   graphql(pushCommentNestMutation, { name: "pushCommentNestMutation" })
-)(SubmitSubResponse);
+)(SubmitSubResponseMutation);
