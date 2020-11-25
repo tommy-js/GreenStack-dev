@@ -1,5 +1,5 @@
 import React from "react";
-import NewsCompOptions from "./NewsCompOptions";
+import { NewsCompOptions } from "../NewsCompOptions/NewsCompOptions";
 
 interface Props {
   title: string;
@@ -8,7 +8,7 @@ interface Props {
   url: string;
 }
 
-const NewsComponent: React.FC<Props> = (props) => {
+export const NewsComponent: React.FC<Props> = (props) => {
   return (
     <div className="news_block">
       <a className="standard_link" href={props.url}>
@@ -24,5 +24,3 @@ const NewsComponent: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default NewsComponent;
