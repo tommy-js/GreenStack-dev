@@ -1,17 +1,16 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 
 interface Props {
   modifyImg: (imgData: any) => void;
 }
 
-export function ProfileDropzone(props: any) {
+export const ProfileDropzone: React.FC<Props> = (props) => {
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.forEach((file: any) => {
       const reader = new FileReader();
 
       reader.onload = () => {
-        // Do whatever you want with the file contents
         const binaryStr = reader.result;
         props.modifyImg(binaryStr);
       };
@@ -30,4 +29,4 @@ export function ProfileDropzone(props: any) {
       </div>
     </section>
   );
-}
+};
