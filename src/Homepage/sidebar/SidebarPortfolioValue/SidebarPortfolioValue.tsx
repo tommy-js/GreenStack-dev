@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { mapStateToProps } from "../../actions/actions";
+import { mapStateToProps } from "../../../actions/actions";
 
 interface Redux {
-  money: any;
+  money: number;
   setPostingToFeed: () => void;
 }
 
-const SidebarPortfolioValue: React.FC<Redux> = (props) => {
+const SidebarPortfolioValueRender: React.FC<Redux> = (props) => {
   return (
     <div className="sidebar_element" id="portfolio_value">
       <p className="sidebar_element_text">${props.money}</p>
@@ -24,4 +24,6 @@ const SidebarPortfolioValue: React.FC<Redux> = (props) => {
   );
 };
 
-export default connect(mapStateToProps)(SidebarPortfolioValue);
+export const SidebarPortfolioValue = connect(mapStateToProps)(
+  SidebarPortfolioValueRender
+);

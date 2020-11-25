@@ -176,6 +176,16 @@ export type UserRoute = {
   profileImage: string;
 };
 
+export type CommentItemRemSubComments = {
+  userId: string;
+  commentId: string;
+  username: string;
+  timestamp: number;
+  text: string;
+  likes: number;
+  dislikes: number;
+};
+
 export type CommentItem = {
   userId: string;
   commentId: string;

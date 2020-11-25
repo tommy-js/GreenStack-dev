@@ -1,0 +1,42 @@
+.sidebar_element {
+  position: relative;
+  width: 95%;
+  vertical-align: top;
+  padding: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: black;
+  // @include testing;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-decoration: none;
+}
+
+#portfolio_value {
+  @include noselect;
+  cursor: default;
+}
+
+.sidebar_element_text {
+  font-size: 20px;
+  padding: 5px;
+  margin: 0;
+  transition: 0.2s;
+}
+
+#sidebar_element_hover {
+  opacity: 0;
+  transition: 0.3s;
+}
+
+#portfolio_value:hover #sidebar_element_hover {
+  opacity: 1;
+  transition: 0.3s;
+}
+
+#sidebar_element_hover_text,
+#sidebar_element_hover_button {
+  display: inline-block;
+  margin: 0;
+}

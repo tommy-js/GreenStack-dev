@@ -6,7 +6,7 @@ interface Post {
   userId: string;
   postId: string;
   allowComments: boolean;
-  modComments: () => void;
+  modComments?: () => void;
 }
 
 interface Stock {
@@ -18,9 +18,7 @@ export const InputPost: React.FC<Post> = (props) => {
   const [text, setText] = useState("");
 
   function modText(input: string) {
-    if (input.length < 180) {
-      setText(input);
-    }
+    if (input.length < 180) setText(input);
   }
 
   function returnHiddenTextarea() {
@@ -34,7 +32,7 @@ export const InputPost: React.FC<Post> = (props) => {
       );
     } else if (props.allowComments === true) {
       return (
-        <div>
+        <React.Fragment>
           <textarea
             id="comment_input"
             value={text}
@@ -46,7 +44,7 @@ export const InputPost: React.FC<Post> = (props) => {
             text={text}
             modComments={props.modComments}
           />
-        </div>
+        </React.Fragment>
       );
     }
   }

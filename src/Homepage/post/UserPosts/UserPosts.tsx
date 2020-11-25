@@ -4,7 +4,7 @@ import { FeedModal } from "../../feed/FeedModal/FeedModal";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../../../actions/actions";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
-import { PostItem, FeedItem } from "../../../types/types";
+import { FeedItem } from "../../../types/types";
 
 interface Redux {
   posts: Posts[];
