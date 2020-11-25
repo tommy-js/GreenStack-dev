@@ -19,11 +19,9 @@ interface Stock {
 export const QueryUserResult: React.FC<User> = (props) => {
   return (
     <Link to={`/home/user/${props.userId}`}>
-      <div>
-        <h2>{props.username}</h2>
-        <img src={props.profileImage} />
-        <h3>{props.bio}</h3>
-      </div>
+      <h2>{props.username}</h2>
+      <img src={props.profileImage} />
+      <h3>{props.bio}</h3>
     </Link>
   );
 };
