@@ -1,0 +1,46 @@
+.feed_comment_header {
+  position: relative;
+  margin: 0;
+  font-family: $standard_font;
+}
+
+.feed_comment_header_username {
+  display: inline-block;
+  margin-right: 5px;
+  @include testing;
+}
+
+.feed_comment_header_text {
+  opacity: 0.75;
+  display: inline-block;
+}
+
+.feed_comment_base {
+  position: relative;
+  width: 95%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.feed_top_block {
+  margin-bottom: 0;
+  height: 40px;
+}
+
+.liked_image_block {
+  position: relative;
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.liked_image {
+  height: 100%;
+  width: 100%;
+}

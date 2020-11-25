@@ -19,7 +19,7 @@ interface Props {
   modPostLoad: (postId: string) => void;
 }
 
-const FeedLike: React.FC<Props> = (props) => {
+export const FeedLike: React.FC<Props> = (props) => {
   useEffect(() => {
     let postElement = document.getElementById(`id_${props.reference.postId}`);
     if (postElement) {
@@ -62,5 +62,3 @@ const FeedLike: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default FeedLike;
