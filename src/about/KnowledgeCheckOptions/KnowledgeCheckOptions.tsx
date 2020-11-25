@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Option from "./Option";
+import { Option } from "../Option/Option";
 
 type Option = {
   title: string;
@@ -20,7 +20,7 @@ export const KnowledgeCheckOptions: React.FC<Props> = (props) => {
   }
 
   return (
-    <div>
+    <React.Fragment>
       {props.options.map((el: Option) => (
         <Option
           title={el.title}
@@ -30,6 +30,6 @@ export const KnowledgeCheckOptions: React.FC<Props> = (props) => {
           selectOption={selectOption}
         />
       ))}
-    </div>
+    </React.Fragment>
   );
 };
