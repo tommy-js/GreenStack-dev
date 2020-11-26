@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import LikePostComment from "../resolvers/LikePostComment";
-import DislikePostComment from "../resolvers/DislikePostComment";
-import UserIndex from "../about/CommentHover/UserIndex";
-import IndividualCommentSubComments from "./IndividualCommentSubComments";
-import IndividualCommentReply from "./IndividualCommentReply";
+import { LikePostComment } from "../post/LikePostComment/LikePostComment";
+import { DislikePostComment } from "../post/DislikePostComment/DislikePostComment";
+import { UserIndex } from "../../about/UserIndex/UserIndex";
+import { IndividualCommentSubComments } from "../IndividualCommentSubComments/IndividualCommentSubComments";
+import { IndividualCommentReply } from "../IndividualCommentReply/IndividualCommentReply";
 import comment from "../images/comment.png";
 import { useLazyQuery } from "react-apollo";
-import { userCommentLookup } from "../../../queries/queries";
+import { userCommentLookup } from "../../queries/queries";
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "../../actions/actions";
 import { returnDate, returnTaggedString } from "./index";
