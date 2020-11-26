@@ -20,7 +20,7 @@ interface Props extends Redux {
   inspectProfileImage: string;
   inspectUserId: string;
   inspectBio: string;
-  modRoutes: (route: UserRoute) => void;
+  modRoutes?: (route: UserRoute) => void;
 }
 
 const UserProf: React.FC<Props> = (props) => {
@@ -41,7 +41,7 @@ const UserProf: React.FC<Props> = (props) => {
     if (data) {
       setUserProfile(data.altUser);
       setUserProfileState(true);
-      props.modRoutes(data.altUser.posts);
+      if (props.modRoutes) props.modRoutes(data.altUser.posts);
     }
   }, [data]);
 

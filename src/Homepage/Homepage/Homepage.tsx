@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { FeedSidebar } from "../sidebar/FeedSidebar/FeedSidebar";
-import { NavBar } from "../navigation/NavBar/NavBar";
+import { NavBar } from "../../navigation/NavBar/NavBar";
 import { Feed } from "../feed/Feed/Feed";
 import { Explore } from "../explore/Explore/Explore";
 import { UserPosts } from "../post/UserPosts/UserPosts";
@@ -8,14 +8,14 @@ import { Following } from "../Following/Following";
 import { Followers } from "../Followers/Followers";
 import { UserProfile } from "../../User/UserProfile/UserProfile";
 import { Profile } from "../profile/Profile/Profile";
-import { LoadingUser } from "../login/LoadingUser";
+import { LoadingUser } from "../../login/Loading/Loading";
 import { SearchResults } from "../SearchResults/SearchResults";
 import { PortfolioValuePostModal } from "../PortfolioValuePostModal/PortfolioValuePostModal";
-import UserLoginAuthSubresolver from "../resolvers/UserLoginAuthSubresolver";
+import UserLoginAuthSubresolver from "../../resolvers/UserLoginAuthSubresolver";
 import { Route } from "react-router-dom";
 import { StockPage } from "../../companies/StockPage/StockPage";
 import { useLazyQuery, useQuery } from "react-apollo";
-import { statusContext } from "../../AppMain/App";
+import { statusContext } from "../../AppMain/App/App";
 import { browserHist } from "../../AppMain/history";
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "../../actions/actions";
@@ -48,7 +48,7 @@ interface Redux {
   onUserRouteSet: (userRoutes: any) => void;
 }
 
-const HomepageRender: React.FC = () => {
+const HomepageRender: React.FC<Redux> = (props) => {
   const [loadingInUser, setLoadingInUser] = useState(false);
   const [companies, setCompanies] = useState([] as any);
   const [technology, setTechnology] = useState([] as any);
@@ -108,7 +108,6 @@ const HomepageRender: React.FC = () => {
       props.onInitialFollowingSet(getUserData.noTokenMod.following);
       props.onInitialNotificationsSet(getUserData.noTokenMod.notifications);
       props.onWatchlistSet(getUserData.noTokenMod.watchlist);
-      props.onHistorySet(getUserData.noTokenMod.history);
     }
   }, [getUserData]);
 
@@ -200,7 +199,7 @@ const HomepageRender: React.FC = () => {
               <SearchResults results={results} />
             </Route>
             <Route exact path="/home/profile">
-              <Profile username={props.username} />
+              <Profile />
             </Route>
             <Route exact path="/home/explore">
               <Explore

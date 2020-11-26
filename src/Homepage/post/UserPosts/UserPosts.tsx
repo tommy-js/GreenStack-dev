@@ -22,7 +22,7 @@ interface Posts {
 }
 
 interface Props extends Redux {
-  modRoutes: (arr: Posts[]) => void;
+  modRoutes?: (arr: Posts[]) => void;
 }
 
 const UserPostsRender: React.FC<Props> = (props) => {
@@ -36,7 +36,7 @@ const UserPostsRender: React.FC<Props> = (props) => {
     });
     setSortedArr(arr);
 
-    props.modRoutes(arr);
+    if (props.modRoutes) props.modRoutes(arr);
   }, []);
 
   function modPostLoad(postId: string) {
@@ -60,9 +60,9 @@ const UserPostsRender: React.FC<Props> = (props) => {
   }
 
   function conditionalPostRendering() {
-    if (postRendered === true)
+    if (postRendered === true) {
       return <FeedModal data={postInfo} modPostLoad={modPostLoad} />;
-    else return null;
+    } else return null;
   }
 
   return (
