@@ -29,7 +29,7 @@ const DarkModeRender: React.FC<Props> = (props) => {
         },
       })
       .catch((err: any) => console.log(err))
-      .then((res: any) => {
+      .then(() => {
         props.modDarkMode(!darkmodeChecked);
         setDarkmodeChecked(!darkmodeChecked);
       });

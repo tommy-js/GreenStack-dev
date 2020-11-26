@@ -30,10 +30,9 @@ const PrivateRender: React.FC<Props> = (props) => {
         },
       })
       .catch((err: any) => console.log(err))
-      .then((res: any) => {
+      .then(() => {
         setInvisibleChecked(!invisibleChecked);
         props.modPrivate(!invisibleChecked);
-        console.log(res);
       });
   }
 
