@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
-import { updateUserProgressMutation } from "../queries/queries.js";
+import { updateUserProgressMutation } from "../../queries/queries.js";
 
 interface Props {
   id: string;

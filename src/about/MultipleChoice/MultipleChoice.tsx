@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { KnowledgeCheckAcceptButton } from "../../resolvers/KCAcceptButton";
+import { KCAcceptButton } from "../KCAcceptButton/KCAcceptButton";
 import { KnowledgeCheckHeadline } from "../KnowledgeCheckHeadline/KnowledgeCheckHeadline";
 import { KnowledgeCheckOptions } from "../KnowledgeCheckOptions/KnowledgeCheckOptions";
 
@@ -38,7 +38,7 @@ export const MultipleChoice: React.FC<MC> = (props) => {
     <div id="knowledge_check">
       <KnowledgeCheckHeadline headline={props.headline} res={res} />
       <KnowledgeCheckOptions options={props.options} modOption={modOption} />
-      <KnowledgeCheckAcceptButton
+      <KCAcceptButton
         id={props.id}
         specId={props.specId}
         increment={props.increment}
