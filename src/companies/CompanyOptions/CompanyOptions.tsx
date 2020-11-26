@@ -24,7 +24,7 @@ interface Props extends Redux {
 
 const CompanyOptions: React.FC<Props> = (props) => {
   const [elementExists, setElementExists] = useState(false);
-  const [watchlist, setWatchlist] = useState(props.watchlist);
+  const watchlist = [...props.watchlist];
 
   // Checks to make sure we haven't already added to watchlist
   useEffect(() => {
@@ -42,11 +42,10 @@ const CompanyOptions: React.FC<Props> = (props) => {
   }
 
   function saveToWatchlist() {
-    let token = sessionStorage.getItem("Token");
     props
       .pushStockToWatchlistMutation({
         variables: {
-          token: token,
+          token: sessionStorage.getItem("Token"),
           stockId: props.stockId,
           title: props.title,
           ticker: props.ticker,
