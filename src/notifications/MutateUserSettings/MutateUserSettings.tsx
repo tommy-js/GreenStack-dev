@@ -77,7 +77,7 @@ const UserSettingsMutations: React.FC<Props> = (props) => {
         },
       })
       .catch((err: any) => console.log(err))
-      .then((res: any) => {
+      .then(() => {
         setDarkmodeChecked(!darkmodeChecked);
         props.modDarkMode(!darkmodeChecked);
       });

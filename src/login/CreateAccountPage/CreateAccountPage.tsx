@@ -4,7 +4,7 @@ import { RenderAccountLink } from "../RenderAccountLink/RenderAccountLink";
 import { UserNameInput } from "../UserNameInput/UserNameInput";
 import { PasswordInput } from "../PasswordInput/PasswordInput";
 import { PasswordValidation } from "../PasswordValidation/PasswordValidation";
-import CreateNewUser from "../resolvers/CreateNewUser";
+import { CreateNewUser } from "../CreateNewUser/CreateNewUser";
 import { UserAlreadyExists } from "../UserAlreadyExists/UserAlreadyExists";
 
 interface Props {

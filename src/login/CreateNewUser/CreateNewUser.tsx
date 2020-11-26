@@ -14,7 +14,7 @@ interface Props {
   alreadyExists: (val: boolean) => void;
 }
 
-const CreateNewUser: React.FC<Props> = (props) => {
+const CreateNewUserMutation: React.FC<Props> = (props) => {
   const [newUsername, setNewUsername] = useState(false);
   const [callUser, { data }] = useLazyQuery(distinctUserQuery, {
     variables: { username: props.username },
@@ -131,6 +131,6 @@ const CreateNewUser: React.FC<Props> = (props) => {
   return <button onClick={() => checkValidity()}>Create Account</button>;
 };
 
-export const CreateNewUserExp = compose(
+export const CreateNewUser = compose(
   graphql(createUserMutation, { name: "createUserMutation" })
-)(CreateNewUser);
+)(CreateNewUserMutation);
