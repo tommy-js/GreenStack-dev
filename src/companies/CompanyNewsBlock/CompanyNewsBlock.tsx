@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import NewsComponent from "../../Homepage/NewsComponent";
-import Header from "../../User/Header";
+import { NewsComponent } from "../../Homepage/NewsComponent/NewsComponent";
+import { Header } from "../../User/Header/Header";
 import { useQuery } from "react-apollo";
 import { returnNewsQuery } from "../../queries/queries";
 
@@ -33,12 +33,10 @@ export const CompanyNewsBlock = (props: any) => {
     }
   }
 
-  useEffect(() => {}, [loggedNews]);
-
   function passData() {
     if (shortLoggedNews) {
       return (
-        <div>
+        <React.Fragment>
           {shortLoggedNews.map((el: any) => (
             <div>
               <NewsComponent
@@ -52,11 +50,9 @@ export const CompanyNewsBlock = (props: any) => {
           <button className="center_button" onClick={() => loadMore()}>
             Load more
           </button>
-        </div>
+        </React.Fragment>
       );
-    } else {
-      return null;
-    }
+    } else return null;
   }
 
   return (
