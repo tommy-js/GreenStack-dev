@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { SelectContainer } from "../SelectContainer/SelectSubheader";
+import { SelectContainer } from "../SelectContainer/SelectContainer";
 import { SelectSubheader } from "../SelectSubheader/SelectSubheader";
 
 interface Props {
