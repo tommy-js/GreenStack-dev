@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { NotifLink } from "../NotificationsLink/NotificationsLink";
 import { NotifData } from "../NotificationsData/NotificationsData";
+import { NotificationItem } from "../../types/types";
 
 interface Props {
-  modNotificationColor: (notifArr: object[]) => void;
+  modNotificationColor: (notifArr: NotificationItem[]) => void;
   zeroTabOut: boolean;
 }
 

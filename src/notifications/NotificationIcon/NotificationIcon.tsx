@@ -1,11 +1,13 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NotificationButton } from "../NotificationButton/NotificationButton";
 import { Notification } from "../Notification/Notification";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../../actions/actions";
+import { NotificationItem } from "../../types/types";
+import { returnNotifyNew } from "./index";
 
 interface Redux {
-  notifications: any;
+  notifications: NotificationItem[];
 }
 
 interface Props extends Redux {
@@ -17,25 +19,13 @@ interface Props extends Redux {
 const NotifIcon: React.FC<Props> = (props) => {
   const [notifyNew, setNotifyNew] = useState(false);
 
-  // new code
-
   useEffect(() => {
     modNotificationColor(props.notifications);
   }, []);
 
-  function modNotificationColor(arr: any) {
-    if (arr.length === 0) {
-      setNotifyNew(false);
-    } else {
-      for (let v = 0; v < arr.length; v++) {
-        if (arr[v].viewed === false) {
-          setNotifyNew(true);
-          break;
-        } else if (arr[v].viewed === true) {
-          setNotifyNew(false);
-        }
-      }
-    }
+  function modNotificationColor(notifications: NotificationItem[]) {
+    let returnViewed = returnNotifyNew(notifications);
+    setNotifyNew(returnViewed);
   }
 
   return (

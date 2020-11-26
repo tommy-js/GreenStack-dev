@@ -20,15 +20,15 @@ interface Redux {
 interface Props extends Redux {
   tab: number;
   changeTab: (tab: number) => void;
-  modNotificationColor: (notifArr: object[]) => void;
+  modNotificationColor: (notifArr: NotificationItem[]) => void;
 }
 
 const NotificationsDataContainer: React.FC<Props> = (props) => {
   const [notifications, setNotifications] = useState(props.notifications);
 
-  function modNotifs(id: number) {
+  function modNotifs(id: string) {
     let notifArr = props.notifications;
-    let foundArr = notifArr.find((el: any) => el.id === id);
+    let foundArr = notifArr.find((el: NotificationItem) => el.id === id);
     if (foundArr) {
       let index = notifArr.indexOf(foundArr);
       notifArr[index].viewed = true;

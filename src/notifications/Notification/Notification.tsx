@@ -1,9 +1,10 @@
 import React from "react";
 import { NotificationsMenu } from "../NotificationsMenu/NotificationsMenu";
+import { NotificationItem } from "../../types/types";
 
 interface Props {
   zeroTabOut: boolean;
-  modNotificationColor: (notifArr: object[]) => void;
+  modNotificationColor: (notifArr: NotificationItem[]) => void;
 }
 
 export const Notification: React.FC<Props> = (props) => {
