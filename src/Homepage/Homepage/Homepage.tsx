@@ -45,15 +45,10 @@ interface Redux {
   onInitialFollowingSet: (following: FollowingItem[]) => void;
   onInitialNotificationsSet: (notifications: any) => void;
   onWatchlistSet: (watchlist: WatchListItem[]) => void;
-  onHistorySet: (history: any) => void;
   onUserRouteSet: (userRoutes: any) => void;
 }
 
-interface Props extends Redux {
-  updateConstantActivity: (passInActivity: any) => void;
-}
-
-const HomepageRender: React.FC<Props> = (props) => {
+const HomepageRender: React.FC = () => {
   const [loadingInUser, setLoadingInUser] = useState(false);
   const [companies, setCompanies] = useState([] as any);
   const [technology, setTechnology] = useState([] as any);
