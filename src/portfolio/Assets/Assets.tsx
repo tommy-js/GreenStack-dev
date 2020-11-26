@@ -9,10 +9,10 @@ interface Redux {
 
 const AssetsRender: React.FC<Redux> = (props) => {
   return (
-    <div>
+    <React.Fragment>
       <PortfolioGraph />
       <p>Liquid: ${props.money}</p>
-    </div>
+    </React.Fragment>
   );
 };
 

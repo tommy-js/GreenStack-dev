@@ -20,11 +20,11 @@ const CurrentAccountRender: React.FC<Props> = (props) => {
   }
 
   return (
-    <div>
+    <React.Fragment>
       <h2>Your Account</h2>
       <p>Your account: {membership}</p>
       {accountSetting()}
-    </div>
+    </React.Fragment>
   );
 };
 

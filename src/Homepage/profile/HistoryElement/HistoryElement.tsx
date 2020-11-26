@@ -14,13 +14,13 @@ interface Props {
 
 export const HistoryElement: React.FC<Props> = (props) => {
   function returnImg() {
-    if (props.style === "Post")
+    if (props.style === "Post") {
       return <img className="history_img" src={page} />;
-    else if (props.style === "Like")
+    } else if (props.style === "Like") {
       return <img className="history_img" src={like} />;
-    else if (props.style === "Dislike")
+    } else if (props.style === "Dislike") {
       return <img className="history_img" src={dislike} />;
-    else return null;
+    } else return null;
   }
 
   return (

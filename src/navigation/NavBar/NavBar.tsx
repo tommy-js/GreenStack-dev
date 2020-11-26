@@ -19,9 +19,7 @@ export const NavBar: React.FC = () => {
 
   function dropToken() {
     let token = sessionStorage.getItem("Token");
-    if (token) {
-      sessionStorage.removeItem("Token");
-    }
+    if (token) sessionStorage.removeItem("Token");
   }
 
   return (

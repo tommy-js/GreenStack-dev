@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { NotificationsElement } from "../NotificationsElement/NotificationsElement";
 import { MutateUserSettings } from "../MutateUserSettings/MutateUserSettings";
 import { VoidAlert } from "../VoidAlert/VoidAlert";
@@ -123,7 +123,7 @@ const NotificationsDataContainer: React.FC<Props> = (props) => {
     }
   }
 
-  return <div>{checkTab()}</div>;
+  return <React.Fragment>{checkTab()}</React.Fragment>;
 };
 
 export const NotifData = connect(

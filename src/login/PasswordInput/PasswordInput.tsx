@@ -9,15 +9,12 @@ interface Props {
 export const PasswordInput: React.FC<Props> = (props) => {
   function showPassword() {
     let input = document.getElementById("login_access") as HTMLInputElement;
-    if (input.type === "password") {
-      input.type = "text";
-    } else {
-      input.type = "password";
-    }
+    if (input.type === "password") input.type = "text";
+    else input.type = "password";
   }
 
   return (
-    <div>
+    <React.Fragment>
       <input
         id="login_access"
         className="input_container"
@@ -28,6 +25,6 @@ export const PasswordInput: React.FC<Props> = (props) => {
       />
       <input type="checkbox" onClick={() => showPassword()} />
       <label>Show Password</label>
-    </div>
+    </React.Fragment>
   );
 };

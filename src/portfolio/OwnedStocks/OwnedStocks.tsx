@@ -21,13 +21,13 @@ const OwnedStocksRender: React.FC<Redux> = (props) => {
   const [results, setResults] = useState([] as any);
 
   return (
-    <div>
+    <React.Fragment>
       {props.stocks.map((el: StockItem) => (
         <OwnedElement title={el.title} />
       ))}
       <StockSearchBox modResults={(res) => setResults(res)} />
       <OwnedStocksDropdown stocks={results} />
-    </div>
+    </React.Fragment>
   );
 };
 

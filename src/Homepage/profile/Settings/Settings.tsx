@@ -7,12 +7,12 @@ import { mapStateToProps, mapDispatchToProps } from "../../../actions/actions";
 
 const SettingsRender: React.FC = () => {
   return (
-    <div>
+    <React.Fragment>
       <h2>Settings</h2>
       <DarkMode />
       <Private />
       <AllowComments />
-    </div>
+    </React.Fragment>
   );
 };
 

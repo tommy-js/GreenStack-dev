@@ -12,13 +12,13 @@ interface Props {
 
 export const UserFollowingOptions: React.FC<Props> = (props) => {
   return (
-    <div>
+    <React.Fragment>
       <UserMuteButton changeMuted={props.changeMuted} mute={props.mute} />
       <UserFollowButton
         setUnfollowed={props.setUnfollowed}
         following={props.following}
         userId={props.userId}
       />
-    </div>
+    </React.Fragment>
   );
 };

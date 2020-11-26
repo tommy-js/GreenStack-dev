@@ -15,7 +15,7 @@ interface Redux {
   stocks: StockItem[];
 }
 
-const AssetChart: React.FC<Redux> = (props) => {
+const AssetChartRender: React.FC<Redux> = (props) => {
   const stockTitles = props.stocks.map((el: StockItem) => el.title);
   const stockData = props.stocks.map((el: StockItem) => el.shares);
   const stockColor = props.stocks.map((el: StockItem) => el.color);
@@ -31,7 +31,7 @@ const AssetChart: React.FC<Redux> = (props) => {
     ],
   };
   return (
-    <div>
+    <React.Fragment>
       <Pie
         data={pieData}
         options={{
@@ -40,8 +40,8 @@ const AssetChart: React.FC<Redux> = (props) => {
           cutoutPercentage: 25,
         }}
       />
-    </div>
+    </React.Fragment>
   );
 };
 
-export default connect(mapStateToProps)(AssetChart);
+export const AssetChart = connect(mapStateToProps)(AssetChartRender);

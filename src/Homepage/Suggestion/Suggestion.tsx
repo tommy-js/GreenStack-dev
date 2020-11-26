@@ -16,5 +16,5 @@ export const Suggestion: React.FC<Props> = (props) => {
     else if (props.typeId === 2) return <PostType />;
   }
 
-  return <div>{determineType()}</div>;
+  return <React.Fragment>{determineType()}</React.Fragment>;
 };

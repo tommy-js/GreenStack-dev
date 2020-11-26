@@ -17,7 +17,6 @@ import { browserHist } from "../../AppMain/history";
 
 export const Login: React.FC = () => {
   const [userId, setUserId] = useState();
-  const [token, setToken] = useState();
   const [newAccount, setNewAccount] = useState(false);
   const [loadingUser, setLoadingUser] = useState(false);
 
@@ -45,7 +44,6 @@ export const Login: React.FC = () => {
       console.log(data.token);
       if (data.token.token === sessionToken) {
         setStatus(true);
-        setToken(data.token.token);
         setUserId(data.token.userid);
         setLoadingUser(true);
       }
@@ -90,18 +88,16 @@ export const Login: React.FC = () => {
         );
       } else
         return (
-          <div>
-            <CreateAccountPage
-              newAccount={newAccount}
-              triggerNewAccount={triggerNewAccount}
-            />
-          </div>
+          <CreateAccountPage
+            newAccount={newAccount}
+            triggerNewAccount={triggerNewAccount}
+          />
         );
     } else {
       return (
         <div id="login_forms">
           <LoadingUser />
-          <UserLoginAuthSubresolver token={token} loggedIn={loggedIn} />
+          <UserLoginAuthSubresolver loggedIn={loggedIn} />
         </div>
       );
     }

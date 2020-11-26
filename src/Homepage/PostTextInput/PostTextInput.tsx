@@ -67,7 +67,7 @@ const PostTextInputRender: React.FC<Props> = (props) => {
   }, [props.text]);
 
   return (
-    <div>
+    <React.Fragment>
       <textarea
         onChange={(e) => props.updateText(e.target.value)}
         value={props.text}
@@ -75,7 +75,7 @@ const PostTextInputRender: React.FC<Props> = (props) => {
         placeholder="text..."
       />
       {returnUserSearchup()}
-    </div>
+    </React.Fragment>
   );
 };
 

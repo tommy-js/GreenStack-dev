@@ -68,10 +68,10 @@ const NotifEl: React.FC<Props> = (props) => {
           id: props.id,
         },
       })
-      .then((res: any) => {
+      .then(() => {
         successfulDrop(props.id);
       })
-      .catch((res: any) => console.log("err"));
+      .catch((err: any) => console.log(err));
   }
 
   return (

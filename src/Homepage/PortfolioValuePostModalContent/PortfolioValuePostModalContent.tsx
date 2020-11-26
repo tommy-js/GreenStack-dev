@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PostPortfolioValue from "../resolvers/PostPortfolioValue";
+import { PostPortfolioValue } from "../PostPortfolioValue/PostPortfolioValue";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../../actions/actions";
 import confetti from "../images/confetti.png";

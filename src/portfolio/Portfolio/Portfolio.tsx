@@ -28,7 +28,6 @@ interface Redux {
 const PortfolioRender: React.FC<Redux> = (props) => {
   const { status, setStatus } = useContext(statusContext);
   const [loadingInUser, setLoadingInUser] = useState(false);
-  const [userId, setUserId] = useState();
   const [token, setToken] = useState();
   const [userStocks, setUserStocks] = useState([] as any);
 
@@ -58,7 +57,6 @@ const PortfolioRender: React.FC<Redux> = (props) => {
   useEffect(() => {
     if (status === false) {
       if (data && data.token) {
-        setUserId(data.token.userId);
         setToken(data.token.token);
         setLoadingInUser(true);
       }
@@ -90,10 +88,10 @@ const PortfolioRender: React.FC<Redux> = (props) => {
       return (
         <div className="render_loading drop_loading_block">
           <LoadingUser />
-          <UserLoginAuthSubresolver token={token} loggedIn={loggedIn} />
+          <UserLoginAuthSubresolver loggedIn={loggedIn} />
         </div>
       );
-    } else return <div>{renderLoading()}</div>;
+    } else return <React.Fragment>{renderLoading()}</React.Fragment>;
   }
 
   return <React.Fragment>{returnLoadingInUser()}</React.Fragment>;

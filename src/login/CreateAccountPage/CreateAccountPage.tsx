@@ -53,7 +53,7 @@ export const CreateAccountPage: React.FC<Props> = (props) => {
   }
 
   return (
-    <div>
+    <React.Fragment>
       <div id="login_forms">
         <LoginHeader text="Create Account" />
         <UserNameInput
@@ -79,6 +79,6 @@ export const CreateAccountPage: React.FC<Props> = (props) => {
         />
       </div>
       <PasswordValidation {...passValidation} password={password} />
-    </div>
+    </React.Fragment>
   );
 };

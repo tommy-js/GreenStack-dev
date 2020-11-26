@@ -10,7 +10,6 @@ export const InitialPortfolioSubContainer: React.FC<Props> = (props) => {
 
   useEffect(() => {
     let updatedStyles = returnStyles(props.showSubContainer);
-    console.log(updatedStyles);
     setStyles(updatedStyles);
   }, [props.showSubContainer]);
 

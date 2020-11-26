@@ -32,5 +32,5 @@ export const NotificationsMenu: React.FC<Props> = (props) => {
       );
     }
   }
-  return <div>{tabDisplay()}</div>;
+  return <React.Fragment>{tabDisplay()}</React.Fragment>;
 };

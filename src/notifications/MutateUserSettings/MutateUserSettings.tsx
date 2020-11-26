@@ -29,11 +29,10 @@ const UserSettingsMutations: React.FC<Props> = (props) => {
   }, [props.allowCommentsOnPosts]);
 
   function updateAllowComments() {
-    let token = sessionStorage.getItem("Token");
     props
       .updateAllowCommentsMutation({
         variables: {
-          token: token,
+          token: sessionStorage.getItem("Token"),
         },
       })
       .catch((err: any) => console.log(err))
@@ -49,11 +48,10 @@ const UserSettingsMutations: React.FC<Props> = (props) => {
   }, [props.invisible]);
 
   function updateInvisible() {
-    let token = sessionStorage.getItem("Token");
     props
       .updateInvisibleMutation({
         variables: {
-          token: token,
+          token: sessionStorage.getItem("Token"),
         },
       })
       .catch((err: any) => console.log(err))
@@ -69,11 +67,10 @@ const UserSettingsMutations: React.FC<Props> = (props) => {
   }, [props.darkmode]);
 
   function updateDarkMode() {
-    let token = sessionStorage.getItem("Token");
     props
       .updateDarkModeMutation({
         variables: {
-          token: token,
+          token: sessionStorage.getItem("Token"),
         },
       })
       .catch((err: any) => console.log(err))
@@ -84,7 +81,7 @@ const UserSettingsMutations: React.FC<Props> = (props) => {
   }
 
   return (
-    <div>
+    <React.Fragment>
       <input
         type="checkbox"
         checked={darkmodeChecked}
@@ -105,7 +102,7 @@ const UserSettingsMutations: React.FC<Props> = (props) => {
         onChange={() => updateAllowComments()}
       />
       <label>Allow Comments on Posts</label>
-    </div>
+    </React.Fragment>
   );
 };
 

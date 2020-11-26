@@ -61,5 +61,5 @@ export const PostPage: React.FC<Props> = (props) => {
     else return <LoadingGeneral />;
   }
 
-  return <div>{returnLoading()}</div>;
+  return <React.Fragment>{returnLoading()}</React.Fragment>;
 };

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 interface Props {
   key: number;
-  stockId: number;
+  stockId: string;
   title: string;
   ticker: string;
 }

@@ -7,7 +7,7 @@ import { mapStateToProps } from "../../actions/actions";
 
 interface Keys {
   keyId: number;
-  stockId: number;
+  stockId: string;
   title: string;
   ticker: string;
 }

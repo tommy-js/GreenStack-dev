@@ -1,6 +1,6 @@
 import React from "react";
 import { Assets } from "../Assets/Assets";
-import { WatchStocksExp } from "../WatchStocks/WatchStocks";
+import { WatchStocks } from "../WatchStocks/WatchStocks";
 import { PortfolioData } from "../PortfolioData/PortfolioData";
 import { MainPortfolioHeader } from "../MainPortfolioHeader/MainPortfolioHeader";
 import { PortfolioHeader } from "../PortfolioHeader/PortfolioHeader";
@@ -14,7 +14,7 @@ export const DefaultPortfolio: React.FC = () => {
       <PortfolioHeader text="Your Stocks" />
       <OwnedStocks />
       <PortfolioHeader text="Watchlist" />
-      <WatchStocksExp />
+      <WatchStocks />
       <PortfolioData />
     </React.Fragment>
   );

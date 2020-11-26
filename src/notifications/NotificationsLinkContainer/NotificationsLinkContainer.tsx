@@ -9,7 +9,7 @@ interface LocalLink {
 
 export const NotificationsLinkContainer: React.FC<LocalLink> = (props) => {
   return (
-    <div>
+    <React.Fragment>
       <NotificationsHeader />
       <NotificationsPortfolioValue />
       <NotificationsLink
@@ -19,6 +19,6 @@ export const NotificationsLinkContainer: React.FC<LocalLink> = (props) => {
       />
       <NotificationsLink title="History" tab={2} changeTab={props.changeTab} />
       <NotificationsLink title="Settings" tab={3} changeTab={props.changeTab} />
-    </div>
+    </React.Fragment>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 interface Props {
   question: string;
@@ -11,12 +11,8 @@ interface Props {
 }
 
 export const UserQuestion: React.FC<Props> = (props) => {
-  const [val, setVal] = useState("");
-
   function changeSelected(e: any) {
-    setVal(e);
     props.modSelected(e, props.index);
-    console.log(e);
   }
 
   return (

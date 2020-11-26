@@ -49,5 +49,5 @@ export const PostComments: React.FC<Props> = (props) => {
     } else return <LoadingGeneral />;
   }
 
-  return <div>{returnRender()}</div>;
+  return <React.Fragment>{returnRender()}</React.Fragment>;
 };

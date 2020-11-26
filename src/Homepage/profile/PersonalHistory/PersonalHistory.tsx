@@ -38,7 +38,7 @@ const PersonalHistoryRender: React.FC<Redux> = (props) => {
   }
 
   return (
-    <div>
+    <React.Fragment>
       <h2 id="personal_history_header">History</h2>
       {props.history.map((el: any) => (
         <HistoryElement
@@ -50,7 +50,7 @@ const PersonalHistoryRender: React.FC<Redux> = (props) => {
         />
       ))}
       {conditionalPostRendering()}
-    </div>
+    </React.Fragment>
   );
 };
 

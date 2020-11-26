@@ -12,10 +12,10 @@ export const PostInformation: React.FC<Props> = ({
   timestamp,
 }: Props) => {
   return (
-    <div>
+    <React.Fragment>
       <p>Likes: {likes}</p>
       <p>Dislikes: {dislikes}</p>
       <p>Posted at {timestamp}</p>
-    </div>
+    </React.Fragment>
   );
 };

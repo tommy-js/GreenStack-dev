@@ -11,7 +11,7 @@ interface Redux {
 
 const NotifPage: React.FC<Redux> = ({ notifications }) => {
   return (
-    <div>
+    <React.Fragment>
       <NavBar />
       <div id="notifications_page">
         <h2 id="notification_header">Your Notifications</h2>
@@ -19,7 +19,7 @@ const NotifPage: React.FC<Redux> = ({ notifications }) => {
           <Notif content={el.content} timestamp={el.timestamp} id={el.id} />
         ))}
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

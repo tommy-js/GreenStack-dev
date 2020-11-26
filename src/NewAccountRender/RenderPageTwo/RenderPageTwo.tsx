@@ -9,7 +9,7 @@ interface Props {
 
 export const RenderPageTwo: React.FC<Props> = (props) => {
   return (
-    <div>
+    <React.Fragment>
       <p className="user_init_questions">Which stocks here interest you?</p>
       <TickerList />
       <div className="render_pages_button_container">
@@ -26,6 +26,6 @@ export const RenderPageTwo: React.FC<Props> = (props) => {
           Next
         </button>
       </div>
-    </div>
+    </React.Fragment>
   );
 };

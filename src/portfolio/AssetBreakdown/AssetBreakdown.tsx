@@ -18,7 +18,7 @@ interface Redux {
   currentPrices: any;
 }
 
-const AssetBreakdown: React.FC<Redux> = (props) => {
+const AssetBreakdownRender: React.FC<Redux> = (props) => {
   const [stockData, setStockData] = useState();
   const [stockTitles, setStockTitles] = useState();
 
@@ -68,7 +68,7 @@ const AssetBreakdown: React.FC<Redux> = (props) => {
     }
   }
 
-  return <div>{renderFunct()}</div>;
+  return <React.Fragment>{renderFunct()}</React.Fragment>;
 };
 
-export default connect(mapStateToProps)(AssetBreakdown);
+export const AssetBreakdown = connect(mapStateToProps)(AssetBreakdownRender);

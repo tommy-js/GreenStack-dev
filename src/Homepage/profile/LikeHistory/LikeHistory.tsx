@@ -13,11 +13,11 @@ export const LikeHistory: React.FC = () => {
   ];
 
   return (
-    <div>
+    <React.Fragment>
       <h2>Like History</h2>
       {testData.map((el: Post) => (
         <Like key={el.postId} postId={el.postId} title={el.title} />
       ))}
-    </div>
+    </React.Fragment>
   );
 };

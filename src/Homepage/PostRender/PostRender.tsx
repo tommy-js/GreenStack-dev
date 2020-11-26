@@ -58,11 +58,7 @@ const PostRenderPre: React.FC<Redux> = (props) => {
 
   function returnPass() {
     if (posted === true) {
-      return (
-        <div>
-          <PostNotifIcon timeoutFunc={timeoutFunc} success={success} />
-        </div>
-      );
+      return <PostNotifIcon timeoutFunc={timeoutFunc} success={success} />;
     } else return null;
   }
 
@@ -85,42 +81,40 @@ const PostRenderPre: React.FC<Redux> = (props) => {
   }
 
   return (
-    <div className="post_container">
-      <div id="post">
-        <input
-          value={title}
-          placeholder="title..."
-          className="post_header"
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <PostTextInput text={text} updateText={updateText} />
-        <div id="post_settings_icon" onClick={() => modSettingsHeight()}>
-          <img id="post_settings_img" src={settings} />
-        </div>
-        <PostOptions
+    <div id="post" className="post_container">
+      <input
+        value={title}
+        placeholder="title..."
+        className="post_header"
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <PostTextInput text={text} updateText={updateText} />
+      <div id="post_settings_icon" onClick={() => modSettingsHeight()}>
+        <img id="post_settings_img" src={settings} />
+      </div>
+      <PostOptions
+        allowComments={allowComments}
+        allowLikes={allowLikes}
+        optionHeight={optionHeight}
+        modAllowComments={modAllowComments}
+        modAllowLikes={modAllowLikes}
+      />
+      <ProfileDropzone modifyImg={modifyImg} />
+      <div className="post_button">
+        <SubmitPost
+          username={props.username}
+          title={title}
+          text={text}
+          buttonTitle="Post"
+          successfulEvent={successfulEvent}
+          unsuccessfulEvent={unsuccessfulEvent}
           allowComments={allowComments}
           allowLikes={allowLikes}
-          optionHeight={optionHeight}
-          modAllowComments={modAllowComments}
-          modAllowLikes={modAllowLikes}
+          accompaniedURL=""
+          image={image}
         />
-        <ProfileDropzone modifyImg={modifyImg} />
-        <div className="post_button">
-          <SubmitPost
-            username={props.username}
-            title={title}
-            text={text}
-            buttonTitle="Post"
-            successfulEvent={successfulEvent}
-            unsuccessfulEvent={unsuccessfulEvent}
-            allowComments={allowComments}
-            allowLikes={allowLikes}
-            accompaniedURL=""
-            image={image}
-          />
-        </div>
-        {returnPass()}
       </div>
+      {returnPass()}
     </div>
   );
 };

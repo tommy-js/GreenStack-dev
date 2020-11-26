@@ -30,5 +30,5 @@ export const RenderAccountLink: React.FC<Props> = (props) => {
     }
   }
 
-  return <div>{checkNewAccount()}</div>;
+  return <React.Fragment>{checkNewAccount()}</React.Fragment>;
 };

@@ -39,7 +39,7 @@ const RenderPageThreeMutation: React.FC<Submission> = (props) => {
   }
 
   return (
-    <div>
+    <React.Fragment>
       <p className="user_init_questions">
         What kind of commentary are you looking for from those you follow?
       </p>
@@ -55,7 +55,7 @@ const RenderPageThreeMutation: React.FC<Submission> = (props) => {
           Save
         </button>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

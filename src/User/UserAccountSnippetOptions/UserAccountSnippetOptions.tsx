@@ -5,7 +5,7 @@ import { blockUserMutation } from "../../queries/queries.js";
 
 interface Props {
   blocked: boolean;
-  userId: number;
+  userId: string;
   updateBlocked: boolean;
   blockUserMutation: (variables: object) => void;
 }
@@ -29,7 +29,7 @@ const UserAccSnippOpt: React.FC<Props> = (props) => {
     } else return <button onClick={() => changeChecked()}>unblock</button>;
   }
 
-  return <div>{controlBlocked()}</div>;
+  return <React.Fragment>{controlBlocked()}</React.Fragment>;
 };
 
 export const UserAccountSnippetOptions = compose(

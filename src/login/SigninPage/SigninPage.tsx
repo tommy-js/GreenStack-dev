@@ -37,7 +37,7 @@ export const SigninPage: React.FC<Props> = (props) => {
   }
 
   return (
-    <div>
+    <React.Fragment>
       <LoginHeader text="Login" />
       <UserNameInput
         username={username}
@@ -59,6 +59,6 @@ export const SigninPage: React.FC<Props> = (props) => {
       />
       <HiddenVisual text="You must enter a username" opac={usernameOpac} />
       <HiddenVisual text="You must enter a password" opac={passwordOpac} />
-    </div>
+    </React.Fragment>
   );
 };
