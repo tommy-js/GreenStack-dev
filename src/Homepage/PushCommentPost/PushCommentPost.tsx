@@ -31,7 +31,7 @@ const PushCommentPostRender: React.FC<Props> = (props) => {
         .catch((err: any) => {
           console.log(err);
         })
-        .then((res: any) => {
+        .then(() => {
           props.modComments();
         });
     }

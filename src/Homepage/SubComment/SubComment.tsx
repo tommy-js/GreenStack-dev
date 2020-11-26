@@ -1,6 +1,6 @@
 import React from "react";
-import LikeSubComment from "../resolvers/LikeSubComment";
-import DislikeSubComment from "../resolvers/DislikeSubComment";
+import { LikeSubComment } from "../LikeSubComment/LikeSubComment";
+import { DislikeSubComment } from "../DislikeSubComment/DislikeSubComment";
 
 interface Props {
   postId: string;

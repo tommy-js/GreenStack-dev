@@ -28,12 +28,12 @@ export const QueryUserResult: React.FC<User> = (props) => {
 
 export const QueryStockResult: React.FC<Stock> = (props) => {
   return (
-    <div>
+    <React.Fragment>
       <p>
         {props.title} #{props.ticker}
       </p>
       <p>{props.country}</p>
       <p>{props.description}</p>
-    </div>
+    </React.Fragment>
   );
 };
