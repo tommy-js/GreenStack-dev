@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { PageOne, PageTwo, PageThree } from "../RenderPages/RenderPages";
+import { RenderPageOne } from "../RenderPageOne/RenderPageOne";
+import { RenderPageTwo } from "../RenderPageTwo/RenderPageTwo";
+import { RenderPageThree } from "../RenderPageThree/RenderPageThree";
 
 interface Props {
   submit: () => void;
@@ -18,27 +20,17 @@ export const NewAccountRender: React.FC<Props> = (props) => {
 
   function renderCurrentPage() {
     if (currentPage === 0) {
-      return (
-        <div>
-          <PageOne id={0} nextPage={nextPage} backPage={backPage} />
-        </div>
-      );
+      return <RenderPageOne id={0} nextPage={nextPage} backPage={backPage} />;
     } else if (currentPage === 1) {
-      return (
-        <div>
-          <PageTwo id={1} nextPage={nextPage} backPage={backPage} />
-        </div>
-      );
+      return <RenderPageTwo id={1} nextPage={nextPage} backPage={backPage} />;
     } else if (currentPage === 2) {
       return (
-        <div>
-          <PageThree
-            id={2}
-            nextPage={nextPage}
-            backPage={backPage}
-            submit={props.submit}
-          />
-        </div>
+        <RenderPageThree
+          id={2}
+          nextPage={nextPage}
+          backPage={backPage}
+          submit={props.submit}
+        />
       );
     }
   }

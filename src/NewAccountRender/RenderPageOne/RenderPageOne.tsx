@@ -11,7 +11,7 @@ interface Props {
   saveSettingsMutation: (variables: object) => any;
 }
 
-const RenderPageOne: React.FC<Props> = (props) => {
+const RenderPageOneMutation: React.FC<Props> = (props) => {
   const [selectedState, setSelectedState] = useState({
     experience: 0,
     education: 0,
@@ -114,6 +114,6 @@ const RenderPageOne: React.FC<Props> = (props) => {
   );
 };
 
-export const RenderPageOneExp = compose(
+export const RenderPageOne = compose(
   graphql(saveSettingsMutation, { name: "saveSettingsMutation" })
-)(RenderPageOne);
+)(RenderPageOneMutation);

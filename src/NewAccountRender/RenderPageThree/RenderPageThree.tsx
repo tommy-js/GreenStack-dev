@@ -15,7 +15,7 @@ interface Submission extends Props {
   submit: () => void;
 }
 
-const RenderPageThree: React.FC<Submission> = (props) => {
+const RenderPageThreeMutation: React.FC<Submission> = (props) => {
   const [index, setIndex] = useState(0);
 
   function setCurrentIndex(index: number) {
@@ -59,8 +59,8 @@ const RenderPageThree: React.FC<Submission> = (props) => {
   );
 };
 
-export const RenderPageThreeExp = compose(
+export const RenderPageThree = compose(
   graphql(savePreferredCommentaryMutation, {
     name: "savePreferredCommentaryMutation",
   })
-)(RenderPageThree);
+)(RenderPageThreeMutation);
