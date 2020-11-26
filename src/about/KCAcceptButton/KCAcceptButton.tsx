@@ -13,7 +13,7 @@ interface Props {
   returnRes: (ans: boolean) => void;
 }
 
-const KCAcceptButton: React.FC<Props> = (props) => {
+const KCAcceptButtonMutation: React.FC<Props> = (props) => {
   function submit() {
     if (props.correct === true) {
       props.returnRes(true);
@@ -35,6 +35,6 @@ const KCAcceptButton: React.FC<Props> = (props) => {
   return <button onClick={() => submit()}>Check</button>;
 };
 
-export default compose(
+export const KCAcceptButton = compose(
   graphql(updateUserProgressMutation, { name: "updateUserProgressMutation" })
-)(KCAcceptButton);
+)(KCAcceptButtonMutation);
