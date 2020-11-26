@@ -12,7 +12,7 @@ interface Props {
   stockId: string;
   addCommentStockMutation: (variables: object) => any;
 }
-const CompanyComments: React.FC<Props> = (props) => {
+const CompanyCommentsRender: React.FC<Props> = (props) => {
   const [text, setText] = useState("");
   const { data } = useQuery(stockQuery, {
     variables: { stockId: props.stockId },
@@ -57,6 +57,6 @@ const CompanyComments: React.FC<Props> = (props) => {
   );
 };
 
-export const CompanyCommentsExp = compose(
+export const CompanyComments = compose(
   graphql(addCommentStockMutation, { name: "addCommentStockMutation" })
-)(CompanyComments);
+)(CompanyCommentsRender);

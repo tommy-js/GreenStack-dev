@@ -14,7 +14,7 @@ interface Props {
   dislikeStockMutation: (variables: object) => any;
 }
 
-const LikeComponent: React.FC<Props> = (props) => {
+const LikeComponentRender: React.FC<Props> = (props) => {
   function like() {
     let token = sessionStorage.getItem("Token");
     props
@@ -36,11 +36,10 @@ const LikeComponent: React.FC<Props> = (props) => {
   }
 
   function dislike() {
-    let token = sessionStorage.getItem("Token");
     props
       .dislikeStockMutation({
         variables: {
-          token: token,
+          token: sessionStorage.getItem("Token"),
           text: "Disliked stock comment",
           style: "Dislike",
           commentId: props.commentId,
@@ -56,20 +55,20 @@ const LikeComponent: React.FC<Props> = (props) => {
   }
 
   return (
-    <div>
+    <React.Fragment>
       <p>
         {props.likes} / {props.dislikes}
       </p>
       <button onClick={() => like()}>Like</button>
       <button onClick={() => dislike()}>Dislike</button>
-    </div>
+    </React.Fragment>
   );
 };
 
 const LikeComponentMutation = compose(
   graphql(likeStockMutation, { name: "likeStockMutation" })
-)(LikeComponent);
+)(LikeComponentRender);
 
-export const LikeComponentExp = compose(
+export const LikeComponent = compose(
   graphql(dislikeStockMutation, { name: "dislikeStockMutation" })
 )(LikeComponentMutation);

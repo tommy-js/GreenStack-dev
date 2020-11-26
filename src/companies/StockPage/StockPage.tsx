@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import { CompanyInformationBlock } from "../CompanyInformationBlock/CompanyInformationBlock";
 import { CompanyNewsBlock } from "../CompanyNewsBlock/CompanyNewsBlock.js";
-import { CompanyCommentsExp } from "../CompanyComments/CompanyComments";
+import { CompanyComments } from "../CompanyComments/CompanyComments";
 import { CompanyOptions } from "../CompanyOptions/CompanyOptions";
 import { CompanyGraph } from "../CompanyGraph/CompanyGraph.jsx";
 import { CompanyDescription } from "../CompanyDescription/CompanyDescription";
-import { statusContext } from "../../AppMain/App";
+import { statusContext } from "../../AppMain/App/App";
 import { browserHist } from "../../AppMain/history";
 
 interface Props {
@@ -20,9 +20,7 @@ export const StockPage: React.FC<Props> = (props) => {
   const { status } = useContext(statusContext);
 
   useEffect(() => {
-    if (status === false) {
-      browserHist.push("/login");
-    }
+    if (status === false) browserHist.push("/login");
   }, []);
 
   return (
@@ -36,7 +34,7 @@ export const StockPage: React.FC<Props> = (props) => {
         title={props.title}
         ticker={props.ticker}
       />
-      <CompanyCommentsExp
+      <CompanyComments
         title={props.title}
         ticker={props.ticker}
         stockId={props.stockId}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { flowRight as compose } from "lodash";
 import { graphql } from "react-apollo";
 import { connect } from "react-redux";
@@ -22,7 +22,7 @@ interface Props extends Redux {
   removeStockFromWatchlistMutation: (variables: object) => any;
 }
 
-const CompanyOptions: React.FC<Props> = (props) => {
+const CompanyOptionsRender: React.FC<Props> = (props) => {
   const [elementExists, setElementExists] = useState(false);
   const watchlist = [...props.watchlist];
 
@@ -95,7 +95,7 @@ const CompanyOptionsSaveMutation = compose(
   graphql(pushStockToWatchlistMutation, {
     name: "pushStockToWatchlistMutation",
   })
-)(CompanyOptions);
+)(CompanyOptionsRender);
 
 const CompanyOptionsRemoveMutation = compose(
   graphql(removeStockFromWatchlistMutation, {
@@ -103,6 +103,6 @@ const CompanyOptionsRemoveMutation = compose(
   })
 )(CompanyOptionsSaveMutation);
 
-export const CompanyOptionsExp = connect(mapStateToProps)(
+export const CompanyOptions = connect(mapStateToProps)(
   CompanyOptionsRemoveMutation
 );

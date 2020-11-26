@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { returnDate } from "./index";
-import { LikeComponentExp } from "../LikeComponent/LikeComponent";
+import { LikeComponent } from "../LikeComponent/LikeComponent";
 
 interface Props {
   username: string;
@@ -23,7 +23,7 @@ export const StockComment: React.FC<Props> = (props) => {
       <h4>{props.username}</h4>
       <p>{props.text}</p>
       <p>Posted {time}</p>
-      <LikeComponentExp
+      <LikeComponent
         commentId={props.commentId}
         likes={props.likes}
         dislikes={props.dislikes}
