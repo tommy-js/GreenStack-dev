@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { LikePost } from "../../LikePost/LikePost";
-import { DislikePost } from "../../DislikePost/DislikePost";
-import { InlineUnfollow } from "../../InlineUnfollow/InlineUnfollow";
-import { UserIndex } from "../../../about/CommentHover/UserIndex";
+import { LikePost } from "../LikePost/LikePost";
+import { DislikePost } from "../DislikePost/DislikePost";
+import { InlineUnfollow } from "../InlineUnfollow/InlineUnfollow";
+import { UserIndex } from "../../../about/UserIndex/UserIndex";
 import { Link } from "react-router-dom";
 import comment from "../../images/comment.png";
-import { returnDate } from "../../../notifications/notificationsTimestamp";
+import { returnDate } from "./index";
 import { returnTaggedString } from "../../../globals/functions/returnTagged";
 import { useLazyQuery } from "react-apollo";
 import { userCommentLookup } from "../../../queries/queries";
