@@ -18,7 +18,7 @@ interface Props extends Redux {
   highlightProfileImage: string;
 }
 
-const UserIndex: React.FC<Props> = (props) => {
+const UserIndexRender: React.FC<Props> = (props) => {
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
@@ -73,4 +73,7 @@ const UserIndex: React.FC<Props> = (props) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserIndex);
+export const UserIndex = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserIndexRender);
