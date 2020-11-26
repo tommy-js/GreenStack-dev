@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { KnowledgeCheckHeadline } from "../KnowledgeCheckHeadline/KnowledgeCheckHeadline";
 import SelectBoxResolver from "../../resolvers/SelectBoxResolver";
-import { KCSelectBoxes } from "./KnowledgeCheckSelectBoxes/KnowledgeCheckSelectBoxes";
+import { KnowledgeCheckSelectBoxes } from "../KnowledgeCheckSelectBoxes/KnowledgeCheckSelectBoxes";
 
 interface SelectAll {
   title: string;
