@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { InputPost } from "../../CommentInput";
+import { CommentInputPost } from "../../CommentInputPost/CommentInputPost";
 import { CommentSection } from "../../CommentSection/CommentSection";
 import { LikePost } from "../LikePost/LikePost";
 import { DislikePost } from "../DislikePost/DislikePost";
@@ -37,20 +37,25 @@ interface Props extends Redux {
   allowComments: boolean;
   allowLikes: boolean;
   comments: {
+    userId: string;
     commentId: string;
     username: string;
-    text: string;
     timestamp: number;
+    text: string;
     likes: number;
     dislikes: number;
-    subComments: {
-      commentId: string;
-      username: string;
-      text: string;
-      timestamp: number;
-      likes: number;
-      dislikes: number;
-    }[];
+    subComments: [
+      {
+        userId: string;
+        commentId: string;
+        username: string;
+        timestamp: number;
+        text: string;
+        likes: number;
+        dislikes: number;
+        parentCommentId: string;
+      }
+    ];
   }[];
   modPostLoad: (postId: string) => void;
 }
@@ -163,7 +168,7 @@ const RenderModalPre: React.FC<Props> = (props) => {
       <div className="post_lower_block">
         <p className="post_return_date">Posted {returnDate(props.timestamp)}</p>
         {returnAllowed()}
-        <InputPost
+        <CommentInputPost
           userId={props.postUserId}
           postId={props.postId}
           modComments={modComments}

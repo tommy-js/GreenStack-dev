@@ -19,14 +19,13 @@ type Routes = {
 };
 
 type SubComments = {
+  userId: string;
   commentId: string;
   username: string;
-  text: string;
   timestamp: number;
+  text: string;
   likes: number;
   dislikes: number;
-  commentUsername: string;
-  commentUserId: string;
   parentCommentId: string;
 };
 

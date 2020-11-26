@@ -20,7 +20,7 @@ export const CommentSection: React.FC<Props> = (props) => {
     if (comments) {
       return (
         <div id="comment_section">
-          {props.comments.map((el: any) => (
+          {props.comments.map((el: CommentItem) => (
             <IndividualComment
               postId={props.postId}
               commentId={el.commentId}
