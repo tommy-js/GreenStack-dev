@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import PostRender from "./PostRender";
-import { LoadingGeneral } from "../../login/LoadingUser/LoadingUser";
+import { PostRender } from "../PostRender/PostRender";
+import { LoadingGeneral } from "../../../login/Loading/Loading";
 import { individualPostQuery } from "../../../queries/queries.js";
 import { useQuery } from "react-apollo";
-import { CommentItemRemSubComments } from "../../../types/types";
 
 interface Props {
   postId: string;
