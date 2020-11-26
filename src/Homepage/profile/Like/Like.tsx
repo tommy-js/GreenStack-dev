@@ -7,8 +7,8 @@ interface Props {
 
 export const Like: React.FC<Props> = (props) => {
   return (
-    <div key={props.postId} className="profile_like">
-      <h3>{props.title}</h3>
-    </div>
+    <h3 key={props.postId} className="profile_like">
+      {props.title}
+    </h3>
   );
 };

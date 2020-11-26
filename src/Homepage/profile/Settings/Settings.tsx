@@ -1,18 +1,18 @@
 import React from "react";
-import DarkMode from "../../resolvers/DarkMode";
-import Private from "../../resolvers/Private";
+import { DarkMode } from "../DarkMode/DarkMode";
+import { Private } from "../Private/Private";
 import DeleteAccount from "../../resolvers/DeleteAccount";
 import AllowComments from "../../resolvers/AllowComments";
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "../../../actions/actions";
 
 interface Redux {
-  darkmode: any;
-  invisible: any;
-  allowCommentsOnPosts: any;
-  onDarkmodeSet: (darkmode: any) => void;
-  onInvisibleSet: (invisible: any) => void;
-  onAllowCommentsSet: (allowCommentsOnPosts: any) => void;
+  darkmode: boolean;
+  invisible: boolean;
+  allowCommentsOnPosts: boolean;
+  onDarkmodeSet: (darkmode: boolean) => void;
+  onInvisibleSet: (invisible: boolean) => void;
+  onAllowCommentsSet: (allowCommentsOnPosts: boolean) => void;
 }
 
 const SettingsRender: React.FC<Redux> = (props) => {
@@ -31,7 +31,7 @@ const SettingsRender: React.FC<Redux> = (props) => {
   return (
     <div>
       <h2>Settings</h2>
-      <DarkMode modDarkMode={modDarkMode} darkmode={props.darkmode} />
+      <DarkMode />
       <Private modPrivate={modPrivate} invisible={props.invisible} />
       <AllowComments
         modAllowComments={modAllowComments}
