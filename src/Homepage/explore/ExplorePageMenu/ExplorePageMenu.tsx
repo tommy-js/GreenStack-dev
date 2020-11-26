@@ -7,10 +7,10 @@ export const ExplorePageMenu: React.FC = () => {
     { text: "Highest Yield", path: "/highest_yield" },
   ];
   return (
-    <div>
+    <React.Fragment>
       {menuItems.map((el) => (
         <MenuItem text={el.text} path={el.path} />
       ))}
-    </div>
+    </React.Fragment>
   );
 };

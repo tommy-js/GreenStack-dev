@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { FeedElement } from "../FeedElement/FeedElement";
 import { FeedModal } from "../FeedModal/FeedModal";
-import { Suggested } from "../Suggested/Suggested";
-import { Post } from "../Post/Post";
+import { Suggested } from "../../Suggested/Suggested";
+import { PostRender } from "../../PostRender/PostRender";
 import { FeedScrolledBottom } from "../FeedScrolledBottom/FeedScrolledBottom";
-import { LoadingGeneral } from "../../login/LoadingUser";
+import { LoadingGeneral } from "../../../login/Loading/Loading";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import { useQuery } from "react-apollo";
-import { returnFeedQuery } from "../../queries/queries";
+import { returnFeedQuery } from "../../../queries/queries";
 import { connect } from "react-redux";
-import { mapStateToProps, mapDispatchToProps } from "../../actions/actions";
-import { PostItem } from "../../types/types";
+import { mapStateToProps, mapDispatchToProps } from "../../../actions/actions";
+import { PostItem } from "../../../types/types";
 
 interface Props {
   posts: PostItem[];
@@ -156,7 +156,7 @@ const FeedRender: React.FC<Props> = (props) => {
 
   return (
     <div id="feed">
-      <Post setToFeed={setToFeed} />
+      <PostRender setToFeed={setToFeed} />
       <Suggested />
       {conditionalPostRendering()}
       {renderFeed()}
