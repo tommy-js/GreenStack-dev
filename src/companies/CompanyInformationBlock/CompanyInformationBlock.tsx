@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../User/Header";
+import { Header } from "../../User/Header/Header";
 
 interface Props {
   title: string;
