@@ -2,15 +2,15 @@ import React, { useState, useEffect, useContext } from "react";
 import { SigninPage } from "../SigninPage/SigninPage";
 import { CreateAccountPage } from "../CreateAccountPage/CreateAccountPage";
 import UserLoginAuthSubresolver from "../../resolvers/UserLoginAuthSubresolver";
-import { LoadingUser } from "../LoadingUser/LoadingUser";
+import { LoadingUser } from "../Loading/Loading";
 import { RenderAccountLink } from "../RenderAccountLink/RenderAccountLink";
 import {
   LoginPageFeedInfo,
   LoginPageLearnInfo,
   LoginPageCommunityInfo,
-} from "./../LoginPageInfo";
+} from "../LoginPageInfo/LoginPageInfo";
 import { Link } from "react-router-dom";
-import { statusContext } from "../../AppMain/App";
+import { statusContext } from "../../AppMain/App/App";
 import { queryToken } from "../../queries/queries";
 import { useLazyQuery } from "react-apollo";
 import { browserHist } from "../../AppMain/history";
@@ -19,12 +19,11 @@ export const Login: React.FC = () => {
   const [userId, setUserId] = useState();
   const [token, setToken] = useState();
   const [newAccount, setNewAccount] = useState(false);
-  const [buttonText, setButtonText] = useState("Log in");
   const [loadingUser, setLoadingUser] = useState(false);
 
   const { status, setStatus } = useContext(statusContext);
 
-  const [passToken, { data, loading }] = useLazyQuery(queryToken);
+  const [passToken, { data }] = useLazyQuery(queryToken);
 
   useEffect(() => {
     if (status === false) {
@@ -62,13 +61,8 @@ export const Login: React.FC = () => {
   }, [userId]);
 
   function triggerNewAccount() {
-    if (newAccount === true) {
-      setButtonText("Log in");
-      setNewAccount(false);
-    } else {
-      setButtonText("Create a new account");
-      setNewAccount(true);
-    }
+    if (newAccount === true) setNewAccount(false);
+    else setNewAccount(true);
   }
 
   function modLoadingUser() {
