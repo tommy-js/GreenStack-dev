@@ -8,17 +8,17 @@ interface Props {
   ticker: string;
 }
 
-const WatchlistElement: React.FC<Props> = (props) => {
+export const WatchlistElement: React.FC<Props> = (props) => {
   return (
-    <Link className="watch_listing_link" to={`/home/stock/${props.stockId}`}>
-      <div className="watch_listing" key={props.key}>
-        <p>
-          {props.title}{" "}
-          <span className="watch_listing_ticker_span">#{props.ticker}</span>
-        </p>
-      </div>
+    <Link
+      key={props.key}
+      className="watch_listing_link watch_listing"
+      to={`/home/stock/${props.stockId}`}
+    >
+      <p>
+        {props.title}{" "}
+        <span className="watch_listing_ticker_span">#{props.ticker}</span>
+      </p>
     </Link>
   );
 };
-
-export default WatchlistElement;

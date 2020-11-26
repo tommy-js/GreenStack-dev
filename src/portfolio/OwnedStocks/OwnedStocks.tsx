@@ -17,7 +17,7 @@ interface Redux {
   stocks: StockItem[];
 }
 
-const OwnedStocks: React.FC<Redux> = (props) => {
+const OwnedStocksRender: React.FC<Redux> = (props) => {
   const [results, setResults] = useState([] as any);
 
   return (
@@ -31,4 +31,4 @@ const OwnedStocks: React.FC<Redux> = (props) => {
   );
 };
 
-export default connect(mapStateToProps)(OwnedStocks);
+export const OwnedStocks = connect(mapStateToProps)(OwnedStocksRender);

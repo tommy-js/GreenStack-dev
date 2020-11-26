@@ -26,7 +26,7 @@ interface Props extends Redux {
   pushStockToUserMutation: (variables: object) => any;
 }
 
-const OwnedStockSpec: React.FC<Props> = (props) => {
+const OwnedStockSpecRender: React.FC<Props> = (props) => {
   const [inputVal, setInputVal] = useState("");
 
   function modVal(input: string) {
@@ -85,8 +85,8 @@ const OwnedStockSpec: React.FC<Props> = (props) => {
 const OwnedStockSpecRedux = connect(
   mapStateToProps,
   mapDispatchToProps
-)(OwnedStockSpec);
+)(OwnedStockSpecRender);
 
-export const OwnedStockSpecExp = compose(
+export const OwnedStockSpec = compose(
   graphql(pushStockToUserMutation, { name: "pushStockToUserMutation" })
 )(OwnedStockSpecRedux);

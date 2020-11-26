@@ -1,7 +1,7 @@
 import React from "react";
 import { Radar } from "react-chartjs-2";
 
-const IndustryInvolvementChart: React.FC = () => {
+export const IndustryInvolvementChart: React.FC = () => {
   const data = {
     labels: ["Running", "Swimming", "Eating", "Cycling"],
     datasets: [
@@ -24,11 +24,5 @@ const IndustryInvolvementChart: React.FC = () => {
     },
   };
 
-  return (
-    <div>
-      <Radar data={data} options={options} />
-    </div>
-  );
+  return <Radar data={data} options={options} />;
 };
-
-export default IndustryInvolvementChart;

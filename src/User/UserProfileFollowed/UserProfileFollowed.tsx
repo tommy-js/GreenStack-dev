@@ -4,9 +4,9 @@ import { UserFollowerList } from "../UserFollowerList/UserFollowerList";
 
 export const UserProfileFollowed: React.FC = () => {
   return (
-    <div>
+    <React.Fragment>
       <Header text="Your Followers" />
       <UserFollowerList />
-    </div>
+    </React.Fragment>
   );
 };

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import NavBar from "../../navigation/NavBar";
-import { LoadingUser } from "../../login/LoadingUser";
+import { NavBar } from "../../navigation/NavBar/NavBar";
+import { LoadingUser } from "../../login/Loading/Loading";
 import UserLoginAuthSubresolver from "../../resolvers/UserLoginAuthSubresolver";
-import PortfolioBody from "../PortfolioBody";
+import { PortfolioBody } from "../PortfolioBody/PortfolioBody";
 import { Route } from "react-router-dom";
 import { browserHist } from "../../AppMain/history";
 import { queryToken } from "../../queries/queries";
@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 import { mapStateToProps } from "../../actions/actions";
 import { returnStocks } from "./index";
 
-import { statusContext } from "../../AppMain/App";
+import { statusContext } from "../../AppMain/App/App";
 
 type StockItem = {
   stockId: string;
@@ -28,12 +28,11 @@ interface Redux {
 const PortfolioRender: React.FC<Redux> = (props) => {
   const { status, setStatus } = useContext(statusContext);
   const [loadingInUser, setLoadingInUser] = useState(false);
-  const [currentPrice, setCurrentPrice] = useState([] as any);
   const [userId, setUserId] = useState();
   const [token, setToken] = useState();
   const [userStocks, setUserStocks] = useState([] as any);
 
-  const [passToken, { data, loading }] = useLazyQuery(queryToken);
+  const [passToken, { data }] = useLazyQuery(queryToken);
 
   useEffect(() => {
     if (status) {
@@ -41,11 +40,6 @@ const PortfolioRender: React.FC<Redux> = (props) => {
       setUserStocks(arr);
     }
   }, []);
-
-  useEffect(() => {
-    console.log("user stocks: ");
-    console.log(userStocks);
-  }, [userStocks]);
 
   useEffect(() => {
     console.log("homepage status: " + status);
@@ -57,14 +51,11 @@ const PortfolioRender: React.FC<Redux> = (props) => {
             token: sessionToken,
           },
         });
-      } else {
-        browserHist.push("/login");
-      }
+      } else browserHist.push("/login");
     }
   }, []);
 
   useEffect(() => {
-    console.log("homepage status: " + status);
     if (status === false) {
       if (data && data.token) {
         setUserId(data.token.userId);
@@ -82,14 +73,14 @@ const PortfolioRender: React.FC<Redux> = (props) => {
   function renderLoading() {
     if (status === true) {
       return (
-        <div>
+        <React.Fragment>
           <NavBar />
           <div id="portfolio">
             <Route exact path="/portfolio">
               <PortfolioBody />
             </Route>
           </div>
-        </div>
+        </React.Fragment>
       );
     }
   }
@@ -97,19 +88,15 @@ const PortfolioRender: React.FC<Redux> = (props) => {
   function returnLoadingInUser() {
     if (loadingInUser === true) {
       return (
-        <div className="render_loading">
-          <div className="drop_loading_block">
-            <LoadingUser />
-            <UserLoginAuthSubresolver token={token} loggedIn={loggedIn} />
-          </div>
+        <div className="render_loading drop_loading_block">
+          <LoadingUser />
+          <UserLoginAuthSubresolver token={token} loggedIn={loggedIn} />
         </div>
       );
-    } else {
-      return <div>{renderLoading()}</div>;
-    }
+    } else return <div>{renderLoading()}</div>;
   }
 
-  return <div>{returnLoadingInUser()}</div>;
+  return <React.Fragment>{returnLoadingInUser()}</React.Fragment>;
 };
 
 export const Portfolio = connect(mapStateToProps)(PortfolioRender);

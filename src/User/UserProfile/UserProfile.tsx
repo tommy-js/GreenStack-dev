@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import FollowUser from "../Follow/Follow";
+import { FollowUser } from "../FollowUser/FollowUser";
 import { UserProfilePosts } from "../UserProfilePosts/UserProfilePosts";
-import { LoadingGeneral } from "../../login/LoadingUser";
+import { LoadingGeneral } from "../../login/Loading/Loading";
 import { otherUserQuery } from "../../queries/queries.js";
 import { useQuery } from "react-apollo";
 import { connect } from "react-redux";
@@ -55,13 +55,11 @@ const UserProf: React.FC<Props> = (props) => {
         return null;
       } else {
         return (
-          <div>
-            <Follow
-              followId={props.inspectUserId}
-              followName={userProfile.username}
-              modAlreadyAdded={modAlreadyAdded}
-            />
-          </div>
+          <FollowUser
+            followId={props.inspectUserId}
+            followName={userProfile.username}
+            modAlreadyAdded={modAlreadyAdded}
+          />
         );
       }
     }
@@ -70,7 +68,7 @@ const UserProf: React.FC<Props> = (props) => {
   function returnUserProfile() {
     if (userProfileState === true) {
       return (
-        <div>
+        <React.Fragment>
           <h1>{userProfile.username}</h1>
           <img src={props.inspectProfileImage} />
           {returnFollow()}
@@ -78,15 +76,9 @@ const UserProf: React.FC<Props> = (props) => {
           <h2>Followers: {userProfile.followers.length}</h2>
           <h2>Following: {userProfile.following.length}</h2>
           <UserProfilePosts posts={userProfile.posts} />
-        </div>
+        </React.Fragment>
       );
-    } else {
-      return (
-        <div>
-          <LoadingGeneral />
-        </div>
-      );
-    }
+    } else return <LoadingGeneral />;
   }
 
   return (

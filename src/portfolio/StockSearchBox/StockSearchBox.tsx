@@ -27,9 +27,8 @@ export const StockSearchBox: React.FC<Props> = (props) => {
       if (searchResults.length > 4) {
         let splicedResults = searchResults.slice(0, 4);
         props.modResults(splicedResults);
-      } else {
-        props.modResults(searchResults);
-      }
+      } else props.modResults(searchResults);
+
       if (props.parsingSearchResults) props.parsingSearchResults(true);
     }
   }

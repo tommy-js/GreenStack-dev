@@ -15,7 +15,7 @@ export const UserProfileFollowing: React.FC = () => {
   }
 
   return (
-    <div>
+    <React.Fragment>
       {testData.map((el) => (
         <UserFollowingInfo
           key={el.userId}
@@ -26,6 +26,6 @@ export const UserProfileFollowing: React.FC = () => {
           unfollowFunct={unfollowFunct}
         />
       ))}
-    </div>
+    </React.Fragment>
   );
 };

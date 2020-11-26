@@ -12,11 +12,10 @@ interface Props {
 
 const Follow: React.FC<Props> = (props) => {
   function follow() {
-    let token = sessionStorage.getItem("Token");
     props
       .pushFollowerToUserMutation({
         variables: {
-          token: token,
+          token: sessionStorage.getItem("Token"),
           followId: props.followId,
           followName: props.followName,
         },

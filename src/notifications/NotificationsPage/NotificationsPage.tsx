@@ -1,6 +1,6 @@
 import React from "react";
 import { Notif } from "../Notif/Notif";
-import { NavBar } from "../../navigation/NavBar";
+import { NavBar } from "../../navigation/NavBar/NavBar";
 import { mapStateToProps } from "../../actions/actions";
 import { connect } from "react-redux";
 import { NotificationItem } from "../../types/types";

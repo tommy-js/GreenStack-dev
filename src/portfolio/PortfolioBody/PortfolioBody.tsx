@@ -1,6 +1,6 @@
 import React from "react";
-import InitialPortfolio from "./../InitialPortfolio/InitialPortfolio";
-import DefaultPortfolio from "./../DefaultPortfolio/DefaultPortfolio";
+import { InitialPortfolio } from "../InitialPortfolio/InitialPortfolio";
+import { DefaultPortfolio } from "../DefaultPortfolio/DefaultPortfolio";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../../actions/actions";
 
@@ -25,16 +25,13 @@ interface Redux {
   newPortfolio: boolean;
 }
 
-const PortfolioBody: React.FC<Redux> = (props) => {
+const PortfolioBodyRender: React.FC<Redux> = (props) => {
   function returnInitial() {
-    if (props.newPortfolio === true) {
-      return <InitialPortfolio />;
-    } else {
-      return <DefaultPortfolio />;
-    }
+    if (props.newPortfolio === true) return <InitialPortfolio />;
+    else return <DefaultPortfolio />;
   }
 
-  return <div>{returnInitial()}</div>;
+  return <React.Fragment>{returnInitial()}</React.Fragment>;
 };
 
-export default connect(mapStateToProps)(PortfolioBody);
+export const PortfolioBody = connect(mapStateToProps)(PortfolioBodyRender);

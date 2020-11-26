@@ -1,7 +1,6 @@
 import React from "react";
 import { Header } from "../Header/Header";
 import { UserInformation } from "../UserInformation/UserInformation";
-import { UserActivityFeed } from "../UserActivityFeed/UserActivityFeed";
 
 interface Props {
   user: string;
@@ -19,7 +18,6 @@ export const User: React.FC<Props> = (props) => {
         netWorth={props.netWorth}
         timeInMarket={props.timeInMarket}
       />
-      <UserActivityFeed />
     </div>
   );
 };

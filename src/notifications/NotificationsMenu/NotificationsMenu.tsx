@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NotifLink } from "../NotificationsLink/NotificationsLink";
+import { NotificationsLink } from "../NotificationsLink/NotificationsLink";
 import { NotifData } from "../NotificationsData/NotificationsData";
 import { NotificationItem } from "../../types/types";
 
@@ -21,20 +21,14 @@ export const NotificationsMenu: React.FC<Props> = (props) => {
 
   function tabDisplay() {
     if (tab === 0) {
-      return (
-        <div>
-          <NotifLink changeTab={changeTab} />
-        </div>
-      );
+      return <NotificationsLink title="test" tab={tab} changeTab={changeTab} />;
     } else {
       return (
-        <div>
-          <NotifData
-            tab={tab}
-            changeTab={changeTab}
-            modNotificationColor={props.modNotificationColor}
-          />
-        </div>
+        <NotifData
+          tab={tab}
+          changeTab={changeTab}
+          modNotificationColor={props.modNotificationColor}
+        />
       );
     }
   }

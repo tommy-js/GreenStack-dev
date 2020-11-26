@@ -63,7 +63,7 @@ const IndividualStockDropdownRedux = connect(
   mapDispatchToProps
 )(IndividualStockDropdown);
 
-export const IndividualWatchlistStockDropdownExp = compose(
+export const IndividualWatchlistStockDropdown = compose(
   graphql(updateNewPortfolioMutation, {
     name: "updateNewPortfolioMutation",
   })

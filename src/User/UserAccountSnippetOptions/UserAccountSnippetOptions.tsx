@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { flowRight as compose } from "lodash";
 import { graphql } from "react-apollo";
 import { blockUserMutation } from "../../queries/queries.js";
@@ -24,9 +24,9 @@ const UserAccSnippOpt: React.FC<Props> = (props) => {
   }
 
   function controlBlocked() {
-    if (blocked === false)
+    if (blocked === false) {
       return <button onClick={() => changeChecked()}>block</button>;
-    else return <button onClick={() => changeChecked()}>unblock</button>;
+    } else return <button onClick={() => changeChecked()}>unblock</button>;
   }
 
   return <div>{controlBlocked()}</div>;

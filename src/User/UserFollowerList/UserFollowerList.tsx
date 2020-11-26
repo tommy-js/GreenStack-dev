@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { statusContext } from "../../AppMain/App";
+import { statusContext } from "../../AppMain/App/App";
 import { UserAccountSnippet } from "../UserAccountSnippet/UserAccountSnippet";
 import { SettingsInputBox } from "../SettingsInputBox/SettingsInputBox";
 import { browserHist } from "../../AppMain/history.js";
@@ -25,7 +25,7 @@ const UserFollowLi: React.FC<Redux> = (props) => {
   }
 
   return (
-    <div>
+    <React.Fragment>
       <SettingsInputBox
         text="Show blocked"
         isChecked={false}
@@ -41,7 +41,7 @@ const UserFollowLi: React.FC<Redux> = (props) => {
           updateBlocked={updateBlocked}
         />
       ))}
-    </div>
+    </React.Fragment>
   );
 };
 

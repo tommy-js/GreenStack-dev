@@ -1,14 +1,14 @@
 import React from "react";
-import Assets from "../Assets";
+import { Assets } from "../Assets/Assets";
 import { WatchStocksExp } from "../WatchStocks/WatchStocks";
-import PortfolioData from "../PortfolioData";
+import { PortfolioData } from "../PortfolioData/PortfolioData";
 import { MainPortfolioHeader } from "../MainPortfolioHeader/MainPortfolioHeader";
 import { PortfolioHeader } from "../PortfolioHeader/PortfolioHeader";
-import OwnedStocks from "../OwnedStocks/OwnedStocks";
+import { OwnedStocks } from "../OwnedStocks/OwnedStocks";
 
-const DefaultPortfolio: React.FC = () => {
+export const DefaultPortfolio: React.FC = () => {
   return (
-    <div>
+    <React.Fragment>
       <MainPortfolioHeader text="Your Portfolio" />
       <Assets />
       <PortfolioHeader text="Your Stocks" />
@@ -16,8 +16,6 @@ const DefaultPortfolio: React.FC = () => {
       <PortfolioHeader text="Watchlist" />
       <WatchStocksExp />
       <PortfolioData />
-    </div>
+    </React.Fragment>
   );
 };
-
-export default DefaultPortfolio;

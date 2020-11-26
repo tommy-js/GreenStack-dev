@@ -6,7 +6,7 @@ import { InitialPortfolioSubHeader } from "../InitialPortfolioSubHeader/InitialP
 import { InitialPortfolioSubContainer } from "../InitialPortfolioSubContainer/InitialPortfolioSubContainer";
 import { StockSearchBox } from "../StockSearchBox/StockSearchBox";
 
-const InitialPortfolio: React.FC = () => {
+export const InitialPortfolio: React.FC = () => {
   const [showSubContainer, setShowSubContainer] = useState(true);
   const [results, setResults] = useState([] as any);
 
@@ -29,5 +29,3 @@ const InitialPortfolio: React.FC = () => {
     </div>
   );
 };
-
-export default InitialPortfolio;

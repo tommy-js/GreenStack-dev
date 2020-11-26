@@ -14,13 +14,9 @@ export const UserAccountSnippet: React.FC<Props> = (props) => {
   const [hideOrShow, setHideOrShow] = useState();
 
   useEffect(() => {
-    console.log(props.stateHide);
-  }, [props.stateHide]);
-
-  useEffect(() => {
-    if (props.stateHide === true && props.blocked === false)
+    if (props.stateHide === true && props.blocked === false) {
       setHideOrShow("none");
-    else setHideOrShow("block");
+    } else setHideOrShow("block");
   }, [props.stateHide, props.blocked]);
 
   return (

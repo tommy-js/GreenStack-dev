@@ -5,9 +5,9 @@ import { UserFollowButton } from "../UserFollowButton/UserFollowButton";
 interface Props {
   mute: boolean;
   following: boolean;
-  userId: number;
+  userId: string;
   changeMuted: (mute: boolean) => void;
-  setUnfollowed: (userId: number) => void;
+  setUnfollowed: (userId: string) => void;
 }
 
 export const UserFollowingOptions: React.FC<Props> = (props) => {

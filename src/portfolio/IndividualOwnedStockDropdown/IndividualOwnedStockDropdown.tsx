@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { OwnedStockSpecExp } from "../OwnedStockSpec/OwnedStockSpec";
+import { OwnedStockSpec } from "../OwnedStockSpec/OwnedStockSpec";
 
 interface Props {
   stockId: string;
@@ -11,15 +11,15 @@ export const IndividualOwnedStockDropdown: React.FC<Props> = (props) => {
   const [show, setShow] = useState(false);
 
   function openSpecs() {
-    if (show === true)
+    if (show === true) {
       return (
-        <OwnedStockSpecExp
+        <OwnedStockSpec
           stockId={props.stockId}
           title={props.title}
           ticker={props.ticker}
         />
       );
-    else return null;
+    } else return null;
   }
 
   return (

@@ -2,14 +2,12 @@ import React from "react";
 import AssetChart from "../AssetChart/AssetChart";
 import AssetBreakdown from "../AssetBreakdown/AssetBreakdown";
 
-const PortfolioData: React.FC = () => {
+export const PortfolioData: React.FC = () => {
   return (
-    <div>
+    <React.Fragment>
       <h2>Data</h2>
       <AssetChart />
       <AssetBreakdown />
-    </div>
+    </React.Fragment>
   );
 };
-
-export default PortfolioData;

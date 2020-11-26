@@ -8,10 +8,10 @@ interface Props {
 
 export const UserProfilePosts: React.FC<Props> = (props) => {
   return (
-    <div>
+    <React.Fragment>
       {props.posts.map((el: PostItem) => (
         <IndividualUserProfilePost post={el} />
       ))}
-    </div>
+    </React.Fragment>
   );
 };

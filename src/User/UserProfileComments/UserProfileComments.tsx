@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { browserHist } from "../../AppMain/history.js";
-import { statusContext } from "../../AppMain/App";
+import { statusContext } from "../../AppMain/App/App";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../../actions/actions";
 import { UserCommentItem } from "../../types/types";
@@ -26,7 +26,7 @@ const UserProfileCommentsRender: React.FC<Props> = (props) => {
     else return <h2>No Comments So Far...</h2>;
   }
 
-  return <div>{checkComments()}</div>;
+  return <React.Fragment>{checkComments()}</React.Fragment>;
 };
 
 export const UserProfileComments = connect(mapStateToProps)(

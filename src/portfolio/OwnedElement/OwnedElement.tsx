@@ -5,9 +5,5 @@ interface Props {
 }
 
 export const OwnedElement: React.FC<Props> = (props) => {
-  return (
-    <div>
-      <p>{props.title}</p>
-    </div>
-  );
+  return <p>{props.title}</p>;
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { IndividualWatchlistStockDropdownExp } from "../IndividualWatchlistStockDropdown/IndividualWatchlistStockDropdown";
+import { IndividualWatchlistStockDropdown } from "../IndividualWatchlistStockDropdown/IndividualWatchlistStockDropdown";
 import { IndividualOwnedStockDropdown } from "../IndividualOwnedStockDropdown/IndividualOwnedStockDropdown";
 
 type Stocks = {
@@ -19,21 +19,21 @@ interface Props {
 
 export const WatchlistStocksDropdown: React.FC<Props> = (props) => {
   return (
-    <div>
+    <React.Fragment>
       {props.stocks.map((el: Stocks) => (
-        <IndividualWatchlistStockDropdownExp
+        <IndividualWatchlistStockDropdown
           stockId={el.stockId}
           title={el.title}
           ticker={el.ticker}
         />
       ))}
-    </div>
+    </React.Fragment>
   );
 };
 
 export const OwnedStocksDropdown: React.FC<Props> = (props) => {
   return (
-    <div>
+    <React.Fragment>
       {props.stocks.map((el: Stocks) => (
         <IndividualOwnedStockDropdown
           stockId={el.stockId}
@@ -41,6 +41,6 @@ export const OwnedStocksDropdown: React.FC<Props> = (props) => {
           ticker={el.ticker}
         />
       ))}
-    </div>
+    </React.Fragment>
   );
 };

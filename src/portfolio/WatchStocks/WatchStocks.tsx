@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import WatchlistElement from "../WatchlistElement/WatchlistElement";
+import { WatchlistElement } from "../WatchlistElement/WatchlistElement";
 import { StockSearchBox } from "./../StockSearchBox/StockSearchBox";
 import { WatchlistStocksDropdown } from "../StocksDropdown/StocksDropdown";
 import { connect } from "react-redux";
@@ -16,11 +16,11 @@ interface Redux {
   watchlist: Keys[];
 }
 
-const WatchStocks: React.FC<Redux> = (props) => {
+const WatchStocksRender: React.FC<Redux> = (props) => {
   const [results, setResults] = useState([] as any);
 
   return (
-    <div>
+    <React.Fragment>
       {props.watchlist.map((el: Keys) => (
         <WatchlistElement
           stockId={el.stockId}
@@ -31,8 +31,8 @@ const WatchStocks: React.FC<Redux> = (props) => {
       ))}
       <StockSearchBox modResults={(res) => setResults(res)} />
       <WatchlistStocksDropdown stocks={results} />
-    </div>
+    </React.Fragment>
   );
 };
 
-export const WatchStocksExp = connect(mapStateToProps)(WatchStocks);
+export const WatchStocks = connect(mapStateToProps)(WatchStocksRender);

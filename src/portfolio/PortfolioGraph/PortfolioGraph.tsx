@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PortfolioAssetsGraph from "../PortfolioAssetsGraph/PortfolioAssetsGraph.jsx";
-import { LoadingGeneral } from "../../login/LoadingUser";
+import { LoadingGeneral } from "../../login/Loading/Loading";
 import { PortData } from "../graphData.js";
 import { mapStateToProps, mapDispatchToProps } from "../../actions/actions";
 import { connect } from "react-redux";
@@ -22,9 +22,9 @@ interface Redux {
   onCurrentPricesSet: (currentPrices: any) => void;
 }
 
-const PortfolioGraph: React.FC<Redux> = (props) => {
+const PortfolioGraphRender: React.FC<Redux> = (props) => {
   const [renderPts, setRenderPts] = useState();
-  const [callQuery, { data, loading }] = useLazyQuery(requestDataSetQuery);
+  const [callQuery, { data }] = useLazyQuery(requestDataSetQuery);
 
   useEffect(() => {
     let arr = props.stocks.map((el: StockItem) => el.ticker);
@@ -48,28 +48,19 @@ const PortfolioGraph: React.FC<Redux> = (props) => {
   function renderFunct() {
     if (renderPts) {
       return (
-        <div>
-          <PortfolioAssetsGraph
-            points={renderPts}
-            graphicalEffects={PortData.graphicalEffects}
-            contentsDiv="portfolio_graph_render"
-          />
-        </div>
+        <PortfolioAssetsGraph
+          points={renderPts}
+          graphicalEffects={PortData.graphicalEffects}
+          contentsDiv="portfolio_graph_render"
+        />
       );
-    } else {
-      return (
-        <div>
-          <LoadingGeneral />
-        </div>
-      );
-    }
+    } else return <LoadingGeneral />;
   }
 
-  return (
-    <div>
-      <div id="portfolio_graph">{renderFunct()}</div>
-    </div>
-  );
+  return <div id="portfolio_graph">{renderFunct()}</div>;
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PortfolioGraph);
+export const PortfolioGraph = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PortfolioGraphRender);

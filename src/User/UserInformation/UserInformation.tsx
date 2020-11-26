@@ -8,11 +8,11 @@ interface Props {
 
 export const UserInformation: React.FC<Props> = (props) => {
   return (
-    <div>
+    <React.Fragment>
       <p>{props.user}</p>
       <p>${props.netWorth}</p>
       <p>In market since {props.timeInMarket}</p>
       <button>Follow</button>
-    </div>
+    </React.Fragment>
   );
 };

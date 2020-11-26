@@ -5,7 +5,6 @@ interface RecentActivity {
   title: string;
   ticker: string;
   type: string;
-  tradeId: number;
   shares: number;
   price: number;
   gain: number;
@@ -14,7 +13,7 @@ interface RecentActivity {
 
 interface Props {
   user: string;
-  userId: number;
+  userId: string;
   netWorth: number;
   timeInMarket: number;
   recentTrades: RecentActivity[];
