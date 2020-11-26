@@ -26,14 +26,12 @@ const FeedRender: React.FC<Props> = (props) => {
     variables: { token: token },
     pollInterval: 200,
   });
-  const [loaded, setLoaded] = useState(false);
   const [feed, setFeed] = useState();
   const [maxFeed, setMaxFeed] = useState();
   const [view, setView] = useState(0);
 
   useEffect(() => {
     if (data) {
-      setLoaded(true);
       setFeed(data.returnFollowerFeed.posts);
 
       let arr = [
@@ -116,7 +114,7 @@ const FeedRender: React.FC<Props> = (props) => {
     if (feed) {
       props.onFeedSet(feed);
       return (
-        <div>
+        <React.Fragment>
           {feed.map((el: any) => (
             <div className="feed_component">
               <FeedElement
@@ -143,15 +141,9 @@ const FeedRender: React.FC<Props> = (props) => {
             </div>
           ))}
           <FeedScrolledBottom />
-        </div>
+        </React.Fragment>
       );
-    } else {
-      return (
-        <div>
-          <LoadingGeneral />
-        </div>
-      );
-    }
+    } else return <LoadingGeneral />;
   }
 
   return (

@@ -76,11 +76,11 @@ const IndividualCommentRender: React.FC<Props> = (props) => {
   function returnText() {
     let tag = returnTaggedString(props.text);
     return (
-      <div>
+      <React.Fragment>
         {tag.map((el: any) => (
           <IndMapper tag={el} />
         ))}
-      </div>
+      </React.Fragment>
     );
   }
 

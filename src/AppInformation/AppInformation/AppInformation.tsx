@@ -3,7 +3,7 @@ import { SignedOutNavBar } from "../SignedOutNavBar/SignedOutNavBar";
 
 export const AppInformation: React.FC = () => {
   return (
-    <div>
+    <React.Fragment>
       <SignedOutNavBar />
       <div id="app_information_page">
         <h2>Simulation</h2>
@@ -81,6 +81,6 @@ export const AppInformation: React.FC = () => {
           the risk.
         </p>
       </div>
-    </div>
+    </React.Fragment>
   );
 };

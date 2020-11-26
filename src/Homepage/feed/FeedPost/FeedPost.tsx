@@ -69,7 +69,7 @@ const FeedPostRender: React.FC<Props> = (props) => {
   function returnAllowed() {
     if (props.allowLikes === true) {
       return (
-        <div>
+        <React.Fragment>
           <div className="post_values">
             <span className="post_value_inner">{props.likes}</span>
           </div>
@@ -92,7 +92,7 @@ const FeedPostRender: React.FC<Props> = (props) => {
           <div className="like_button_block">
             <img className="like_button_image" src={comment} />
           </div>
-        </div>
+        </React.Fragment>
       );
     } else return null;
   }
@@ -121,11 +121,11 @@ const FeedPostRender: React.FC<Props> = (props) => {
   function returnText() {
     let tag = returnTaggedString(props.text);
     return (
-      <div>
+      <React.Fragment>
         {tag.map((el: any) => (
           <IndMapper tag={el} />
         ))}
-      </div>
+      </React.Fragment>
     );
   }
 

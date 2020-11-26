@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { KnowledgeCheckHeadline } from "../KnowledgeCheckHeadline/KnowledgeCheckHeadline";
 import SelectBoxResolver from "../../resolvers/SelectBoxResolver";
 import { KnowledgeCheckSelectBoxes } from "../KnowledgeCheckSelectBoxes/KnowledgeCheckSelectBoxes";
@@ -19,11 +19,9 @@ interface SelectAll {
 
 export const SelectAll: React.FC<SelectAll> = (props) => {
   const [res, setRes] = useState();
-  const [answer, setAnswer] = useState(props.options);
   const [correct, setCorrect] = useState(false);
 
   function modAnswer(argument: any) {
-    setAnswer(argument);
     var checkSet = true;
     for (let i = 0; i < props.options.length; i++) {
       if (argument[i].selected != props.options[i].correct) {
@@ -31,9 +29,6 @@ export const SelectAll: React.FC<SelectAll> = (props) => {
       }
       setCorrect(checkSet);
     }
-    console.log(checkSet);
-    console.log("Correct ans:");
-    console.log(props.options);
   }
 
   function returnRes(ans: boolean) {

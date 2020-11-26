@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import UserIndex from "../UserIndex/UserIndex";
+import { UserIndex } from "../UserIndex/UserIndex";
 import { Link } from "react-router-dom";
 import { returnTaggedString, returnDate } from "./index";
 import { useLazyQuery } from "react-apollo";

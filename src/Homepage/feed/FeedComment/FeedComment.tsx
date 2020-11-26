@@ -26,7 +26,7 @@ export const FeedComment: React.FC<Props> = (props) => {
   }, [props.view]);
 
   return (
-    <div>
+    <React.Fragment>
       <div className="feed_comment_header">
         <div className="feed_top_block">
           <div className="feed_comment_image_block">
@@ -44,6 +44,6 @@ export const FeedComment: React.FC<Props> = (props) => {
           {props.reference.text}
         </span>
       </div>
-    </div>
+    </React.Fragment>
   );
 };

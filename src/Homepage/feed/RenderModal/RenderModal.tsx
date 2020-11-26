@@ -112,32 +112,30 @@ const RenderModalPre: React.FC<Props> = (props) => {
   function returnAllowed() {
     if (props.allowLikes === true) {
       return (
-        <div>
-          <p>
-            <div className="post_values">
-              <span className="post_value_inner">{likes}</span>
-            </div>
-            <LikePost
-              userId={props.postUserId}
-              postId={props.postId}
-              modLikes={modLikes}
-            />
-            <div className="post_values">
-              <span className="post_value_inner">{dislikes}</span>
-            </div>
-            <DislikePost
-              userId={props.postUserId}
-              postId={props.postId}
-              modDislikes={modDislikes}
-            />
-            <div className="post_values">
-              <span className="post_value_inner">{comments}</span>
-            </div>
-            <div className="like_button_block">
-              <img className="like_button_image" src={comment} />
-            </div>
-          </p>
-        </div>
+        <React.Fragment>
+          <div className="post_values">
+            <span className="post_value_inner">{likes}</span>
+          </div>
+          <LikePost
+            userId={props.postUserId}
+            postId={props.postId}
+            modLikes={modLikes}
+          />
+          <div className="post_values">
+            <span className="post_value_inner">{dislikes}</span>
+          </div>
+          <DislikePost
+            userId={props.postUserId}
+            postId={props.postId}
+            modDislikes={modDislikes}
+          />
+          <div className="post_values">
+            <span className="post_value_inner">{comments}</span>
+          </div>
+          <div className="like_button_block">
+            <img className="like_button_image" src={comment} />
+          </div>
+        </React.Fragment>
       );
     } else return null;
   }

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { CompanyInformationBlock } from "../CompanyInformationBlock/CompanyInformationBlock";
 import { CompanyNewsBlock } from "../CompanyNewsBlock/CompanyNewsBlock.js";
 import { CompanyComments } from "../CompanyComments/CompanyComments";

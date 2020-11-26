@@ -1,8 +1,8 @@
 import React from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
-import { postMutation } from "../queries/queries.js";
-import { taggedUsers } from "../globals/functions/returnTaggedUsers";
+import { postMutation } from "../../queries/queries.js";
+import { taggedUsers } from "./index";
 
 interface Props {
   money: any;
@@ -17,12 +17,9 @@ interface Props {
   successfulEvent: () => void;
 }
 
-const PostPortfolioValue: React.FC<Props> = (props) => {
+const PostPortfolioValueMutation: React.FC<Props> = (props) => {
   function submit() {
     if (props.text !== "") {
-      let token = sessionStorage.getItem("Token");
-      console.log("Post image: ");
-      console.log(props.image);
       let image = props.image;
       if (props.image === undefined) {
         image = "null";
@@ -33,7 +30,7 @@ const PostPortfolioValue: React.FC<Props> = (props) => {
       props
         .postMutation({
           variables: {
-            token: token,
+            token: sessionStorage.getItem("Token"),
             title: `My portfolio is worth ${props.money}`,
             text: props.text,
             historyText: "Posted",
@@ -59,6 +56,6 @@ const PostPortfolioValue: React.FC<Props> = (props) => {
   return <button onClick={() => submit()}>{props.buttonTitle}</button>;
 };
 
-export default compose(graphql(postMutation, { name: "postMutation" }))(
-  PostPortfolioValue
-);
+export const PostPortfolioValue = compose(
+  graphql(postMutation, { name: "postMutation" })
+)(PostPortfolioValueMutation);

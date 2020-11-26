@@ -78,5 +78,5 @@ export const FeedElement: React.FC<Props> = (props) => {
     }
   }
 
-  return <div>{path()}</div>;
+  return <React.Fragment>{path()}</React.Fragment>;
 };

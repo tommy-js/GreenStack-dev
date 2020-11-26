@@ -10,7 +10,7 @@ export const CompanyCommentMap: React.FC<Props> = (props) => {
   function returnComments() {
     if (props.comments) {
       return (
-        <div>
+        <React.Fragment>
           {props.comments.map((el: CommentItem) => (
             <StockComment
               username={el.username}
@@ -21,7 +21,7 @@ export const CompanyCommentMap: React.FC<Props> = (props) => {
               dislikes={el.dislikes}
             />
           ))}
-        </div>
+        </React.Fragment>
       );
     } else {
       return <h2>Nothing Here!</h2>;

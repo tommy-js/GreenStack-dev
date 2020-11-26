@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PostPortfolioValue from "../resolvers/PostPortfolioValue";
 import { connect } from "react-redux";
-import { mapStateToProps } from "../actions/actions";
+import { mapStateToProps } from "../../actions/actions";
 import confetti from "../images/confetti.png";
 
 interface Redux {

@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { userQuery } from "../queries/queries";
 import { useLazyQuery } from "react-apollo";
 import { browserHist } from "../AppMain/history";
-import { statusContext } from "../AppMain/App";
+import { statusContext } from "../AppMain/App/App";
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "../actions/actions";
 
@@ -30,7 +30,6 @@ interface Redux {
 }
 
 interface Props extends Redux {
-  token: string;
   loggedIn: () => void;
 }
 
@@ -50,16 +49,12 @@ const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
             token: token,
           },
         });
-      } else {
-        browserHist.push("/login");
-      }
+      } else browserHist.push("/login");
     }, 500);
   }, []);
 
   useEffect(() => {
-    if (dataLogIn) {
-      pushToUser();
-    }
+    if (dataLogIn) pushToUser();
   }, [dataLogIn]);
 
   function getProgEls(user: any) {
@@ -110,12 +105,10 @@ const UserLoginAuthSubresolver: React.FC<Props> = (props) => {
       props.onStocksSet(user.stocks);
       props.onInitialPostsSet(user.posts);
       props.onProfileImageSet(user.profileImage);
-      props.onInitialTradeSet(user.trades);
       props.onInitialNotificationsSet(user.notifications);
       props.onInitialCommentsSet(user.comments);
       props.onInitialProgressSet(progress);
       props.onInitialProgressElementsSet(progs);
-      props.onHistorySet(user.history);
       props.onUserRouteSet(returnUserRoutes(user));
       sessionStorage.setItem("Token", user.token);
     }

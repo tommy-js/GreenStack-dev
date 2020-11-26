@@ -54,7 +54,6 @@ const HomepageRender: React.FC<Redux> = (props) => {
   const [technology, setTechnology] = useState([] as any);
   const [manufacturing, setManufacturing] = useState([] as any);
   const [energy, setEnergy] = useState([] as any);
-  const [token, setToken] = useState();
   const [results, setResults] = useState({} as any);
 
   const { data: companyData } = useQuery(getStocksQuery);
@@ -257,7 +256,7 @@ const HomepageRender: React.FC<Redux> = (props) => {
         <div className="render_loading">
           <div className="drop_loading_block">
             <LoadingUser />
-            <UserLoginAuthSubresolver token={token} loggedIn={loggedIn} />
+            <UserLoginAuthSubresolver loggedIn={loggedIn} />
           </div>
         </div>
       );
