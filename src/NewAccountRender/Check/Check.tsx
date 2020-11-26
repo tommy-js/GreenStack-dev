@@ -13,7 +13,6 @@ export const Check: React.FC<Props> = (props) => {
   const [selectedBcc, setSelectedBcc] = useState("transparent");
 
   useEffect(() => {
-    console.log(props.selected);
     if (props.selected === true) setSelectedBcc("teal");
     else setSelectedBcc("transparent");
   }, [props.selected]);

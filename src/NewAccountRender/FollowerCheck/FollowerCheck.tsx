@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Check } from "../Check/Check";
+import { selectedFollower } from "./index";
 
 type FollowerCheckItem = {
   name: string;
@@ -41,20 +42,13 @@ export const FollowerCheck: React.FC<Props> = (props) => {
   ]);
 
   function modIndex(index: number) {
-    let obj = followers[index];
-    let follow = [...followers];
-    follow.map((el: FollowerCheckItem) => (el.selected = false));
-    obj = {
-      ...followers[index],
-      selected: true,
-    };
-    follow[index] = obj;
-    setFollowers(follow);
+    let selected = selectedFollower(followers, index);
+    setFollowers(selected);
     props.setCurrentIndex(index);
   }
 
   return (
-    <div>
+    <React.Fragment>
       {followers.map((el: FollowerCheckItem) => (
         <Check
           key={el.index}
@@ -66,6 +60,6 @@ export const FollowerCheck: React.FC<Props> = (props) => {
           modIndex={modIndex}
         />
       ))}
-    </div>
+    </React.Fragment>
   );
 };

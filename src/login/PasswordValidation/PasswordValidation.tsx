@@ -13,11 +13,8 @@ export const PasswordValidation: React.FC<Props> = (props) => {
   const [opac, setOpac] = useState(0);
 
   useEffect(() => {
-    if (props.password.length > 0) {
-      setOpac(1);
-    } else if (props.password.length === 0) {
-      setOpac(0);
-    }
+    if (props.password.length > 0) setOpac(1);
+    else if (props.password.length === 0) setOpac(0);
   }, [props.password]);
 
   return (

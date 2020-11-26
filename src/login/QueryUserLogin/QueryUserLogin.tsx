@@ -31,15 +31,9 @@ export const QueryUserLogin: React.FC<Props> = (props) => {
   }, [props.password]);
 
   function checkValid() {
-    if (props.username.length > 0 && props.password.length > 0) {
-      logIn();
-    }
-    if (props.username.length === 0) {
-      props.renderUsernameNull();
-    }
-    if (props.password.length === 0) {
-      props.renderPasswordNull();
-    }
+    if (props.username.length > 0 && props.password.length > 0) logIn();
+    if (props.username.length === 0) props.renderUsernameNull();
+    if (props.password.length === 0) props.renderPasswordNull();
   }
 
   function logIn() {

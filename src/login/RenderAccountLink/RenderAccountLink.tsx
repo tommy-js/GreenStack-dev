@@ -9,23 +9,23 @@ export const RenderAccountLink: React.FC<Props> = (props) => {
   function checkNewAccount() {
     if (props.newAccount === false) {
       return (
-        <p>
+        <React.Fragment>
           Want to join the party? Create a new account
           <a href="#" onClick={props.triggerNewAccount}>
             {" "}
             here
           </a>
-        </p>
+        </React.Fragment>
       );
     } else {
       return (
-        <p>
+        <React.Fragment>
           Already a member? Login
           <a className="teal_link" href="#" onClick={props.triggerNewAccount}>
             {" "}
             here
           </a>
-        </p>
+        </React.Fragment>
       );
     }
   }
