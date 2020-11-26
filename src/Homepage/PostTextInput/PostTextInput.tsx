@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { UserSearchReturn } from "./UserSearchReturn";
 import { connect } from "react-redux";
-import { mapStateToProps } from "../actions/actions";
+import { mapStateToProps } from "../../actions/actions";
 import { FollowingItem, FollowerItem } from "../../types/types";
 
 interface Redux {

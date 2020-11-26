@@ -1,9 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { SubmitPost } from "../SubmitPost/SubmitPost";
 import { PostNotifIcon } from "../PostNotifIcon/PostNotifIcon";
 import { PostOptions } from "../post/PostOptions/PostOptions";
 import { PostTextInput } from "../PostTextInput/PostTextInput";
-import { ProfileDropzone } from "../profile/ProfileDropzone";
+import { ProfileDropzone } from "../profile/ProfileDropzone/ProfileDropzone";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../../actions/actions";
 import settings from "../images/settings.png";
