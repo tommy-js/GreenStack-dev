@@ -62,10 +62,6 @@ const RenderPageOneMutation: React.FC<Props> = (props) => {
     }
   }
 
-  useEffect(() => {
-    console.log(selectedState);
-  }, [selectedState]);
-
   function save() {
     props
       .saveSettingsMutation({
@@ -106,7 +102,10 @@ const RenderPageOneMutation: React.FC<Props> = (props) => {
         options={option3}
       />
       <div className="render_pages_button_container">
-        <button className="render_button_right" onClick={() => save()}>
+        <button
+          className="render_button_right"
+          onClick={() => props.nextPage(props.id)}
+        >
           Next
         </button>
       </div>

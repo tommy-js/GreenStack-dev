@@ -23,7 +23,7 @@ const LikePostCommentMutation: React.FC<Props> = (props) => {
           commentId: props.commentId,
         },
       })
-      .then((res: any) => {
+      .then(() => {
         props.modLikes();
         setImgColor(likeFilled);
       })

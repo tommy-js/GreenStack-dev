@@ -404,7 +404,6 @@ const postMutation = gql`
     $title: String!
     $text: String!
     $postImage: String!
-    $style: String!
     $accompaniedURL: String!
     $allowComments: Boolean!
     $allowLikes: Boolean!

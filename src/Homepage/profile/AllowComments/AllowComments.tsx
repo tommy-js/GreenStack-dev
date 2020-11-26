@@ -10,7 +10,7 @@ interface Redux {
 }
 
 interface Props extends Redux {
-  modAllowComments: (allowCommentsOnPosts: boolean) => void;
+  modAllowComments?: (allowCommentsOnPosts: boolean) => void;
   updateAllowCommentsMutation: (variables: object) => any;
 }
 
@@ -31,7 +31,7 @@ const AllowCommentsRender: React.FC<Props> = (props) => {
       .catch((err: any) => console.log(err))
       .then(() => {
         setAllowChecked(!allowChecked);
-        props.modAllowComments(!allowChecked);
+        if (props.modAllowComments) props.modAllowComments(!allowChecked);
       });
   }
 

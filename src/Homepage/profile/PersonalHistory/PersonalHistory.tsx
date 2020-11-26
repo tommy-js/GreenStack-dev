@@ -5,11 +5,7 @@ import { connect } from "react-redux";
 import { mapStateToProps } from "../../../actions/actions";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
-interface Redux {
-  history: any;
-}
-
-const PersonalHistoryRender: React.FC<Redux> = (props) => {
+const PersonalHistoryRender: React.FC = () => {
   const [postRendered, setPostRendered] = useState(false);
   const [postInfo, setPostInfo] = useState();
 
@@ -22,13 +18,6 @@ const PersonalHistoryRender: React.FC<Redux> = (props) => {
       setPostRendered(true);
       disableBodyScroll(feed);
     }
-    triggerPostLoad(postId);
-  }
-
-  function triggerPostLoad(postId: string) {
-    let foundId = props.history.find((el: any) => postId === el.postId)!;
-    let foundIndex = props.history.indexOf(foundId);
-    setPostInfo(props.history[foundIndex].postId);
   }
 
   function conditionalPostRendering() {
@@ -40,15 +29,7 @@ const PersonalHistoryRender: React.FC<Redux> = (props) => {
   return (
     <React.Fragment>
       <h2 id="personal_history_header">History</h2>
-      {props.history.map((el: any) => (
-        <HistoryElement
-          style={el.style}
-          text={el.text}
-          postId={el.postId}
-          timestamp={el.timestamp}
-          modPostLoad={modPostLoad}
-        />
-      ))}
+
       {conditionalPostRendering()}
     </React.Fragment>
   );

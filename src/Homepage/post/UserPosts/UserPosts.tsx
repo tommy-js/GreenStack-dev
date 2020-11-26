@@ -4,7 +4,7 @@ import { FeedModal } from "../../feed/FeedModal/FeedModal";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../../../actions/actions";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
-import { FeedItem } from "../../../types/types";
+import { FeedItem, PostItem } from "../../../types/types";
 
 interface Redux {
   posts: Posts[];
@@ -52,7 +52,7 @@ const UserPostsRender: React.FC<Props> = (props) => {
   }
 
   function triggerPostLoad(postId: string) {
-    let foundId = props.feed.find((el: FeedItem) => postId === el.posts.postId);
+    let foundId = props.feed.find((el: any) => el.postId === postId);
     if (foundId) {
       let foundIndex = props.feed.indexOf(foundId);
       setPostInfo(props.feed[foundIndex]);
@@ -68,7 +68,7 @@ const UserPostsRender: React.FC<Props> = (props) => {
   return (
     <div id="feed">
       <h2 className="list_header">Your Posts</h2>
-      <div>
+      <React.Fragment>
         {sortedArr.map((el: Posts) => (
           <IndividualUserPost
             key={el.timestamp}
@@ -82,7 +82,7 @@ const UserPostsRender: React.FC<Props> = (props) => {
           />
         ))}
         {conditionalPostRendering()}
-      </div>
+      </React.Fragment>
     </div>
   );
 };

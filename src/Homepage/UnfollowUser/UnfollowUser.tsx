@@ -4,7 +4,7 @@ import { flowRight as compose } from "lodash";
 import { unfollowUserMutation } from "../../queries/queries.js";
 
 interface Props {
-  followerId: string;
+  userId: string;
   unfollowUserMutation: (variables: object) => void;
 }
 
@@ -13,7 +13,7 @@ const UnfollowUserMutation: React.FC<Props> = (props) => {
     props.unfollowUserMutation({
       variables: {
         token: sessionStorage.getItem("Token"),
-        followerId: props.followerId,
+        followerId: props.userId,
       },
     });
   }

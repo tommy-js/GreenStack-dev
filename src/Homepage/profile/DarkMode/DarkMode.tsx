@@ -11,7 +11,7 @@ interface Redux {
 
 interface Props extends Redux {
   updateDarkModeMutation: (variables: object) => any;
-  modDarkMode: (darkmode: boolean) => void;
+  modDarkMode?: (darkmode: boolean) => void;
 }
 
 const DarkModeRender: React.FC<Props> = (props) => {
@@ -30,7 +30,7 @@ const DarkModeRender: React.FC<Props> = (props) => {
       })
       .catch((err: any) => console.log(err))
       .then(() => {
-        props.modDarkMode(!darkmodeChecked);
+        if (props.modDarkMode) props.modDarkMode(!darkmodeChecked);
         setDarkmodeChecked(!darkmodeChecked);
       });
   }

@@ -11,7 +11,7 @@ interface Redux {
 
 interface Props extends Redux {
   updateInvisibleMutation: (variables: object) => any;
-  modPrivate: (invisible: boolean) => void;
+  modPrivate?: (invisible: boolean) => void;
 }
 
 const PrivateRender: React.FC<Props> = (props) => {
@@ -22,17 +22,16 @@ const PrivateRender: React.FC<Props> = (props) => {
   }, [props.invisible]);
 
   function updateInvisible() {
-    let token = sessionStorage.getItem("Token");
     props
       .updateInvisibleMutation({
         variables: {
-          token: token,
+          token: sessionStorage.getItem("Token"),
         },
       })
       .catch((err: any) => console.log(err))
       .then(() => {
         setInvisibleChecked(!invisibleChecked);
-        props.modPrivate(!invisibleChecked);
+        if (props.modPrivate) props.modPrivate(!invisibleChecked);
       });
   }
 
@@ -48,8 +47,8 @@ const PrivateRender: React.FC<Props> = (props) => {
   );
 };
 
-const PrivateMutation = compose(
-  graphql(updateInvisibleMutation, { name: "updateDarkModeMutation" })
-)(PrivateRender);
+const PrivateRedux = connect(mapStateToProps)(PrivateRender);
 
-export const Private = connect(mapStateToProps)(PrivateMutation);
+export const Private = compose(
+  graphql(updateInvisibleMutation, { name: "updateInvisibleMutation" })
+)(PrivateRedux);

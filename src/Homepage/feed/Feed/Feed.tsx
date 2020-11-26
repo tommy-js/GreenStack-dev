@@ -10,20 +10,19 @@ import { useQuery } from "react-apollo";
 import { returnFeedQuery } from "../../../queries/queries";
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "../../../actions/actions";
-import { PostItem } from "../../../types/types";
+import { PostItem, FeedItem } from "../../../types/types";
 
 interface Props {
   posts: PostItem[];
   modRoutes: (arr: any) => void;
-  onFeedSet: (feed: any) => void;
+  onFeedSet: (feed: FeedItem[]) => void;
 }
 
 const FeedRender: React.FC<Props> = (props) => {
-  let token = sessionStorage.getItem("Token");
   const [postRendered, setPostRendered] = useState(false);
   const [postInfo, setPostInfo] = useState();
   const { data } = useQuery(returnFeedQuery, {
-    variables: { token: token },
+    variables: { token: sessionStorage.getItem("Token") },
     pollInterval: 200,
   });
   const [feed, setFeed] = useState();
