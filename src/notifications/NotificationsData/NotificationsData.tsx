@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NotificationsElement } from "../NotificationsElement/NotificationsElement";
 import { MutateUserSettings } from "../MutateUserSettings/MutateUserSettings";
-import VoidAlert from "../VoidAlert/VoidAlert";
+import { VoidAlert } from "../VoidAlert/VoidAlert";
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "../../actions/actions";
 import { NotificationItem } from "../../types/types";
@@ -52,14 +52,14 @@ const NotificationsDataContainer: React.FC<Props> = (props) => {
   function returnEmptyNotifications() {
     if (notifications.length < 1) {
       return (
-        <div>
+        <React.Fragment>
           <button onClick={() => props.changeTab(0)}>back</button>
           <VoidAlert />
-        </div>
+        </React.Fragment>
       );
     } else {
       return (
-        <div>
+        <React.Fragment>
           <button onClick={() => props.changeTab(0)}>back</button>
           {notifications.map((el: any) => (
             <NotificationsElement
@@ -71,7 +71,7 @@ const NotificationsDataContainer: React.FC<Props> = (props) => {
               modNotifs={modNotifs}
             />
           ))}
-        </div>
+        </React.Fragment>
       );
     }
   }
@@ -101,18 +101,14 @@ const NotificationsDataContainer: React.FC<Props> = (props) => {
     return null;
   }
 
-  useEffect(() => {
-    console.log(props.notifications);
-  }, [notifications]);
-
   function checkTab() {
     if (props.tab === 1) {
-      return <div>{returnEmptyNotifications()}</div>;
+      return <React.Fragment>{returnEmptyNotifications()}</React.Fragment>;
     } else if (props.tab === 2) {
-      return <div>{returnEmptyHistory()}</div>;
+      return <React.Fragment>{returnEmptyHistory()}</React.Fragment>;
     } else if (props.tab === 3) {
       return (
-        <div>
+        <React.Fragment>
           <button onClick={() => props.changeTab(0)}>back</button>
           <MutateUserSettings
             modDarkMode={modDarkMode}
@@ -122,7 +118,7 @@ const NotificationsDataContainer: React.FC<Props> = (props) => {
             modAllowComments={modAllowComments}
             allowCommentsOnPosts={props.allowCommentsOnPosts}
           />
-        </div>
+        </React.Fragment>
       );
     }
   }

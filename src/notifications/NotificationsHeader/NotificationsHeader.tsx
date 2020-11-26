@@ -9,11 +9,9 @@ interface Redux {
 
 const NotificationsHead: React.FC<Redux> = (props) => {
   return (
-    <div className="notifications_link">
-      <Link className="no_style" to="/home/profile">
-        <p className="notifications_link_text">{props.username}</p>
-      </Link>
-    </div>
+    <Link className="no_style notifications_link" to="/home/profile">
+      <p className="notifications_link_text">{props.username}</p>
+    </Link>
   );
 };
 

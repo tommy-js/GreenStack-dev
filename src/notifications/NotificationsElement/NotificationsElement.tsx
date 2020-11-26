@@ -3,7 +3,7 @@ import { NotifTime } from "../NotifTime/NotifTime";
 import { Link } from "react-router-dom";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
-import { updateUserNotificationsViewedMutation } from "../queries/queries";
+import { updateUserNotificationsViewedMutation } from "../../queries/queries";
 import { NotificationItem } from "../../types/types";
 
 interface Redux {
@@ -46,9 +46,7 @@ const NotifEl: React.FC<Props> = (props) => {
           <p>Not yet seen!</p>
         </div>
       );
-    } else {
-      return null;
-    }
+    } else return null;
   }
 
   function successfulDrop(id: string) {
