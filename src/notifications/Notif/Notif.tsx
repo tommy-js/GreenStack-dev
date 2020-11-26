@@ -19,7 +19,7 @@ interface Props extends Redux {
   id: string;
 }
 
-const Notif: React.FC<Props> = (props) => {
+const NotifMutation: React.FC<Props> = (props) => {
   function successfulDrop(id: string) {
     let notifsArr = [...props.notifications];
     let foundInd = notifsArr.find((el: any) => el.id === id);
@@ -39,10 +39,10 @@ const Notif: React.FC<Props> = (props) => {
           id: props.id,
         },
       })
-      .then((res: any) => {
+      .then(() => {
         successfulDrop(props.id);
       })
-      .catch((res: any) => console.log("err"));
+      .catch((err: any) => console.log(err));
   }
 
   return (
@@ -54,8 +54,8 @@ const Notif: React.FC<Props> = (props) => {
   );
 };
 
-const NotifMap = connect(mapStateToProps, mapDispatchToProps)(Notif);
+const NotifMap = connect(mapStateToProps, mapDispatchToProps)(NotifMutation);
 
-export const NotifExp = compose(
+export const Notif = compose(
   graphql(dropNotificationMutation, { name: "dropNotificationMutation" })
 )(NotifMap);

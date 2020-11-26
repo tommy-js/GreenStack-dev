@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { TickerContainer } from "../TickerContainer/TickerContainer";
 import apple from "../images/apple_logo.png";
 import apple_color from "../images/apple_logo_color.png";

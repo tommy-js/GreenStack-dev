@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FollowerCheck } from "../FollowerCheck/FollowerCheck";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
@@ -52,7 +52,7 @@ const RenderPageThreeMutation: React.FC<Submission> = (props) => {
           Back
         </button>
         <button className="render_button_right" onClick={() => save()}>
-          {props.text}
+          Save
         </button>
       </div>
     </div>

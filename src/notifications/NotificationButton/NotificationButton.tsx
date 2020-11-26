@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { ProfileImage } from "../ProfileImage/ProfileImage";
+import React from "react";
+import { ProfileImage } from "../../navigation/ProfileImage/ProfileImage";
 import { NewNotification } from "../NewNotification/NewNotification";
 
 interface Props {
