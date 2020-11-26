@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import NavBar from "../../navigation/NavBar";
-import CommentSection from "../CommentSection/CommentSection";
-import LearnGraphs from "../LearnGraphs/LearnGraphs.jsx";
-import { SP500HalfDecade } from "./graphs/graphData.js";
+import { NavBar } from "../../navigation/NavBar/NavBar";
+import { CommentSection } from "../CommentSection/CommentSection";
+import { LearnGraphs } from "../LearnGraphs/LearnGraphs.jsx";
+import { SP500HalfDecade } from "../graphData.js";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { mapStateToProps } from "../../actions/actions";
 import { useQuery } from "react-apollo";
 import { tutorialQuery } from "../../queries/queries";
 
