@@ -1,5 +1,5 @@
 import React from "react";
-import history from "../images/nothing_found.png";
+import history from "../../images/nothing_found.png";
 
 export const VoidAlert: React.FC = () => {
   return (

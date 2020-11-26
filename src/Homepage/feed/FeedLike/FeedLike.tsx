@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import likeFilled from "../../images/like_filled.png";
+import likeFilled from "../../../images/like_filled.png";
 
 type Reference = {
   postId: string;

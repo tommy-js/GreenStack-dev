@@ -1,5 +1,5 @@
 import React from "react";
-import save from "../images/save.png";
+import save from "../../../images/save.png";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { setBioMutation } from "../../../queries/queries";

@@ -4,7 +4,7 @@ import { DislikePostComment } from "../post/DislikePostComment/DislikePostCommen
 import { UserIndex } from "../../about/UserIndex/UserIndex";
 import { IndividualCommentSubComments } from "../IndividualCommentSubComments/IndividualCommentSubComments";
 import { IndividualCommentReply } from "../IndividualCommentReply/IndividualCommentReply";
-import comment from "../images/comment.png";
+import comment from "../../images/comment.png";
 import { useLazyQuery } from "react-apollo";
 import { userCommentLookup } from "../../queries/queries";
 import { connect } from "react-redux";

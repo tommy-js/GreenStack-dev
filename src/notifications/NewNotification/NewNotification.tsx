@@ -1,5 +1,5 @@
 import React from "react";
-import notif from "../images/notification.png";
+import notif from "../../images/notification.png";
 
 interface Props {
   notifyNew: boolean;

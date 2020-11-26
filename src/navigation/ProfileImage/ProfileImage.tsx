@@ -1,6 +1,6 @@
 import React from "react";
 // ONLY FOR TEST
-import profileImage from "../images/generic_icon.png";
+import profileImage from "../../images/generic_icon.png";
 
 export const ProfileImage: React.FC = () => {
   return (

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { dislikePostMutation } from "../../../queries/queries";
-import dislike from "../images/dislike.png";
-import dislikeFilled from "../images/dislike_filled.png";
+import dislike from "../../../images/dislike.png";
+import dislikeFilled from "../../../images/dislike_filled.png";
 
 interface Props {
   userId: string;

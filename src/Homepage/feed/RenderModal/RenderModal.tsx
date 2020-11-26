@@ -6,7 +6,7 @@ import { DislikePost } from "../DislikePost/DislikePost";
 import { UserIndex } from "../../../about/UserIndex/UserIndex";
 import { Link } from "react-router-dom";
 import { UserRoute } from "../../../types/types";
-import comment from "../../images/comment.png";
+import comment from "../../../images/comment.png";
 import { returnDate, returnTaggedString, returnUserRoutes } from "./index";
 import { useLazyQuery } from "react-apollo";
 import { userCommentLookup } from "../../../queries/queries";

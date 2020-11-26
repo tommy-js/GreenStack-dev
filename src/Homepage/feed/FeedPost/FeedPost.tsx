@@ -4,7 +4,7 @@ import { DislikePost } from "../DislikePost/DislikePost";
 import { InlineUnfollow } from "../InlineUnfollow/InlineUnfollow";
 import { UserIndex } from "../../../about/UserIndex/UserIndex";
 import { Link } from "react-router-dom";
-import comment from "../../images/comment.png";
+import comment from "../../../images/comment.png";
 import { returnDate } from "./index";
 import { returnTaggedString } from "../../../globals/functions/returnTagged";
 import { useLazyQuery } from "react-apollo";

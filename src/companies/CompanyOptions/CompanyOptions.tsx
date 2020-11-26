@@ -91,18 +91,16 @@ const CompanyOptionsRender: React.FC<Props> = (props) => {
   return <div className="default_middle">{showWatchlist()}</div>;
 };
 
+const CompanyOptionsRedux = connect(mapStateToProps)(CompanyOptionsRender);
+
 const CompanyOptionsSaveMutation = compose(
   graphql(pushStockToWatchlistMutation, {
     name: "pushStockToWatchlistMutation",
   })
-)(CompanyOptionsRender);
+)(CompanyOptionsRedux);
 
-const CompanyOptionsRemoveMutation = compose(
+export const CompanyOptions = compose(
   graphql(removeStockFromWatchlistMutation, {
     name: "removeStockFromWatchlistMutation",
   })
 )(CompanyOptionsSaveMutation);
-
-export const CompanyOptions = connect(mapStateToProps)(
-  CompanyOptionsRemoveMutation
-);

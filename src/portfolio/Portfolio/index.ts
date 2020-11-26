@@ -1,16 +1,9 @@
 import companyProfiles from "../../companies/companyProfiles";
-type StockItem = {
-  stockId: string;
-  title: string;
-  shares: number;
-  color: string;
-  ticker: string;
-};
+import { StockItem } from "../../types/types";
 
 type CompanyProfiles = {
   stockId: string;
   title: string;
-  shares: number;
   ticker: string;
   description: string;
   sector: string;

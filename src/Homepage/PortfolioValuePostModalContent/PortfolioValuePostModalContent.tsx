@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { PostPortfolioValue } from "../PostPortfolioValue/PostPortfolioValue";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../../actions/actions";
-import confetti from "../images/confetti.png";
+import confetti from "../../images/confetti.png";
 
 interface Redux {
   money: number;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, createRef } from "react";
-import { LoadingGeneral } from "../login/LoadingUser.tsx";
+import { LoadingGeneral } from "../../login/Loading/Loading.tsx";
 import { renderFull } from "stock-graphics";
 import { useQuery } from "react-apollo";
-import { requestDataSetQuery } from "../queries/queries.js";
+import { requestDataSetQuery } from "../../queries/queries.js";
 
 export const CompanyGraph = ({ title, ticker }) => {
   let arr = [];

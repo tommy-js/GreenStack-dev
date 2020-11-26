@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { likeCommentMutation } from "../../../queries/queries";
-import like from "../../images/like.png";
-import likeFilled from "../../images/like_filled.png";
+import like from "../../../images/like.png";
+import likeFilled from "../../../images/like_filled.png";
 
 interface Props {
   postId: string;

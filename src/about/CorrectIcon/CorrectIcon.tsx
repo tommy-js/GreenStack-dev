@@ -1,5 +1,5 @@
 import React from "react";
-import correct from "../../../images/checkmark.png";
+import correct from "../../images/checkmark.png";
 
 export const CorrectIcon: React.FC = () => {
   return (

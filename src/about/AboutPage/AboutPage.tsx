@@ -91,11 +91,11 @@ const AboutPageRender: React.FC<Redux> = (props) => {
   function renderLoading() {
     if (status === true && progress.length > 0) {
       return (
-        <div>
+        <React.Fragment>
           <NavBar />
           <AboutUs />
           <Learn progress={progress} />
-        </div>
+        </React.Fragment>
       );
     }
   }
@@ -106,16 +106,16 @@ const AboutPageRender: React.FC<Redux> = (props) => {
         <div className="render_loading">
           <div className="drop_loading_block">
             <LoadingUser />
-            <UserLoginAuthSubresolver token={token} loggedIn={loggedIn} />
+            <UserLoginAuthSubresolver loggedIn={loggedIn} />
           </div>
         </div>
       );
     } else {
-      return <div>{renderLoading()}</div>;
+      return <React.Fragment>{renderLoading()}</React.Fragment>;
     }
   }
 
-  return <div>{returnLoadingInUser()}</div>;
+  return <React.Fragment>{returnLoadingInUser()}</React.Fragment>;
 };
 
 export const AboutPage = connect(

@@ -1,8 +1,8 @@
 import React from "react";
 import { returnDate } from "./index";
-import page from "../../images/post_img.png";
-import like from "../../images/like.png";
-import dislike from "../../images/dislike.png";
+import page from "../../../images/post_img.png";
+import like from "../../../images/like.png";
+import dislike from "../../../images/dislike.png";
 
 interface Props {
   style: string;
