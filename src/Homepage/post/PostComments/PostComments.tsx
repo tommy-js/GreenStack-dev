@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { IndividualPostComment } from "../IndividualPostComment/IndividualPostComment";
-import { LoadingGeneral } from "../../../login/LoadingUser";
+import { LoadingGeneral } from "../../../login/Loading/Loading";
 import { returnOrderedComments } from "./index";
 
 type Comment = {
